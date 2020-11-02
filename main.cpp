@@ -2,9 +2,9 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(750, 750), "Spacecraft vs Asteroids");
     sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Red);
+    shape.setFillColor(sf::Color::Blue);
 
     while (window.isOpen())
     {
