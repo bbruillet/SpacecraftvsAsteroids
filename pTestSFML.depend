@@ -2,6 +2,44 @@
 1603186867 source:/home/bruillet/Documents/C++/pTestSFML/main.cpp
 	<SFML/Graphics.hpp>
 
-1603186978 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/main.cpp
+1604417248 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/main.cpp
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	"Personnage.h"
+	"Deplacement.h"
+	"Univers.h"
+
+1604417684 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Personnage.cpp
+	"Personnage.h"
+	<cstdio>
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1604414270 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Personnage.h
+	<iostream>
+	<ostream>
+	<string>
+	<cstdio>
+	<SFML/Graphics.hpp>
+
+1604410957 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Deplacement.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+
+1604416230 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Deplacement.cpp
+	"Deplacement.h"
+	"Personnage.h"
+	"Univers.h"
+
+1604414806 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Univers.cpp
+	"Univers.h"
+
+1604414779 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Univers.h
+	<iostream>
+	<ostream>
+	<string>
+	<cstdio>
 	<SFML/Graphics.hpp>
 
