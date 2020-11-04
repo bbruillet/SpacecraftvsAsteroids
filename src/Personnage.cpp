@@ -76,19 +76,26 @@ void Personnage::setY(int y)
 
 int Personnage::seDeplacerX(Event event, int x)
 {
+
     switch (event.key.code)
     {
         case sf::Keyboard::Left:
         {
-            x = x - 25;
-            perso_sprite.setRotation(270);
+            if(x>1000) {
+                x = x - 25;
+                perso_sprite.setRotation(270);
+                cout << x << endl;;
+            }
             break;
         }
 
         case sf::Keyboard::Right:
         {
-            x = x + 25;
-            perso_sprite.setRotation(90);
+            if(x<6500) {
+                x = x + 25;
+                perso_sprite.setRotation(90);
+                cout << x << endl;;
+            }
             break;
         }
         default:
@@ -103,15 +110,19 @@ int Personnage::seDeplacerY(Event event, int y)
     {
         case sf::Keyboard::Up:
         {
+            if(y>1000){
             y = y - 25;
             perso_sprite.setRotation(0);
+            }
             break;
         }
 
         case sf::Keyboard::Down:
         {
+            if(y<3055){
             y = y + 25;
             perso_sprite.setRotation(180);
+            }
             break;
         }
         default:
