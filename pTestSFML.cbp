@@ -35,11 +35,15 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Deplacement.h" />
+		<Unit filename="include/Gestion.h" />
 		<Unit filename="include/Personnage.h" />
+		<Unit filename="include/Planete.h" />
 		<Unit filename="include/Univers.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Deplacement.cpp" />
+		<Unit filename="src/Gestion.cpp" />
 		<Unit filename="src/Personnage.cpp" />
+		<Unit filename="src/Planete.cpp" />
 		<Unit filename="src/Univers.cpp" />
 		<Extensions />
 	</Project>

@@ -23,7 +23,7 @@ using std::ostream;
     Haut
 };*/
 
-class Personnage : public sf::Drawable
+class Personnage : public sf::Drawable, public sf::Event
 {
     private:
         string nom, race;
@@ -46,9 +46,13 @@ class Personnage : public sf::Drawable
         sf::Texture perso_texture;
 
 
+
+
         //Méthodes utiles
         string str() const;
 
+        int seDeplacerX(Event event, int x);
+        int seDeplacerY(Event event, int y);
         //Méthodes de positions
 
 
@@ -64,7 +68,6 @@ class Personnage : public sf::Drawable
 
         int getNiveau() const;
         void setNiveau(int ptsNiveau);
-
 
         string getNom() const;
         void setNom(string nom);

@@ -2,38 +2,36 @@
 1603186867 source:/home/bruillet/Documents/C++/pTestSFML/main.cpp
 	<SFML/Graphics.hpp>
 
-1604417248 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/main.cpp
-	<SFML/Graphics.hpp>
+1604501170 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/main.cpp
 	<iostream>
-	<vector>
-	"Personnage.h"
-	"Deplacement.h"
-	"Univers.h"
+	<list>
+	"Gestion.h"
 
-1604417684 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Personnage.cpp
+1604499629 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Personnage.cpp
 	"Personnage.h"
 	<cstdio>
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1604414270 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Personnage.h
+1604497682 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Personnage.h
 	<iostream>
 	<ostream>
 	<string>
 	<cstdio>
 	<SFML/Graphics.hpp>
 
-1604410957 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Deplacement.h
+1604497681 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Deplacement.h
 	<SFML/Graphics.hpp>
+	"Personnage.h"
 	<iostream>
 	<vector>
 
-1604416230 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Deplacement.cpp
+1604497681 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Deplacement.cpp
 	"Deplacement.h"
 	"Personnage.h"
 	"Univers.h"
 
-1604414806 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Univers.cpp
+1604489818 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Univers.cpp
 	"Univers.h"
 
 1604414779 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Univers.h
@@ -42,4 +40,29 @@
 	<string>
 	<cstdio>
 	<SFML/Graphics.hpp>
+
+1604501542 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Planete.h
+	<iostream>
+	<ostream>
+	<string>
+	<cstdio>
+	<SFML/Graphics.hpp>
+
+1604501542 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Planete.cpp
+	"Planete.h"
+	<cstdio>
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1604498905 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Gestion.cpp
+	"Gestion.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	<vector>
+	"Personnage.h"
+	"Deplacement.h"
+	"Univers.h"
+	"Planete.h"
+
+1604499629 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Gestion.h
 

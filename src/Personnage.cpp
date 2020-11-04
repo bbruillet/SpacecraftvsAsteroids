@@ -5,7 +5,6 @@
 #include <SFML/Graphics.hpp>
 
 Personnage::Personnage(string nom, string race, int ptsAttaque, int ptsVie, int ptsExperience, int niveau)
-//:nom(nom), race(race), ptsAttaque(ptsAttaque), ptsVie(ptsVie), ptsExperience(ptsExperience), niveau(niveau)
 {
     this->nom = nom;
     this->race = race;
@@ -18,16 +17,17 @@ Personnage::Personnage(string nom, string race, int ptsAttaque, int ptsVie, int 
 
 Personnage::Personnage()
 {
-    if (!perso_texture.loadFromFile("Fusee.png"))
+    if (!perso_texture.loadFromFile("X-Wing.png"))
     {
         std::cout << "ok" << std::endl;
     }
 
-    x = 1000;
-    y = 1000;
+
+    x = 3750;
+    y = 2026;
     perso_sprite.setTexture(perso_texture);
     perso_sprite.setPosition(x, y);
-
+    perso_sprite.setOrigin(32.5, 32.5);
 }
 
 Personnage::~Personnage()
@@ -74,3 +74,48 @@ void Personnage::setY(int y)
     this->y = y;
 }
 
+int Personnage::seDeplacerX(Event event, int x)
+{
+    switch (event.key.code)
+    {
+        case sf::Keyboard::Left:
+        {
+            x = x - 25;
+            perso_sprite.setRotation(270);
+            break;
+        }
+
+        case sf::Keyboard::Right:
+        {
+            x = x + 25;
+            perso_sprite.setRotation(90);
+            break;
+        }
+        default:
+        break;
+    }
+    return x;
+}
+
+int Personnage::seDeplacerY(Event event, int y)
+{
+    switch (event.key.code)
+    {
+        case sf::Keyboard::Up:
+        {
+            y = y - 25;
+            perso_sprite.setRotation(0);
+            break;
+        }
+
+        case sf::Keyboard::Down:
+        {
+            y = y + 25;
+            perso_sprite.setRotation(180);
+            break;
+        }
+        default:
+        break;
+    }
+    return y;
+}
