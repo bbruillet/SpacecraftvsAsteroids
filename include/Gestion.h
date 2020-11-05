@@ -1,7 +1,6 @@
 #ifndef GESTION_H
 #define GESTION_H
 
-
 class Gestion
 {
     public:

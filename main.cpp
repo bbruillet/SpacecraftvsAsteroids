@@ -8,19 +8,19 @@ using namespace std;
 
 int main()
 {
-    int choix;
+//    int choixMenu;
+    Gestion gestion;
 
 //    cout << "Entrez votre nom : ";
 //    cin <<
-    cout << "1 --> Lancer le jeu" << endl;
-    cout << "Faites votre choix: ";
-    cin >> choix;
-
-    if (choix == 1)
-    {
-        Gestion gestion;
+//    cout << "1 --> Lancer le jeu" << endl;
+//    cout << "Faites votre choix: ";
+//    cin >> choixMenu;
+//
+//    if (choixMenu == 1)
+//    {
         gestion.launch();
-    }
+//    }
 
     return 0;
 }

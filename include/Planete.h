@@ -4,7 +4,7 @@
 #include <iostream>
 #include <ostream>
 #include <string>
-
+#include <vector>
 #include <cstdio>
 #include <SFML/Graphics.hpp>
 
@@ -18,7 +18,6 @@ class Planete : public sf::Drawable
 {
     private:
 
-
         string nom;
         string image;
         int x, y;
@@ -29,12 +28,20 @@ class Planete : public sf::Drawable
         }
 
     public:
-        Planete();
         Planete(string nom, string image, int x, int y);
         virtual ~Planete();
 
         sf::Sprite planete_sprite;
         sf::Texture planete_texture;
+
+
+//        string nom_fichier[2];
+//
+//        std::vector<sf::Sprite> sprites;
+//        std::vector<sf::Texture> textures;
+
+        Planete();
+//        void load();
 
 };
 

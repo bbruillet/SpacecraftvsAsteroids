@@ -4,9 +4,10 @@
 #include <iostream>
 #include <ostream>
 #include <string>
-
+#include <vector>
 #include <cstdio>
 #include <SFML/Graphics.hpp>
+#include "Planete.h"
 
 using std::cout;
 using std::endl;
@@ -30,6 +31,10 @@ class Univers : public sf::Drawable
 
         sf::Sprite univers_sprite;
         sf::Texture univers_texture;
+
+        std::vector<Planete> planetes;
+
+        void add(Planete pla);
 
         int getX() const;
         void setX(int x);

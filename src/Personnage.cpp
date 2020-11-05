@@ -4,6 +4,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+
 Personnage::Personnage(string nom, string race, int ptsAttaque, int ptsVie, int ptsExperience, int niveau)
 {
     this->nom = nom;
@@ -22,12 +23,12 @@ Personnage::Personnage()
         std::cout << "ok" << std::endl;
     }
 
-
-    x = 3750;
-    y = 2026;
+    //Coordonnées de départ du personnage
+    x = 7150;
+    y = 3500;
     perso_sprite.setTexture(perso_texture);
     perso_sprite.setPosition(x, y);
-    perso_sprite.setOrigin(32.5, 32.5);
+    perso_sprite.setOrigin(62.5, 62.5);
 }
 
 Personnage::~Personnage()
@@ -82,19 +83,25 @@ int Personnage::seDeplacerX(Event event, int x)
         case sf::Keyboard::Left:
         {
             if(x>1000) {
-                x = x - 25;
+                x = x - 50;
                 perso_sprite.setRotation(270);
-                cout << x << endl;;
+                cout << x << endl;
+            }
+            else {
+                perso_sprite.setRotation(90);
             }
             break;
         }
 
         case sf::Keyboard::Right:
         {
-            if(x<6500) {
-                x = x + 25;
+            if(x<12000) {
+                x = x + 50;
                 perso_sprite.setRotation(90);
-                cout << x << endl;;
+                cout << x << endl;
+            }
+            else {
+                perso_sprite.setRotation(270);
             }
             break;
         }
@@ -111,17 +118,27 @@ int Personnage::seDeplacerY(Event event, int y)
         case sf::Keyboard::Up:
         {
             if(y>1000){
-            y = y - 25;
+            y = y - 50;
             perso_sprite.setRotation(0);
+            cout << y << endl;
+            }
+            else {
+                perso_sprite.setRotation(180);
             }
             break;
         }
 
         case sf::Keyboard::Down:
         {
-            if(y<3055){
-            y = y + 25;
+            if(y<6500){
+            y = y + 50;
             perso_sprite.setRotation(180);
+            cout << y << endl;
+            }
+            else {
+                perso_sprite.setRotation(0);
+//                sf::String Text = "I like donuts";
+//                window.draw(Text);
             }
             break;
         }

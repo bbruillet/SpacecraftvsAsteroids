@@ -44,3 +44,8 @@ void Univers::setY(int y)
 {
     this->y = y;
 }
+
+void Univers::add(Planete pla)
+{
+      this->planetes.push_back(pla);
+}

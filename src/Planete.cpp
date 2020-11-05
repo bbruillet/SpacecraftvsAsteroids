@@ -26,3 +26,20 @@ Planete::~Planete()
 {
     //dtor
 }
+
+/*void Planete::load()
+        {
+            for(int i = 0; i < 2; i++)
+            {
+                sf::Texture new_texture;
+                new_texture.loadFromFile(this->nom_fichier[i]);
+                textures.push_back(new_texture);
+            }
+            for(int i = 0; i < 2; i++)
+            {
+                sf::Sprite new_sprite;
+                new_sprite.setTexture(textures[i]);
+                sprites.push_back(new_sprite);
+            }
+        }*/
+
