@@ -25,11 +25,25 @@ Gestion::~Gestion()
 
 void Gestion::launch()
 {
+    int choixMenu;
+
+
+    cout << "1 --> Lancer le jeu" << endl;
+    cout << "2 --> Voir map" << endl;
+    cout << "Faites votre choix: ";
+    cin >> choixMenu;
+
     sf::RenderWindow window(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
 
     sf::View view(sf::FloatRect(2500, 2500, 2500, 2500));
     view.setCenter(7150, 3500);
 
+    if(choixMenu == 1) {
+        view.setSize(2500,2500);
+    }
+    else if(choixMenu == 2) {
+        view.setSize(12500, 12500);
+    }
     Personnage pers;
 //    Deplacement dep;
     Univers univers; //Taille 13883x7500
