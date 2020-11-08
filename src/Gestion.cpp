@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <SFML/Audio.hpp>
 
 #include <iostream>
 #include <vector>
@@ -18,6 +19,35 @@ Gestion::Gestion()
     //ctor
 }
 
+void Gestion::menu()
+{
+    do {
+        cout<<endl<<" ----------------------- MENU -----------------------"<<endl<<endl;
+        cout<<"1. Jouer"<<endl;
+        cout<<"2. Voir la map"<<endl;
+        cin>>choixMenu;
+        cout<<endl;
+        sf::SoundBuffer Buffer;
+            if (!Buffer.loadFromFile("MusiqueMenu.wav")){
+
+            }
+        sf::Sound sound;
+        sound.setBuffer(Buffer);
+
+        sound.setLoop(true);
+        sound.play();
+
+        switch(choixMenu)
+        {
+            case 1 : launch();
+            break;
+
+            case 2 : launch();
+            break;
+        }
+    }while(choixMenu!=0);
+}
+
 Gestion::~Gestion()
 {
     //dtor
@@ -25,15 +55,10 @@ Gestion::~Gestion()
 
 void Gestion::launch()
 {
-    int choixMenu;
-
-
-    cout << "1 --> Lancer le jeu" << endl;
-    cout << "2 --> Voir map" << endl;
-    cout << "Faites votre choix: ";
-    cin >> choixMenu;
-
     sf::RenderWindow window(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
+
+    //Sound.SetLoop(true);
+//    sound.play();
 
     sf::View view(sf::FloatRect(2500, 2500, 2500, 2500));
     view.setCenter(7150, 3500);
@@ -45,22 +70,21 @@ void Gestion::launch()
         view.setSize(13500, 13500);
     }
     Personnage pers;
-//    Deplacement dep;
     Univers univers; //Taille 13883x7500
 
-    Planete planeteBleu("Blue", "Bleu.png", 2000, 750);
-    Planete planeteOrange("Orange", "Orange.png", 9000, 1250);
-    Planete planeteMauve("Mauve_Detruite", "Mauve_Detruite.png", 7000, 5500);
-    Planete planeteMort("Mort", "Etoile_De_La_Mort.png", 8000, 6120);
+    Planete planeteBleu("Blue", "images/Bleu.png", 2000, 750);
+    Planete planeteOrange("Orange", "images/Orange.png", 9000, 1250);
+    Planete planeteMauve("Mauve_Detruite", "images/Mauve_Detruite.png", 7000, 5500);
+    Planete planeteMort("Mort", "images/Etoile_De_La_Mort.png", 8000, 6120);
     //Ok
-    Planete planeteRouge("Anneau_Rouge", "Anneau_Rouge.png", 11000, 3000);
+    Planete planeteRouge("Anneau_Rouge", "images/Anneau_Rouge.png", 11000, 3000);
     //ok
-    Planete planeteVerte("Verte", "Verte.png", 5000, 3200);
+    Planete planeteVerte("Verte", "images/Verte.png", 5000, 3200);
     //ok
-    Planete planetePlateforme("Plateforme", "Plateforme.png", 6900, 3300);
-    Planete planeteAnneauBleu("Anneau_Bleu", "Anneau_Bleu.png", 1500, 5100);
+    Planete planetePlateforme("Plateforme", "images/Plateforme.png", 6900, 3300);
+    Planete planeteAnneauBleu("Anneau_Bleu", "images/Anneau_Bleu.png", 1500, 5100);
     //ok
-    Planete planeteSoleil("Soleil", "Soleil.png", 11250, 100);
+    Planete planeteSoleil("Soleil", "images/Soleil.png", 11250, 100);
     univers.add(planeteBleu);
     univers.add(planeteOrange);
     univers.add(planeteRouge);
@@ -86,7 +110,6 @@ void Gestion::launch()
             while (window.pollEvent(event))
             {
                 if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-                    //main();
                     window.close();
                 }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {

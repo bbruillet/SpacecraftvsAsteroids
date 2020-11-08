@@ -3,13 +3,14 @@
 
 
 #include <SFML/Graphics.hpp>
-
 class Gestion : public sf::Event
 {
     public:
+        int choixMenu = 0;
         Gestion();
         virtual ~Gestion();
 
+        void menu();
         void launch();
 
     protected:

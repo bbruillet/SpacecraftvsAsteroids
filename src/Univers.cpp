@@ -8,9 +8,9 @@ using std::ostream;
 
 Univers::Univers()
 {
-    if (!univers_texture.loadFromFile("Universe.png"))
+    if (!univers_texture.loadFromFile("images/Universe.png"))
     {
-        std::cout << "ok universe" << std::endl;
+        std::cout << "Problème" << std::endl;
     }
 
     int x = 0;

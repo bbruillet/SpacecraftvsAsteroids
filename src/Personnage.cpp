@@ -18,7 +18,7 @@ Personnage::Personnage(string nom, string race, int ptsAttaque, int ptsVie, int 
 
 Personnage::Personnage()
 {
-    if (!perso_texture.loadFromFile("X-Wing.png"))
+    if (!perso_texture.loadFromFile("images/X-Wing.png"))
     {
         std::cout << "ok" << std::endl;
     }
