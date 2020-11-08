@@ -42,7 +42,7 @@ void Gestion::launch()
         view.setSize(2500,2500);
     }
     else if(choixMenu == 2) {
-        view.setSize(12500, 12500);
+        view.setSize(13500, 13500);
     }
     Personnage pers;
 //    Deplacement dep;
@@ -85,8 +85,13 @@ void Gestion::launch()
             sf::Event event;
             while (window.pollEvent(event))
             {
-                if (event.type == sf::Event::Closed)
+                if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+                    //main();
                     window.close();
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
+                    view.setSize(13500, 13500);
+                }
 
                 if(event.type == sf::Event::EventType::KeyPressed)
                 {
@@ -113,7 +118,7 @@ void Gestion::launch()
             window.setView(view);
             window.draw(univers.univers_sprite);
 //            planete.show(0, 3000, 1000);
-            for(int i= 0;i<9;i++){
+            for(size_t i(0);i<univers.planetes.size();i++){
                 window.draw(univers.planetes[i]);
             }
 
@@ -123,5 +128,6 @@ void Gestion::launch()
 //            window.draw(planete2.planete_sprite);
             window.draw(pers.perso_sprite);
             window.display();
+
         }
 }

@@ -1,7 +1,10 @@
 #ifndef GESTION_H
 #define GESTION_H
 
-class Gestion
+
+#include <SFML/Graphics.hpp>
+
+class Gestion : public sf::Event
 {
     public:
         Gestion();

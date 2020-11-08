@@ -8,6 +8,8 @@ Planete::Planete(string nom, string image, int x, int y)
 {
     this->nom = nom;
     this->image = image;
+    this->x=x;
+    this->y=y;
     if (!planete_texture.loadFromFile(image))
     {
         std::cout << "ok" << std::endl;
