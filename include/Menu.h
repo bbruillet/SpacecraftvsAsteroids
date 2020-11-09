@@ -1,16 +1,24 @@
-#ifndef MENU_H
-#define MENU_H
+#pragma once
+#include "SFML/Graphics.hpp"
 
+#define MAX_NUMBER_OF_ITEMS 3
 
 class Menu
 {
-    public:
-        Menu();
-        virtual ~Menu();
+public:
+	Menu();
+	~Menu();
 
-    protected:
+	void draw(sf::RenderWindow &window);
+	void MoveUp();
+	void MoveDown();
+	int GetPressedItem() {
+	    return selectedItemIndex;
+    }
 
-    private:
+private:
+	int selectedItemIndex;
+	sf::Font font;
+	sf::Text menu[MAX_NUMBER_OF_ITEMS];
+
 };
-
-#endif // MENU_H

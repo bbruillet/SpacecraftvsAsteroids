@@ -12,22 +12,49 @@
 #include "Univers.h"
 #include "Planete.h"
 
+#include "Menu.h"
+
 using namespace std;
 
 Gestion::Gestion()
 {
-    //ctor
+//    sf::RenderWindow windowJeu(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
+
 }
+
+
 
 void Gestion::menu()
 {
-    do {
-        cout<<endl<<" ----------------------- MENU -----------------------"<<endl<<endl;
-        cout<<"1. Jouer"<<endl;
-        cout<<"2. Voir la map"<<endl;
-        cin>>choixMenu;
-        cout<<endl;
-        sf::SoundBuffer Buffer;
+//    do {
+//        cout<<endl<<" ----------------------- MENU -----------------------"<<endl<<endl;
+//        cout<<"1. Jouer"<<endl;
+//        cout<<"2. Voir la map"<<endl;
+//        cin>>choixMenu;
+//        cout<<endl;
+//        sf::SoundBuffer Buffer;
+//            if (!Buffer.loadFromFile("MusiqueMenu.wav")){
+//
+//            }
+//        sf::Sound sound;
+//        sound.setBuffer(Buffer);
+//
+//        sound.setLoop(true);
+//        sound.play();
+//
+//        switch(choixMenu)
+//        {
+//            case 1 : launch();
+//            break;
+//
+//            case 2 : launch();
+//            break;
+//        }
+//    }while(choixMenu!=0);
+
+    //sf::RenderWindow window(sf::VideoMode(600, 600), "SFML WORK!");
+sf::RenderWindow windowJeu(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
+    sf::SoundBuffer Buffer;
             if (!Buffer.loadFromFile("MusiqueMenu.wav")){
 
             }
@@ -37,15 +64,71 @@ void Gestion::menu()
         sound.setLoop(true);
         sound.play();
 
-        switch(choixMenu)
-        {
-            case 1 : launch();
-            break;
 
-            case 2 : launch();
-            break;
-        }
-    }while(choixMenu!=0);
+	Menu menu;
+
+	while (windowJeu.isOpen())
+	{
+		sf::Event event;
+
+		while (windowJeu.pollEvent(event))
+		{
+			switch (event.type)
+			{
+            case sf::Event::KeyReleased:
+                switch(event.key.code)
+                {
+                case sf::Keyboard::Up:
+                    menu.MoveUp();
+                    break;
+
+                case sf::Keyboard::Down:
+                    menu.MoveDown();
+//                    default:
+                    break;
+
+                case sf::Keyboard::Return:
+                    switch(menu.GetPressedItem())
+                    {
+                    case 0:
+                        launch();
+//                        window.close();
+                        break;
+
+                    case 1:
+                        std::cout << "Option button has been pressed" << std::endl;
+                        break;
+
+                    case 2:
+
+                        windowJeu.close();
+;
+                        default:
+                        break;
+                    }
+
+                    default:
+                    break;
+                }
+                break;
+                case sf::Event::Closed:
+                windowJeu.close();
+
+                default:
+                break;
+
+
+			}
+
+
+		}
+
+		windowJeu.clear();
+
+		menu.draw(windowJeu);
+
+		windowJeu.display();
+	}
 }
 
 Gestion::~Gestion()
@@ -55,7 +138,7 @@ Gestion::~Gestion()
 
 void Gestion::launch()
 {
-    sf::RenderWindow window(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
+sf::RenderWindow windowJeu(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
 
     //Sound.SetLoop(true);
 //    sound.play();
@@ -104,13 +187,13 @@ void Gestion::launch()
 
     int a,b;
 
-    while (window.isOpen())
+    while (windowJeu.isOpen())
         {
             sf::Event event;
-            while (window.pollEvent(event))
+            while (windowJeu.pollEvent(event))
             {
                 if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-                    window.close();
+                    menu();
                 }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
                     view.setSize(13500, 13500);
@@ -137,20 +220,20 @@ void Gestion::launch()
 
 
 
-            window.clear();
-            window.setView(view);
-            window.draw(univers.univers_sprite);
+            windowJeu.clear();
+            windowJeu.setView(view);
+            windowJeu.draw(univers.univers_sprite);
 //            planete.show(0, 3000, 1000);
             for(size_t i(0);i<univers.planetes.size();i++){
-                window.draw(univers.planetes[i]);
+                windowJeu.draw(univers.planetes[i]);
             }
 
             //window.draw(planete.sprites[1]);
 //            planete.show(1, 7000, 3500);
 //            window.draw(test);
 //            window.draw(planete2.planete_sprite);
-            window.draw(pers.perso_sprite);
-            window.display();
+            windowJeu.draw(pers.perso_sprite);
+            windowJeu.display();
 
         }
 }

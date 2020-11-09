@@ -13,6 +13,7 @@ class Gestion : public sf::Event
         void menu();
         void launch();
 
+
     protected:
 
     private:
