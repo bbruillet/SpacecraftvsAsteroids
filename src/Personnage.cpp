@@ -13,7 +13,6 @@ Personnage::Personnage(string nom, string race, int ptsAttaque, int ptsVie, int 
     this->ptsVie = ptsVie;
     this->ptsExperience = ptsExperience;
     this->niveau = niveau;
-    //ctor
 }
 
 Personnage::Personnage()
@@ -85,7 +84,7 @@ int Personnage::seDeplacerX(Event event, int x)
             if(x>1000) {
                 x = x - 50;
                 perso_sprite.setRotation(270);
-                cout << x << endl;
+//                cout << x << endl;
             }
             else {
                 perso_sprite.setRotation(90);
@@ -98,7 +97,7 @@ int Personnage::seDeplacerX(Event event, int x)
             if(x<12000) {
                 x = x + 50;
                 perso_sprite.setRotation(90);
-                cout << x << endl;
+//                cout << x << endl;
             }
             else {
                 perso_sprite.setRotation(270);
@@ -137,8 +136,6 @@ int Personnage::seDeplacerY(Event event, int y)
             }
             else {
                 perso_sprite.setRotation(0);
-//                sf::String Text = "I like donuts";
-//                window.draw(Text);
             }
             break;
         }

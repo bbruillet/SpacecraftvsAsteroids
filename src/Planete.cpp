@@ -12,7 +12,7 @@ Planete::Planete(string nom, string image, int x, int y)
     this->y=y;
     if (!planete_texture.loadFromFile(image))
     {
-        std::cout << "ok" << std::endl;
+        std::cout << "Problème de planète" << std::endl;
     }
 
     planete_sprite.setTexture(planete_texture);
@@ -29,19 +29,23 @@ Planete::~Planete()
     //dtor
 }
 
-/*void Planete::load()
-        {
-            for(int i = 0; i < 2; i++)
-            {
-                sf::Texture new_texture;
-                new_texture.loadFromFile(this->nom_fichier[i]);
-                textures.push_back(new_texture);
-            }
-            for(int i = 0; i < 2; i++)
-            {
-                sf::Sprite new_sprite;
-                new_sprite.setTexture(textures[i]);
-                sprites.push_back(new_sprite);
-            }
-        }*/
+int Planete::getX() const
+{
+    return x;
+}
+
+void Planete::setX(int x)
+{
+    this->x = x;
+}
+
+int Planete::getY() const
+{
+    return y;
+}
+
+void Planete::setY(int y)
+{
+    this->y = y;
+}
 

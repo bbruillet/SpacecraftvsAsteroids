@@ -29,19 +29,18 @@ class Planete : public sf::Drawable
 
     public:
         Planete(string nom, string image, int x, int y);
+        Planete();
+
         virtual ~Planete();
 
         sf::Sprite planete_sprite;
         sf::Texture planete_texture;
 
+        int getX() const;
+        void setX(int x);
 
-//        string nom_fichier[2];
-//
-//        std::vector<sf::Sprite> sprites;
-//        std::vector<sf::Texture> textures;
-
-        Planete();
-//        void load();
+        int getY() const;
+        void setY(int y);
 
 };
 

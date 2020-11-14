@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 #include "Personnage.h"
 #include "Deplacement.h"
@@ -18,59 +19,38 @@ using namespace std;
 
 Gestion::Gestion()
 {
-//    sf::RenderWindow windowJeu(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
 
 }
 
-
-
-void Gestion::menu()
+void Gestion::fenetrePrincipale()
 {
-//    do {
-//        cout<<endl<<" ----------------------- MENU -----------------------"<<endl<<endl;
-//        cout<<"1. Jouer"<<endl;
-//        cout<<"2. Voir la map"<<endl;
-//        cin>>choixMenu;
-//        cout<<endl;
-//        sf::SoundBuffer Buffer;
-//            if (!Buffer.loadFromFile("MusiqueMenu.wav")){
-//
-//            }
-//        sf::Sound sound;
-//        sound.setBuffer(Buffer);
-//
-//        sound.setLoop(true);
-//        sound.play();
-//
-//        switch(choixMenu)
-//        {
-//            case 1 : launch();
-//            break;
-//
-//            case 2 : launch();
-//            break;
-//        }
-//    }while(choixMenu!=0);
-
-    //sf::RenderWindow window(sf::VideoMode(600, 600), "SFML WORK!");
-sf::RenderWindow windowJeu(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
+    /*MUSIQUE*/
     sf::SoundBuffer Buffer;
-            if (!Buffer.loadFromFile("MusiqueMenu.wav")){
+    if (!Buffer.loadFromFile("MusiqueMenu.wav")){
+        cout << "Pas de musique sélectionnée" <<endl;
+    }
+    sf::Sound sound;
+    sound.setBuffer(Buffer);
 
-            }
-        sf::Sound sound;
-        sound.setBuffer(Buffer);
+    sound.setLoop(true);
+    sound.play();
 
-        sound.setLoop(true);
-        sound.play();
+    sf::RenderWindow windowJeu(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
+
+//    while (windowJeu.isOpen())
+//	{
+        menu(windowJeu);
+//	}
+}
 
 
+void Gestion::menu(sf::RenderWindow & windowJeu)
+{
 	Menu menu;
 
 	while (windowJeu.isOpen())
 	{
 		sf::Event event;
-
 		while (windowJeu.pollEvent(event))
 		{
 			switch (event.type)
@@ -91,28 +71,29 @@ sf::RenderWindow windowJeu(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
                     switch(menu.GetPressedItem())
                     {
                     case 0:
-                        launch();
-//                        window.close();
+                        launch(windowJeu);
+                        windowJeu.close();
+
                         break;
 
                     case 1:
-                        std::cout << "Option button has been pressed" << std::endl;
+                        std::cout << "Map button has been pressed" << std::endl;
                         break;
 
                     case 2:
-
                         windowJeu.close();
 ;
                         default:
                         break;
                     }
-
+                    windowJeu.clear();
                     default:
                     break;
                 }
                 break;
                 case sf::Event::Closed:
                 windowJeu.close();
+
 
                 default:
                 break;
@@ -124,9 +105,9 @@ sf::RenderWindow windowJeu(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
 		}
 
 		windowJeu.clear();
-
+//
 		menu.draw(windowJeu);
-
+//
 		windowJeu.display();
 	}
 }
@@ -136,13 +117,8 @@ Gestion::~Gestion()
     //dtor
 }
 
-void Gestion::launch()
+void Gestion::launch(sf::RenderWindow & windowJeu)
 {
-sf::RenderWindow windowJeu(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
-
-    //Sound.SetLoop(true);
-//    sound.play();
-
     sf::View view(sf::FloatRect(2500, 2500, 2500, 2500));
     view.setCenter(7150, 3500);
 
@@ -192,11 +168,43 @@ sf::RenderWindow windowJeu(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
             sf::Event event;
             while (windowJeu.pollEvent(event))
             {
-                if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-                    menu();
+                if (event.type == sf::Event::Closed) {
+                   // pause(windowJeu);
+                    windowJeu.close();
+                    cout << "closed"<<endl;
                 }
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
-                    view.setSize(13500, 13500);
+
+                //Faire pause dans le jeu
+                switch (event.type)
+                {
+                    case sf::Event::KeyReleased:
+                    switch(event.key.code)
+                    {
+                    case sf::Keyboard::Escape:
+                        windowJeu.close();
+                        pause(windowJeu);
+                        break;
+                        default:
+                        break;
+                    }
+                    default:
+                        break;
+                }
+
+
+                if((std::abs((pers.perso_sprite.getPosition().x+62.5) - (planeteSoleil.planete_sprite.getPosition().x+62.5) >= 200)) &&
+                   (std::abs((pers.perso_sprite.getPosition().y+62.5) - (planeteSoleil.planete_sprite.getPosition().y+62.5) <= 2350)))
+                {
+                    //cout << "pos de x = " << (pers.perso_sprite.getPosition().x+62.5) << endl;
+                    //cout << "pos de y = " << (planeteSoleil.planete_sprite.getPosition().x+1250) << endl;
+                    //cout << "x = " << (((pers.perso_sprite.getPosition().x+62.5) - (planeteSoleil.planete_sprite.getPosition().x+62.5))) << endl;
+                    pers.perso_sprite.setPosition(pers.perso_sprite.getPosition().x+50, pers.perso_sprite.getPosition().y+50);
+                    pers.perso_sprite.setRotation(270);
+                }
+
+
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
+                    map_space(windowJeu);
                 }
 
                 if(event.type == sf::Event::EventType::KeyPressed)
@@ -218,22 +226,32 @@ sf::RenderWindow windowJeu(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
                 }
             }
 
-
-
             windowJeu.clear();
             windowJeu.setView(view);
             windowJeu.draw(univers.univers_sprite);
-//            planete.show(0, 3000, 1000);
+
             for(size_t i(0);i<univers.planetes.size();i++){
                 windowJeu.draw(univers.planetes[i]);
             }
 
-            //window.draw(planete.sprites[1]);
-//            planete.show(1, 7000, 3500);
-//            window.draw(test);
-//            window.draw(planete2.planete_sprite);
             windowJeu.draw(pers.perso_sprite);
             windowJeu.display();
 
         }
 }
+
+void Gestion::pause(sf::RenderWindow & windowJeu)
+{
+    sf::RenderWindow windowJeu2(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
+    menu(windowJeu2);
+}
+
+void Gestion::map_space(sf::RenderWindow & windowJeu)
+{
+cout << "map"<<endl;
+//sf::View view(sf::FloatRect(2500, 2500, 2500, 2500));
+//view.setSize(13500, 13500);
+}
+
+
+

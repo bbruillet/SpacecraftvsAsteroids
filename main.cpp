@@ -11,7 +11,7 @@ int main()
 {
 
     Gestion gestion;
-    gestion.menu();
+    gestion.fenetrePrincipale();
 
     return 0;
 }

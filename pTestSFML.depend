@@ -2,19 +2,19 @@
 1603186867 source:/home/bruillet/Documents/C++/pTestSFML/main.cpp
 	<SFML/Graphics.hpp>
 
-1604937087 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/main.cpp
+1605354926 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/main.cpp
 	<iostream>
 	<list>
 	"Gestion.h"
 	<SFML/Audio.hpp>
 
-1604847493 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Personnage.cpp
+1605362164 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Personnage.cpp
 	"Personnage.h"
 	<cstdio>
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1604581650 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Personnage.h
+1605355079 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Personnage.h
 	<iostream>
 	<ostream>
 	<string>
@@ -44,7 +44,7 @@
 	<SFML/Graphics.hpp>
 	"Planete.h"
 
-1604582457 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Planete.h
+1605359276 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Planete.h
 	<iostream>
 	<ostream>
 	<string>
@@ -52,34 +52,35 @@
 	<cstdio>
 	<SFML/Graphics.hpp>
 
-1604832484 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Planete.cpp
+1605359266 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Planete.cpp
 	"Planete.h"
 	<cstdio>
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1604938806 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Gestion.cpp
+1605362320 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Gestion.cpp
 	"Gestion.h"
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	<iostream>
 	<vector>
+	<cmath>
 	"Personnage.h"
 	"Deplacement.h"
 	"Univers.h"
 	"Planete.h"
 	"Menu.h"
 
-1604937865 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Gestion.h
+1605358852 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Gestion.h
 	<SFML/Graphics.hpp>
 
-1604938806 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Menu.cpp
+1605356295 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Menu.cpp
 	"Menu.h"
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	<iostream>
 	<vector>
 
-1604938806 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Menu.h
+1605355201 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Menu.h
 	"SFML/Graphics.hpp"
 

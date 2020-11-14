@@ -7,6 +7,7 @@ class Menu
 {
 public:
 	Menu();
+
 	~Menu();
 
 	void draw(sf::RenderWindow &window);
@@ -15,6 +16,7 @@ public:
 	int GetPressedItem() {
 	    return selectedItemIndex;
     }
+
 
 private:
 	int selectedItemIndex;

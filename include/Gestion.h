@@ -10,13 +10,18 @@ class Gestion : public sf::Event
         Gestion();
         virtual ~Gestion();
 
-        void menu();
-        void launch();
+        void fenetrePrincipale(); //Widow windowjeu
+        void menu(sf::RenderWindow & windowJeu);
+        void launch(sf::RenderWindow & windowJeu);
+        void pause(sf::RenderWindow & windowJeu);
+
+        void map_space(sf::RenderWindow & windowJeu);
 
 
     protected:
 
     private:
+//        sf::RenderWindow windowJeu;
 };
 
 #endif // GESTION_H

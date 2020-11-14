@@ -50,8 +50,6 @@ class Personnage : public sf::Drawable, public sf::Event
         sf::Texture perso_texture;
 
 
-
-
         //Méthodes utiles
         string str() const;
 
