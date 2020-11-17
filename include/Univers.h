@@ -34,16 +34,17 @@ class Univers : public sf::Drawable
 
         std::vector<Planete> planetes;
 
+        std::vector<Planete> planetesInaccessibles;
+
         void add(Planete pla);
+
+        void addInacc(Planete pla);
 
         int getX() const;
         void setX(int x);
 
         int getY() const;
         void setY(int y);
-
-    protected:
-
 };
 
 #endif // UNIVERS_H

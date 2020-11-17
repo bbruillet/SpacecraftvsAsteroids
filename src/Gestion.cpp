@@ -12,10 +12,12 @@
 #include "Deplacement.h"
 #include "Univers.h"
 #include "Planete.h"
+#include "Vaisseau.h"
 
 #include "Menu.h"
 
 using namespace std;
+
 
 Gestion::Gestion()
 {
@@ -128,10 +130,13 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
     else if(choixMenu == 2) {
         view.setSize(13500, 13500);
     }
-    Personnage pers;
+    Vaisseau vaisseau;
     Univers univers; //Taille 13883x7500
 
     Planete planeteBleu("Blue", "images/Bleu.png", 2000, 750);
+
+
+
     Planete planeteOrange("Orange", "images/Orange.png", 9000, 1250);
     Planete planeteMauve("Mauve_Detruite", "images/Mauve_Detruite.png", 7000, 5500);
     Planete planeteMort("Mort", "images/Etoile_De_La_Mort.png", 8000, 6120);
@@ -150,16 +155,16 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
     univers.add(planeteMauve);
     univers.add(planeteMort);
     univers.add(planeteVerte);
-    univers.add(planetePlateforme);
+    univers.addInacc(planetePlateforme);
     univers.add(planeteAnneauBleu);
-    univers.add(planeteSoleil);
+    univers.addInacc(planeteSoleil);
 
     //Planete planete;
 
 
 
-    int x = pers.getX();
-    int y = pers.getY();
+    int x = vaisseau.getX();
+    int y = vaisseau.getY();
 
     int a,b;
 
@@ -191,8 +196,8 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                         break;
                 }
 
-
-                if((std::abs((pers.perso_sprite.getPosition().x+62.5) - (planeteSoleil.planete_sprite.getPosition().x+62.5) >= 200)) &&
+                //collisions
+               /* if((std::abs((pers.perso_sprite.getPosition().x+62.5) - (planeteSoleil.planete_sprite.getPosition().x+62.5) >= 200)) &&
                    (std::abs((pers.perso_sprite.getPosition().y+62.5) - (planeteSoleil.planete_sprite.getPosition().y+62.5) <= 2350)))
                 {
                     //cout << "pos de x = " << (pers.perso_sprite.getPosition().x+62.5) << endl;
@@ -200,8 +205,57 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                     //cout << "x = " << (((pers.perso_sprite.getPosition().x+62.5) - (planeteSoleil.planete_sprite.getPosition().x+62.5))) << endl;
                     pers.perso_sprite.setPosition(pers.perso_sprite.getPosition().x+50, pers.perso_sprite.getPosition().y+50);
                     pers.perso_sprite.setRotation(270);
-                }
+                }*/
+                //________________
 
+
+
+                for (size_t i (0); i< univers.planetes.size();i++){
+                    if((vaisseau.getX() >= univers.planetes[i].getX()+200 && vaisseau.getX() <= univers.planetes[i].getX()+800)
+                       && (vaisseau.getY() >= univers.planetes[i].getY()+200 && vaisseau.getY() <= univers.planetes[i].getY() + 800))
+                    {
+//                        sf::Font font;
+//                            sf::Text text;
+//                            if (!font.loadFromFile("arial.ttf"))
+//                            {
+//                                cout << "Internal error" <<endl;
+//                            }
+//
+//                            text.setFont(font);
+//                            text.setString("Appuyez sur la touche enter si vous voulez atterir");
+//                            text.setPosition(sf::Vector2f(5000, 3200));
+//                            windowJeu.draw(text);
+
+
+                            cout << "Voulez-vous vraiment atterir?" << endl;
+
+
+                            switch (event.type)
+                            {
+                                case sf::Event::KeyReleased:
+                                switch(event.key.code)
+                                {
+                                case sf::Keyboard::Return:
+                                    int test;
+                                    cout << "Voulez vous vraiment atterir?" << endl;
+                                    cin >> test;
+                                    if (test == 1){
+                                        cout << "Vous avez bien attéri" << endl;
+                                        windowJeu.clear();
+                                        //combat --> background en fonction planete
+                                    }
+                                    else{
+                                        cout << "ok" << endl;
+                                    }
+                                    break;
+                                    default:
+                                        break;
+                                }
+                                default:
+                                    break;
+                            }
+                }
+            }
 
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
                     map_space(windowJeu);
@@ -213,16 +267,16 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                     b = y;
 
 
-                    x = pers.seDeplacerX(event, x);
-                    y = pers.seDeplacerY(event, y);
+                    x = vaisseau.seDeplacerX(event, x);
+                    y = vaisseau.seDeplacerY(event, y);
 
                     a = x-a;
                     b = y-b;
                     view.move(a,b);
 
-                    pers.setX(x);
-                    pers.setY(y);
-                    pers.perso_sprite.setPosition(x,y);
+                    vaisseau.setX(x);
+                    vaisseau.setY(y);
+                    vaisseau.vaisseau_sprite.setPosition(x,y);
                 }
             }
 
@@ -230,11 +284,17 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
             windowJeu.setView(view);
             windowJeu.draw(univers.univers_sprite);
 
-            for(size_t i(0);i<univers.planetes.size();i++){
+            for(size_t i(0);i<univers.planetes.size();i++)
+            {
                 windowJeu.draw(univers.planetes[i]);
             }
 
-            windowJeu.draw(pers.perso_sprite);
+            for(size_t i(0); i < univers.planetesInaccessibles.size(); i++)
+            {
+                windowJeu.draw(univers.planetesInaccessibles[i]);
+            }
+
+            windowJeu.draw(vaisseau.vaisseau_sprite);
             windowJeu.display();
 
         }

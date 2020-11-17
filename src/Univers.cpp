@@ -49,3 +49,8 @@ void Univers::add(Planete pla)
 {
       this->planetes.push_back(pla);
 }
+
+void Univers::addInacc(Planete pla)
+{
+    this->planetesInaccessibles.push_back(pla);
+}

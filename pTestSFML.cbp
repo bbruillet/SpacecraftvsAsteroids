@@ -5,6 +5,7 @@
 		<Option title="pTestSFML" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="src/" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/pTestSFML" prefix_auto="1" extension_auto="1" />
@@ -34,17 +35,23 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/BiomePlanete.h">
+			<Option virtualFolder="src/" />
+		</Unit>
 		<Unit filename="include/Gestion.h" />
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/Personnage.h" />
 		<Unit filename="include/Planete.h" />
 		<Unit filename="include/Univers.h" />
+		<Unit filename="include/Vaisseau.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/BiomePlanete.cpp" />
 		<Unit filename="src/Gestion.cpp" />
 		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/Personnage.cpp" />
 		<Unit filename="src/Planete.cpp" />
 		<Unit filename="src/Univers.cpp" />
+		<Unit filename="src/Vaisseau.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

@@ -17,6 +17,7 @@ Planete::Planete(string nom, string image, int x, int y)
 
     planete_sprite.setTexture(planete_texture);
     planete_sprite.setPosition(x, y);
+    //planete_sprite.setOrigin(500, 500);
 }
 
 Planete::Planete()
