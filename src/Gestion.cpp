@@ -36,8 +36,8 @@ void Gestion::fenetrePrincipale()
     sound.setLoop(true);
     sound.play();
 
-    sf::RenderWindow windowJeu(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
-//    sf::RenderWindow windowJeu(sf::VideoMode(1500, 800), "Spacecraft vs Asteroids");
+//    sf::RenderWindow windowJeu(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
+    sf::RenderWindow windowJeu(sf::VideoMode(1500, 900), "Spacecraft vs Asteroids", sf::Style::Fullscreen);
 
 //    while (windowJeu.isOpen())
 //	{
@@ -121,15 +121,15 @@ Gestion::~Gestion()
 
 void Gestion::launch(sf::RenderWindow & windowJeu)
 {
-    sf::View view(sf::FloatRect(2500, 2500, 2500, 2500));
+    sf::View view(sf::FloatRect(2000, 2000, 3450, 1800));
     view.setCenter(7150, 3500);
 
-    if(choixMenu == 1) {
-        view.setSize(2500,2500);
-    }
-    else if(choixMenu == 2) {
-        view.setSize(13500, 13500);
-    }
+//    if(choixMenu == 1) {
+//        view.setSize(2500,2500);
+//    }
+//    else if(choixMenu == 2) {
+//        view.setSize(13500, 13500);
+//    }
     Vaisseau vaisseau;
     Univers univers; //Taille 13883x7500
 
@@ -321,7 +321,7 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
 
 void Gestion::pause(sf::RenderWindow & windowJeu)
 {
-    sf::RenderWindow windowJeu2(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
+    sf::RenderWindow windowJeu2(sf::VideoMode(1500, 900), "Spacecraft vs Asteroids",sf::Style::Fullscreen);
     menu(windowJeu2);
 }
 
