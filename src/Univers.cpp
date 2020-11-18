@@ -8,7 +8,9 @@ using std::ostream;
 
 Univers::Univers()
 {
-    if (!univers_texture.loadFromFile("Images/Backgrounds/Universe.png"))
+    //Sf::Image image;
+    //image.loadFromMemory("Images/Backgrounds/Universe.png")
+    if (!univers_texture.loadFromFile("Images/Backgrounds/Universe2.png"))
     {
         std::cout << "Problème" << std::endl;
     }
@@ -16,8 +18,10 @@ Univers::Univers()
     int x = 0;
     int y = 0;
     univers_sprite.setTexture(univers_texture);
+    univers_sprite.setOrigin(1000,1000);
     univers_sprite.setPosition(x, y);
-    //ctor
+    univers_sprite.scale(3.0f, 3.0f);
+   // univers_sprite.setTextureRect(sf::IntRect(13000, 13000, 13000, 13000));//ctor
 }
 
 Univers::~Univers()

@@ -206,3 +206,100 @@
 1605691945 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/IConstante.cpp
 	"IConstante.h"
 
+1605709324 source:/home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/main.cpp
+	<iostream>
+	<list>
+	"Gestion.h"
+	<SFML/Audio.hpp>
+
+1605709324 /home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/include/Gestion.h
+	"IConstante.h"
+	<SFML/Graphics.hpp>
+
+1605709324 /home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/include/IConstante.h
+
+1605709324 source:/home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/src/BiomePlanete.cpp
+	"BiomePlanete.h"
+
+1605709324 /home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/include/BiomePlanete.h
+
+1605710563 source:/home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/src/Gestion.cpp
+	"Gestion.h"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<iostream>
+	<vector>
+	<cmath>
+	"Personnage.h"
+	"Univers.h"
+	"Planete.h"
+	"Vaisseau.h"
+	"Menu.h"
+
+1605709324 /home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/include/Personnage.h
+	<iostream>
+	<ostream>
+	<string>
+	<cstdio>
+	<SFML/Graphics.hpp>
+
+1605709324 /home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/include/Univers.h
+	<iostream>
+	<ostream>
+	<string>
+	<vector>
+	<cstdio>
+	<SFML/Graphics.hpp>
+	"Planete.h"
+
+1605709324 /home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/include/Planete.h
+	<iostream>
+	<ostream>
+	<string>
+	<vector>
+	<cstdio>
+	<SFML/Graphics.hpp>
+
+1605709324 /home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/include/Vaisseau.h
+	<iostream>
+	<ostream>
+	<string>
+	"IConstante.h"
+	<cstdio>
+	<SFML/Graphics.hpp>
+
+1605709324 /home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/include/Menu.h
+	"SFML/Graphics.hpp"
+
+1605709324 source:/home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/src/IConstante.cpp
+	"IConstante.h"
+
+1605709324 source:/home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/src/Menu.cpp
+	"Menu.h"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<iostream>
+	<vector>
+
+1605709324 source:/home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/src/Personnage.cpp
+	"Personnage.h"
+	<cstdio>
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1605709324 source:/home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/src/Planete.cpp
+	"Planete.h"
+	<cstdio>
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1605711710 source:/home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/src/Univers.cpp
+	"Univers.h"
+
+1605709324 source:/home/lorisd/Bureau/JVD/SpaceCraftVSAsteroids/SpacecraftvsAsteroids/src/Vaisseau.cpp
+	"Vaisseau.h"
+	"IConstante.h"
+	<cstdio>
+	<iostream>
+	<SFML/Graphics.hpp>
+
