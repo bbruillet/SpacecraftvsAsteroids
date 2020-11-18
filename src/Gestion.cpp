@@ -9,7 +9,6 @@
 #include <cmath>
 
 #include "Personnage.h"
-#include "Deplacement.h"
 #include "Univers.h"
 #include "Planete.h"
 #include "Vaisseau.h"
@@ -135,6 +134,9 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
 
     Planete planeteBleu("Blue", "images/Bleu.png", 2000, 750);
 
+    //Decor = BlueBackground - OrangeBackground, ...
+
+//    "images/"+univers.plaetes.getNom()+"Background.png"
 
 
     Planete planeteOrange("Orange", "images/Orange.png", 9000, 1250);
@@ -153,18 +155,22 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
     univers.add(planeteOrange);
     univers.add(planeteRouge);
     univers.add(planeteMauve);
-    univers.add(planeteMort);
+    univers.addInacc(planeteMort);
     univers.add(planeteVerte);
     univers.addInacc(planetePlateforme);
     univers.add(planeteAnneauBleu);
     univers.addInacc(planeteSoleil);
 
+    Planete planeteEnCours;
+
     //Planete planete;
 
+    int affichage = 0;
 
 
     int x = vaisseau.getX();
     int y = vaisseau.getY();
+
 
     int a,b;
 
@@ -208,36 +214,14 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                 }*/
                 //________________
 
-                int affichage = 0;
-
                 for (size_t i (0); i< univers.planetes.size();i++){
                     if((vaisseau.getX() >= univers.planetes[i].getX()+200 && vaisseau.getX() <= univers.planetes[i].getX()+800)
                        && (vaisseau.getY() >= univers.planetes[i].getY()+200 && vaisseau.getY() <= univers.planetes[i].getY() + 800))
                     {
                         affichage = 1;
-                        if(affichage == 1)
-                        {
-                            sf::Font font;
+                        planeteEnCours = univers.planetes[i];
 
-                            if (!font.loadFromFile("arial.ttf"))
-                            {
-                                cout << "Internal error" <<endl;
-                            }
-
-                            sf::Text text;
-                            text.setFont(font);
-                            text.setString("Appuyez sur la touche enter si vous voulez atterir");
-                            text.setCharacterSize(50);
-                            text.setPosition(sf::Vector2f(5000, 3200));
-
-                            windowJeu.draw(text);
-                            windowJeu.display();
-
-                            affichage = 0;
-                        }
-
-
-                            cout << "Voulez-vous vraiment atterir?" << endl;
+                            //cout << "Voulez-vous vraiment atterir?" << endl;
 
 
                             switch (event.type)
@@ -246,17 +230,11 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                                 switch(event.key.code)
                                 {
                                     case sf::Keyboard::Return:
-                                    int test;
-                                    cout << "Voulez vous vraiment atterir?" << endl;
-                                    cin >> test;
-                                    if (test == 1){
                                         cout << "Vous avez bien attéri" << endl;
-                                        windowJeu.clear();
+//                                        windowJeu.setActive(false);
+                                        windowJeu.close();
                                         //combat --> background en fonction planete
-                                    }
-                                    else{
-                                        cout << "ok" << endl;
-                                    }
+
                                     break;
                                     default:
                                         break;
@@ -264,12 +242,16 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                                 default:
                                     break;
                             }
+
+
                     }
-//                    else
-//                    {
-//                        affichage = 0;
-//                        cout << "mzi e oufé" << endl;
-//                    }
+                    else
+                    {
+                        if(univers.planetes[i] == planeteEnCours){
+                        affichage = 0;
+                        }
+                    }
+
             }
 
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
@@ -295,6 +277,21 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                 }
             }
 
+
+             sf::Font font;
+
+            if (!font.loadFromFile("arial.ttf"))
+            {
+                cout << "Internal error" <<endl;
+            }
+
+            sf::Text text;
+            text.setFont(font);
+            text.setString("Appuyez sur la touche enter si vous voulez atterir");
+            text.setCharacterSize(50);
+            text.setPosition(sf::Vector2f(planeteEnCours.getX(), planeteEnCours.getY()-50));
+
+
             windowJeu.clear();
             windowJeu.setView(view);
             windowJeu.draw(univers.univers_sprite);
@@ -308,6 +305,12 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
             {
                 windowJeu.draw(univers.planetesInaccessibles[i]);
             }
+
+            if(affichage == 1)
+            {
+                windowJeu.draw(text);
+            }
+
 
             windowJeu.draw(vaisseau.vaisseau_sprite);
             windowJeu.display();

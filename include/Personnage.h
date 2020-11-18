@@ -32,33 +32,33 @@ class Personnage : public sf::Drawable, public sf::Event
 
     public:
         //Constucteurs et destructeurs
-        Personnage(string nom, string race, int ptsAttaque, int ptsVie, int ptsExperience, int niveau);
-        Personnage();
+        Personnage(const string = "", const string = "", const int = 0, const int = 0, const int = 0, const int = 0);
+//        Personnage();
         virtual ~Personnage();
-        Personnage(const Personnage& other);
-        Personnage& operator=(const Personnage& other);
+        Personnage(const Personnage&);
+        Personnage& operator=(const Personnage&);
 
         //Méthodes utiles
-        string str() const;
+        string str() const; //virtual -> héritage
 
         //Getters et setters
         int getPtsAttaque() const;
-        void setPtsAttaque(int ptsAttaque);
+        void setPtsAttaque(const int &);
 
         int getPtsVie() const;
-        void setPtsVie(int ptsVie);
+        void setPtsVie(const int &);
 
         int getPtsExperience() const;
-        void setPtsExperience(int ptsExperience);
+        void setPtsExperience(const int &);
 
         int getNiveau() const;
-        void setNiveau(int ptsNiveau);
+        void setNiveau(const int &);
 
         string getNom() const;
-        void setNom(string nom);
+        void setNom(const string &);
 
         string getRace() const;
-        void setRace(string race);
+        void setRace(const string &);
 };
 
 #endif // PERSONNAGE_H

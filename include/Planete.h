@@ -33,6 +33,9 @@ class Planete : public sf::Drawable
 
         virtual ~Planete();
 
+        virtual bool operator==(const Planete& plan);
+
+
         sf::Sprite planete_sprite;
         sf::Texture planete_texture;
 

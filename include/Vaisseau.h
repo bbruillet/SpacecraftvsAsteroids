@@ -5,6 +5,8 @@
 #include <ostream>
 #include <string>
 
+#include "IConstante.h"
+
 #include <cstdio>
 #include <SFML/Graphics.hpp>
 
@@ -14,19 +16,17 @@ using std::string;
 using std::to_string;
 using std::ostream;
 
-class Vaisseau : public sf::Drawable, public sf::Event
+class Vaisseau : public sf::Drawable, public sf::Event, public IConstante
 {
     private:
         int x, y;
 
         //Méthode pour les sprites du vaisseau
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
-        {
-            target.draw(vaisseau_sprite);
-        }
+        virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
+
 
     public:
-        Vaisseau();
+        Vaisseau(const int x = 7150, const int y = 3500);
         virtual ~Vaisseau();
 
         //Sprite et texture du vaisseau
@@ -38,10 +38,10 @@ class Vaisseau : public sf::Drawable, public sf::Event
         int seDeplacerY(Event event, int y);
 
         int getX() const;
-        void setX(int x);
+        void setX(const int &);
 
         int getY() const;
-        void setY(int y);
+        void setY(const int &);
 };
 
 #endif // VAISSEAU_H

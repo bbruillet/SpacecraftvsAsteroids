@@ -38,3 +38,63 @@ string Personnage::str() const
     to_string(ptsVie) + " " + to_string(ptsExperience) + " " + to_string(niveau);
     return result;
 }
+
+void Personnage::setNom(const string &nom)
+{
+    this->nom = nom;
+}
+
+string Personnage::getNom() const
+{
+    return nom;
+}
+
+void Personnage::setRace(const string &race)
+{
+    this->race = race;
+}
+
+string Personnage::getRace() const
+{
+    return race;
+}
+
+void Personnage::setPtsAttaque(const int &ptsAttaque)
+{
+    this->ptsAttaque = ptsAttaque;
+}
+
+int Personnage::getPtsAttaque() const
+{
+    return ptsAttaque;
+}
+
+void Personnage::setPtsVie(const int &ptsVie)
+{
+    this->ptsVie = ptsVie;
+}
+
+int Personnage::getPtsVie() const
+{
+    return ptsVie;
+}
+
+void Personnage::setPtsExperience(const int &ptsExperience)
+{
+    this->ptsExperience = ptsExperience;
+}
+
+int Personnage::getPtsExperience() const
+{
+    return ptsExperience;
+}
+
+void Personnage::setNiveau(const int &niveau)
+{
+    this->niveau = niveau;
+}
+
+int Personnage::getNiveau() const
+{
+    return niveau;
+}

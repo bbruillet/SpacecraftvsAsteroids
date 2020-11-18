@@ -30,6 +30,11 @@ Planete::~Planete()
     //dtor
 }
 
+bool Planete::operator==(const Planete& plan)
+{
+    return (nom==plan.nom);
+}
+
 int Planete::getX() const
 {
     return x;

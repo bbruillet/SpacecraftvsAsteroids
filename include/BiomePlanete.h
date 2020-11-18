@@ -4,9 +4,6 @@
 
 class BiomePlanete
 {
-
-    private:
-
     public:
         BiomePlanete();
         virtual ~BiomePlanete();
@@ -15,7 +12,7 @@ class BiomePlanete
 
     protected:
 
-
+    private:
 };
 
 #endif // BIOMEPLANETE_H

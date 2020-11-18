@@ -1,10 +1,12 @@
 #include "Vaisseau.h"
+#include "IConstante.h"
 
 #include <cstdio>
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-Vaisseau::Vaisseau()
+Vaisseau::Vaisseau(const int x, const int y)
+:x(x), y(y)
 {
     if (!vaisseau_texture.loadFromFile("images/X-Wing.png"))
     {
@@ -12,16 +14,21 @@ Vaisseau::Vaisseau()
     }
 
     //Coordonnées de départ du personnage
-    x = 7150;
-    y = 3500;
+//    x = 7150;
+//    y = 3500;
     vaisseau_sprite.setTexture(vaisseau_texture);
     vaisseau_sprite.setPosition(x, y);
-    vaisseau_sprite.setOrigin(62.5, 62.5);
+    vaisseau_sprite.setOrigin(VAISSEAU_COORDONNEE_ORIGINE, VAISSEAU_COORDONNEE_ORIGINE);
 }
 
 Vaisseau::~Vaisseau()
 {
     //dtor
+}
+
+void Vaisseau::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    target.draw(vaisseau_sprite);
 }
 
 int Vaisseau::seDeplacerX(Event event, int x)
@@ -31,12 +38,14 @@ int Vaisseau::seDeplacerX(Event event, int x)
     {
         case sf::Keyboard::Left:
         {
-            if(x>1000) {
+            if(x>1000)
+            {
                 x = x - 50;
                 vaisseau_sprite.setRotation(270);
                 cout << "X: "<< x << endl;
             }
-            else {
+            else
+            {
                 vaisseau_sprite.setRotation(90);
             }
             break;
@@ -44,12 +53,14 @@ int Vaisseau::seDeplacerX(Event event, int x)
 
         case sf::Keyboard::Right:
         {
-            if(x<12000) {
+            if(x<12000)
+            {
                 x = x + 50;
                 vaisseau_sprite.setRotation(90);
                 cout << "X: "<< x << endl;
             }
-            else {
+            else
+            {
                 vaisseau_sprite.setRotation(270);
             }
             break;
@@ -66,12 +77,14 @@ int Vaisseau::seDeplacerY(Event event, int y)
     {
         case sf::Keyboard::Up:
         {
-            if(y>1000){
-            y = y - 50;
-            vaisseau_sprite.setRotation(0);
-            cout << "Y: "<< y << endl;
+            if(y>1000)
+            {
+                y = y - 50;
+                vaisseau_sprite.setRotation(0);
+                cout << "Y: "<< y << endl;
             }
-            else {
+            else
+            {
                 vaisseau_sprite.setRotation(180);
             }
             break;
@@ -79,12 +92,14 @@ int Vaisseau::seDeplacerY(Event event, int y)
 
         case sf::Keyboard::Down:
         {
-            if(y<6500){
-            y = y + 50;
-            vaisseau_sprite.setRotation(180);
-            cout << "Y: "<< y << endl;
+            if(y<6500)
+            {
+                y = y + 50;
+                vaisseau_sprite.setRotation(180);
+                cout << "Y: "<< y << endl;
             }
-            else {
+            else
+            {
                 vaisseau_sprite.setRotation(0);
             }
             break;
@@ -100,7 +115,7 @@ int Vaisseau::getX() const
     return x;
 }
 
-void Vaisseau::setX(int x)
+void Vaisseau::setX(const int &x)
 {
     this->x = x;
 }
@@ -110,7 +125,7 @@ int Vaisseau::getY() const
     return y;
 }
 
-void Vaisseau::setY(int y)
+void Vaisseau::setY(const int &y)
 {
     this->y = y;
 }
