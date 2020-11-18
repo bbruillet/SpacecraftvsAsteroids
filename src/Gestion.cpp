@@ -208,23 +208,33 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                 }*/
                 //________________
 
-
+                int affichage = 0;
 
                 for (size_t i (0); i< univers.planetes.size();i++){
                     if((vaisseau.getX() >= univers.planetes[i].getX()+200 && vaisseau.getX() <= univers.planetes[i].getX()+800)
                        && (vaisseau.getY() >= univers.planetes[i].getY()+200 && vaisseau.getY() <= univers.planetes[i].getY() + 800))
                     {
-//                        sf::Font font;
-//                            sf::Text text;
-//                            if (!font.loadFromFile("arial.ttf"))
-//                            {
-//                                cout << "Internal error" <<endl;
-//                            }
-//
-//                            text.setFont(font);
-//                            text.setString("Appuyez sur la touche enter si vous voulez atterir");
-//                            text.setPosition(sf::Vector2f(5000, 3200));
-//                            windowJeu.draw(text);
+                        affichage = 1;
+                        if(affichage == 1)
+                        {
+                            sf::Font font;
+
+                            if (!font.loadFromFile("arial.ttf"))
+                            {
+                                cout << "Internal error" <<endl;
+                            }
+
+                            sf::Text text;
+                            text.setFont(font);
+                            text.setString("Appuyez sur la touche enter si vous voulez atterir");
+                            text.setCharacterSize(50);
+                            text.setPosition(sf::Vector2f(5000, 3200));
+
+                            windowJeu.draw(text);
+                            windowJeu.display();
+
+                            affichage = 0;
+                        }
 
 
                             cout << "Voulez-vous vraiment atterir?" << endl;
@@ -235,7 +245,7 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                                 case sf::Event::KeyReleased:
                                 switch(event.key.code)
                                 {
-                                case sf::Keyboard::Return:
+                                    case sf::Keyboard::Return:
                                     int test;
                                     cout << "Voulez vous vraiment atterir?" << endl;
                                     cin >> test;
@@ -254,7 +264,12 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                                 default:
                                     break;
                             }
-                }
+                    }
+//                    else
+//                    {
+//                        affichage = 0;
+//                        cout << "mzi e oufé" << endl;
+//                    }
             }
 
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {

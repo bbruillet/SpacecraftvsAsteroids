@@ -103,3 +103,99 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
+1605636294 source:/home/sylvain/Documents/projet/main.cpp
+	<iostream>
+	<list>
+	"Gestion.h"
+	<SFML/Audio.hpp>
+
+1605636294 /home/sylvain/Documents/projet/include/Gestion.h
+	<SFML/Graphics.hpp>
+
+1605636294 source:/home/sylvain/Documents/projet/src/BiomePlanete.cpp
+	"BiomePlanete.h"
+
+1605636294 /home/sylvain/Documents/projet/include/BiomePlanete.h
+
+1605636294 source:/home/sylvain/Documents/projet/src/Menu.cpp
+	"Menu.h"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<iostream>
+	<vector>
+
+1605636294 /home/sylvain/Documents/projet/include/Menu.h
+	"SFML/Graphics.hpp"
+
+1605636294 source:/home/sylvain/Documents/projet/src/Personnage.cpp
+	"Personnage.h"
+	<cstdio>
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1605636294 /home/sylvain/Documents/projet/include/Personnage.h
+	<iostream>
+	<ostream>
+	<string>
+	<cstdio>
+	<SFML/Graphics.hpp>
+
+1605636294 source:/home/sylvain/Documents/projet/src/Planete.cpp
+	"Planete.h"
+	<cstdio>
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1605636294 /home/sylvain/Documents/projet/include/Planete.h
+	<iostream>
+	<ostream>
+	<string>
+	<vector>
+	<cstdio>
+	<SFML/Graphics.hpp>
+
+1605636294 source:/home/sylvain/Documents/projet/src/Univers.cpp
+	"Univers.h"
+
+1605636294 /home/sylvain/Documents/projet/include/Univers.h
+	<iostream>
+	<ostream>
+	<string>
+	<vector>
+	<cstdio>
+	<SFML/Graphics.hpp>
+	"Planete.h"
+
+1605636294 source:/home/sylvain/Documents/projet/src/Vaisseau.cpp
+	"Vaisseau.h"
+	<cstdio>
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1605636294 /home/sylvain/Documents/projet/include/Vaisseau.h
+	<iostream>
+	<ostream>
+	<string>
+	<cstdio>
+	<SFML/Graphics.hpp>
+
+1605638224 source:/home/sylvain/Documents/projet/src/Gestion.cpp
+	"Gestion.h"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<iostream>
+	<vector>
+	<cmath>
+	"Personnage.h"
+	"Deplacement.h"
+	"Univers.h"
+	"Planete.h"
+	"Vaisseau.h"
+	"Menu.h"
+
+1604656932 /home/sylvain/Documents/projet/include/Deplacement.h
+	<SFML/Graphics.hpp>
+	"Personnage.h"
+	<iostream>
+	<vector>
+
