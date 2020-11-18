@@ -12,6 +12,7 @@
 #include "Univers.h"
 #include "Planete.h"
 #include "Vaisseau.h"
+#include "BiomePlanete.h"
 
 #include "Menu.h"
 
@@ -107,9 +108,9 @@ void Gestion::menu(sf::RenderWindow & windowJeu)
 		}
 
 		windowJeu.clear();
-//
+
 		menu.draw(windowJeu);
-//
+
 		windowJeu.display();
 	}
 }
@@ -133,7 +134,7 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
     Vaisseau vaisseau;
     Univers univers; //Taille 13883x7500
 
-    Planete planeteBleu("Blue", "Images/Planetes/Bleu.png", 2000, 750);
+    Planete planeteBleu("Bleue", "Images/Planetes/Bleu.png", 2000, 750);
 
     //Decor = BlueBackground - OrangeBackground, ...
 
@@ -152,6 +153,12 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
     Planete planeteAnneauBleu("Anneau_Bleu", "Images/Planetes/Anneau_Bleu.png", 1500, 5100);
     //ok
     Planete planeteSoleil("Soleil", "Images/Planetes/Soleil.png", 11250, 100);
+
+    BiomePlanete biom("Images/Backgrounds/"+planeteBleu.getNom()+"_Background.png");
+
+
+    planeteBleu.DonnerBiome(biom);
+
     univers.add(planeteBleu);
     univers.add(planeteOrange);
     univers.add(planeteRouge);
@@ -162,9 +169,10 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
     univers.add(planeteAnneauBleu);
     univers.addInacc(planeteSoleil);
 
+
     Planete planeteEnCours;
 
-    //Planete planete;
+
 
     int affichage = 0;
 
@@ -232,9 +240,19 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                                 {
                                     case sf::Keyboard::Return:
                                         cout << "Vous avez bien attéri" << endl;
-//                                        windowJeu.setActive(false);
-                                        windowJeu.close();
+//
+                                        combatPlanete(windowJeu,*univers.planetes[i].getBiome());
+                                        //windowJeu.close();
+                                        //planete[i].biome = biomecréer
+                                        //window.clear()
+                                        //biome.draw(window)
+
                                         //combat --> background en fonction planete
+
+
+
+
+                                       // BiomePlanete biome;
 
                                     break;
                                     default:
@@ -279,7 +297,7 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
             }
 
 
-             sf::Font font;
+            sf::Font font;
 
             if (!font.loadFromFile("Polices/SpaceFont.ttf"))
             {
@@ -314,6 +332,7 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
 
 
             windowJeu.draw(vaisseau.vaisseau_sprite);
+            //windowJeu.draw(planeteVerte.getBiome()->biome_sprite);
             windowJeu.display();
 
         }
@@ -325,6 +344,8 @@ void Gestion::pause(sf::RenderWindow & windowJeu)
     menu(windowJeu2);
 }
 
+
+
 void Gestion::map_space(sf::RenderWindow & windowJeu)
 {
 cout << "map"<<endl;
@@ -332,5 +353,33 @@ cout << "map"<<endl;
 //view.setSize(13500, 13500);
 }
 
+void Gestion::combatPlanete(sf::RenderWindow & windowJeu,BiomePlanete& bio)
+{
+    sf::View view(sf::FloatRect(2000, 2000, 2048, 1365));
+    view.setCenter(1024, 682.5);
 
+    windowJeu.setView(view);
+
+    while (windowJeu.isOpen())
+    {
+        sf::Event event;
+        while (windowJeu.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+            // pause(windowJeu);
+                windowJeu.close();
+                cout << "closed"<<endl;
+            }
+        }
+        windowJeu.clear();
+//        cout << "test " << endl;
+        windowJeu.draw(bio.biome_sprite);
+        windowJeu.display();
+
+    }
+
+
+
+}
 

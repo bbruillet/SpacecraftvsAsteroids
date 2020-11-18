@@ -18,19 +18,28 @@ Menu::Menu()
 		cout << "Internal error" <<endl;
 	}
 
+	if (!menu_texture.loadFromFile("Images/Backgrounds/Menu_Background.jpg"))
+    {
+        std::cout << "Problème" << std::endl;
+    }
+
+    menu_sprite.setTexture(menu_texture);
+    menu_sprite.setPosition(0, 0);
+    menu_sprite.scale(1.0f, 1.0f);
+
 	menu[0].setFont(font);
-	menu[0].setFillColor(sf::Color::Cyan);
-	menu[0].setString("play");
+	menu[0].setFillColor(sf::Color(201, 135, 185));
+	menu[0].setString("jouer");
 	menu[0].setPosition(sf::Vector2f(100,100));
 
 	menu[1].setFont(font);
 	menu[1].setFillColor(sf::Color::White);
-	menu[1].setString("map");
+	menu[1].setString("voir la map");
 	menu[1].setPosition(sf::Vector2f(100,250));
 
 	menu[2].setFont(font);
 	menu[2].setFillColor(sf::Color::White);
-	menu[2].setString("exit");
+	menu[2].setString("quitter");
 	menu[2].setPosition(sf::Vector2f(100,400));
 
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
@@ -53,6 +62,7 @@ int Menu::GetPressedItem()
 
 void Menu::draw(sf::RenderWindow &window)
 {
+    window.draw(menu_sprite);
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
 	{
 		window.draw(menu[i]);
@@ -65,7 +75,7 @@ void Menu::MoveUp()
 	{
 		menu[selectedItemIndex].setFillColor(sf::Color::White);
 		selectedItemIndex--;
-		menu[selectedItemIndex].setFillColor(sf::Color::Cyan);
+		menu[selectedItemIndex].setFillColor(sf::Color(201, 135, 185));
 		cout << "test up" <<endl;
 	}
 }
@@ -76,7 +86,7 @@ void Menu::MoveDown()
 	{
 		menu[selectedItemIndex].setFillColor(sf::Color::White);
 		selectedItemIndex++;
-		menu[selectedItemIndex].setFillColor(sf::Color::Cyan);
+		menu[selectedItemIndex].setFillColor(sf::Color(201, 135, 185));
 		cout << "tedt down" <<endl;
 	}
 }

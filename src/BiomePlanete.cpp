@@ -1,8 +1,14 @@
 #include "BiomePlanete.h"
 
-BiomePlanete::BiomePlanete()
+BiomePlanete::BiomePlanete(const string background):background(background)
 {
-    //ctor
+    if (!biome_texture.loadFromFile(background))
+    {
+        std::cout << "Problème de planète" << std::endl;
+    }
+
+    biome_sprite.setTexture(biome_texture);
+    biome_sprite.setPosition(0, 0);
 }
 
 BiomePlanete::~BiomePlanete()
@@ -10,14 +16,16 @@ BiomePlanete::~BiomePlanete()
     //dtor
 }
 
-BiomePlanete::BiomePlanete(const BiomePlanete& other)
+BiomePlanete::BiomePlanete(const BiomePlanete& b)
 {
-    //copy ctor
+    background = b.background;
 }
 
 BiomePlanete& BiomePlanete::operator=(const BiomePlanete& rhs)
 {
-    if (this == &rhs) return *this; // handle self assignment
+    if (this != &rhs) {
+        background = rhs.background;
+    } // handle self assignment
     //assignment operator
     return *this;
 }

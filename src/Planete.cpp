@@ -1,5 +1,5 @@
 #include "Planete.h"
-
+#include "BiomePlanete.h"
 #include <cstdio>
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -55,3 +55,22 @@ void Planete::setY(int y)
     this->y = y;
 }
 
+void Planete::setNom(const string &nom)
+{
+    this->nom = nom;
+}
+
+string Planete::getNom() const
+{
+    return nom;
+}
+
+void Planete::DonnerBiome(BiomePlanete &biom)
+{
+    this->biom = &biom;
+}
+
+BiomePlanete* Planete::getBiome()const
+{
+    return biom;
+}

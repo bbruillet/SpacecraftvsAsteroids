@@ -14,10 +14,12 @@ using std::string;
 using std::to_string;
 using std::ostream;
 
+class BiomePlanete;
+
 class Planete : public sf::Drawable
 {
     private:
-
+        BiomePlanete* biom;
         string nom;
         string image;
         int x, y;
@@ -44,6 +46,12 @@ class Planete : public sf::Drawable
 
         int getY() const;
         void setY(int y);
+
+        string getNom() const;
+        void setNom(const string &);
+
+        void DonnerBiome(BiomePlanete&);
+        BiomePlanete* getBiome()const;
 
 };
 

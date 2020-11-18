@@ -10,7 +10,7 @@ Univers::Univers()
 {
     //Sf::Image image;
     //image.loadFromMemory("Images/Backgrounds/Universe.png")
-    if (!univers_texture.loadFromFile("Images/Backgrounds/Universe2.png"))
+    if (!univers_texture.loadFromFile("Images/Backgrounds/Universe.png"))
     {
         std::cout << "Problème" << std::endl;
     }
