@@ -13,25 +13,30 @@ using std::endl;
 
 Menu::Menu()
 {
-	if (!font.loadFromFile("arial.ttf"))
+	if (!font.loadFromFile("Polices/SpaceFont.ttf"))
 	{
 		cout << "Internal error" <<endl;
 	}
 
 	menu[0].setFont(font);
 	menu[0].setFillColor(sf::Color::Cyan);
-	menu[0].setString("Play");
+	menu[0].setString("play");
 	menu[0].setPosition(sf::Vector2f(100,100));
 
 	menu[1].setFont(font);
 	menu[1].setFillColor(sf::Color::White);
-	menu[1].setString("Map");
-	menu[1].setPosition(sf::Vector2f(100,200));
+	menu[1].setString("map");
+	menu[1].setPosition(sf::Vector2f(100,250));
 
 	menu[2].setFont(font);
 	menu[2].setFillColor(sf::Color::White);
-	menu[2].setString("Exit");
-	menu[2].setPosition(sf::Vector2f(100,300));
+	menu[2].setString("exit");
+	menu[2].setPosition(sf::Vector2f(100,400));
+
+	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
+	{
+		menu[i].setCharacterSize(150);
+	}
 
 	selectedItemIndex = 0;
 }

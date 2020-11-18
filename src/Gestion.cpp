@@ -27,7 +27,7 @@ void Gestion::fenetrePrincipale()
 {
     /*MUSIQUE*/
     sf::SoundBuffer Buffer;
-    if (!Buffer.loadFromFile("MusiqueMenu.wav")){
+    if (!Buffer.loadFromFile("Musiques/MusiqueMenu.wav")){
         cout << "Pas de musique sélectionnée" <<endl;
     }
     sf::Sound sound;
@@ -37,6 +37,7 @@ void Gestion::fenetrePrincipale()
     sound.play();
 
     sf::RenderWindow windowJeu(sf::VideoMode(900, 900), "Spacecraft vs Asteroids");
+//    sf::RenderWindow windowJeu(sf::VideoMode(1500, 800), "Spacecraft vs Asteroids");
 
 //    while (windowJeu.isOpen())
 //	{
@@ -132,25 +133,25 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
     Vaisseau vaisseau;
     Univers univers; //Taille 13883x7500
 
-    Planete planeteBleu("Blue", "images/Bleu.png", 2000, 750);
+    Planete planeteBleu("Blue", "Images/Planetes/Bleu.png", 2000, 750);
 
     //Decor = BlueBackground - OrangeBackground, ...
 
 //    "images/"+univers.plaetes.getNom()+"Background.png"
 
 
-    Planete planeteOrange("Orange", "images/Orange.png", 9000, 1250);
-    Planete planeteMauve("Mauve_Detruite", "images/Mauve_Detruite.png", 7000, 5500);
-    Planete planeteMort("Mort", "images/Etoile_De_La_Mort.png", 8000, 6120);
+    Planete planeteOrange("Orange", "Images/Planetes/Orange.png", 9000, 1250);
+    Planete planeteMauve("Mauve_Detruite", "Images/Planetes/Mauve_Detruite.png", 7000, 5500);
+    Planete planeteMort("Mort", "Images/Planetes/Etoile_De_La_Mort.png", 8000, 6120);
     //Ok
-    Planete planeteRouge("Anneau_Rouge", "images/Anneau_Rouge.png", 11000, 3000);
+    Planete planeteRouge("Anneau_Rouge", "Images/Planetes/Anneau_Rouge.png", 11000, 3000);
     //ok
-    Planete planeteVerte("Verte", "images/Verte.png", 5000, 3200);
+    Planete planeteVerte("Verte", "Images/Planetes/Verte.png", 5000, 3200);
     //ok
-    Planete planetePlateforme("Plateforme", "images/Plateforme.png", 6900, 3300);
-    Planete planeteAnneauBleu("Anneau_Bleu", "images/Anneau_Bleu.png", 1500, 5100);
+    Planete planetePlateforme("Plateforme", "Images/Planetes/Plateforme.png", 6900, 3300);
+    Planete planeteAnneauBleu("Anneau_Bleu", "Images/Planetes/Anneau_Bleu.png", 1500, 5100);
     //ok
-    Planete planeteSoleil("Soleil", "images/Soleil.png", 11250, 100);
+    Planete planeteSoleil("Soleil", "Images/Planetes/Soleil.png", 11250, 100);
     univers.add(planeteBleu);
     univers.add(planeteOrange);
     univers.add(planeteRouge);
@@ -280,16 +281,16 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
 
              sf::Font font;
 
-            if (!font.loadFromFile("arial.ttf"))
+            if (!font.loadFromFile("Polices/SpaceFont.ttf"))
             {
                 cout << "Internal error" <<endl;
             }
 
             sf::Text text;
             text.setFont(font);
-            text.setString("Appuyez sur la touche enter si vous voulez atterir");
-            text.setCharacterSize(50);
-            text.setPosition(sf::Vector2f(planeteEnCours.getX(), planeteEnCours.getY()-50));
+            text.setString("appuyez sur la touche enter pour atterir");
+            text.setCharacterSize(100);
+            text.setPosition(sf::Vector2f(planeteEnCours.getX()-600, planeteEnCours.getY()-100));
 
 
             windowJeu.clear();

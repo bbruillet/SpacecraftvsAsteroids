@@ -8,7 +8,7 @@
 Vaisseau::Vaisseau(const int x, const int y)
 :x(x), y(y)
 {
-    if (!vaisseau_texture.loadFromFile("images/X-Wing.png"))
+    if (!vaisseau_texture.loadFromFile("Images/Avatars/X-Wing.png"))
     {
         std::cout << "ok" << std::endl;
     }

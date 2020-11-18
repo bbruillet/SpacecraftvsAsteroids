@@ -9,6 +9,7 @@ class IConstante
         virtual ~IConstante();
 
         const double VAISSEAU_COORDONNEE_ORIGINE = 62.5;
+        const int INITIALISED_VALUE = 0;
 
     protected:
 

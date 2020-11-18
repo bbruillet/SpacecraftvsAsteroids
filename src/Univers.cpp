@@ -8,7 +8,7 @@ using std::ostream;
 
 Univers::Univers()
 {
-    if (!univers_texture.loadFromFile("images/Universe.png"))
+    if (!univers_texture.loadFromFile("Images/Backgrounds/Universe.png"))
     {
         std::cout << "Problème" << std::endl;
     }

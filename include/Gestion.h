@@ -1,12 +1,13 @@
 #ifndef GESTION_H
 #define GESTION_H
 
+#include "IConstante.h"
 
 #include <SFML/Graphics.hpp>
-class Gestion : public sf::Event
+class Gestion : public sf::Event, public IConstante
 {
     public:
-        int choixMenu = 0;
+        int choixMenu = INITIALISED_VALUE;
         Gestion();
         virtual ~Gestion();
 
