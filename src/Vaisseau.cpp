@@ -26,6 +26,16 @@ Vaisseau::~Vaisseau()
     //dtor
 }
 
+Vaisseau& Vaisseau::operator=(const Vaisseau& v)
+{
+    if (this != &v) {
+        x = v.x;
+        y = v.y;
+    } // handle self assignment
+    //assignment operator
+    return *this;
+}
+
 void Vaisseau::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(vaisseau_sprite);

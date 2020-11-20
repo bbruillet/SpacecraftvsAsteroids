@@ -34,6 +34,8 @@ class BiomePlanete
         BiomePlanete(const BiomePlanete&);
         BiomePlanete& operator=(const BiomePlanete&);
 
+        void setBackground(const string &);
+
         sf::Sprite biome_sprite;
         sf::Texture biome_texture;
 

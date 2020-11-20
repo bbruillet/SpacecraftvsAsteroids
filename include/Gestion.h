@@ -5,6 +5,9 @@
 
 #include <SFML/Graphics.hpp>
 #include "BiomePlanete.h"
+#include "Univers.h"
+#include "Vaisseau.h"
+
 class Gestion : public sf::Event, public IConstante
 {
     public:
@@ -12,10 +15,9 @@ class Gestion : public sf::Event, public IConstante
         Gestion();
         virtual ~Gestion();
 
-        void fenetrePrincipale(); //Widow windowjeu
+        void fenetrePrincipale(); //Window windowjeu
         void menu(sf::RenderWindow & windowJeu);
         void launch(sf::RenderWindow & windowJeu);
-        void pause(sf::RenderWindow & windowJeu);
         void combatPlanete(sf::RenderWindow & windowJeu,BiomePlanete&);
 
         void map_space(sf::RenderWindow & windowJeu);
@@ -24,6 +26,8 @@ class Gestion : public sf::Event, public IConstante
     protected:
 
     private:
+        Univers univers;
+        Vaisseau vaisseau;
 //        sf::RenderWindow windowJeu;
 };
 

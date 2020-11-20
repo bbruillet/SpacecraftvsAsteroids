@@ -33,6 +33,8 @@ class Planete : public sf::Drawable
         Planete(string nom, string image, int x, int y);
         Planete();
 
+        Planete(const Planete& plan);
+
         virtual ~Planete();
 
         virtual bool operator==(const Planete& plan);

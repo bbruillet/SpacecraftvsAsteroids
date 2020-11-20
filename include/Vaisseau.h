@@ -42,6 +42,9 @@ class Vaisseau : public sf::Drawable, public sf::Event, public IConstante
 
         int getY() const;
         void setY(const int &);
+
+        Vaisseau& operator=(const Vaisseau&);
+
 };
 
 #endif // VAISSEAU_H

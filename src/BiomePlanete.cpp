@@ -2,13 +2,7 @@
 
 BiomePlanete::BiomePlanete(const string background):background(background)
 {
-    if (!biome_texture.loadFromFile(background))
-    {
-        std::cout << "Problème de planète" << std::endl;
-    }
 
-    biome_sprite.setTexture(biome_texture);
-    biome_sprite.setPosition(0, 0);
 }
 
 BiomePlanete::~BiomePlanete()
@@ -28,4 +22,15 @@ BiomePlanete& BiomePlanete::operator=(const BiomePlanete& rhs)
     } // handle self assignment
     //assignment operator
     return *this;
+}
+
+void BiomePlanete::setBackground(const string& background)
+{
+    this->background = background;
+     if (!biome_texture.loadFromFile(background))
+    {
+        std::cout << "Problème de planète" << std::endl;
+    }
+    biome_sprite.setTexture(biome_texture);
+    biome_sprite.setPosition(0, 0);
 }
