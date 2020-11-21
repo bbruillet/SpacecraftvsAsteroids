@@ -5,6 +5,7 @@
 #include <iostream>
 #include <ostream>
 #include <string>
+#include <sstream>
 
 #include <cstdio>
 #include <SFML/Graphics.hpp>
@@ -15,25 +16,20 @@ using std::string;
 using std::to_string;
 using std::ostream;
 
-/*enum Race
-{
-    Humain,
-    Valdera,
-    Vanduul,
-    Covenante
-    Aetwi
-};*/
-
-class Personnage : public sf::Drawable, public sf::Event
+class Personnage /*: public sf::Drawable, public sf::Event*/
 {
     private:
-        string nom, race;
-        int ptsAttaque, ptsVie, ptsExperience, niveau;
+        string nom;
+        int ptsAttaque, ptsVie, ptsExperience, niveau, ptsAttaqueSpeciale, bouclier;
+        double coupsCritique, esquive;
+        int compteurSpe;
+        int regeneration;
 
     public:
         //Constucteurs et destructeurs
-        Personnage(const string = "", const string = "", const int = 0, const int = 0, const int = 0, const int = 0);
-//        Personnage();
+        Personnage(const string nom = "Joueur", const int ptsAttaque = 0, const int ptsVie = 0, const int ptsExperience = 0, const int niveau = 0,
+                   const int ptsAttaqueSpeciale = 0, const int bouclier = 0 ,const double coupsCritique = 0.0, const double esquive = 0.0, const int regeneration = 0);
+
         virtual ~Personnage();
         Personnage(const Personnage&);
         Personnage& operator=(const Personnage&);
@@ -42,6 +38,9 @@ class Personnage : public sf::Drawable, public sf::Event
         string str() const; //virtual -> héritage
 
         //Getters et setters
+        string getNom() const;
+        void setNom(const string &);
+
         int getPtsAttaque() const;
         void setPtsAttaque(const int &);
 
@@ -54,11 +53,25 @@ class Personnage : public sf::Drawable, public sf::Event
         int getNiveau() const;
         void setNiveau(const int &);
 
-        string getNom() const;
-        void setNom(const string &);
+        int getPtsAttaqueSpeciale() const;
+        void setPtsAttaqueSpeciale(const int &);
 
-        string getRace() const;
-        void setRace(const string &);
+        int getBouclier() const;
+        void setBouclier(const int &);
+
+        double getCoupsCritique() const;
+        void setCoupsCritique(const double &);
+
+        double getEsquive() const;
+        void setEsquive(const double &);
+
+        int getCompteurSpe() const;
+        void setCompteurSpe(const int &);
+
+        int getRegeneration() const;
+        void setRegeneration(const int &);
+
+
 };
 
 #endif // PERSONNAGE_H

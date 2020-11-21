@@ -35,19 +35,25 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/BiomePlanete.h" />
+		<Unit filename="include/Combat.h" />
 		<Unit filename="include/Gestion.h" />
 		<Unit filename="include/IConstante.h" />
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/Personnage.h" />
+		<Unit filename="include/PersonnageBoss.h" />
+		<Unit filename="include/PersonnageHeros.h" />
 		<Unit filename="include/Planete.h" />
 		<Unit filename="include/Univers.h" />
 		<Unit filename="include/Vaisseau.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/BiomePlanete.cpp" />
+		<Unit filename="src/Combat.cpp" />
 		<Unit filename="src/Gestion.cpp" />
 		<Unit filename="src/IConstante.cpp" />
 		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/Personnage.cpp" />
+		<Unit filename="src/PersonnageBoss.cpp" />
+		<Unit filename="src/PersonnageHeros.cpp" />
 		<Unit filename="src/Planete.cpp" />
 		<Unit filename="src/Univers.cpp" />
 		<Unit filename="src/Vaisseau.cpp" />

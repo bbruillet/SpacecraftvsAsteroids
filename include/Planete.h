@@ -7,6 +7,7 @@
 #include <vector>
 #include <cstdio>
 #include <SFML/Graphics.hpp>
+#include "PersonnageBoss.h"
 
 using std::cout;
 using std::endl;
@@ -19,6 +20,7 @@ class BiomePlanete;
 class Planete : public sf::Drawable
 {
     private:
+//        std::vector<PersonnageBoss> bosses;
         BiomePlanete* biom;
         string nom;
         string image;
@@ -54,6 +56,8 @@ class Planete : public sf::Drawable
 
         void DonnerBiome(BiomePlanete&);
         BiomePlanete* getBiome()const;
+
+//        void ajouter(PersonnageBoss boss);
 
 };
 

@@ -305,11 +305,15 @@ void Gestion::map_space(sf::RenderWindow & windowJeu)
     //4000 2160.5
     view.setCenter(7130, 3150);
 
+
+
     windowJeu.setView(view);
 
     while (windowJeu.isOpen())
     {
+
         sf::Event event;
+
         while (windowJeu.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
@@ -325,12 +329,27 @@ void Gestion::map_space(sf::RenderWindow & windowJeu)
                 if (event.key.code == sf::Keyboard::M)
                 {
                     windowJeu.clear();
+
                     launch(windowJeu);
                 }
             }
         }
 
+        sf::Font font;
+
+        if (!font.loadFromFile("Polices/SpaceFont.ttf"))
+        {
+            cout << "Internal error" <<endl;
+        }
+
+        sf::Text text;
+        text.setFont(font);
+        text.setString("> Appuyez sur la touche 'm' pour revenir sur le jeu <");
+        text.setCharacterSize(500);
+        text.setPosition(200, -600);
+
         windowJeu.clear();
+
         windowJeu.setView(view);
         windowJeu.draw(univers.univers_sprite);
 
@@ -344,6 +363,7 @@ void Gestion::map_space(sf::RenderWindow & windowJeu)
             windowJeu.draw(univers.planetesInaccessibles[i]);
         }
 
+        windowJeu.draw(text);
         windowJeu.display();
 
     }

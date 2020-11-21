@@ -91,3 +91,8 @@ BiomePlanete* Planete::getBiome()const
 {
     return biom;
 }
+
+//void Planete::ajouter(PersonnageBoss boss)
+//{
+//      this->bosses.push_back(boss);
+//}
