@@ -23,12 +23,14 @@ class Personnage /*: public sf::Drawable, public sf::Event*/
         int ptsAttaque, ptsVie, ptsExperience, niveau, ptsAttaqueSpeciale, bouclier;
         double coupsCritique, esquive;
         int compteurSpe;
-        int regeneration;
+        int x,y;
+        string image;
 
     public:
         //Constucteurs et destructeurs
         Personnage(const string nom = "Joueur", const int ptsAttaque = 0, const int ptsVie = 0, const int ptsExperience = 0, const int niveau = 0,
-                   const int ptsAttaqueSpeciale = 0, const int bouclier = 0 ,const double coupsCritique = 0.0, const double esquive = 0.0, const int regeneration = 0);
+                   const int ptsAttaqueSpeciale = 0, const int bouclier = 0 ,const double coupsCritique = 0.0, const double esquive = 0.0, const int x = 0, const int y = 0,
+                   const string image = "Dossier");
 
         virtual ~Personnage();
         Personnage(const Personnage&);
@@ -68,8 +70,14 @@ class Personnage /*: public sf::Drawable, public sf::Event*/
         int getCompteurSpe() const;
         void setCompteurSpe(const int &);
 
-        int getRegeneration() const;
-        void setRegeneration(const int &);
+        int getX() const;
+        void setX(const int &);
+
+        int getY() const;
+        void setY(const int &);
+
+        string getImage() const;
+        void setImage(const string &);
 
 
 };

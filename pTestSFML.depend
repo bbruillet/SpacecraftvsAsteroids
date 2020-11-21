@@ -2,7 +2,7 @@
 1603186867 source:/home/bruillet/Documents/C++/pTestSFML/main.cpp
 	<SFML/Graphics.hpp>
 
-1605972693 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/main.cpp
+1605981066 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/main.cpp
 	<iostream>
 	<list>
 	"Gestion.h"
@@ -13,13 +13,13 @@
 	"Planete.h"
 	<SFML/Audio.hpp>
 
-1605972724 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Personnage.cpp
+1605978265 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Personnage.cpp
 	"Personnage.h"
 	<cstdio>
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1605972712 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Personnage.h
+1605978112 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Personnage.h
 	<iostream>
 	<ostream>
 	<string>
@@ -66,7 +66,7 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1605950599 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Gestion.cpp
+1605981976 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Gestion.cpp
 	"Gestion.h"
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -78,9 +78,10 @@
 	"Planete.h"
 	"Vaisseau.h"
 	"BiomePlanete.h"
+	"PersonnageHeros.h"
 	"Menu.h"
 
-1605888656 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Gestion.h
+1605981914 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Gestion.h
 	"IConstante.h"
 	<SFML/Graphics.hpp>
 	"BiomePlanete.h"
@@ -321,11 +322,12 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1605973556 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Combat.cpp
+1605980784 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Combat.cpp
 	"Combat.h"
 	<stdlib.h>
 	<time.h>
 	"Personnage.h"
+	"PersonnageHeros.h"
 
 1605973545 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Combat.h
 	<iostream>
@@ -334,11 +336,20 @@
 	<cstdio>
 	<SFML/Graphics.hpp>
 
-1605969173 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/PersonnageHeros.h
+1605982072 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/PersonnageHeros.h
 	"Personnage.h"
+	<iostream>
+	<ostream>
+	<string>
+	"IConstante.h"
+	<cstdio>
+	<SFML/Graphics.hpp>
 
-1605973451 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/PersonnageHeros.cpp
+1605982029 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/PersonnageHeros.cpp
 	"PersonnageHeros.h"
+	<cstdio>
+	<iostream>
+	<SFML/Graphics.hpp>
 
 1605971660 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/PersonnageBoss.h
 	"Personnage.h"

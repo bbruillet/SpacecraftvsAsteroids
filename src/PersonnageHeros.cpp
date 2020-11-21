@@ -1,18 +1,29 @@
 #include "PersonnageHeros.h"
 
+#include <cstdio>
+#include <iostream>
+#include <SFML/Graphics.hpp>
+
+
 PersonnageHeros::PersonnageHeros(const string nom, const int ptsAttaque, const int ptsVie, const int ptsExperience, const int niveau,
-    const int ptsAttaqueSpeciale, const int bouclier, const double coupsCritique, const double esquive, const Race race)
-    :Personnage(nom,ptsAttaque,ptsVie,ptsExperience,niveau,ptsAttaqueSpeciale,bouclier,coupsCritique,esquive),race(race)
+    const int ptsAttaqueSpeciale, const int bouclier, const double coupsCritique, const double esquive, const Race race, const int regeneration)
+:Personnage(nom,ptsAttaque,ptsVie,ptsExperience,niveau,ptsAttaqueSpeciale,bouclier,coupsCritique,esquive),race(race), regeneration(regeneration)
 {
     categorieHeros();
-    //ctor
+//    if (!persoHeros_texture.loadFromFile("Images/Avatars/Heros.png"))
+//    {
+//        std::cout << "Problème" << std::endl;
+//    }
+//
+//    persoHeros_sprite.setTexture(persoHeros_texture);
+//    persoHeros_sprite.setPosition(50, 50);
+//    persoHeros_sprite.setOrigin(1000, 1000);
 }
 
 PersonnageHeros::PersonnageHeros(const string nom, const Race race)
-    :Personnage(nom),race(race)
+:Personnage(nom),race(race)
 {
     categorieHeros();
-    //ctor
 }
 
 PersonnageHeros::~PersonnageHeros()
@@ -67,7 +78,6 @@ void PersonnageHeros::categorieHeros() {
 
         setCoupsCritique(40.00);
         setEsquive(35.00);
-        setRegeneration(20);
         break;
     case COVENANTE:
         setPtsVie(250);
@@ -88,7 +98,6 @@ void PersonnageHeros::categorieHeros() {
 
         setCoupsCritique(39.00);
         setEsquive(38.00);
-        setRegeneration(10);
 
         break;
     default:
@@ -102,4 +111,14 @@ string PersonnageHeros::str() const
     ss << Personnage::str() << "\n\t"
         << to_string(race);
         return ss.str();
+}
+
+void PersonnageHeros::setRegeneration(const int &regeneration)
+{
+    this->regeneration = regeneration;
+}
+
+int PersonnageHeros::getRegeneration() const
+{
+    return regeneration;
 }

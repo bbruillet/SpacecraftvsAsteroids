@@ -4,11 +4,12 @@
 #include <time.h>
 
 #include "Personnage.h"
+#include "PersonnageHeros.h"
+//#include "PersonnageBoss.h"
 
 Combat::Combat()
 {
     srand((int)time(0));
-    //compteurSpe = 0;
 }
 
 Combat::~Combat()
@@ -78,8 +79,6 @@ void Combat::combatBoss(Personnage &p1, Personnage &p2)
 {
     int round = 0;
     int test = 0;
-//    int compteurRegen1 = 2;
-//    int compteurRegen2 = 2;
 
     while(p1.getPtsVie() > 0 && p2.getPtsVie() > 0)
     {
@@ -90,19 +89,14 @@ void Combat::combatBoss(Personnage &p1, Personnage &p2)
         cin >> test;
           if ( test >= 0){
             nbPrem = (rand()% 2) +1;
-//            nbRegen = (rand()% 5) +1;
+
+
+            //p1.setPtsVie(p1.getPtsVie() + p.getRegeneration);
+
+
+
             if(nbPrem == 1){
-//                cout << to_string(nbRegen) << endl;
-//                    if(nbRegen == 1 && compteurRegen1 > 0)
-//                    {
-//                        compteurRegen1 -= 1;
-//                        p1.setPtsVie(p1.getPtsVie()+p1.getRegeneration());
-//                        cout << p1.getNom()+" a augmenté sa vie" << endl;
-//                    }
-//                    else
-//                    {
-                        attaquer(p1,p2);
-//                    }
+                attaquer(p1,p2);
                 if(p2.getPtsVie() > 0)
                 {
                     attaquer(p2,p1);

@@ -13,6 +13,7 @@
 #include "Planete.h"
 #include "Vaisseau.h"
 #include "BiomePlanete.h"
+#include "PersonnageHeros.h"
 
 #include "Menu.h"
 
@@ -375,6 +376,7 @@ void Gestion::combatPlanete(sf::RenderWindow & windowJeu,BiomePlanete& bio)
     view.setCenter(1024, 512);
 
     windowJeu.setView(view);
+//    PersonnageHeros pHeros("Baptaber", VANDUUL);
 
     while (windowJeu.isOpen())
     {
@@ -391,6 +393,7 @@ void Gestion::combatPlanete(sf::RenderWindow & windowJeu,BiomePlanete& bio)
         windowJeu.clear();
 //        cout << "test " << endl;
         windowJeu.draw(bio.biome_sprite);
+//        windowJeu.draw(pHeros.persoHeros_sprite);
         windowJeu.display();
 
     }
