@@ -32,9 +32,9 @@ int main()
 
     Combat c;
 
-    cout << p4.str() << "\n\n\n" << p3.str() << "\n\n\n\n------\n\n"<< endl;
+    cout << p1.str() << "\n\n\n" << p4.str() << "\n\n\n\n------\n\n"<< endl;
 
-    c.combatBoss(p4, p3);
+    c.combatBoss(p1, p4);
 
     return 0;
 }

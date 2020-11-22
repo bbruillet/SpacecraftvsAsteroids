@@ -75,12 +75,12 @@ void PersonnageHeros::categorieHeros() {
     case VANDUUL:
         setPtsVie(140);
         setPtsAttaque(20);
-        setPtsAttaqueSpeciale(25);
+        setPtsAttaqueSpeciale(40);
         setBouclier(15);
 
-        setCoupsCritique(40.00);
+        setCoupsCritique(45.00);
         setEsquive(35.00);
-        setRegeneration(10);
+        setRegeneration(30);
 
         break;
     case COVENANTE:

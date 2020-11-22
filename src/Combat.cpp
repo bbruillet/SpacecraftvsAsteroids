@@ -75,7 +75,8 @@ void Combat::attaquerBoss(Personnage &p1,Personnage &p2)
                     if (nb <= p1.getCoupsCritique())
                     {
                         cout << "Attaque critique !" << endl;
-                        attaque *= 2;
+                        attaque = attaque + (p1.getPtsAttaque()/2);
+                        cout << attaque << endl;
                     }
             }
 
@@ -83,7 +84,7 @@ void Combat::attaquerBoss(Personnage &p1,Personnage &p2)
         //    nbEsquive = (rand()%100) + 1;
             if(nbEsquive <= p2.getEsquive())
             {
-                cout << "Esquive dans ta gueule de " << p2.getNom() << endl;
+                cout << p2.getNom() << " a esquivé ton attaque" << endl;
                 attaque = 0;
             }
 
@@ -99,7 +100,7 @@ void Combat::attaquerBoss(Personnage &p1,Personnage &p2)
         p1.setPtsVie(p1.getPtsVie() + p1.getRegeneration());
         nbRegen--;
         if(nbRegen == 0){
-        cout << "VOUS NE POUVEZ PLUS" << endl;
+        cout << "VOUS NE POUVEZ PLUS REGEN !" << endl;
         }
     }
 }
@@ -133,7 +134,8 @@ void Combat::attaquerHeros(Personnage &p1, Personnage &p2)
             if (nb <= p1.getCoupsCritique())
             {
                 cout << "Attaque critique !" << endl;
-                attaque *= 2;
+                attaque = attaque + (p1.getPtsAttaque()/2);
+                cout << attaque << endl;
             }
     }
 
@@ -161,7 +163,7 @@ void Combat::combatBoss(Personnage &p1, Personnage &p2)
         round ++;
         cout << "Round numéro "+to_string(round) << endl;
         cout << "Entrez un chiffre pour démarrer un round\n" << endl;
-        cout << "------------------------------------\n" << endl;
+        cout << "------------------------------------" << endl;
         cin >> test;
           if ( test > 0){
             nbPrem = (rand()% 2) +1;
