@@ -2,72 +2,54 @@
 #include "Planete.h"
 
 PersonnageBoss::PersonnageBoss(const string nom, const int ptsAttaque, const int ptsVie, const int ptsExperience, const int niveau,
-    const int ptsAttaqueSpeciale, const int bouclier, const double coupsCritique, const double esquive, const Origine origine)
-    :Personnage(nom,ptsAttaque,ptsVie,ptsExperience,niveau,ptsAttaqueSpeciale,bouclier,coupsCritique,esquive),origine(origine)
+    const int ptsAttaqueSpeciale, const int bouclier, const double coupsCritique, const double esquive, const int x, const int y, const string image,
+    const int regeneration)
+    :Personnage(nom,ptsAttaque,ptsVie,ptsExperience,niveau,ptsAttaqueSpeciale,bouclier,coupsCritique,esquive, x, y, image, regeneration)
 {
     Planete plan;
     categorieBoss();
     //ctor
 }
 
-PersonnageBoss::PersonnageBoss(const string nom, const Origine origine)
-    :Personnage(nom),origine(origine)
-{
-    categorieBoss();
-    //ctor
-}
+//PersonnageBoss::PersonnageBoss(const string nom)
+//    :Personnage(nom)
+//{
+//    categorieBoss();
+//    //ctor
+//}
 
 PersonnageBoss::~PersonnageBoss()
 {
     //dtor
 }
 
-PersonnageBoss::PersonnageBoss(const PersonnageBoss& pB):Personnage(pB),origine(pB.origine)
+PersonnageBoss::PersonnageBoss(const PersonnageBoss& pB):Personnage(pB)
 {
     //copy ctor
 }
 
 PersonnageBoss& PersonnageBoss::operator=(const PersonnageBoss& pB)
 {
-    if (this != &pB){
-
-            // handle self assignment
-            Personnage::operator=(pB);
-            origine = pB.origine;
-
-         }
+    if (this != &pB)
+    {
+        Personnage::operator=(pB);
+    }
     return *this;
 }
 
 
 void PersonnageBoss::categorieBoss() {
-    switch(origine)
-    {
-    case TERRE:
-        cout << "Terre" << endl;
-        break;
-    case POLAIRE:
-        cout << "Polaire" << endl;
-        break;
-    case FEU:
-        cout << "FEU" << endl;
-        break;
-        default:
-            break;
-    }
+    cout << "OK" << endl;
 
 
 
 }
-
-
 
 
 
 string PersonnageBoss::str() const
 {
     std::stringstream ss;
-    ss << Personnage::str() << "\n\t"
-        << to_string(origine);
+    ss << Personnage::str();
         return ss.str();
 }

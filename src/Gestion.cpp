@@ -14,40 +14,54 @@
 #include "Vaisseau.h"
 #include "BiomePlanete.h"
 #include "PersonnageHeros.h"
-
+#include "PersonnageBoss.h"
 #include "Menu.h"
 
 using namespace std;
-
 
 Gestion::Gestion()
 {
     this->univers = univers;
     this->vaisseau = vaisseau;
+    this->persoBoss = persoBoss;
 
-    Planete planeteBleu("Bleue", "Images/Planetes/Bleu.png", 2000, 750);
-    Planete planeteOrange("Orange", "Images/Planetes/Orange.png", 9000, 1250);
-    Planete planeteMauve("Mauve_Detruite", "Images/Planetes/Mauve_Detruite.png", 7000, 5500);
-    Planete planeteMort("Mort", "Images/Planetes/Etoile_De_La_Mort.png", 8000, 6120);
+    Planete planeteBleu("Bleue", "Images/Planetes/Bleu.png", 2000, 750, 319, 650); //319
+    Planete planeteOrange("Orange", "Images/Planetes/Orange.png", 9000, 1250, 291, 450); //291
+    Planete planeteMauve("Mauve_Detruite", "Images/Planetes/Mauve_Detruite.png", 7000, 5500, 417, 700); //417
+    Planete planeteMort("Mort", "Images/Planetes/Etoile_De_La_Mort.png", 8000, 6120, 200, 300);
     //Ok
-    Planete planeteRouge("Anneau_Rouge", "Images/Planetes/Anneau_Rouge.png", 11000, 3000);
+    Planete planeteRouge("Anneau_Rouge", "Images/Planetes/Anneau_Rouge.png", 11000, 3000, 1083, 810); //1083
     //ok
-    Planete planeteVerte("Verte", "Images/Planetes/Verte.png", 5000, 3200);
+    Planete planeteVerte("Verte", "Images/Planetes/Verte.png", 5000, 3200, 703, 700); //703
     //ok
-    Planete planetePlateforme("Plateforme", "Images/Planetes/Plateforme.png", 6900, 3300);
-    Planete planeteAnneauBleu("Anneau_Bleu", "Images/Planetes/Anneau_Bleu.png", 1500, 5100);
+    Planete planetePlateforme("Plateforme", "Images/Planetes/Plateforme.png", 6900, 3300, 200, 300);
+    Planete planeteAnneauBleu("Anneau_Bleu", "Images/Planetes/Anneau_Bleu.png", 1500, 5100, 318, 823); //318
     //ok
-    Planete planeteSoleil("Soleil", "Images/Planetes/Soleil.png", 12000, 0);
+    Planete planeteSoleil("Soleil", "Images/Planetes/Soleil.png", 12000, 0, 200, 300);
+
+    Planete planeteEnCours;
+
+//    PersonnageBoss bossVert;
+
+//    cout << " 1 " +bossVert.str() << endl;
+//    persoBoss.setImage("Images/Avatars/Orange_Boss.png");
+//
+//    planeteVerte.DonnerBoss(persoBoss);
+
+    heroTest.setImage("Images/Avatars/Verte_Hero.png");
 
     univers.add(planeteBleu);
     univers.add(planeteOrange);
     univers.add(planeteRouge);
     univers.add(planeteMauve);
     univers.addInacc(planeteMort);
-    univers.add(planeteVerte);
+    univers.add(planeteVerte); //4
     univers.addInacc(planetePlateforme);
     univers.add(planeteAnneauBleu);
     univers.addInacc(planeteSoleil);
+
+//    cout << " 3 " + univers.planetes[4].getBoss()->getNom() << endl;
+
 }
 
 void Gestion::fenetrePrincipale()
@@ -142,10 +156,10 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
     view.setCenter(vaisseau.getX(), vaisseau.getY());
 
     BiomePlanete biomtest;
+    PersonnageBoss bossTest;
 
 
     Planete planeteEnCours;
-
 
 
     int affichage = 0;
@@ -193,8 +207,6 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                     {
                         affichage = 1;
                         planeteEnCours = univers.planetes[i];
-
-
                             switch (event.type)
                             {
                                 case sf::Event::KeyReleased:
@@ -205,9 +217,21 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
 
                                         biomtest.setBackground("Images/Backgrounds/"+planeteEnCours.getNom()+"_Background.png");
 
-                                        planeteEnCours.DonnerBiome(biomtest);
+                                        persoBoss.setX(univers.planetes[i].getXPerso()); //200
+                                        persoBoss.setY(univers.planetes[i].getYPerso()); //300
 
-                                        combatPlanete(windowJeu,*planeteEnCours.getBiome());
+
+                                        persoBoss.setImage("Images/Avatars/"+planeteEnCours.getNom()+"_Boss.png");
+                                        cout << "y:" << univers.planetes[i].getYPerso() << endl << "y Boss :" << persoBoss.getY() << endl;
+                                        cout << planeteEnCours.getNom() << endl;
+
+                                        planeteEnCours.DonnerBiome(biomtest);
+                                        planeteEnCours.DonnerBoss(persoBoss);
+
+
+                                        //combatPlanete(windowJeu,*planeteEnCours.getBiome());
+                                        //combatPlanete(windowJeu,univers.planetes[i]);
+                                        combatPlanete(windowJeu,planeteEnCours);
 
 
                                     break;
@@ -370,13 +394,15 @@ void Gestion::map_space(sf::RenderWindow & windowJeu)
     }
 }
 
-void Gestion::combatPlanete(sf::RenderWindow & windowJeu,BiomePlanete& bio)
+void Gestion::combatPlanete(sf::RenderWindow & windowJeu,Planete& pla)
 {
     sf::View view(sf::FloatRect(2048, 1024, 2048, 1024));
     view.setCenter(1024, 512);
 
     windowJeu.setView(view);
 //    PersonnageHeros pHeros("Baptaber", VANDUUL);
+//ERROr
+//   cout <<  pla.getBoss()->getNom() << endl;
 
     while (windowJeu.isOpen())
     {
@@ -391,13 +417,18 @@ void Gestion::combatPlanete(sf::RenderWindow & windowJeu,BiomePlanete& bio)
 
         }
         windowJeu.clear();
-//        cout << "test " << endl;
-        windowJeu.draw(bio.biome_sprite);
+//       cout << "test " << endl;
+        //windowJeu.draw(bio.biome_sprite);
+        windowJeu.draw(pla.getBiome()->biome_sprite);
+
+        //cout << pla.getBoss()->getNom() << endl;
+        //cout <<pla.getNom() <<endl;
+        windowJeu.draw(pla.getBoss()->personnage_sprite);
+        windowJeu.draw(heroTest.personnage_sprite);
 //        windowJeu.draw(pHeros.persoHeros_sprite);
         windowJeu.display();
 
     }
-
 
 
 }

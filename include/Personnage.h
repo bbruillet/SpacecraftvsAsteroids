@@ -25,12 +25,18 @@ class Personnage /*: public sf::Drawable, public sf::Event*/
         int compteurSpe;
         int x,y;
         string image;
+        int regeneration;
+
+          virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
+        {
+            target.draw(personnage_sprite);
+        }
 
     public:
         //Constucteurs et destructeurs
         Personnage(const string nom = "Joueur", const int ptsAttaque = 0, const int ptsVie = 0, const int ptsExperience = 0, const int niveau = 0,
                    const int ptsAttaqueSpeciale = 0, const int bouclier = 0 ,const double coupsCritique = 0.0, const double esquive = 0.0, const int x = 0, const int y = 0,
-                   const string image = "Dossier");
+                   const string image = "Dossier", const int regeneration = 0);
 
         virtual ~Personnage();
         Personnage(const Personnage&);
@@ -79,6 +85,11 @@ class Personnage /*: public sf::Drawable, public sf::Event*/
         string getImage() const;
         void setImage(const string &);
 
+        int getRegeneration() const;
+        void setRegeneration(const int &);
+
+        sf::Sprite personnage_sprite;
+        sf::Texture personnage_texture;
 
 };
 

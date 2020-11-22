@@ -27,12 +27,14 @@ int main()
     PersonnageHeros p1("Baptaber", VANDUUL);
     PersonnageHeros p2("Young $hmet", AETWI);
     PersonnageHeros p3("DanzZ",VALDERA);
+    PersonnageHeros p4("Fitspade", COVENANTE);
+
 
     Combat c;
 
-    cout << p1.str() << "\n\n\n" << p2.str() << "\n\n\n\n------\n\n"<< endl;
+    cout << p4.str() << "\n\n\n" << p3.str() << "\n\n\n\n------\n\n"<< endl;
 
-    c.combatBoss(p1, p2);
+    c.combatBoss(p4, p3);
 
     return 0;
 }

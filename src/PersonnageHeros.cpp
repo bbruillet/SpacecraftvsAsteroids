@@ -6,8 +6,8 @@
 
 
 PersonnageHeros::PersonnageHeros(const string nom, const int ptsAttaque, const int ptsVie, const int ptsExperience, const int niveau,
-    const int ptsAttaqueSpeciale, const int bouclier, const double coupsCritique, const double esquive, const Race race, const int regeneration)
-:Personnage(nom,ptsAttaque,ptsVie,ptsExperience,niveau,ptsAttaqueSpeciale,bouclier,coupsCritique,esquive),race(race), regeneration(regeneration)
+    const int ptsAttaqueSpeciale, const int bouclier, const double coupsCritique, const double esquive, const int x, const int y, const string image, const Race race)
+:Personnage(nom,ptsAttaque,ptsVie,ptsExperience,niveau,ptsAttaqueSpeciale,bouclier,coupsCritique,esquive, x, y, image),race(race)
 {
     categorieHeros();
 //    if (!persoHeros_texture.loadFromFile("Images/Avatars/Heros.png"))
@@ -57,6 +57,7 @@ void PersonnageHeros::categorieHeros() {
 
         setCoupsCritique(25.00);
         setEsquive(50.00);
+        setRegeneration(10);
 
         break;
 
@@ -68,6 +69,7 @@ void PersonnageHeros::categorieHeros() {
 
         setCoupsCritique(30.00);
         setEsquive(40.00);
+        setRegeneration(20);
 
         break;
     case VANDUUL:
@@ -78,15 +80,18 @@ void PersonnageHeros::categorieHeros() {
 
         setCoupsCritique(40.00);
         setEsquive(35.00);
+        setRegeneration(10);
+
         break;
     case COVENANTE:
         setPtsVie(250);
-        setPtsAttaque(5);
-        setPtsAttaqueSpeciale(15);
-        setBouclier(0);
+        setPtsAttaque(10);
+        setPtsAttaqueSpeciale(60);
+        setBouclier(50);
 
-        setCoupsCritique(10.00);
-        setEsquive(10.00);
+        setCoupsCritique(30.00);
+        setEsquive(25.00);
+        setRegeneration(80);
 
         break;
 
@@ -98,6 +103,7 @@ void PersonnageHeros::categorieHeros() {
 
         setCoupsCritique(39.00);
         setEsquive(38.00);
+        setRegeneration(20);
 
         break;
     default:
@@ -111,14 +117,4 @@ string PersonnageHeros::str() const
     ss << Personnage::str() << "\n\t"
         << to_string(race);
         return ss.str();
-}
-
-void PersonnageHeros::setRegeneration(const int &regeneration)
-{
-    this->regeneration = regeneration;
-}
-
-int PersonnageHeros::getRegeneration() const
-{
-    return regeneration;
 }

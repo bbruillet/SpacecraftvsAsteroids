@@ -3,20 +3,16 @@
 #include <cstdio>
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "PersonnageBoss.h"
 
-Planete::Planete(string nom, string image, int x, int y)
+Planete::Planete(string nom, string image, int x, int y, const int xPerso, const int yPerso)
 {
     this->nom = nom;
     this->image = image;
     this->x=x;
     this->y=y;
-    if (!planete_texture.loadFromFile(image))
-    {
-        std::cout << "Problème de planète" << std::endl;
-    }
-
-    planete_sprite.setTexture(planete_texture);
-    planete_sprite.setPosition(x, y);
+    this->xPerso = xPerso;
+    this->yPerso = yPerso;
     //planete_sprite.setOrigin(500, 500);
 }
 
@@ -26,6 +22,9 @@ Planete::Planete(const Planete& plan)
     image = plan.image;
     x = plan.x;
     y = plan.y;
+    yPerso = plan.yPerso;
+    xPerso = plan.yPerso;
+    bossPlan = plan.bossPlan;
 
     if (!planete_texture.loadFromFile(image))
     {
@@ -50,6 +49,19 @@ Planete::~Planete()
 bool Planete::operator==(const Planete& plan)
 {
     return (nom==plan.nom);
+}
+Planete& Planete::operator=(const Planete& plan)
+{
+    if (this != &plan)
+    {
+        nom = plan.nom;
+        image = plan.image;
+        x = plan.x;
+        y = plan.y;
+        bossPlan = plan.bossPlan;
+        biom = plan.biom;
+    }
+    return *this;
 }
 
 int Planete::getX() const
@@ -92,7 +104,32 @@ BiomePlanete* Planete::getBiome()const
     return biom;
 }
 
-//void Planete::ajouter(PersonnageBoss boss)
-//{
-//      this->bosses.push_back(boss);
-//}
+PersonnageBoss* Planete::getBoss()const
+{
+    return bossPlan;
+}
+
+void Planete::DonnerBoss(PersonnageBoss &boss)
+{
+    this->bossPlan = &boss;
+}
+
+int Planete::getXPerso() const
+{
+    return xPerso;
+}
+
+void Planete::setXPerso(int xPerso)
+{
+    this->xPerso = xPerso;
+}
+
+int Planete::getYPerso() const
+{
+    return yPerso;
+}
+
+void Planete::setYPerso(int yPerso)
+{
+    this->yPerso = yPerso;
+}

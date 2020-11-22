@@ -24,7 +24,7 @@ class Combat
         int nb;
         int nbEsquive;
         int nbPrem;
-//        int nbRegen;
+        int nbRegen;
         //int compteurSpe;
 
     public:
@@ -34,8 +34,10 @@ class Combat
         Combat& operator=(const Combat& other);
 
         //Méthode de combat
-        void attaquer(Personnage& p1, Personnage& p2);
+        void attaquerBoss(Personnage& p1, Personnage& p2);
+        void attaquerHeros(Personnage& p1, Personnage& p2);
         void combatBoss(Personnage& p1, Personnage& p2);
+        void regen(Personnage& p1, Personnage& p2);
 
 
 };

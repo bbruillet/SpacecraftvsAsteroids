@@ -7,6 +7,8 @@
 #include "BiomePlanete.h"
 #include "Univers.h"
 #include "Vaisseau.h"
+#include "PersonnageBoss.h"
+#include "Personnage.h"
 
 class Gestion : public sf::Event, public IConstante
 {
@@ -18,7 +20,7 @@ class Gestion : public sf::Event, public IConstante
         void fenetrePrincipale(); //Window windowjeu
         void menu(sf::RenderWindow & windowJeu);
         void launch(sf::RenderWindow & windowJeu);
-        void combatPlanete(sf::RenderWindow & windowJeu,BiomePlanete&);
+        void combatPlanete(sf::RenderWindow & windowJeu,Planete&);
 
         void map_space(sf::RenderWindow & windowJeu);
 
@@ -28,7 +30,10 @@ class Gestion : public sf::Event, public IConstante
     private:
         Univers univers;
         Vaisseau vaisseau;
-//        sf::RenderWindow windowJeu;
+
+        PersonnageBoss persoBoss;
+        Personnage heroTest;
+
 };
 
 #endif // GESTION_H

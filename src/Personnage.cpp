@@ -5,9 +5,9 @@
 #include <SFML/Graphics.hpp>
 
 Personnage::Personnage(const string nom, const int ptsAttaque, const int ptsVie, const int ptsExperience, const int niveau,
-    const int ptsAttaqueSpeciale, const int bouclier, const double coupsCritique, const double esquive, const int x, const int y, const string image)
+    const int ptsAttaqueSpeciale, const int bouclier, const double coupsCritique, const double esquive, const int x, const int y, const string image, const int regeneration)
 :nom(nom), ptsAttaque(ptsAttaque), ptsExperience(ptsExperience), niveau(niveau), ptsAttaqueSpeciale(ptsAttaqueSpeciale), bouclier(bouclier),
-coupsCritique(coupsCritique), esquive(esquive), x(x), y(y), image(image)
+coupsCritique(coupsCritique), esquive(esquive), x(x), y(y), image(image), regeneration(regeneration)
 {
     setPtsVie(ptsVie);
     compteurSpe = 0;
@@ -19,7 +19,8 @@ Personnage::~Personnage()
 }
 
 Personnage::Personnage(const Personnage& other):nom(other.nom), ptsAttaque(other.ptsAttaque), ptsVie(other.ptsVie), ptsExperience(other.ptsExperience), niveau(other.niveau),
-ptsAttaqueSpeciale(other.ptsAttaqueSpeciale), bouclier(other.bouclier), coupsCritique(other.coupsCritique), esquive(other.esquive), x(other.x), y(other.y), image(other.image)
+ptsAttaqueSpeciale(other.ptsAttaqueSpeciale), bouclier(other.bouclier), coupsCritique(other.coupsCritique), esquive(other.esquive), x(other.x), y(other.y), image(other.image),
+regeneration(other.regeneration)
 {
     //copy ctor
 }
@@ -40,6 +41,7 @@ Personnage& Personnage::operator=(const Personnage& p)
         x = p.x;
         y = p.y;
         image = p.image;
+        regeneration = p.regeneration;
     }// handle self assignment
     //assignment operator
     return *this;
@@ -57,6 +59,7 @@ string Personnage::str() const
         "Bouclier : " << to_string(bouclier) << "\n\t" <<
         "Coups critique : " << to_string(coupsCritique) << "\n\t"
         "Esquive : " << to_string(esquive) << "\n\t" <<
+        "Points de régénération : " << to_string(regeneration) << "\n\t" <<
         "Coordonnées [" << to_string(x) << "," << to_string(y)<<"]";
         return ss.str();
 }
@@ -184,9 +187,26 @@ int Personnage::getX() const
 void Personnage::setImage(const string &image)
 {
     this->image = image;
+    if (!personnage_texture.loadFromFile(image))
+    {
+        std::cout << "Problème d'image du BOSS" << std::endl;
+    }
+
+    personnage_sprite.setTexture(personnage_texture);
+    personnage_sprite.setPosition(getX(), getY());
 }
 
 string Personnage::getImage() const
 {
     return image;
+}
+
+void Personnage::setRegeneration(const int &regeneration)
+{
+    this->regeneration = regeneration;
+}
+
+int Personnage::getRegeneration() const
+{
+    return regeneration;
 }
