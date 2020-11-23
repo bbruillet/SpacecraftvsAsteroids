@@ -9,6 +9,10 @@
 #include "Vaisseau.h"
 #include "PersonnageBoss.h"
 #include "Personnage.h"
+#include "Planete.h"
+#include <vector>
+
+using std::vector;
 
 class Gestion : public sf::Event, public IConstante
 {
@@ -30,9 +34,8 @@ class Gestion : public sf::Event, public IConstante
     private:
         Univers univers;
         Vaisseau vaisseau;
-
-        PersonnageBoss persoBoss;
-        Personnage heroTest;
+//        vector <Planete*> planetes;
+//        vector <Planete*> planetesInacc;
 
 };
 

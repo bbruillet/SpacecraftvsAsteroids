@@ -14,11 +14,14 @@ using std::endl;
 using std::string;
 using std::to_string;
 using std::ostream;
+using std::vector;
+
 
 class Univers : public sf::Drawable
 {
     private:
         int x, y;
+
 
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
         {
@@ -28,17 +31,17 @@ class Univers : public sf::Drawable
     public:
         Univers();
         virtual ~Univers();
+        Univers(const Univers& univ);
+
+        vector<Planete*> planetes;
+
+        vector<Planete*> planetesInaccessibles;
 
         sf::Sprite univers_sprite;
         sf::Texture univers_texture;
 
-        std::vector<Planete> planetes;
-
-        std::vector<Planete> planetesInaccessibles;
-
-        void add(Planete pla);
-
-        void addInacc(Planete pla);
+        void add(const Planete*);
+        void addInacc(const Planete*);
 
         int getX() const;
         void setX(int x);

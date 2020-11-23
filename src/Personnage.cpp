@@ -6,9 +6,14 @@
 
 Personnage::Personnage(const string nom, const int ptsAttaque, const int ptsVie, const int ptsExperience, const int niveau,
     const int ptsAttaqueSpeciale, const int bouclier, const double coupsCritique, const double esquive, const int x, const int y, const string image, const int regeneration)
-:nom(nom), ptsAttaque(ptsAttaque), ptsExperience(ptsExperience), niveau(niveau), ptsAttaqueSpeciale(ptsAttaqueSpeciale), bouclier(bouclier),
+:ptsAttaque(ptsAttaque), ptsExperience(ptsExperience), niveau(niveau), ptsAttaqueSpeciale(ptsAttaqueSpeciale), bouclier(bouclier),
 coupsCritique(coupsCritique), esquive(esquive), x(x), y(y), image(image), regeneration(regeneration)
 {
+    cout << "constru perso" << endl;
+    this->nom = nom;
+    this->image = image;
+    cout << getNom() << endl;
+
     setPtsVie(ptsVie);
     compteurSpe = 0;
 }
@@ -19,9 +24,10 @@ Personnage::~Personnage()
 }
 
 Personnage::Personnage(const Personnage& other):nom(other.nom), ptsAttaque(other.ptsAttaque), ptsVie(other.ptsVie), ptsExperience(other.ptsExperience), niveau(other.niveau),
-ptsAttaqueSpeciale(other.ptsAttaqueSpeciale), bouclier(other.bouclier), coupsCritique(other.coupsCritique), esquive(other.esquive), x(other.x), y(other.y), image(other.image),
+ptsAttaqueSpeciale(other.ptsAttaqueSpeciale), bouclier(other.bouclier), coupsCritique(other.coupsCritique), esquive(other.esquive), x(other.x), y(other.y),
 regeneration(other.regeneration)
 {
+    setImage(other.image);
     //copy ctor
 }
 
@@ -50,7 +56,7 @@ Personnage& Personnage::operator=(const Personnage& p)
 string Personnage::str() const
 {
     std::stringstream ss;
-    ss << "Nom : " << nom << "\n\t" <<
+    ss << "Nom : " << getNom() << "\n\t" <<
         "Points d'attaque : " << to_string(ptsAttaque) << "\n\t" <<
         "Points de vie : " << to_string(ptsVie) << "\n\t" <<
         "Points d'expérience : " << to_string(ptsExperience) << "\n\t" <<
@@ -60,7 +66,8 @@ string Personnage::str() const
         "Coups critique : " << to_string(coupsCritique) << "\n\t"
         "Esquive : " << to_string(esquive) << "\n\t" <<
         "Points de régénération : " << to_string(regeneration) << "\n\t" <<
-        "Coordonnées [" << to_string(x) << "," << to_string(y)<<"]";
+        "Coordonnées [" << to_string(x) << "," << to_string(y)<<"]" << "\n\t" <<
+        "Image : " << getImage();
         return ss.str();
 }
 
@@ -86,7 +93,7 @@ int Personnage::getPtsAttaque() const
 
 void Personnage::setPtsVie(const int &ptsVie)
 {
-    this->ptsVie = (ptsVie < 0)? 0 : ptsVie;
+    this->ptsVie = (ptsVie < 0) ? 0 : ptsVie;
 }
 
 int Personnage::getPtsVie() const
@@ -193,7 +200,7 @@ void Personnage::setImage(const string &image)
     }
 
     personnage_sprite.setTexture(personnage_texture);
-    personnage_sprite.setPosition(getX(), getY());
+    personnage_sprite.setPosition(0, 0);
 }
 
 string Personnage::getImage() const
@@ -209,4 +216,9 @@ void Personnage::setRegeneration(const int &regeneration)
 int Personnage::getRegeneration() const
 {
     return regeneration;
+}
+
+Personnage* Personnage::clone()const
+{
+    return new Personnage(*this);
 }

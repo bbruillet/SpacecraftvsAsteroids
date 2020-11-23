@@ -1,18 +1,17 @@
 #include "Planete.h"
 #include "BiomePlanete.h"
+#include "PersonnageBoss.h"
 #include <cstdio>
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "PersonnageBoss.h"
 
-Planete::Planete(string nom, string image, int x, int y, const int xPerso, const int yPerso)
+
+Planete::Planete(string nom, string image, int x, int y, const int xPerso, const int yPerso):nom(nom), image(image), x(x), y(y), xPerso(xPerso), yPerso(yPerso)
 {
-    this->nom = nom;
-    this->image = image;
-    this->x=x;
-    this->y=y;
-    this->xPerso = xPerso;
-    this->yPerso = yPerso;
+//    this->bossPlan = bossPlan;
+    cout << "constru planete" << endl;
+    PersonnageBoss *p1 = new PersonnageBoss("",BLEUE);
+    this->bossPlan = p1;
     //planete_sprite.setOrigin(500, 500);
 }
 
@@ -24,7 +23,9 @@ Planete::Planete(const Planete& plan)
     y = plan.y;
     yPerso = plan.yPerso;
     xPerso = plan.yPerso;
+    biom = plan.biom;
     bossPlan = plan.bossPlan;
+   // cout <<"2 " +bossPlan->str()<< endl;
 
     if (!planete_texture.loadFromFile(image))
     {
@@ -33,11 +34,6 @@ Planete::Planete(const Planete& plan)
 
     planete_sprite.setTexture(planete_texture);
     planete_sprite.setPosition(x, y);
-}
-
-
-Planete::Planete()
-{
 
 }
 
@@ -50,6 +46,7 @@ bool Planete::operator==(const Planete& plan)
 {
     return (nom==plan.nom);
 }
+
 Planete& Planete::operator=(const Planete& plan)
 {
     if (this != &plan)
@@ -58,8 +55,9 @@ Planete& Planete::operator=(const Planete& plan)
         image = plan.image;
         x = plan.x;
         y = plan.y;
-        bossPlan = plan.bossPlan;
         biom = plan.biom;
+        bossPlan = plan.bossPlan;
+
     }
     return *this;
 }
@@ -96,6 +94,7 @@ string Planete::getNom() const
 
 void Planete::DonnerBiome(BiomePlanete &biom)
 {
+
     this->biom = &biom;
 }
 
@@ -111,7 +110,8 @@ PersonnageBoss* Planete::getBoss()const
 
 void Planete::DonnerBoss(PersonnageBoss &boss)
 {
-    this->bossPlan = &boss;
+    PersonnageBoss* b1 = new PersonnageBoss(boss);
+    this->bossPlan = b1;
 }
 
 int Planete::getXPerso() const
@@ -132,4 +132,9 @@ int Planete::getYPerso() const
 void Planete::setYPerso(int yPerso)
 {
     this->yPerso = yPerso;
+}
+
+Planete* Planete::clone() const
+{
+    return new Planete(*this);
 }

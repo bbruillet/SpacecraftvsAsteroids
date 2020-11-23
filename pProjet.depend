@@ -2,7 +2,7 @@
 1603186867 source:/home/bruillet/Documents/C++/pProjet/main.cpp
 	<SFML/Graphics.hpp>
 
-1606059819 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/main.cpp
+1606146292 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/main.cpp
 	<iostream>
 	<list>
 	"Gestion.h"
@@ -13,13 +13,13 @@
 	"Planete.h"
 	<SFML/Audio.hpp>
 
-1606054227 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Personnage.cpp
+1606144676 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Personnage.cpp
 	"Personnage.h"
 	<cstdio>
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1606045375 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Personnage.h
+1606135193 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Personnage.h
 	<iostream>
 	<ostream>
 	<string>
@@ -38,10 +38,10 @@
 	"Personnage.h"
 	"Univers.h"
 
-1605712376 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Univers.cpp
+1606146491 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Univers.cpp
 	"Univers.h"
 
-1605634637 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Univers.h
+1606147485 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Univers.h
 	<iostream>
 	<ostream>
 	<string>
@@ -50,7 +50,7 @@
 	<SFML/Graphics.hpp>
 	"Planete.h"
 
-1606054274 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Planete.h
+1606140770 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Planete.h
 	<iostream>
 	<ostream>
 	<string>
@@ -58,15 +58,15 @@
 	<cstdio>
 	<SFML/Graphics.hpp>
 
-1606054508 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Planete.cpp
+1606144098 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Planete.cpp
 	"Planete.h"
 	"BiomePlanete.h"
+	"PersonnageBoss.h"
 	<cstdio>
 	<iostream>
 	<SFML/Graphics.hpp>
-	"PersonnageBoss.h"
 
-1606056564 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Gestion.cpp
+1606149448 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Gestion.cpp
 	"Gestion.h"
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -82,7 +82,7 @@
 	"PersonnageBoss.h"
 	"Menu.h"
 
-1606053149 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Gestion.h
+1606148391 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Gestion.h
 	"IConstante.h"
 	<SFML/Graphics.hpp>
 	"BiomePlanete.h"
@@ -90,6 +90,8 @@
 	"Vaisseau.h"
 	"PersonnageBoss.h"
 	"Personnage.h"
+	"Planete.h"
+	<vector>
 
 1605890351 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Menu.cpp
 	"Menu.h"
@@ -325,21 +327,21 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1606059193 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Combat.cpp
+1606124062 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Combat.cpp
 	"Combat.h"
 	<stdlib.h>
 	<time.h>
 	"Personnage.h"
 	"PersonnageHeros.h"
 
-1606040136 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Combat.h
+1606123775 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Combat.h
 	<iostream>
 	<ostream>
 	<string>
 	<cstdio>
 	<SFML/Graphics.hpp>
 
-1606038247 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/PersonnageHeros.h
+1606127593 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/PersonnageHeros.h
 	"Personnage.h"
 	<iostream>
 	<ostream>
@@ -348,17 +350,18 @@
 	<cstdio>
 	<SFML/Graphics.hpp>
 
-1606059417 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/PersonnageHeros.cpp
+1606127594 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/PersonnageHeros.cpp
 	"PersonnageHeros.h"
 	<cstdio>
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1606048656 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/PersonnageBoss.h
+1606148989 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/PersonnageBoss.h
 	"Personnage.h"
 	"Planete.h"
 
-1606048728 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/PersonnageBoss.cpp
+1606149633 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/PersonnageBoss.cpp
 	"PersonnageBoss.h"
 	"Planete.h"
+	"Personnage.h"
 

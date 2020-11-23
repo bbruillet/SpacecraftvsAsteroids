@@ -7,7 +7,6 @@
 #include <vector>
 #include <cstdio>
 #include <SFML/Graphics.hpp>
-class PersonnageBoss;
 
 using std::cout;
 using std::endl;
@@ -16,25 +15,25 @@ using std::to_string;
 using std::ostream;
 
 class BiomePlanete;
+class PersonnageBoss;
 
 class Planete : public sf::Drawable
 {
     private:
-        PersonnageBoss* bossPlan;
-        BiomePlanete* biom;
         string nom;
         string image;
         int x, y;
         int xPerso, yPerso;
-
+        PersonnageBoss* bossPlan;
+        BiomePlanete* biom;
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
         {
             target.draw(planete_sprite);
         }
 
     public:
-        Planete(string nom, string image, int x, int y, const int xPerso, const int yPerso);
-        Planete();
+        Planete(string nom = "Planète", string image = "Emplacement", int x = 0, int y = 0, const int xPerso = 0, const int yPerso = 0);
+//        Planete();
 
         Planete(const Planete& plan);
 
@@ -42,9 +41,6 @@ class Planete : public sf::Drawable
 
         virtual bool operator==(const Planete& plan);
         Planete& operator=(const Planete& plan);
-
-
-
 
         sf::Sprite planete_sprite;
         sf::Texture planete_texture;
@@ -69,6 +65,8 @@ class Planete : public sf::Drawable
 
         void DonnerBoss(PersonnageBoss&);
         PersonnageBoss* getBoss()const;
+
+        virtual Planete* clone() const;
 
 //        void ajouter(PersonnageBoss boss);
 

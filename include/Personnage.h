@@ -34,7 +34,7 @@ class Personnage /*: public sf::Drawable, public sf::Event*/
 
     public:
         //Constucteurs et destructeurs
-        Personnage(const string nom = "Joueur", const int ptsAttaque = 0, const int ptsVie = 0, const int ptsExperience = 0, const int niveau = 0,
+        Personnage(const string nom = "Joueur", const int ptsAttaque = 0, const int ptsVie = 10, const int ptsExperience = 0, const int niveau = 0,
                    const int ptsAttaqueSpeciale = 0, const int bouclier = 0 ,const double coupsCritique = 0.0, const double esquive = 0.0, const int x = 0, const int y = 0,
                    const string image = "Dossier", const int regeneration = 0);
 
@@ -43,8 +43,8 @@ class Personnage /*: public sf::Drawable, public sf::Event*/
         Personnage& operator=(const Personnage&);
 
         //Méthodes utiles
-        string str() const; //virtual -> héritage
-
+        virtual string str() const; //virtual -> héritage
+        virtual Personnage* clone()const;
         //Getters et setters
         string getNom() const;
         void setNom(const string &);
