@@ -81,7 +81,7 @@ void Gestion::fenetrePrincipale()
 //    sound.setLoop(true);
 //    sound.play();
 
-    sf::RenderWindow windowJeu(sf::VideoMode(1500, 900), "Spacecraft vs Asteroids"/*, sf::Style::Fullscreen*/);
+    sf::RenderWindow windowJeu(sf::VideoMode(1600, 900), "Spacecraft vs Asteroids"/*, sf::Style::Fullscreen*/);
     menu(windowJeu);
 }
 
