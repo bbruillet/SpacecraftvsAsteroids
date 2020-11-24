@@ -16,7 +16,10 @@ Vaisseau::Vaisseau(const int x, const int y)
     //Coordonnées de départ du personnage
 //    x = 7150;
 //    y = 3500;
+    sf::IntRect rect(0, 0, 125, 125);
+    rectSourceSprite = rect;
     vaisseau_sprite.setTexture(vaisseau_texture);
+    vaisseau_sprite.setTextureRect(rectSourceSprite);
     vaisseau_sprite.setPosition(x, y);
     vaisseau_sprite.setOrigin(VAISSEAU_COORDONNEE_ORIGINE, VAISSEAU_COORDONNEE_ORIGINE);
 }
@@ -51,12 +54,15 @@ int Vaisseau::seDeplacerX(Event event, int x)
             if(x>1000)
             {
                 x = x - 50;
-                vaisseau_sprite.setRotation(270);
+               //vaisseau_sprite.setRotation(270);
+                rectSourceSprite.top = 125;
                 cout << "X: "<< x << endl;
             }
             else
             {
-                vaisseau_sprite.setRotation(90);
+                rectSourceSprite.top = 375;
+                //vaisseau_sprite.setRotation(90);
+
             }
             break;
         }
@@ -66,23 +72,35 @@ int Vaisseau::seDeplacerX(Event event, int x)
             if(x<12000)
             {
                 x = x + 50;
-                vaisseau_sprite.setRotation(90);
+                //vaisseau_sprite.setRotation(90);
+                rectSourceSprite.top = 375;
                 cout << "X: "<< x << endl;
             }
             else
             {
-                vaisseau_sprite.setRotation(270);
+                rectSourceSprite.top = 125;
+                //vaisseau_sprite.setRotation(270);
             }
             break;
         }
         default:
         break;
     }
+    vaisseau_sprite.setTextureRect(rectSourceSprite);
     return x;
 }
 
 int Vaisseau::seDeplacerY(Event event, int y)
 {
+
+     if(rectSourceSprite.left == 0){
+                        rectSourceSprite.left = 125;
+
+                }
+                else{
+                    rectSourceSprite.left = 0;
+                }
+
     switch (event.key.code)
     {
         case sf::Keyboard::Up:
@@ -90,12 +108,13 @@ int Vaisseau::seDeplacerY(Event event, int y)
             if(y>1000)
             {
                 y = y - 50;
-                vaisseau_sprite.setRotation(0);
+
+                rectSourceSprite.top = 0;
                 cout << "Y: "<< y << endl;
             }
             else
             {
-                vaisseau_sprite.setRotation(180);
+                rectSourceSprite.top = 250;
             }
             break;
         }
@@ -105,18 +124,20 @@ int Vaisseau::seDeplacerY(Event event, int y)
             if(y<6500)
             {
                 y = y + 50;
-                vaisseau_sprite.setRotation(180);
+                rectSourceSprite.top = 250;
                 cout << "Y: "<< y << endl;
             }
             else
             {
-                vaisseau_sprite.setRotation(0);
+
+                rectSourceSprite.top = 0;
             }
             break;
         }
         default:
         break;
     }
+    vaisseau_sprite.setTextureRect(rectSourceSprite);
     return y;
 }
 

@@ -16,12 +16,12 @@
 #include "PersonnageHeros.h"
 #include "PersonnageBoss.h"
 #include "Menu.h"
+#include "Compte.h"
 
 using namespace std;
 
 Gestion::Gestion()
 {
-    cout << "test" << endl;
     this->univers = univers;
     this->vaisseau = vaisseau;
     vector <Planete*> planetes(6);
@@ -70,15 +70,17 @@ Gestion::Gestion()
 void Gestion::fenetrePrincipale()
 {
     /*MUSIQUE*/
-    sf::SoundBuffer Buffer;
-    if (!Buffer.loadFromFile("Musiques/MusiqueMenu.wav")){
-        cout << "Pas de musique sélectionnée" <<endl;
-    }
-    sf::Sound sound;
-    sound.setBuffer(Buffer);
+//    sf::SoundBuffer Buffer;
+//    if (!Buffer.loadFromFile("Musiques/MusiqueMenu.wav"))
+//    {
+//        cout << "Pas de musique sélectionnée" <<endl;
+//    }
+//    sf::Sound sound;
+//    sound.setBuffer(Buffer);
+//
+//    sound.setLoop(true);
+//    sound.play();
 
-    sound.setLoop(true);
-    sound.play();
     sf::RenderWindow windowJeu(sf::VideoMode(1500, 900), "Spacecraft vs Asteroids"/*, sf::Style::Fullscreen*/);
     menu(windowJeu);
 }
@@ -110,7 +112,7 @@ void Gestion::menu(sf::RenderWindow & windowJeu)
                     switch(menu.GetPressedItem())
                     {
                     case 0:
-                        launch(windowJeu);
+                        compte(windowJeu);
                         windowJeu.close();
 
                         break;
@@ -143,6 +145,102 @@ void Gestion::menu(sf::RenderWindow & windowJeu)
 		windowJeu.clear();
 
 		menu.draw(windowJeu);
+
+		windowJeu.display();
+	}
+}
+
+void Gestion::compte(sf::RenderWindow & windowJeu)
+{
+	Compte compte;
+	PersonnageHeros p1("Test", HUMAIN);
+
+	while (windowJeu.isOpen())
+	{
+		sf::Event event;
+		while (windowJeu.pollEvent(event))
+		{
+			switch (event.type)
+			{
+            case sf::Event::KeyReleased:
+                switch(event.key.code)
+                {
+                case sf::Keyboard::Up:
+                    compte.MoveUp();
+                    break;
+
+                case sf::Keyboard::Down:
+                    compte.MoveDown();
+                    break;
+
+                case sf::Keyboard::Return:
+                    switch(compte.GetPressedItem())
+                    {
+                    case 0:
+                        p1.setRace(HUMAIN);
+//                        PersonnageHeros* p1 = new PersonnageHeros("Humain",HUMAIN);
+                        cout << p1.str() << endl;
+                        launch(windowJeu);
+//                        cout << p1->str() << endl;
+
+                        break;
+
+                    case 1:
+                        p1.setRace(VALDERA);
+                        cout << p1.str() << endl;
+                        launch(windowJeu);
+//                        PersonnageHeros* p1 = new PersonnageHeros("VALDERA",VALDERA);
+//                        cout << p1->str() << endl;
+
+                        break;
+
+                    case 2:
+                        p1.setRace(VANDUUL);
+                        cout << p1.str() << endl;
+                        launch(windowJeu);
+//                        PersonnageHeros* p1 = new PersonnageHeros("VANDUUL",VANDUUL);
+//                        cout << p1->str() << endl;
+
+                       break;
+
+                    case 3:
+                        p1.setRace(COVENANTE);
+                        cout << p1.str() << endl;
+                        launch(windowJeu);
+//                        PersonnageHeros* p1 = new PersonnageHeros("COVENANTE",COVENANTE);
+//                        cout << p1->str() << endl;
+
+                       break;
+
+                    case 4:
+                        p1.setRace(AETWI);
+                        cout << p1.str() << endl;
+                        launch(windowJeu);
+//                        PersonnageHeros* p1 = new PersonnageHeros("AETWI",AETWI);
+//                        cout << p1->str() << endl;
+
+                        break;
+                        default:
+                        break;
+                    }
+                    windowJeu.clear();
+                    default:
+                    break;
+                }
+                break;
+                case sf::Event::Closed:
+                windowJeu.close();
+
+                default:
+                break;
+
+			}
+
+		}
+
+		windowJeu.clear();
+
+		compte.draw(windowJeu);
 
 		windowJeu.display();
 	}

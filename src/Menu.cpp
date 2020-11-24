@@ -76,7 +76,6 @@ void Menu::MoveUp()
 		menu[selectedItemIndex].setFillColor(sf::Color::White);
 		selectedItemIndex--;
 		menu[selectedItemIndex].setFillColor(sf::Color(201, 135, 185));
-		cout << "test up" <<endl;
 	}
 }
 
@@ -87,6 +86,5 @@ void Menu::MoveDown()
 		menu[selectedItemIndex].setFillColor(sf::Color::White);
 		selectedItemIndex++;
 		menu[selectedItemIndex].setFillColor(sf::Color(201, 135, 185));
-		cout << "tedt down" <<endl;
 	}
 }

@@ -32,6 +32,8 @@ class Vaisseau : public sf::Drawable, public sf::Event, public IConstante
         //Sprite et texture du vaisseau
         sf::Sprite vaisseau_sprite;
         sf::Texture vaisseau_texture;
+        sf::IntRect rectSourceSprite;
+
 
         //Méthodes de positions
         int seDeplacerX(Event event, int x);

@@ -118,3 +118,9 @@ string PersonnageHeros::str() const
         << to_string(race);
         return ss.str();
 }
+
+void PersonnageHeros::setRace(const Race& race)
+{
+    this->race = race;
+    categorieHeros();
+}

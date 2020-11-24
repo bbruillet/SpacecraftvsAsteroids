@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="pTestSFML" />
+		<Option title="pProjet" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -36,6 +36,7 @@
 		</Compiler>
 		<Unit filename="include/BiomePlanete.h" />
 		<Unit filename="include/Combat.h" />
+		<Unit filename="include/Compte.h" />
 		<Unit filename="include/Gestion.h" />
 		<Unit filename="include/IConstante.h" />
 		<Unit filename="include/Menu.h" />
@@ -48,6 +49,7 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/BiomePlanete.cpp" />
 		<Unit filename="src/Combat.cpp" />
+		<Unit filename="src/Compte.cpp" />
 		<Unit filename="src/Gestion.cpp" />
 		<Unit filename="src/IConstante.cpp" />
 		<Unit filename="src/Menu.cpp" />

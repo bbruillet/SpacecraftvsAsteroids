@@ -200,7 +200,7 @@ void Personnage::setImage(const string &image)
     }
 
     personnage_sprite.setTexture(personnage_texture);
-    personnage_sprite.setPosition(0, 0);
+    personnage_sprite.setPosition(getX(), getY());
 }
 
 string Personnage::getImage() const

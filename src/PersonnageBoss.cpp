@@ -62,27 +62,38 @@ void PersonnageBoss::categorieBoss() {
         setCoupsCritique(10.0);
         setPtsAttaqueSpeciale(20);
         setBouclier(100);
+        setX(1545);
+        setY(525);
         setImage("Images/Avatars/Bleue_Boss.png");
-
         break;
 
     case ORANGE:
+        setX(1550);
+        setY(520);
         setImage("Images/Avatars/Orange_Boss.png");
         break;
 
     case VERTE:
+        setX(1500);
+        setY(600);
         setImage("Images/Avatars/Verte_Boss.png");
         break;
 
     case ANNEAU_BLEU:
+        setX(1111);
+        setY(575);
         setImage("Images/Avatars/Anneau_Bleu_Boss.png");
         break;
 
     case ANNEAU_ROUGE:
+        setX(1630);
+        setY(400);
         setImage("Images/Avatars/Anneau_Rouge_Boss.png");
         break;
 
     case MAUVE_DETRUITE:
+        setX(1340);
+        setY(600);
         setImage("Images/Avatars/Mauve_Detruite_Boss.png");
         break;
     default:

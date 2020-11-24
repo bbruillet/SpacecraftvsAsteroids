@@ -14,7 +14,6 @@ using namespace std;
 
 int main()
 {
-//coucou c'est lii
     Gestion gestion;
     gestion.fenetrePrincipale();
 
