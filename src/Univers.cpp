@@ -8,7 +8,6 @@ using std::ostream;
 
 Univers::Univers()
 {
-    cout << "constru univers" << endl;
     //Sf::Image image;
     //image.loadFromMemory("Images/Backgrounds/Universe.png")
     if (!univers_texture.loadFromFile("Images/Backgrounds/Universe.png"))
@@ -27,7 +26,6 @@ Univers::Univers()
 
 Univers::Univers(const Univers& univ)
 {
-    cout << "cpy univers" << endl;
     for(size_t i(0);i<univ.planetes.size();i++)
     {
         planetes.push_back(univ.planetes[i]->clone()); //AIP

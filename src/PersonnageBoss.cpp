@@ -36,7 +36,6 @@ PersonnageBoss& PersonnageBoss::operator=(const PersonnageBoss& pB)
     if (this != &pB)
     {
         Personnage::operator=(pB);
-        cout << "Erreur 3" << endl;
         origine = pB.origine;
     }
     return *this;
@@ -68,30 +67,55 @@ void PersonnageBoss::categorieBoss() {
         break;
 
     case ORANGE:
+        setPtsVie(500);
+        setPtsAttaque(5);
+        setCoupsCritique(10.0);
+        setPtsAttaqueSpeciale(20);
+        setBouclier(100);
         setX(1550);
         setY(520);
         setImage("Images/Avatars/Orange_Boss.png");
         break;
 
     case VERTE:
+        setPtsVie(500);
+        setPtsAttaque(5);
+        setCoupsCritique(10.0);
+        setPtsAttaqueSpeciale(20);
+        setBouclier(100);
         setX(1500);
         setY(600);
         setImage("Images/Avatars/Verte_Boss.png");
         break;
 
     case ANNEAU_BLEU:
+        setPtsVie(500);
+        setPtsAttaque(5);
+        setCoupsCritique(10.0);
+        setPtsAttaqueSpeciale(20);
+        setBouclier(100);
         setX(1111);
         setY(575);
         setImage("Images/Avatars/Anneau_Bleu_Boss.png");
         break;
 
     case ANNEAU_ROUGE:
+        setPtsVie(500);
+        setPtsAttaque(5);
+        setCoupsCritique(10.0);
+        setPtsAttaqueSpeciale(20);
+        setBouclier(100);
         setX(1630);
         setY(400);
         setImage("Images/Avatars/Anneau_Rouge_Boss.png");
         break;
 
     case MAUVE_DETRUITE:
+        setPtsVie(500);
+        setPtsAttaque(5);
+        setCoupsCritique(10.0);
+        setPtsAttaqueSpeciale(20);
+        setBouclier(100);
         setX(1340);
         setY(600);
         setImage("Images/Avatars/Mauve_Detruite_Boss.png");

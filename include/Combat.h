@@ -18,7 +18,7 @@ using std::cin;
 
 class Personnage;
 
-class Combat
+class Combat : public sf::Event
 {
     private:
         int nb;
@@ -34,9 +34,9 @@ class Combat
         Combat& operator=(const Combat& other);
 
         //Méthode de combat
-        void attaquerBoss(Personnage& p1, Personnage& p2);
+        void attaquerBoss(Personnage& p1, Personnage& p2, sf::RenderWindow &window);
         void attaquerHeros(Personnage& p1, Personnage& p2);
-        void combatBoss(Personnage& p1, Personnage& p2);
+        void combatBoss(Personnage& p1, Personnage& p2, sf::RenderWindow &window);
         void regen(Personnage& p1, Personnage& p2);
 
 

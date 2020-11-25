@@ -33,6 +33,7 @@ Compte::Compte()
 	races[4].setString("> Aetwi");
 	races[4].setPosition(sf::Vector2f(100,700));
 
+
 	for (int i = 0; i < MAX_NUMBER_OF_RACES; i++)
 	{
 		races[i].setCharacterSize(150);
@@ -48,6 +49,32 @@ Compte::Compte()
         compte_sprite.setTexture(compte_texture);
         compte_sprite.setPosition(0, 0);
         compte_sprite.scale(1.0f, 1.0f);
+
+     if (!personnage_texture.loadFromFile("Images/Avatars/"+to_string(selectedItemIndex)+"_Heros.png"))
+    {
+        std::cout << "Problème d'avatar" << std::endl;
+    }
+
+
+    personnage_sprite.setTexture(personnage_texture);
+    personnage_sprite.setPosition(1125, 215);
+
+    playerText.setFont(font);
+    playerText.setCharacterSize(50);
+    playerText.setFillColor(sf::Color(201, 135, 185));
+    playerText.setPosition(sf::Vector2f(300,400));
+
+    noms[0].setFont(font);
+	noms[0].setFillColor(sf::Color(201, 135, 185));
+	noms[0].setString("> Veuillez entrer votre pseudo :");
+	noms[0].setPosition(sf::Vector2f(100,250));
+    noms[0].setCharacterSize(75);
+
+	noms[1].setFont(font);
+	noms[1].setFillColor(sf::Color::Red);
+	noms[1].setString("> Attention ca ne peut depasser 15 caracteres ");
+	noms[1].setPosition(sf::Vector2f(100,550));
+
 }
 
 Compte::~Compte()
@@ -63,10 +90,70 @@ int Compte::GetPressedItem()
 void Compte::draw(sf::RenderWindow &window)
 {
     window.draw(compte_sprite);
+    window.draw(personnage_sprite);
 	for (int i = 0; i < MAX_NUMBER_OF_RACES; i++)
 	{
 		window.draw(races[i]);
 	}
+}
+
+void Compte::PseudoUtilisateur(sf::RenderWindow &window)
+{   string test;
+    int compteur = 0;
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+            switch (event.type)
+			{
+                case sf::Event::KeyReleased:
+                switch(event.key.code)
+                {
+                case sf::Keyboard::Return:
+                    setPseudo(playerInput);
+                    return;
+                break;
+                default:
+                    break;
+                }
+                break;
+                default:
+                    break;
+			}
+
+            if (event.type == sf::Event::TextEntered)
+            {
+                if(event.text.unicode == '\b'){
+                    if(compteur >= 0){
+                    playerInput.erase(compteur,1);
+                    compteur--;
+                    }
+
+                }
+                else if (compteur <= 15)
+                {
+                playerInput +=event.text.unicode;
+
+                compteur++;
+                }
+
+                playerText.setString(playerInput);
+
+            }
+        }
+        window.clear();
+        window.draw(compte_sprite);
+        window.draw(noms[0]);
+        window.draw(noms[1]);
+        window.draw(playerText);
+        window.display();
+    }
+
+
 }
 
 void Compte::MoveUp()
@@ -78,12 +165,22 @@ void Compte::MoveUp()
 		races[selectedItemIndex].setFillColor(sf::Color(201, 135, 185));
 		if (!compte_texture.loadFromFile("Images/Backgrounds/"+to_string(selectedItemIndex)+"_Race.png"))
         {
-            std::cout << "Problème" << std::endl;
+            std::cout << "Problème d'arrière plan" << std::endl;
         }
+
+        if (!personnage_texture.loadFromFile("Images/Avatars/"+to_string(selectedItemIndex)+"_Heros.png"))
+        {
+            std::cout << "Problème d'avatar" << std::endl;
+        }
+
+
 
         compte_sprite.setTexture(compte_texture);
         compte_sprite.setPosition(0, 0);
         compte_sprite.scale(1.0f, 1.0f);
+
+        personnage_sprite.setTexture(personnage_texture);
+        personnage_sprite.setPosition(1125, 215);
 
 	}
 }
@@ -100,9 +197,17 @@ void Compte::MoveDown()
             std::cout << "Problème" << std::endl;
         }
 
+
+        if (!personnage_texture.loadFromFile("Images/Avatars/"+to_string(selectedItemIndex)+"_Heros.png"))
+        {
+            std::cout << "Problème d'avatar" << std::endl;
+        }
         compte_sprite.setTexture(compte_texture);
         compte_sprite.setPosition(0, 0);
         compte_sprite.scale(1.0f, 1.0f);
+
+        personnage_sprite.setTexture(personnage_texture);
+        personnage_sprite.setPosition(1125, 215);
 	}
 }
 
@@ -116,4 +221,14 @@ Compte& Compte::operator=(const Compte& rhs)
     if (this == &rhs) return *this; // handle self assignment
     //assignment operator
     return *this;
+}
+
+void Compte::setPseudo(const string &pseudo)
+{
+    this->pseudo = pseudo;
+}
+
+string Compte::getPseudo() const
+{
+    return pseudo;
 }

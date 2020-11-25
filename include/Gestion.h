@@ -12,6 +12,7 @@
 #include "Personnage.h"
 #include "Planete.h"
 #include "Compte.h"
+#include "Combat.h"
 #include <vector>
 
 using std::vector;
@@ -25,7 +26,8 @@ class Gestion : public sf::Event, public IConstante
 
         void fenetrePrincipale(); //Window windowjeu
         void menu(sf::RenderWindow & windowJeu);
-        void compte(sf::RenderWindow & windowJeu);
+        void comptePerso(sf::RenderWindow & windowJeu);
+        void comptePseudo(sf::RenderWindow & windowJeu);
         void launch(sf::RenderWindow & windowJeu);
         void combatPlanete(sf::RenderWindow & windowJeu,Planete&);
 
@@ -37,7 +39,9 @@ class Gestion : public sf::Event, public IConstante
     private:
         Univers univers;
         Vaisseau vaisseau;
-        //PersonnageHeros heros;
+        PersonnageHeros heros;
+        Compte compte;
+        Combat combat;
 //        vector <Planete*> planetes;
 //        vector <Planete*> planetesInacc;
 

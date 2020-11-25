@@ -9,10 +9,8 @@ Personnage::Personnage(const string nom, const int ptsAttaque, const int ptsVie,
 :ptsAttaque(ptsAttaque), ptsExperience(ptsExperience), niveau(niveau), ptsAttaqueSpeciale(ptsAttaqueSpeciale), bouclier(bouclier),
 coupsCritique(coupsCritique), esquive(esquive), x(x), y(y), image(image), regeneration(regeneration)
 {
-    cout << "constru perso" << endl;
     this->nom = nom;
     this->image = image;
-    cout << getNom() << endl;
 
     setPtsVie(ptsVie);
     compteurSpe = 0;

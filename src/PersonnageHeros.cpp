@@ -42,6 +42,7 @@ PersonnageHeros& PersonnageHeros::operator=(const PersonnageHeros& pH)
         {
             Personnage::operator=(pH);
             race = pH.race;
+            categorieHeros();
         } // handle self assignment
     //assignment operator
     return *this;
@@ -58,6 +59,7 @@ void PersonnageHeros::categorieHeros() {
         setCoupsCritique(25.00);
         setEsquive(50.00);
         setRegeneration(10);
+        setImage("Images/Avatars/0_Heros.png");
 
         break;
 
@@ -70,6 +72,7 @@ void PersonnageHeros::categorieHeros() {
         setCoupsCritique(30.00);
         setEsquive(40.00);
         setRegeneration(20);
+        setImage("Images/Avatars/1_Heros.png");
 
         break;
     case VANDUUL:
@@ -81,6 +84,7 @@ void PersonnageHeros::categorieHeros() {
         setCoupsCritique(45.00);
         setEsquive(35.00);
         setRegeneration(30);
+        setImage("Images/Avatars/0_Heros.png");
 
         break;
     case COVENANTE:
@@ -92,6 +96,7 @@ void PersonnageHeros::categorieHeros() {
         setCoupsCritique(30.00);
         setEsquive(25.00);
         setRegeneration(80);
+        setImage("Images/Avatars/0_Heros.png");
 
         break;
 
@@ -104,6 +109,7 @@ void PersonnageHeros::categorieHeros() {
         setCoupsCritique(39.00);
         setEsquive(38.00);
         setRegeneration(20);
+        setImage("Images/Avatars/0_Heros.png");
 
         break;
     default:

@@ -46,25 +46,20 @@ void Vaisseau::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 int Vaisseau::seDeplacerX(Event event, int x)
 {
+
     if(rectSourceSprite.left == 0)
     {
         rectSourceSprite.left = 125;
-        //rectSourceSprite.left += 125;
-        cout << "if " + to_string(rectSourceSprite.left) << endl;
     }
-    if (rectSourceSprite.left == 125)
+    else if (rectSourceSprite.left == 125)
     {
         rectSourceSprite.left = 250;
-        cout << "if/2 " + to_string(rectSourceSprite.left) << endl;
     }
     else if (rectSourceSprite.left == 250)
     {
         rectSourceSprite.left = 125;
-        cout << "else if " + to_string(rectSourceSprite.left) << endl;
     }
 
-//    rectSourceSprite.left = 250;
-//    cout << "compteur" + to_string(rectSourceSprite.left) << endl;
 
     switch (event.key.code)
     {
@@ -73,9 +68,8 @@ int Vaisseau::seDeplacerX(Event event, int x)
             if(x>1000)
             {
                 x = x - 50;
-               //vaisseau_sprite.setRotation(270);
                 rectSourceSprite.top = 125;
-                //rectSourceSprite.left = 125;
+
                 cout << "X: "<< x << endl;
             }
             else
@@ -92,14 +86,13 @@ int Vaisseau::seDeplacerX(Event event, int x)
             if(x<12000)
             {
                 x = x + 50;
-                //vaisseau_sprite.setRotation(90);
+
                 rectSourceSprite.top = 375;
                 cout << "X: "<< x << endl;
             }
             else
             {
                 rectSourceSprite.top = 125;
-                //vaisseau_sprite.setRotation(270);
             }
             break;
         }
@@ -112,24 +105,6 @@ int Vaisseau::seDeplacerX(Event event, int x)
 
 int Vaisseau::seDeplacerY(Event event, int y)
 {
-
-    if(rectSourceSprite.left == 0)
-    {
-        rectSourceSprite.left = 125;
-        //rectSourceSprite.left += 125;
-        cout << "if " + to_string(rectSourceSprite.left) << endl;
-    }
-    if (rectSourceSprite.left == 125)
-    {
-        rectSourceSprite.left = 250;
-        cout << "if/2 " + to_string(rectSourceSprite.left) << endl;
-    }
-    else if (rectSourceSprite.left == 250)
-    {
-        rectSourceSprite.left = 125;
-        cout << "else if " + to_string(rectSourceSprite.left) << endl;
-    }
-
     switch (event.key.code)
     {
         case sf::Keyboard::Up:

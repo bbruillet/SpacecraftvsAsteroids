@@ -9,7 +9,6 @@
 Planete::Planete(string nom, string image, int x, int y, const int xPerso, const int yPerso):nom(nom), image(image), x(x), y(y), xPerso(xPerso), yPerso(yPerso)
 {
 //    this->bossPlan = bossPlan;
-    cout << "constru planete" << endl;
     PersonnageBoss *p1 = new PersonnageBoss("",BLEUE);
     this->bossPlan = p1;
     //planete_sprite.setOrigin(500, 500);
@@ -21,8 +20,8 @@ Planete::Planete(const Planete& plan)
     image = plan.image;
     x = plan.x;
     y = plan.y;
+    xPerso = plan.xPerso;
     yPerso = plan.yPerso;
-    xPerso = plan.yPerso;
     biom = plan.biom;
     bossPlan = plan.bossPlan;
    // cout <<"2 " +bossPlan->str()<< endl;
@@ -57,6 +56,8 @@ Planete& Planete::operator=(const Planete& plan)
         y = plan.y;
         biom = plan.biom;
         bossPlan = plan.bossPlan;
+        xPerso = plan.xPerso;
+        yPerso = plan.yPerso;
 
     }
     return *this;

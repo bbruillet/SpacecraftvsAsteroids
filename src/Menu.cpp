@@ -1,11 +1,6 @@
 #include "Menu.h"
 
-#include <SFML/Graphics.hpp>
-
-#include <SFML/Audio.hpp>
-
 #include <iostream>
-#include <vector>
 
 using std::cout;
 using std::endl;

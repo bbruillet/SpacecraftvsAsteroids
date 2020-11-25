@@ -27,17 +27,16 @@ Gestion::Gestion()
     vector <Planete*> planetes(6);
     vector <Planete*> planetesInacc(3);
     vector <PersonnageBoss*> boss(6);
+    planetes[0] = new Planete("Bleue", "Images/Planetes/Bleu.png", 2000, 750, 319, 525); //319
+    planetes[1] = new Planete("Orange", "Images/Planetes/Orange.png", 9000, 1250, 291, 520); //291
+    planetes[2] = new Planete("Mauve_Detruite", "Images/Planetes/Mauve_Detruite.png", 7000, 5500, 417, 600); //417
+    planetes[3] = new Planete("Anneau_Rouge", "Images/Planetes/Anneau_Rouge.png", 11000, 3000, 1083, 400); //1083
+    planetes[4] = new Planete("Verte", "Images/Planetes/Verte.png", 5000, 3200, 703, 600); //703
+    planetes[5] = new Planete("Anneau_Bleu", "Images/Planetes/Anneau_Bleu.png", 1500, 5100, 318, 575); //318
 
-    planetes[0] = new Planete("Bleue", "Images/Planetes/Bleu.png", 2000, 750, 319, 650); //319
-    planetes[1] = new Planete("Orange", "Images/Planetes/Orange.png", 9000, 1250, 291, 450); //291
-    planetes[2] = new Planete("Mauve_Detruite", "Images/Planetes/Mauve_Detruite.png", 7000, 5500, 417, 700); //417
-    planetes[3] = new Planete("Anneau_Rouge", "Images/Planetes/Anneau_Rouge.png", 11000, 3000, 1083, 810); //1083
-    planetes[4] = new Planete("Verte", "Images/Planetes/Verte.png", 5000, 3200, 703, 700); //703
-    planetes[5] = new Planete("Anneau_Bleu", "Images/Planetes/Anneau_Bleu.png", 1500, 5100, 318, 823); //318
-
-    planetesInacc[0] = new Planete("Mort", "Images/Planetes/Etoile_De_La_Mort.png", 8000, 6120, 200, 300);
-    planetesInacc[1] = new Planete("Plateforme", "Images/Planetes/Plateforme.png", 6900, 3300, 200, 300);
-    planetesInacc[2] = new Planete("Soleil", "Images/Planetes/Soleil.png", 12000, 0, 200, 300);
+    planetesInacc[0] = new Planete("Mort", "Images/Planetes/Etoile_De_La_Mort.png", 8000, 6120, 0, 0);
+    planetesInacc[1] = new Planete("Plateforme", "Images/Planetes/Plateforme.png", 6900, 3300, 0, 0);
+    planetesInacc[2] = new Planete("Soleil", "Images/Planetes/Soleil.png", 12000, 0, 0, 0);
 
     boss[0] = new PersonnageBoss("BossBleu",BLEUE);
     boss[1] = new PersonnageBoss("BossOrange",ORANGE);
@@ -45,6 +44,10 @@ Gestion::Gestion()
     boss[3] = new PersonnageBoss("BossRouge",ANNEAU_ROUGE);
     boss[4] = new PersonnageBoss("BossVert",VERTE);
     boss[5] = new PersonnageBoss("BossAnneauBleu",ANNEAU_BLEU);
+
+
+
+
 
 
     for ( size_t i = 0; i < planetes.size(); i++ )
@@ -82,6 +85,7 @@ void Gestion::fenetrePrincipale()
 //    sound.play();
 
     sf::RenderWindow windowJeu(sf::VideoMode(1600, 900), "Spacecraft vs Asteroids"/*, sf::Style::Fullscreen*/);
+    //menu(windowJeu);
     menu(windowJeu);
 }
 
@@ -112,7 +116,7 @@ void Gestion::menu(sf::RenderWindow & windowJeu)
                     switch(menu.GetPressedItem())
                     {
                     case 0:
-                        compte(windowJeu);
+                        comptePerso(windowJeu);
                         windowJeu.close();
 
                         break;
@@ -150,9 +154,8 @@ void Gestion::menu(sf::RenderWindow & windowJeu)
 	}
 }
 
-void Gestion::compte(sf::RenderWindow & windowJeu)
+void Gestion::comptePerso(sf::RenderWindow & windowJeu)
 {
-	Compte compte;
 	PersonnageHeros p1("Test", HUMAIN);
 
 	while (windowJeu.isOpen())
@@ -178,17 +181,16 @@ void Gestion::compte(sf::RenderWindow & windowJeu)
                     {
                     case 0:
                         p1.setRace(HUMAIN);
-//                        PersonnageHeros* p1 = new PersonnageHeros("Humain",HUMAIN);
-                        cout << p1.str() << endl;
-                        launch(windowJeu);
+                        heros = p1;
+                        comptePseudo(windowJeu);
 //                        cout << p1->str() << endl;
 
                         break;
 
                     case 1:
                         p1.setRace(VALDERA);
-                        cout << p1.str() << endl;
-                        launch(windowJeu);
+                        heros = p1;
+                        comptePseudo(windowJeu);
 //                        PersonnageHeros* p1 = new PersonnageHeros("VALDERA",VALDERA);
 //                        cout << p1->str() << endl;
 
@@ -196,8 +198,8 @@ void Gestion::compte(sf::RenderWindow & windowJeu)
 
                     case 2:
                         p1.setRace(VANDUUL);
-                        cout << p1.str() << endl;
-                        launch(windowJeu);
+                        heros = p1;
+                        comptePseudo(windowJeu);
 //                        PersonnageHeros* p1 = new PersonnageHeros("VANDUUL",VANDUUL);
 //                        cout << p1->str() << endl;
 
@@ -205,8 +207,8 @@ void Gestion::compte(sf::RenderWindow & windowJeu)
 
                     case 3:
                         p1.setRace(COVENANTE);
-                        cout << p1.str() << endl;
-                        launch(windowJeu);
+                        heros = p1;
+                        comptePseudo(windowJeu);
 //                        PersonnageHeros* p1 = new PersonnageHeros("COVENANTE",COVENANTE);
 //                        cout << p1->str() << endl;
 
@@ -214,8 +216,8 @@ void Gestion::compte(sf::RenderWindow & windowJeu)
 
                     case 4:
                         p1.setRace(AETWI);
-                        cout << p1.str() << endl;
-                        launch(windowJeu);
+                        heros = p1;
+                        comptePseudo(windowJeu);
 //                        PersonnageHeros* p1 = new PersonnageHeros("AETWI",AETWI);
 //                        cout << p1->str() << endl;
 
@@ -244,6 +246,15 @@ void Gestion::compte(sf::RenderWindow & windowJeu)
 
 		windowJeu.display();
 	}
+}
+
+void Gestion::comptePseudo(sf::RenderWindow & windowJeu)
+{
+    compte.PseudoUtilisateur(windowJeu);
+    heros.setNom(compte.getPseudo());
+    cout << heros.str() << endl;
+
+    launch(windowJeu);
 }
 
 Gestion::~Gestion()
@@ -306,8 +317,7 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                     {
                         affichage = 1;
                         planeteEnCours = *univers.planetes[i];
-                        univers.planetes[i]->getBoss();
-                        planeteEnCours.getBoss();
+
                             switch (event.type)
                             {
                                 case sf::Event::KeyReleased:
@@ -319,14 +329,14 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                                         biomtest.setBackground("Images/Backgrounds/"+planeteEnCours.getNom()+"_Background.png");
 
 
-                                        cout << planeteEnCours.getNom() << endl;
 
+                                        heros.personnage_sprite.setPosition(planeteEnCours.getXPerso(), planeteEnCours.getYPerso());
+                                        cout << "X :" + to_string(planeteEnCours.getXPerso()) << endl;
+                                        cout << "Y :" + to_string(planeteEnCours.getYPerso()) << endl;
+                                        cout << "X Perso : "+ to_string(heros.getX()) << endl;
+                                        cout << "Y Perso : "+ to_string(heros.getY()) << endl;
+                                       // heros.setY(700);
                                         planeteEnCours.DonnerBiome(biomtest);
-                                      //  planeteEnCours.DonnerBoss(persoBoss);
-
-
-                                        //combatPlanete(windowJeu,*planeteEnCours.getBiome());
-                                        //combatPlanete(windowJeu,univers.planetes[i]);
                                         combatPlanete(windowJeu,planeteEnCours);
 
 
@@ -495,33 +505,74 @@ void Gestion::combatPlanete(sf::RenderWindow & windowJeu,Planete& pla)
     sf::View view(sf::FloatRect(2048, 1024, 2048, 1024));
     view.setCenter(1024, 512);
 
-    windowJeu.setView(view);
-//    PersonnageHeros pHeros("Baptaber", VANDUUL);
-//ERROr
-//   cout <<  pla.getBoss()->getNom() << endl;
+    /*++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    sf::Font font;
 
+    if (!font.loadFromFile("Polices/SpaceFont.ttf"))
+    {
+        cout << "Internal error" <<endl;
+    }
+
+    sf::Text textHeros;
+    sf::Text textBoss;
+
+    textHeros.setFont(font);
+    textBoss.setFont(font);
+
+    textHeros.setFillColor(sf::Color::Red);
+    textBoss.setFillColor(sf::Color::Red);
+
+    textHeros.setCharacterSize(50);
+    textBoss.setCharacterSize(50);
+
+
+
+
+    /*++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+    windowJeu.setView(view);
     while (windowJeu.isOpen())
     {
+
+
         sf::Event event;
         while (windowJeu.pollEvent(event))
         {
+
+            if(heros.getPtsVie() > 0 && pla.getBoss()->getPtsVie() > 0 ){
+                combat.combatBoss(heros,*pla.getBoss(), windowJeu);
+            }
+            else
+            {
+                    cout << "Victoire" << endl;
+                    heros.categorieHeros();
+                    launch(windowJeu);
+
+            }
+
             if (event.type == sf::Event::Closed)
             {
                 windowJeu.clear();
                 launch(windowJeu);
             }
 
+
+
         }
         windowJeu.clear();
-//       cout << "test " << endl;
-        //windowJeu.draw(bio.biome_sprite);
-        windowJeu.draw(pla.getBiome()->biome_sprite);
 
-        //cout << pla.getBoss()->getNom() << endl;
-        //cout <<pla.getNom() <<endl;
+        windowJeu.draw(pla.getBiome()->biome_sprite);
+        windowJeu.draw(heros.personnage_sprite);
+        textHeros.setPosition(0, 0);
+        textBoss.setPosition(1000, 0);
+
+        textHeros.setString(heros.getNom()+ " " + to_string(heros.getPtsVie()) + " " + to_string(heros.getBouclier()));
+        textBoss.setString(pla.getBoss()->getNom()+ " " + to_string(pla.getBoss()->getPtsVie()) + " " + to_string(pla.getBoss()->getBouclier()));
+
+        windowJeu.draw(textHeros);
+        windowJeu.draw(textBoss);
+
         windowJeu.draw(pla.getBoss()->personnage_sprite);
-       // windowJeu.draw(heroTest.personnage_sprite);
-//        windowJeu.draw(pHeros.persoHeros_sprite);
         windowJeu.display();
 
     }

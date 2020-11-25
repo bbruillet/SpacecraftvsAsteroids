@@ -44,7 +44,7 @@ class PersonnageHeros : public Personnage/*, public sf::Drawable*/
                    const int ptsAttaqueSpeciale = 0, const int bouclier = 0 ,const double coupsCritique = 0.0, const double esquive = 0.0, const int x = 0, const int y = 0,
                    const string image = "Dossier", const int regeneration = 0, const Race=Race::HUMAIN);
 
-        PersonnageHeros(const string nom = "Joueur", const Race=Race::HUMAIN);
+        PersonnageHeros(const string nom, const Race race);
 
         virtual ~PersonnageHeros();
         PersonnageHeros(const PersonnageHeros&);
