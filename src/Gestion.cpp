@@ -22,6 +22,7 @@ using namespace std;
 
 Gestion::Gestion()
 {
+
     this->univers = univers;
     this->vaisseau = vaisseau;
     vector <Planete*> planetes(6);
@@ -73,16 +74,16 @@ Gestion::Gestion()
 void Gestion::fenetrePrincipale()
 {
     /*MUSIQUE*/
-//    sf::SoundBuffer Buffer;
-//    if (!Buffer.loadFromFile("Musiques/MusiqueMenu.wav"))
-//    {
-//        cout << "Pas de musique sélectionnée" <<endl;
-//    }
-//    sf::Sound sound;
-//    sound.setBuffer(Buffer);
-//
-//    sound.setLoop(true);
-//    sound.play();
+    sf::SoundBuffer Buffer;
+    if (!Buffer.loadFromFile("Musiques/Musique_Menu.wav"))
+    {
+        cout << "Pas de musique sélectionnée" <<endl;
+    }
+    sf::Sound sound;
+    sound.setBuffer(Buffer);
+
+    sound.setLoop(true);
+    sound.play();
 
     sf::RenderWindow windowJeu(sf::VideoMode(1600, 900), "Spacecraft vs Asteroids"/*, sf::Style::Fullscreen*/);
     //menu(windowJeu);
@@ -156,7 +157,7 @@ void Gestion::menu(sf::RenderWindow & windowJeu)
 
 void Gestion::comptePerso(sf::RenderWindow & windowJeu)
 {
-	PersonnageHeros p1("Test", HUMAIN);
+	//PersonnageHeros p1("Joueur1", HUMAIN);
 
 	while (windowJeu.isOpen())
 	{
@@ -169,54 +170,46 @@ void Gestion::comptePerso(sf::RenderWindow & windowJeu)
                 switch(event.key.code)
                 {
                 case sf::Keyboard::Up:
-                    compte.MoveUp();
+                    compte.haut();
                     break;
 
                 case sf::Keyboard::Down:
-                    compte.MoveDown();
+                    compte.bas();
                     break;
 
                 case sf::Keyboard::Return:
-                    switch(compte.GetPressedItem())
+                    switch(compte.getElementPresse())
                     {
                     case 0:
-                        p1.setRace(HUMAIN);
-                        heros = p1;
+                        heros.setRace(HUMAIN);
                         comptePseudo(windowJeu);
-//                        cout << p1->str() << endl;
 
                         break;
 
                     case 1:
-                        p1.setRace(VALDERA);
-                        heros = p1;
+                        heros.setRace(VALDERA);
                         comptePseudo(windowJeu);
-//                        PersonnageHeros* p1 = new PersonnageHeros("VALDERA",VALDERA);
-//                        cout << p1->str() << endl;
+//
 
                         break;
 
                     case 2:
-                        p1.setRace(VANDUUL);
-                        heros = p1;
+                        heros.setRace(VANDUUL);
                         comptePseudo(windowJeu);
-//                        PersonnageHeros* p1 = new PersonnageHeros("VANDUUL",VANDUUL);
-//                        cout << p1->str() << endl;
+//
 
                        break;
 
                     case 3:
-                        p1.setRace(COVENANTE);
-                        heros = p1;
+                        heros.setRace(COVENANTE);
                         comptePseudo(windowJeu);
-//                        PersonnageHeros* p1 = new PersonnageHeros("COVENANTE",COVENANTE);
-//                        cout << p1->str() << endl;
+//
 
                        break;
 
                     case 4:
-                        p1.setRace(AETWI);
-                        heros = p1;
+                        heros.setRace(AETWI);
+
                         comptePseudo(windowJeu);
 //                        PersonnageHeros* p1 = new PersonnageHeros("AETWI",AETWI);
 //                        cout << p1->str() << endl;
@@ -242,7 +235,7 @@ void Gestion::comptePerso(sf::RenderWindow & windowJeu)
 
 		windowJeu.clear();
 
-		compte.draw(windowJeu);
+		compte.dessiner(windowJeu);
 
 		windowJeu.display();
 	}
@@ -252,7 +245,7 @@ void Gestion::comptePseudo(sf::RenderWindow & windowJeu)
 {
     compte.PseudoUtilisateur(windowJeu);
     heros.setNom(compte.getPseudo());
-    cout << heros.str() << endl;
+
 
     launch(windowJeu);
 }
@@ -330,12 +323,10 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
 
 
 
-                                        heros.personnage_sprite.setPosition(planeteEnCours.getXPerso(), planeteEnCours.getYPerso());
+
                                         cout << "X :" + to_string(planeteEnCours.getXPerso()) << endl;
                                         cout << "Y :" + to_string(planeteEnCours.getYPerso()) << endl;
-                                        cout << "X Perso : "+ to_string(heros.getX()) << endl;
-                                        cout << "Y Perso : "+ to_string(heros.getY()) << endl;
-                                       // heros.setY(700);
+
                                         planeteEnCours.DonnerBiome(biomtest);
                                         combatPlanete(windowJeu,planeteEnCours);
 
@@ -375,8 +366,8 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                     b = y;
 
 
-                    x = vaisseau.seDeplacerX(event, x);
-                    y = vaisseau.seDeplacerY(event, y);
+                    x = viewVaisseau.seDeplacerX(event, x);
+                    y = viewVaisseau.seDeplacerY(event, y);
 
                     a = x-a;
                     b = y-b;
@@ -384,7 +375,7 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
 
                     vaisseau.setX(x);
                     vaisseau.setY(y);
-                    vaisseau.vaisseau_sprite.setPosition(x,y);
+                    viewVaisseau.vaisseau_sprite.setPosition(x,y);
                 }
             }
 
@@ -422,8 +413,8 @@ void Gestion::launch(sf::RenderWindow & windowJeu)
                 windowJeu.draw(text);
             }
 
-
-            windowJeu.draw(vaisseau.vaisseau_sprite);
+            viewVaisseau.setVaisseau(vaisseau);
+            viewVaisseau.drawVaisseau(windowJeu);
             windowJeu.display();
 
         }
@@ -513,19 +504,41 @@ void Gestion::combatPlanete(sf::RenderWindow & windowJeu,Planete& pla)
         cout << "Internal error" <<endl;
     }
 
+    if (!versus_texture.loadFromFile("Images/Backgrounds/versus.png"))
+    {
+        std::cout << "Problème d'image du 'versus'" << std::endl;
+    }
+
+    versus_sprite.setTexture(versus_texture);
+    versus_sprite.setPosition(775, -25);
+
     sf::Text textHeros;
     sf::Text textBoss;
 
     textHeros.setFont(font);
     textBoss.setFont(font);
 
-    textHeros.setFillColor(sf::Color::Red);
-    textBoss.setFillColor(sf::Color::Red);
+    textHeros.setFillColor(sf::Color::Yellow);
+    textBoss.setFillColor(sf::Color::Yellow);
 
-    textHeros.setCharacterSize(50);
-    textBoss.setCharacterSize(50);
+    textHeros.setCharacterSize(30);
+    textBoss.setCharacterSize(30);
+
+    pView.setPersonnageBoss(*pla.getBoss());
+    pView.setPersonnageHeros(heros);
 
 
+    barreHeros.setVieMax(heros.getPtsVie());
+    barreHeros.setPositionBarre(650,75);
+    barreHeros.setPositionBarreBouclier(800,100);
+    barreHeros.setBouclierMax(heros.getBouclier());
+
+    barreBoss.setPositionBarre(1400,75);
+    barreBoss.setVieMax(pla.getBoss()->getPtsVie());
+    barreBoss.setPositionBarreBouclier(1250,100);
+    barreBoss.setBouclierMax(pla.getBoss()->getBouclier());
+
+    barreHeros.setRotation();
 
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -540,12 +553,43 @@ void Gestion::combatPlanete(sf::RenderWindow & windowJeu,Planete& pla)
         {
 
             if(heros.getPtsVie() > 0 && pla.getBoss()->getPtsVie() > 0 ){
+
+
+
                 combat.combatBoss(heros,*pla.getBoss(), windowJeu);
+
+
+                for(size_t i(0);i<50;i++)
+                {
+                    windowJeu.clear();
+                    pView.course();
+                    pView.personnage_heros_sprite.setPosition(pla.getXPerso()+ 16*i, pla.getYPerso());
+                    pla.getBiome()->draw(windowJeu);
+                    barreHeros.drawVie(windowJeu);
+                    barreHeros.drawBouclier(windowJeu);
+                    barreBoss.drawVie(windowJeu);
+                    barreBoss.drawBouclier(windowJeu);
+                    pView.drawHeros(windowJeu);
+                    pView.drawBoss(windowJeu);
+                    windowJeu.draw(versus_sprite);
+                    windowJeu.draw(textHeros);
+                    windowJeu.draw(textBoss);
+                    windowJeu.display();
+                    sf::sleep(sf::milliseconds(10));
+                }
+                    barreHeros.updateV(heros.getPtsVie());
+                    barreHeros.updateB(heros.getBouclier());
+
+                    barreBoss.updateV(pla.getBoss()->getPtsVie());
+                    barreBoss.updateB(pla.getBoss()->getBouclier());
+                    pView.rectHeros.left = 0;
+
+
             }
             else
             {
                     cout << "Victoire" << endl;
-                    heros.categorieHeros();
+                    pView.getPersonnageHeros().categorieHeros();
                     launch(windowJeu);
 
             }
@@ -561,18 +605,26 @@ void Gestion::combatPlanete(sf::RenderWindow & windowJeu,Planete& pla)
         }
         windowJeu.clear();
 
-        windowJeu.draw(pla.getBiome()->biome_sprite);
-        windowJeu.draw(heros.personnage_sprite);
-        textHeros.setPosition(0, 0);
-        textBoss.setPosition(1000, 0);
+        pla.getBiome()->draw(windowJeu);
+        textHeros.setPosition(400, 20);
+        textBoss.setPosition(1150, 20);
+        pView.personnage_heros_sprite.setPosition(pla.getXPerso(), pla.getYPerso());
 
-        textHeros.setString(heros.getNom()+ " " + to_string(heros.getPtsVie()) + " " + to_string(heros.getBouclier()));
-        textBoss.setString(pla.getBoss()->getNom()+ " " + to_string(pla.getBoss()->getPtsVie()) + " " + to_string(pla.getBoss()->getBouclier()));
 
+
+        textHeros.setString(pView.getPersonnageHeros().getNom());
+        textBoss.setString(pla.getBoss()->getNom());
+        barreHeros.drawVie(windowJeu);
+        barreHeros.drawBouclier(windowJeu);
+        barreBoss.drawVie(windowJeu);
+        barreBoss.drawBouclier(windowJeu);
+        pView.drawHeros(windowJeu);
+        pView.drawBoss(windowJeu);
+        windowJeu.draw(versus_sprite);
         windowJeu.draw(textHeros);
         windowJeu.draw(textBoss);
 
-        windowJeu.draw(pla.getBoss()->personnage_sprite);
+        //windowJeu.draw(pla.getBoss()->personnage_sprite);
         windowJeu.display();
 
     }

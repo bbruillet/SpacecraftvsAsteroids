@@ -1,15 +1,16 @@
 #include "Compte.h"
 
+//Constructeur
 Compte::Compte()
 {
-    //ctor
+    //On charge la police
     if (!font.loadFromFile("Polices/SpaceFont.ttf"))
 	{
 		cout << "Internal error" <<endl;
 	}
 
 	races[0].setFont(font);
-	races[0].setFillColor(sf::Color(201, 135, 185));
+	races[0].setFillColor(sf::Color(96, 59, 99));
 	races[0].setString("> Humain");
 	races[0].setPosition(sf::Vector2f(100,100));
 
@@ -33,7 +34,7 @@ Compte::Compte()
 	races[4].setString("> Aetwi");
 	races[4].setPosition(sf::Vector2f(100,700));
 
-
+    //boucle permettant de définir une taille de caractères pour les éléments
 	for (int i = 0; i < MAX_NUMBER_OF_RACES; i++)
 	{
 		races[i].setCharacterSize(150);
@@ -41,39 +42,45 @@ Compte::Compte()
 
 	selectedItemIndex = 0;
 
+	//On chrage l'image
 	if (!compte_texture.loadFromFile("Images/Backgrounds/0_Race.png"))
     {
             std::cout << "Problème" << std::endl;
     }
-
         compte_sprite.setTexture(compte_texture);
         compte_sprite.setPosition(0, 0);
         compte_sprite.scale(1.0f, 1.0f);
 
-     if (!personnage_texture.loadFromFile("Images/Avatars/"+to_string(selectedItemIndex)+"_Heros.png"))
+    //On charge l'image en fonction de l'élément sélectionné
+    if (!personnage_texture.loadFromFile("Images/Avatars/"+to_string(selectedItemIndex)+"_Heros.png"))
     {
         std::cout << "Problème d'avatar" << std::endl;
     }
 
-
     personnage_sprite.setTexture(personnage_texture);
     personnage_sprite.setPosition(1125, 215);
 
+
     playerText.setFont(font);
     playerText.setCharacterSize(50);
-    playerText.setFillColor(sf::Color(201, 135, 185));
+    playerText.setFillColor(sf::Color(96, 59, 99));
     playerText.setPosition(sf::Vector2f(300,400));
 
     noms[0].setFont(font);
-	noms[0].setFillColor(sf::Color(201, 135, 185));
+	noms[0].setFillColor(sf::Color(96, 59, 99));
 	noms[0].setString("> Veuillez entrer votre pseudo :");
 	noms[0].setPosition(sf::Vector2f(100,250));
     noms[0].setCharacterSize(75);
 
 	noms[1].setFont(font);
-	noms[1].setFillColor(sf::Color::Red);
-	noms[1].setString("> Attention ca ne peut depasser 15 caracteres ");
-	noms[1].setPosition(sf::Vector2f(100,550));
+	noms[1].setFillColor(sf::Color(115,14,14));
+	noms[1].setString("> Attention le pseudo ne peut pas depasser 20 caracteres !");
+	noms[1].setPosition(sf::Vector2f(100,50));
+
+	noms[2].setFont(font);
+	noms[2].setFillColor(sf::Color(115,14,14));
+	noms[2].setString("> Attention le pseudo doit contenir au moins 3 caracteres!");
+	noms[2].setPosition(sf::Vector2f(100,0));
 
 }
 
@@ -82,12 +89,14 @@ Compte::~Compte()
     //dtor
 }
 
-int Compte::GetPressedItem()
+//Recuperer l'élément sélectionné
+int Compte::getElementPresse()
 {
     return selectedItemIndex;
 }
 
-void Compte::draw(sf::RenderWindow &window)
+//Dessiner les avatars des races
+void Compte::dessiner(sf::RenderWindow &window)
 {
     window.draw(compte_sprite);
     window.draw(personnage_sprite);
@@ -97,9 +106,10 @@ void Compte::draw(sf::RenderWindow &window)
 	}
 }
 
+//Méthode permettant de choisir son pseudo
 void Compte::PseudoUtilisateur(sf::RenderWindow &window)
-{   string test;
-    int compteur = 0;
+{
+    int compteur = -1;
     while (window.isOpen())
     {
         sf::Event event;
@@ -115,7 +125,16 @@ void Compte::PseudoUtilisateur(sf::RenderWindow &window)
                 {
                 case sf::Keyboard::Return:
                     setPseudo(playerInput);
-                    return;
+//                    cout << to_string(compteur) << endl;
+                    if(compteur+1 < 3){
+                        window.draw(noms[2]);
+                        cout << "non " << endl;
+
+                    }
+                    else{
+                         return;
+                    }
+
                 break;
                 default:
                     break;
@@ -132,16 +151,22 @@ void Compte::PseudoUtilisateur(sf::RenderWindow &window)
                     playerInput.erase(compteur,1);
                     compteur--;
                     }
-
                 }
-                else if (compteur <= 15)
+
+                else if (compteur <= 20)
                 {
-                playerInput +=event.text.unicode;
+                    if( (event.text.unicode >= 48 && event.text.unicode <=57) ||
+                       (event.text.unicode >= 65 && event.text.unicode <=90) ||
+                       (event.text.unicode >= 97 && event.text.unicode <=122) )
+                    {
+                    playerInput += event.text.unicode;
+                    compteur++;
+                    }
 
-                compteur++;
+
                 }
-
                 playerText.setString(playerInput);
+
 
             }
         }
@@ -149,6 +174,9 @@ void Compte::PseudoUtilisateur(sf::RenderWindow &window)
         window.draw(compte_sprite);
         window.draw(noms[0]);
         window.draw(noms[1]);
+        if(compteur+1 < 3){
+        window.draw(noms[2]);
+        }
         window.draw(playerText);
         window.display();
     }
@@ -156,13 +184,14 @@ void Compte::PseudoUtilisateur(sf::RenderWindow &window)
 
 }
 
-void Compte::MoveUp()
+//Naviguer au dessus
+void Compte::haut()
 {
 	if (selectedItemIndex - 1 >= 0)
 	{
 		races[selectedItemIndex].setFillColor(sf::Color::White);
 		selectedItemIndex--;
-		races[selectedItemIndex].setFillColor(sf::Color(201, 135, 185));
+		races[selectedItemIndex].setFillColor(sf::Color(96, 59, 99));
 		if (!compte_texture.loadFromFile("Images/Backgrounds/"+to_string(selectedItemIndex)+"_Race.png"))
         {
             std::cout << "Problème d'arrière plan" << std::endl;
@@ -185,13 +214,14 @@ void Compte::MoveUp()
 	}
 }
 
-void Compte::MoveDown()
+//Naviguer en dessous
+void Compte::bas()
 {
 	if (selectedItemIndex + 1 < MAX_NUMBER_OF_RACES)
 	{
 		races[selectedItemIndex].setFillColor(sf::Color::White);
 		selectedItemIndex++;
-		races[selectedItemIndex].setFillColor(sf::Color(201, 135, 185));
+		races[selectedItemIndex].setFillColor(sf::Color(96, 59, 99));
 		if (!compte_texture.loadFromFile("Images/Backgrounds/"+to_string(selectedItemIndex)+"_Race.png"))
         {
             std::cout << "Problème" << std::endl;
@@ -211,11 +241,13 @@ void Compte::MoveDown()
 	}
 }
 
+//Constructeur de copie
 Compte::Compte(const Compte& other)
 {
     //copy ctor
 }
 
+//Opérateur =
 Compte& Compte::operator=(const Compte& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
@@ -223,11 +255,13 @@ Compte& Compte::operator=(const Compte& rhs)
     return *this;
 }
 
+//Setter de pseudo
 void Compte::setPseudo(const string &pseudo)
 {
     this->pseudo = pseudo;
 }
 
+//Getter de pseudo
 string Compte::getPseudo() const
 {
     return pseudo;

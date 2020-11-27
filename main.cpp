@@ -3,11 +3,13 @@
 
 #include "Gestion.h"
 #include "Personnage.h"
-#include "PersonnageHeros.h"
 #include "PersonnageBoss.h"
+#include "PersonnageHeros.h"
+#include "PersonnageView.h"
 #include "Combat.h"
 #include "Planete.h"
 #include <SFML/Audio.hpp>
+#include "BarreView.h"
 
 using namespace std;
 
@@ -17,34 +19,43 @@ int main()
     Gestion gestion;
     gestion.fenetrePrincipale();
 
-        /**
-        *
-        *--------------------
-        *
-        */
+
+
+//sf::RenderWindow windowJeu(sf::VideoMode(1600, 900), "Spacecraft vs Asteroids"/*, sf::Style::Fullscreen*/);
+//PersonnageHeros p;
 //
-//    PersonnageHeros p1("Baptaber", VANDUUL);
-//    PersonnageHeros p2("Young $hmet", AETWI);
-//    PersonnageHeros p3("DanzZ",VALDERA);
-//    PersonnageHeros p4("Fitspade", COVENANTE);
+//cout << p.str() << endl;
+//BarreView barreVieHeros(sf::Vector2f(300,25),p.getPtsVie());
 
-//PersonnageBoss p1("Baptiste", BLEUE);
-/*PersonnageBoss p2("Loris", VERTE);
-PersonnageBoss p3("Baptiste2", ORANGE);
-PersonnageBoss p4("Loris2", ANNEAU_BLEU);
-PersonnageBoss p5("Baptiste3", ANNEAU_ROUGE);
-PersonnageBoss p6("Loris3", MAUVE_DETRUITE);*/
+/*
+PersonnageView pView(&p);
+cout << pView.getPersonnage().str() << endl;
+//int test = 0;
+//cin >> test;
 
-//cout << p1.str() << endl;
+	while (windowJeu.isOpen())
+	{
+		sf::Event event;
+		while (windowJeu.pollEvent(event))
+		{
+
+            p.setPtsVie(p.getPtsVie()-50);
+            barreVieHeros.update(p.getPtsVie());
+             sf::sleep(sf::milliseconds(1000));
 
 
+        }
 
-//
-//    Combat c;
-//
-//    cout << p3.str() << "\n\n\n" << p1.str() << "\n\n\n\n------\n\n"<< endl;
-//
-//    c.combatBoss(p3, p1);
 
+		windowJeu.clear();
+
+		//pView.draw(windowJeu);
+		barreVieHeros.draw(windowJeu);
+
+		windowJeu.display();
+		//windowJeu.close();
+
+	}
+	//cout << "ICI\t\t"+pView.getPersonnage().str() << endl;*/
     return 0;
 }

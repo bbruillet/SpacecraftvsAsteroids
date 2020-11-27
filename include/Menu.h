@@ -3,7 +3,7 @@
 
 #define MAX_NUMBER_OF_ITEMS 3
 
-class Menu : public sf::Drawable
+class Menu /*: public sf::Drawable*/
 {
 public:
 	Menu();

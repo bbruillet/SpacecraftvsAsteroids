@@ -27,10 +27,7 @@ class Personnage /*: public sf::Drawable, public sf::Event*/
         string image;
         int regeneration;
 
-          virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
-        {
-            target.draw(personnage_sprite);
-        }
+
 
     public:
         //Constucteurs et destructeurs
@@ -88,8 +85,6 @@ class Personnage /*: public sf::Drawable, public sf::Event*/
         int getRegeneration() const;
         void setRegeneration(const int &);
 
-        sf::Sprite personnage_sprite;
-        sf::Texture personnage_texture;
 
 };
 

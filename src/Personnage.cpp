@@ -2,7 +2,7 @@
 
 #include <cstdio>
 #include <iostream>
-#include <SFML/Graphics.hpp>
+
 
 Personnage::Personnage(const string nom, const int ptsAttaque, const int ptsVie, const int ptsExperience, const int niveau,
     const int ptsAttaqueSpeciale, const int bouclier, const double coupsCritique, const double esquive, const int x, const int y, const string image, const int regeneration)
@@ -192,13 +192,6 @@ int Personnage::getX() const
 void Personnage::setImage(const string &image)
 {
     this->image = image;
-    if (!personnage_texture.loadFromFile(image))
-    {
-        std::cout << "Problème d'image du BOSS" << std::endl;
-    }
-
-    personnage_sprite.setTexture(personnage_texture);
-    personnage_sprite.setPosition(getX(), getY());
 }
 
 string Personnage::getImage() const

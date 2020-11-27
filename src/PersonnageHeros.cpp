@@ -84,7 +84,7 @@ void PersonnageHeros::categorieHeros() {
         setCoupsCritique(45.00);
         setEsquive(35.00);
         setRegeneration(30);
-        setImage("Images/Avatars/0_Heros.png");
+        setImage("Images/Avatars/2_Heros.png");
 
         break;
     case COVENANTE:
@@ -96,7 +96,7 @@ void PersonnageHeros::categorieHeros() {
         setCoupsCritique(30.00);
         setEsquive(25.00);
         setRegeneration(80);
-        setImage("Images/Avatars/0_Heros.png");
+        setImage("Images/Avatars/3_Heros.png");
 
         break;
 
@@ -109,7 +109,7 @@ void PersonnageHeros::categorieHeros() {
         setCoupsCritique(39.00);
         setEsquive(38.00);
         setRegeneration(20);
-        setImage("Images/Avatars/0_Heros.png");
+        setImage("Images/Avatars/4_Heros.png");
 
         break;
     default:

@@ -7,8 +7,11 @@
 #include "BiomePlanete.h"
 #include "Univers.h"
 #include "Vaisseau.h"
+#include "VaisseauView.h"
+#include "BarreView.h"
 #include "PersonnageBoss.h"
 #include "PersonnageHeros.h"
+#include "PersonnageView.h"
 #include "Personnage.h"
 #include "Planete.h"
 #include "Compte.h"
@@ -33,13 +36,20 @@ class Gestion : public sf::Event, public IConstante
 
         void map_space(sf::RenderWindow & windowJeu);
 
+        sf::Sprite versus_sprite;
+        sf::Texture versus_texture;
+
 
     protected:
 
     private:
         Univers univers;
         Vaisseau vaisseau;
+        VaisseauView viewVaisseau;
         PersonnageHeros heros;
+        PersonnageView pView;
+        BarreView barreHeros;
+        BarreView barreBoss;
         Compte compte;
         Combat combat;
 //        vector <Planete*> planetes;

@@ -3,25 +3,13 @@
 
 #include <cstdio>
 #include <iostream>
-#include <SFML/Graphics.hpp>
+
 
 Vaisseau::Vaisseau(const int x, const int y)
 :x(x), y(y)
 {
-    if (!vaisseau_texture.loadFromFile("Images/Avatars/X-Wing.png"))
-    {
-        std::cout << "ok" << std::endl;
-    }
+ //ctor
 
-    //Coordonnées de départ du personnage
-//    x = 7150;
-//    y = 3500;
-    sf::IntRect rect(0, 0, 125, 125);
-    rectSourceSprite = rect;
-    vaisseau_sprite.setTexture(vaisseau_texture);
-    vaisseau_sprite.setTextureRect(rectSourceSprite);
-    vaisseau_sprite.setPosition(x, y);
-    vaisseau_sprite.setOrigin(VAISSEAU_COORDONNEE_ORIGINE, VAISSEAU_COORDONNEE_ORIGINE);
 }
 
 Vaisseau::~Vaisseau()
@@ -39,111 +27,6 @@ Vaisseau& Vaisseau::operator=(const Vaisseau& v)
     return *this;
 }
 
-void Vaisseau::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    target.draw(vaisseau_sprite);
-}
-
-int Vaisseau::seDeplacerX(Event event, int x)
-{
-
-    if(rectSourceSprite.left == 0)
-    {
-        rectSourceSprite.left = 125;
-    }
-    else if (rectSourceSprite.left == 125)
-    {
-        rectSourceSprite.left = 250;
-    }
-    else if (rectSourceSprite.left == 250)
-    {
-        rectSourceSprite.left = 125;
-    }
-
-
-    switch (event.key.code)
-    {
-        case sf::Keyboard::Left:
-        {
-            if(x>1000)
-            {
-                x = x - 50;
-                rectSourceSprite.top = 125;
-
-                cout << "X: "<< x << endl;
-            }
-            else
-            {
-                rectSourceSprite.top = 375;
-                //vaisseau_sprite.setRotation(90);
-
-            }
-            break;
-        }
-
-        case sf::Keyboard::Right:
-        {
-            if(x<12000)
-            {
-                x = x + 50;
-
-                rectSourceSprite.top = 375;
-                cout << "X: "<< x << endl;
-            }
-            else
-            {
-                rectSourceSprite.top = 125;
-            }
-            break;
-        }
-        default:
-        break;
-    }
-    vaisseau_sprite.setTextureRect(rectSourceSprite);
-    return x;
-}
-
-int Vaisseau::seDeplacerY(Event event, int y)
-{
-    switch (event.key.code)
-    {
-        case sf::Keyboard::Up:
-        {
-            if(y>1000)
-            {
-                y = y - 50;
-
-                rectSourceSprite.top = 0;
-                cout << "Y: "<< y << endl;
-            }
-            else
-            {
-                rectSourceSprite.top = 250;
-            }
-            break;
-        }
-
-        case sf::Keyboard::Down:
-        {
-            if(y<6500)
-            {
-                y = y + 50;
-                rectSourceSprite.top = 250;
-                cout << "Y: "<< y << endl;
-            }
-            else
-            {
-
-                rectSourceSprite.top = 0;
-            }
-            break;
-        }
-        default:
-        break;
-    }
-    vaisseau_sprite.setTextureRect(rectSourceSprite);
-    return y;
-}
 
 int Vaisseau::getX() const
 {
