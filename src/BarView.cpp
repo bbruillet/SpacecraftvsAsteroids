@@ -11,19 +11,19 @@ actualShield(maxShield),remainingShield(0)
     frameLife = sf::RectangleShape(dimensionFrameLife);
     frameLife.setOrigin(250, 12.5);
     frameLife.setOutlineColor(sf::Color::Green);
-    frameLife.setFillColor(sf::Color::White);
+    frameLife.setFillColor(sf::Color(255,141,141));
 
     //barre qui change en fonction de la vie
     barFrameLife = sf::RectangleShape(dimensionFrameLife);
     barFrameLife.setOrigin(250, 12.5);
-    barFrameLife.setFillColor(sf::Color::Red);
+    barFrameLife.setFillColor(sf::Color(198,10,10));
 
     /*-------------Bouclier-----------------------*/
 
     //cadre du bouclier
     frameShield = sf::RectangleShape(dimensionFrameShield);
     frameShield.setOutlineColor(sf::Color::Green);
-    frameShield.setFillColor(sf::Color::White);
+    frameShield.setFillColor(sf::Color(121,127,199));
     frameShield.setOrigin(100, 6.25);
 
     //Barre du bouclier qui varie en fonction des dégats

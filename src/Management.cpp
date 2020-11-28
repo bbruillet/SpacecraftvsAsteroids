@@ -86,6 +86,15 @@ void Management::mainWindow()
     sound.play();
 
     sf::RenderWindow windowJeu(sf::VideoMode(1600, 900), "Spacecraft vs Asteroids"/*, sf::Style::Fullscreen*/);
+
+    sf::Image icon;
+
+    if(!icon.loadFromFile("Images/Backgrounds/Icon.png"))
+    {
+
+    }
+
+    windowJeu.setIcon(250,250,icon.getPixelsPtr());
     //menu(windowJeu);
     menu(windowJeu);
 }
@@ -553,24 +562,24 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                 fight.fightBoss(hero,*pla.getBoss(), windowJeu);
 
 
-                for(size_t i(0);i<50;i++)
-                {
-                    windowJeu.clear();
-                    cView.course();
-                    cView.character_hero_sprite.setPosition(pla.getXChar()+ 16*i, pla.getYChar());
-                    pla.getBiome()->drawBiome(windowJeu);
-                    barHero.drawLife(windowJeu);
-                    barHero.drawShield(windowJeu);
-                    barBoss.drawLife(windowJeu);
-                    barBoss.drawShield(windowJeu);
-                    cView.drawHero(windowJeu);
-                    cView.drawBoss(windowJeu);
-                    windowJeu.draw(versus_sprite);
-                    windowJeu.draw(textHero);
-                    windowJeu.draw(textBoss);
-                    windowJeu.display();
-                    sf::sleep(sf::milliseconds(10));
-                }
+//                for(size_t i(0);i<50;i++)
+//                {
+//                    windowJeu.clear();
+//                    cView.course();
+//                    cView.character_hero_sprite.setPosition(pla.getXChar()+ 16*i, pla.getYChar());
+//                    pla.getBiome()->drawBiome(windowJeu);
+//                    barHero.drawLife(windowJeu);
+//                    barHero.drawShield(windowJeu);
+//                    barBoss.drawLife(windowJeu);
+//                    barBoss.drawShield(windowJeu);
+//                    cView.drawHero(windowJeu);
+//                    cView.drawBoss(windowJeu);
+//                    windowJeu.draw(versus_sprite);
+//                    windowJeu.draw(textHero);
+//                    windowJeu.draw(textBoss);
+//                    windowJeu.display();
+//                    sf::sleep(sf::milliseconds(10));
+//                }
                     barHero.updateLife(hero.getPtsLife());
                     barHero.updateShield(hero.getShield());
 

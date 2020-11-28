@@ -56,68 +56,68 @@ CharacterBoss* CharacterBoss::clone()const
 void CharacterBoss::categoryBoss() {
     switch(origin) {
     case BLUE:
-        setPtsLife(500);
-        setPtsAttack(5);
-        setCriticalHit(10.0);
+        setPtsLife(550);
+        setPtsAttack(10);
+        setCriticalHit(15.0);
         setPtsSpecialAttack(20);
-        setShield(100);
+        setShield(50);
         setX(1545);
         setY(525);
         setPicture("Images/Avatars/Bleue_Boss.png");
         break;
 
     case ORANGE:
-        setPtsLife(500);
-        setPtsAttack(5);
-        setCriticalHit(10.0);
+        setPtsLife(200);
+        setPtsAttack(10);
+        setCriticalHit(15.0);
         setPtsSpecialAttack(20);
-        setShield(100);
-        setX(1545);
-        setY(525);
+        setShield(400);
+        setX(1550);
+        setY(520);
         setPicture("Images/Avatars/Orange_Boss.png");
         break;
 
     case GREEN:
-        setPtsLife(500);
-        setPtsAttack(5);
-        setCriticalHit(10.0);
-        setPtsSpecialAttack(20);
-        setShield(100);
-        setX(1545);
-        setY(525);
+        setPtsLife(150);
+        setPtsAttack(20);
+        setCriticalHit(15.0);
+        setPtsSpecialAttack(30);
+        setShield(50);
+        setX(1500);
+        setY(600);
         setPicture("Images/Avatars/Verte_Boss.png");
         break;
 
     case RING_BLUE:
-        setPtsLife(500);
+        setPtsLife(250);
         setPtsAttack(5);
-        setCriticalHit(10.0);
+        setCriticalHit(50.0);
         setPtsSpecialAttack(20);
-        setShield(100);
-        setX(1545);
-        setY(525);
+        setShield(150);
+        setX(1110);
+        setY(575);
         setPicture("Images/Avatars/Anneau_Bleu_Boss.png");
         break;
 
     case RING_RED:
         setPtsLife(500);
         setPtsAttack(5);
-        setCriticalHit(10.0);
+        setCriticalHit(15.0);
         setPtsSpecialAttack(20);
         setShield(100);
-        setX(1545);
-        setY(525);
+        setX(1630);
+        setY(400);
         setPicture("Images/Avatars/Anneau_Rouge_Boss.png");
         break;
 
     case PURPLE_DESTROYED:
         setPtsLife(500);
         setPtsAttack(5);
-        setCriticalHit(10.0);
+        setCriticalHit(15.0);
         setPtsSpecialAttack(20);
         setShield(100);
-        setX(1545);
-        setY(525);
+        setX(1340);
+        setY(600);
         setPicture("Images/Avatars/Mauve_Detruite_Boss.png");
         break;
     default:

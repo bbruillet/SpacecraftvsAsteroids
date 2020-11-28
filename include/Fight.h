@@ -24,6 +24,7 @@ class Fight
         int nbDodge;
         int nbFirst;
         int nbRegen;
+        int health;
 
 
     public:
@@ -37,6 +38,9 @@ class Fight
         void attackBoss(Character& c1, Character& c2, sf::RenderWindow &window);
         void attackHero(Character& c1, Character& c2);
         void fightBoss(Character& c1, Character& c2, sf::RenderWindow &window);
+
+        int getHealth() const;
+        void setHealth(const int &);
 
 
 };

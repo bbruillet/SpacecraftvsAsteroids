@@ -99,7 +99,13 @@ void Fight::attackBoss(Character &c1,Character &c2, sf::RenderWindow &windowJeu)
                     if(nbRegen == 0)
                     {
                         cout << "VOUS DEVEZ ATTAQUER !" << endl;
-                    } else
+                    }
+
+//                    if(getHealth() <= c1.getPtsLife()+c1.getRegeneration())
+//                    {
+//                        cout << "VOUS DEVEZ ATTAQUER !" << endl;
+//                    }
+                    else
                     {
                         cout << "REGEN de "+c1.getName() << endl;
                         c1.setPtsLife(c1.getPtsLife() + c1.getRegeneration());
@@ -185,6 +191,8 @@ void Fight::attackHero(Character &c1, Character &c2)
 void Fight::fightBoss(Character &c1, Character &c2, sf::RenderWindow &windowJeu)
 {
     int round = 0;
+//    health = c1.getPtsLife();
+//    setHealth(health);
 //    int test = 0;
         round ++;
         cout << "Round numéro "+to_string(round) << endl;
@@ -215,5 +223,14 @@ void Fight::fightBoss(Character &c1, Character &c2, sf::RenderWindow &windowJeu)
                     }
                 }
             }
+}
 
+void Fight::setHealth(const int &health)
+{
+    this->health = health;
+}
+
+int Fight::getHealth() const
+{
+    return health;
 }
