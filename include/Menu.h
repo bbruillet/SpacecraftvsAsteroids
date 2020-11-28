@@ -3,7 +3,7 @@
 
 #define MAX_NUMBER_OF_ITEMS 3
 
-class Menu /*: public sf::Drawable*/
+class Menu
 {
 public:
 	Menu();
@@ -11,9 +11,9 @@ public:
 	~Menu();
 
 	void draw(sf::RenderWindow &window);
-	void MoveUp();
-	void MoveDown();
-	int GetPressedItem();
+	void moveUp();
+	void moveDown();
+	int getPressedItem();
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
     {

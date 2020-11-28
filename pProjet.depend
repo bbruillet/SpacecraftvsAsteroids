@@ -2,18 +2,18 @@
 1603186867 source:/home/bruillet/Documents/C++/pProjet/main.cpp
 	<SFML/Graphics.hpp>
 
-1606486368 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/main.cpp
+1606564743 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/main.cpp
 	<iostream>
 	<list>
-	"Gestion.h"
-	"Personnage.h"
-	"PersonnageBoss.h"
-	"PersonnageHeros.h"
-	"PersonnageView.h"
-	"Combat.h"
-	"Planete.h"
+	"Management.h"
+	"Character.h"
+	"CharacterBoss.h"
+	"CharacterHero.h"
+	"CharacterView.h"
+	"Fight.h"
+	"Planet.h"
 	<SFML/Audio.hpp>
-	"BarreView.h"
+	"BarView.h"
 
 1606497109 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Personnage.cpp
 	"Personnage.h"
@@ -42,16 +42,16 @@
 1606305296 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Univers.cpp
 	"Univers.h"
 
-1606147485 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Univers.h
+1606562839 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Univers.h
 	<iostream>
 	<ostream>
 	<string>
 	<vector>
 	<cstdio>
 	<SFML/Graphics.hpp>
-	"Planete.h"
+	"Planet.h"
 
-1606140770 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Planete.h
+1606560752 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Planete.h
 	<iostream>
 	<ostream>
 	<string>
@@ -67,7 +67,7 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1606506777 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Gestion.cpp
+1606557458 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Gestion.cpp
 	"Gestion.h"
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -84,7 +84,7 @@
 	"Menu.h"
 	"Compte.h"
 
-1606497139 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Gestion.h
+1606560651 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Gestion.h
 	"IConstante.h"
 	<SFML/Graphics.hpp>
 	"BiomePlanete.h"
@@ -92,26 +92,26 @@
 	"Vaisseau.h"
 	"VaisseauView.h"
 	"BarreView.h"
-	"PersonnageBoss.h"
-	"PersonnageHeros.h"
-	"PersonnageView.h"
-	"Personnage.h"
+	"CharacterBoss.h"
+	"CharacterHero.h"
+	"CharacterView.h"
+	"Character.h"
 	"Planete.h"
 	"Compte.h"
-	"Combat.h"
+	"Fight.h"
 	<vector>
 
-1606313417 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Menu.cpp
+1606562228 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Menu.cpp
 	"Menu.h"
 	<iostream>
 
-1606397417 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Menu.h
+1606562228 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Menu.h
 	"SFML/Graphics.hpp"
 
-1606499065 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/BiomePlanete.cpp
+1606557449 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/BiomePlanete.cpp
 	"BiomePlanete.h"
 
-1606499272 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/BiomePlanete.h
+1606557440 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/BiomePlanete.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
@@ -333,7 +333,7 @@
 	"Personnage.h"
 	"PersonnageHeros.h"
 
-1606499760 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Combat.h
+1606558275 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Combat.h
 	<iostream>
 	<string>
 	<cstdio>
@@ -546,11 +546,11 @@
 	<SFML/Graphics.hpp>
 	"Vaisseau.h"
 
-1606498319 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/BarreView.cpp
+1606557042 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/BarreView.cpp
 	"BarreView.h"
 	<iostream>
 
-1606497955 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/BarreView.h
+1606556953 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/BarreView.h
 	<SFML/Graphics.hpp>
 
 1606496478 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/BarreBouclierView.h
@@ -558,4 +558,166 @@
 
 1606496288 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/BarreBouclierView.cpp
 	"BarreBouclierView.h"
+
+1606560722 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Fight.h
+	<iostream>
+	<string>
+	<cstdio>
+	<SFML/Graphics.hpp>
+
+1606560131 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Character.cpp
+	"Character.h"
+	<cstdio>
+	<iostream>
+
+1606559124 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Character.h
+	<iostream>
+	<ostream>
+	<string>
+	<sstream>
+	<cstdio>
+	<SFML/Graphics.hpp>
+
+1606562465 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/CharacterBoss.h
+	"Character.h"
+	"Planet.h"
+
+1606561111 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/CharacterHero.h
+	"Character.h"
+	<iostream>
+	<ostream>
+	<string>
+	"IConstante.h"
+	<cstdio>
+	<SFML/Graphics.hpp>
+
+1606561852 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/CharacterView.h
+	"CharacterHero.h"
+	"CharacterBoss.h"
+	<SFML/Graphics.hpp>
+
+1606560131 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Fight.cpp
+	"Fight.h"
+	<stdlib.h>
+	<time.h>
+	"Character.h"
+
+1606562778 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/CharacterBoss.cpp
+	"CharacterBoss.h"
+	"Planet.h"
+	"Character.h"
+
+1606561436 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/CharacterHero.cpp
+	"CharacterHero.h"
+	<cstdio>
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1606561852 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/CharacterView.cpp
+	"CharacterView.h"
+
+1606561966 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/BarView.cpp
+	"BarView.h"
+	<iostream>
+
+1606562000 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/BarView.h
+	<SFML/Graphics.hpp>
+
+1606562142 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/BiomePlanet.cpp
+	"BiomePlanet.h"
+
+1606562160 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/BiomePlanet.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1606562830 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Planet.h
+	<iostream>
+	<ostream>
+	<string>
+	<vector>
+	<cstdio>
+	<SFML/Graphics.hpp>
+
+1606562796 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Planet.cpp
+	"Planet.h"
+	"BiomePlanet.h"
+	"CharacterBoss.h"
+	<cstdio>
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1606563126 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Universe.cpp
+	"Universe.h"
+
+1606563119 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Universe.h
+	<iostream>
+	<ostream>
+	<string>
+	<vector>
+	<cstdio>
+	<SFML/Graphics.hpp>
+	"Planet.h"
+
+1606563649 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Player.cpp
+	"Player.h"
+
+1606563633 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Player.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<string>
+	<cstdio>
+
+1606563850 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Spacecraft.cpp
+	"Spacecraft.h"
+	"IConstante.h"
+	<cstdio>
+	<iostream>
+
+1606563794 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Spacecraft.h
+	<iostream>
+	<ostream>
+	<string>
+	"IConstante.h"
+	<cstdio>
+
+1606564236 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/SpacecraftView.cpp
+	"SpacecraftView.h"
+
+1606564236 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/SpacecraftView.h
+	<SFML/Graphics.hpp>
+	"Spacecraft.h"
+
+1606564795 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/Management.h
+	"IConstante.h"
+	<SFML/Graphics.hpp>
+	"BiomePlanet.h"
+	"Universe.h"
+	"Spacecraft.h"
+	"SpacecraftView.h"
+	"BarView.h"
+	"CharacterBoss.h"
+	"CharacterHero.h"
+	"CharacterView.h"
+	"Character.h"
+	"Planet.h"
+	"Player.h"
+	"Fight.h"
+	<vector>
+
+1606566759 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/Management.cpp
+	"Management.h"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<iostream>
+	<vector>
+	<cmath>
+	"Character.h"
+	"Universe.h"
+	"Planet.h"
+	"Spacecraft.h"
+	"BiomePlanet.h"
+	"CharacterHero.h"
+	"CharacterBoss.h"
+	"Menu.h"
+	"Player.h"
 

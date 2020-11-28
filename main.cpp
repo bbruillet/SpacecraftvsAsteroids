@@ -1,23 +1,23 @@
 #include <iostream>
 #include <list>
 
-#include "Gestion.h"
-#include "Personnage.h"
-#include "PersonnageBoss.h"
-#include "PersonnageHeros.h"
-#include "PersonnageView.h"
-#include "Combat.h"
-#include "Planete.h"
+#include "Management.h"
+#include "Character.h"
+#include "CharacterBoss.h"
+#include "CharacterHero.h"
+#include "CharacterView.h"
+#include "Fight.h"
+#include "Planet.h"
 #include <SFML/Audio.hpp>
-#include "BarreView.h"
+#include "BarView.h"
 
 using namespace std;
 
 
 int main()
 {
-    Gestion gestion;
-    gestion.fenetrePrincipale();
+    Management management;
+    management.mainWindow();
 
 
 

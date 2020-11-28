@@ -15,7 +15,7 @@ Menu::Menu()
 
 	if (!menu_texture.loadFromFile("Images/Backgrounds/Menu_Background.jpg"))
     {
-        std::cout << "Problème" << std::endl;
+        std::cout << "Problem for loading background" << std::endl;
     }
 
     menu_sprite.setTexture(menu_texture);
@@ -50,7 +50,7 @@ Menu::~Menu()
 
 }
 
-int Menu::GetPressedItem()
+int Menu::getPressedItem()
 {
     return selectedItemIndex;
 }
@@ -64,7 +64,7 @@ void Menu::draw(sf::RenderWindow &window)
 	}
 }
 
-void Menu::MoveUp()
+void Menu::moveUp()
 {
 	if (selectedItemIndex - 1 >= 0)
 	{
@@ -74,7 +74,7 @@ void Menu::MoveUp()
 	}
 }
 
-void Menu::MoveDown()
+void Menu::moveDown()
 {
 	if (selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS)
 	{
