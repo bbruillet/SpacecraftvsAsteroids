@@ -32,7 +32,7 @@ class CharacterView
         CharacterBoss& getCharacterBoss()const;
         void setCharacterBoss(CharacterBoss&);
 
-        void course();
+        void forwardHero();
 
     private:
 

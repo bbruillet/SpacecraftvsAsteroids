@@ -3,7 +3,7 @@
 CharacterView::CharacterView(/*Personnage* personnage*/)//:personnage(personnage)
 {
     //ctor
-    sf::IntRect rect(0, 0, 200, 200);
+    sf::IntRect rect(0, 0, 250, 250);
     rectHero = rect;
 }
 
@@ -73,16 +73,38 @@ CharacterBoss& CharacterView::getCharacterBoss()const
     return *boss;
 }
 
-void CharacterView::course()
-
+void CharacterView::forwardHero()
 {
-    if(rectHero.left == 1200){
+//    if(rectHero.left == 1200){
+//        rectHero.left = 0;
+//        cout<< "Animation" << endl;
+//    }
+//    else
+//    {
+//        rectHero.left += 200;
+//    }
+
+    if(rectHero.left == 1500)
+    {
         rectHero.left = 0;
         cout<< "Animation" << endl;
     }
     else
     {
-        rectHero.left += 200;
+        rectHero.left += 250;
     }
 
 }
+
+//void CharacterView::backwardHero()
+//{
+//if(rectHero.left == 1500){
+//        rectHero.left = 0;
+//        cout<< "Animation" << endl;
+//    }
+//    else
+//    {
+//        rectHero.left += 250;
+//    }
+//
+//}

@@ -562,24 +562,26 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                 fight.fightBoss(hero,*pla.getBoss(), windowJeu);
 
 
-//                for(size_t i(0);i<50;i++)
-//                {
-//                    windowJeu.clear();
-//                    cView.course();
-//                    cView.character_hero_sprite.setPosition(pla.getXChar()+ 16*i, pla.getYChar());
-//                    pla.getBiome()->drawBiome(windowJeu);
-//                    barHero.drawLife(windowJeu);
-//                    barHero.drawShield(windowJeu);
-//                    barBoss.drawLife(windowJeu);
-//                    barBoss.drawShield(windowJeu);
-//                    cView.drawHero(windowJeu);
-//                    cView.drawBoss(windowJeu);
-//                    windowJeu.draw(versus_sprite);
-//                    windowJeu.draw(textHero);
-//                    windowJeu.draw(textBoss);
-//                    windowJeu.display();
-//                    sf::sleep(sf::milliseconds(10));
-//                }
+                for(size_t i(0);i<50;i++)
+                {
+                    windowJeu.clear();
+                    cView.forwardHero();
+                    cView.character_hero_sprite.setPosition(pla.getXChar()+ 16*i, pla.getYChar());
+                    pla.getBiome()->drawBiome(windowJeu);
+                    barHero.drawLife(windowJeu);
+                    barHero.drawShield(windowJeu);
+                    barBoss.drawLife(windowJeu);
+                    barBoss.drawShield(windowJeu);
+                    cView.drawHero(windowJeu);
+                    cView.drawBoss(windowJeu);
+                    windowJeu.draw(versus_sprite);
+                    windowJeu.draw(textHero);
+                    windowJeu.draw(textBoss);
+                    windowJeu.display();
+                    sf::sleep(sf::milliseconds(5));
+                }
+
+
                     barHero.updateLife(hero.getPtsLife());
                     barHero.updateShield(hero.getShield());
 
