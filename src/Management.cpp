@@ -512,6 +512,10 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
         std::cout << "Problème d'image du 'versus'" << std::endl;
     }
 
+    sf::Vector2f dimension(pla.getXChar(),pla.getYChar());
+    cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
+
+
     versus_sprite.setTexture(versus_texture);
     versus_sprite.setPosition(775, -25);
 
@@ -566,7 +570,48 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                 {
                     windowJeu.clear();
                     cView.forwardHero();
-                    cView.character_hero_sprite.setPosition(pla.getXChar()+ 16*i, pla.getYChar());
+                    dimension.x += 13;
+                    cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
+                    pla.getBiome()->drawBiome(windowJeu);
+                    barHero.drawLife(windowJeu);
+                    barHero.drawShield(windowJeu);
+                    barBoss.drawLife(windowJeu);
+                    barBoss.drawShield(windowJeu);
+                    cView.drawHero(windowJeu);
+                    cView.drawBoss(windowJeu);
+                    windowJeu.draw(versus_sprite);
+                    windowJeu.draw(textHero);
+                    windowJeu.draw(textBoss);
+                    windowJeu.display();
+                    sf::sleep(sf::milliseconds(5));
+                }
+
+                 for(size_t i(0);i<5;i++)
+                {
+                    windowJeu.clear();
+                    cView.fightHero();
+                    pla.getBiome()->drawBiome(windowJeu);
+                    barHero.drawLife(windowJeu);
+                    barHero.drawShield(windowJeu);
+                    barBoss.drawLife(windowJeu);
+                    barBoss.drawShield(windowJeu);
+                    cView.drawHero(windowJeu);
+                    cView.drawBoss(windowJeu);
+                    windowJeu.draw(versus_sprite);
+                    windowJeu.draw(textHero);
+                    windowJeu.draw(textBoss);
+                    windowJeu.display();
+                    sf::sleep(sf::milliseconds(600));
+                }
+
+
+
+                for(size_t i(0);i<50;i++)
+                {
+                    windowJeu.clear();
+                    cView.backwardHero();
+                    dimension.x -= 13;
+                    cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
                     pla.getBiome()->drawBiome(windowJeu);
                     barHero.drawLife(windowJeu);
                     barHero.drawShield(windowJeu);
@@ -593,9 +638,12 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
             }
             else
             {
+                    if(hero.getPtsLife() == 0){
                     cout << "Victoire" << endl;
                     cView.getCharacterHero().categoryHero();
-                    launch(windowJeu);
+
+                    }
+                    //launch(windowJeu);
 
             }
 
@@ -613,7 +661,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
         pla.getBiome()->drawBiome(windowJeu);
         textHero.setPosition(400, 20);
         textBoss.setPosition(1150, 20);
-        cView.character_hero_sprite.setPosition(pla.getXChar(), pla.getYChar());
+
 
 
 

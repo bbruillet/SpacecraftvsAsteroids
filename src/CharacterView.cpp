@@ -3,8 +3,9 @@
 CharacterView::CharacterView(/*Personnage* personnage*/)//:personnage(personnage)
 {
     //ctor
-    sf::IntRect rect(0, 0, 250, 250);
+    sf::IntRect rect(0, 0, 350, 350);
     rectHero = rect;
+    test = 1;
 }
 
 CharacterView::~CharacterView()
@@ -73,38 +74,63 @@ CharacterBoss& CharacterView::getCharacterBoss()const
     return *boss;
 }
 
+//350/350
 void CharacterView::forwardHero()
 {
-//    if(rectHero.left == 1200){
-//        rectHero.left = 0;
-//        cout<< "Animation" << endl;
-//    }
-//    else
-//    {
-//        rectHero.left += 200;
-//    }
-
-    if(rectHero.left == 1500)
+    if(rectHero.left > 1050 || rectHero.left < 0)
     {
-        rectHero.left = 0;
-        cout<< "Animation" << endl;
+       rectHero.left = 0;
     }
     else
     {
-        rectHero.left += 250;
+        if(rectHero.left == 1050)
+        {
+            rectHero.left = 0;
+            cout<< "Animation" << endl;
+        }
+        else
+        {
+            rectHero.left += 350;
+        }
     }
 
 }
 
-//void CharacterView::backwardHero()
-//{
-//if(rectHero.left == 1500){
-//        rectHero.left = 0;
-//        cout<< "Animation" << endl;
-//    }
-//    else
-//    {
-//        rectHero.left += 250;
-//    }
-//
-//}
+void CharacterView::backwardHero()
+{
+    if(rectHero.left > 2450 || rectHero.left < 2100)
+    {
+       rectHero.left = 2100;
+
+    }
+    else
+    {
+        if(rectHero.left == 2450){
+            rectHero.left = 2100;
+            cout<< "Animation" << endl;
+        }
+        else
+        {
+            rectHero.left += 350;
+        }
+    }
+}
+
+void CharacterView::fightHero()
+{
+    if(rectHero.left > 1750 || rectHero.left < 1400)
+    {
+       rectHero.left = 1400;
+    }
+    else
+    {
+        if(rectHero.left == 1750){
+            rectHero.left = 1400;
+            cout<< "Animation" << endl;
+        }
+        else
+        {
+            rectHero.left += 350;
+        }
+    }
+}

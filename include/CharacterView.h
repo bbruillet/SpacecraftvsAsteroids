@@ -33,11 +33,15 @@ class CharacterView
         void setCharacterBoss(CharacterBoss&);
 
         void forwardHero();
+        void backwardHero();
+        void fightHero();
 
     private:
 
         CharacterHero* hero;
         CharacterBoss* boss;
+
+        int test;
 };
 
 #endif // PERSONNAGEVIEW_H
