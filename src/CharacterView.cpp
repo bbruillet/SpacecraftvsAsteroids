@@ -5,7 +5,8 @@ CharacterView::CharacterView(/*Personnage* personnage*/)//:personnage(personnage
     //ctor
     sf::IntRect rect(0, 0, 350, 350);
     rectHero = rect;
-    test = 1;
+    sf::IntRect rect2(0, 0, 500, 420);
+    rectBoss = rect2;
 }
 
 CharacterView::~CharacterView()
@@ -131,6 +132,68 @@ void CharacterView::fightHero()
         else
         {
             rectHero.left += 350;
+        }
+    }
+}
+
+
+//500/420
+void CharacterView::forwardBoss()
+{
+    if(rectBoss.left > 500 || rectBoss.left < 0)
+    {
+       rectBoss.left = 0;
+    }
+    else
+    {
+        if(rectBoss.left == 500)
+        {
+            rectBoss.left = 0;
+            cout<< "Animation" << endl;
+        }
+        else
+        {
+            rectBoss.left += 500;
+        }
+    }
+
+}
+
+void CharacterView::throwingBoss()
+{
+    if(rectBoss.left > 3500 || rectBoss.left < 2000)
+    {
+       rectBoss.left = 2000;
+
+    }
+    else
+    {
+        if(rectBoss.left == 3500){
+            rectBoss.left = 2000;
+            cout<< "Animation" << endl;
+        }
+        else
+        {
+            rectBoss.left += 500;
+        }
+    }
+}
+
+void CharacterView::fightBoss()
+{
+    if(rectBoss.left > 1500 || rectBoss.left < 1000)
+    {
+       rectBoss.left = 1000;
+    }
+    else
+    {
+        if(rectBoss.left == 1500){
+            rectBoss.left = 1000;
+            cout<< "Animation" << endl;
+        }
+        else
+        {
+            rectBoss.left += 500;
         }
     }
 }

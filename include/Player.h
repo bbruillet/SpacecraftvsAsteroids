@@ -6,8 +6,11 @@
 #include <string>
 #include <cstdio>
 
+#include"CharacterHero.h"
+
 #define MAX_NUMBER_OF_RACES 5
 #define MAX_NUMBER_OF_NAMES 3
+#define MAX_NUMBER_OF_STATS 7
 
 using std::cout;
 using std::endl;
@@ -23,6 +26,7 @@ class Player
         sf::Event event;
         sf::Text races[MAX_NUMBER_OF_RACES];
         sf::Text names[MAX_NUMBER_OF_NAMES];
+        sf::Text stats[MAX_NUMBER_OF_STATS];
         sf::Sprite player_sprite;
         sf::Texture player_texture;
         sf::Sprite character_sprite;
@@ -32,6 +36,7 @@ class Player
         sf::String playerInput;
 
         string pseudo;
+        CharacterHero her;
 
 
     public:
@@ -44,6 +49,7 @@ class Player
         //Getter et setter de pseudo
         string getPseudo() const;
         void setPseudo(const string &);
+        int getSelectedItemIndex() const;
 
         //Méthode permettant de dessiner
         void draw(sf::RenderWindow &window);
@@ -51,6 +57,7 @@ class Player
         void moveUp();
         void moveDown();
         int getPressedElement();
+        void getStats(CharacterHero her);
 };
 
 #endif // PLAYER_H

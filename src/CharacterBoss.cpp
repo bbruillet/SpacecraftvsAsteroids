@@ -78,7 +78,7 @@ void CharacterBoss::categoryBoss() {
         break;
 
     case GREEN:
-        setPtsLife(150);
+        setPtsLife(400);
         setPtsAttack(20);
         setCriticalHit(15.0);
         setPtsSpecialAttack(30);

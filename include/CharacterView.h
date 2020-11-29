@@ -22,6 +22,7 @@ class CharacterView
 
         sf::Sprite character_boss_sprite;
         sf::Texture character_boss_texture;
+        sf::IntRect rectBoss;
 
         void drawHero(sf::RenderWindow &window);
         void drawBoss(sf::RenderWindow &window);
@@ -35,6 +36,10 @@ class CharacterView
         void forwardHero();
         void backwardHero();
         void fightHero();
+
+        void forwardBoss();
+        void throwingBoss();
+        void fightBoss();
 
     private:
 

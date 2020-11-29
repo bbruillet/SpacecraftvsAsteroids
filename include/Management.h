@@ -29,11 +29,13 @@ class Management : public sf::Event, public IConstante
 
         void mainWindow(); //Window windowjeu
         void menu(sf::RenderWindow & windowJeu);
+        void increaseStats(sf::RenderWindow & windowJeu);
+        void pauseMenu(sf::RenderWindow & windowJeu);
         void playerAccount(sf::RenderWindow & windowJeu);
         void playerPseudo(sf::RenderWindow & windowJeu);
         void launch(sf::RenderWindow & windowJeu);
         void fightPlanet(sf::RenderWindow & windowJeu,Planet&);
-
+        void screenResult(sf::RenderWindow & windowJeu);
         void mapSpace(sf::RenderWindow & windowJeu);
 
         sf::Sprite versus_sprite;

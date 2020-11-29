@@ -38,11 +38,21 @@ Player::Player()
 	for (int i = 0; i < MAX_NUMBER_OF_RACES; i++)
 	{
 		races[i].setCharacterSize(150);
+//		if(i == 0)
+//            her.setRace(HUMAN);
+//        if(i == 1)
+//            her.setRace(VALDERA);
+//        if(i == 2)
+//            her.setRace(VANDUUL);
+//        if(i == 3)
+//            her.setRace(COVENANTE);
+//        if(i == 4)
+//            her.setRace(AETWI);
 	}
 
 	selectedItemIndex = 0;
 
-	//On chrage l'image
+	//On charge l'image
 	if (!player_texture.loadFromFile("Images/Backgrounds/0_Race.png"))
     {
             std::cout << "Problem while loading race's picture" << std::endl;
@@ -82,6 +92,43 @@ Player::Player()
 	names[2].setString("> Attention le pseudo doit contenir au moins 3 caracteres!");
 	names[2].setPosition(sf::Vector2f(100,0));
 
+	/*----------------------------------------------*/
+	stats[0].setFont(font);
+	stats[0].setString("Points d'attaque : ");
+
+	stats[1].setFont(font);
+	stats[1].setString("Points de vie : ");
+
+	stats[2].setFont(font);
+	stats[2].setString("Points d'attaque speciale : ");
+
+	stats[3].setFont(font);
+	stats[3].setString("Points de bouclier : ");
+
+	stats[4].setFont(font);
+	stats[4].setString("Chance de coups critique : ");
+
+	stats[5].setFont(font);
+	stats[5].setString("Chance d'esquive : ");
+
+	stats[6].setFont(font);
+	stats[6].setString("Points de regeneration : ");
+
+
+	for (int i = 0; i < MAX_NUMBER_OF_STATS; i++)
+	{
+	    stats[i].setFillColor(sf::Color::White);
+		stats[i].setCharacterSize(25);
+		stats[i].setStyle(sf::Text::Bold);
+		stats[i].setPosition(sf::Vector2f(500,i*25));
+		if(i>3)
+        {
+            stats[i].setPosition(sf::Vector2f(1000,(i%3)*25));
+		}
+
+		//0 25 50 75        --
+	}
+
 }
 
 Player::~Player()
@@ -103,6 +150,11 @@ void Player::draw(sf::RenderWindow &window)
 	for (int i = 0; i < MAX_NUMBER_OF_RACES; i++)
 	{
 		window.draw(races[i]);
+	}
+
+	for (int i = 0; i < MAX_NUMBER_OF_STATS; i++)
+	{
+		window.draw(stats[i]);
 	}
 }
 
@@ -172,8 +224,9 @@ void Player::pseudoPlayer(sf::RenderWindow &window)
         window.draw(player_sprite);
         window.draw(names[0]);
         window.draw(names[1]);
-        if(counter+1 < 3){
-        window.draw(names[2]);
+        if(counter+1 < 3)
+        {
+            window.draw(names[2]);
         }
         window.draw(playerText);
         window.display();
@@ -239,6 +292,35 @@ void Player::moveDown()
 	}
 }
 
+void Player::getStats(CharacterHero her)
+{
+    if(selectedItemIndex == 0)
+        her.setRace(HUMAN);
+
+    if(selectedItemIndex == 1)
+        her.setRace(VALDERA);
+
+    if(selectedItemIndex == 2)
+        her.setRace(VANDUUL);
+
+    if(selectedItemIndex == 3)
+        her.setRace(COVENANTE);
+
+    if(selectedItemIndex == 4)
+    {
+        her.setRace(AETWI);
+    }
+
+	stats[0].setString("Points d'attaque : "+to_string(her.getPtsAttack()));
+	stats[1].setString("Points de vie : "+to_string(her.getPtsLife()));
+	stats[2].setString("Points d'atatque speciale : "+to_string(her.getPtsSpecialAttack()));
+	stats[3].setString("Points de bouclier : "+to_string(her.getShield()));
+	stats[4].setString("Chance de coups critique : "+to_string(her.getCriticalHit()));
+	stats[5].setString("Chance d'esquive : "+to_string(her.getDodge()));
+	stats[6].setString("Points de regen : "+to_string(her.getRegeneration()));
+}
+
+
 //Constructeur de copie
 Player::Player(const Player& other)
 {
@@ -263,4 +345,9 @@ void Player::setPseudo(const string &pseudo)
 string Player::getPseudo() const
 {
     return pseudo;
+}
+
+int Player::getSelectedItemIndex() const
+{
+    return selectedItemIndex;
 }

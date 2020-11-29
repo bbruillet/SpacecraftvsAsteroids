@@ -42,8 +42,10 @@
 		<Unit filename="include/CharacterView.h" />
 		<Unit filename="include/Fight.h" />
 		<Unit filename="include/IConstante.h" />
+		<Unit filename="include/IncreaseStatsMenu.h" />
 		<Unit filename="include/Management.h" />
 		<Unit filename="include/Menu.h" />
+		<Unit filename="include/PauseMenu.h" />
 		<Unit filename="include/Planet.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/Spacecraft.h" />
@@ -58,8 +60,10 @@
 		<Unit filename="src/CharacterView.cpp" />
 		<Unit filename="src/Fight.cpp" />
 		<Unit filename="src/IConstante.cpp" />
+		<Unit filename="src/IncreaseStatsMenu.cpp" />
 		<Unit filename="src/Management.cpp" />
 		<Unit filename="src/Menu.cpp" />
+		<Unit filename="src/PauseMenu.cpp" />
 		<Unit filename="src/Planet.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/Spacecraft.cpp" />

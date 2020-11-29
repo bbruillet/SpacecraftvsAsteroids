@@ -51,64 +51,64 @@ CharacterHero& CharacterHero::operator=(const CharacterHero& cH)
 void CharacterHero::categoryHero() {
     switch(race) {
     case HUMAN:
-        setPtsLife(150);
-        setPtsAttack(10);
-        setPtsSpecialAttack(15);
-        setShield(10);
+        setPtsLife(100);
+        setPtsAttack(100);
+        setPtsSpecialAttack(100);
+        setShield(100);
 
-        setCriticalHit(25.00);
-        setDodge(50.00);
-        setRegeneration(10);
+        setCriticalHit(100.00);
+        setDodge(100.00);
+        setRegeneration(100);
         setPicture("Images/Avatars/0_Heros.png");
 
         break;
 
     case VALDERA:
-        setPtsLife(150);
-        setPtsAttack(10);
-        setPtsSpecialAttack(15);
-        setShield(10);
+        setPtsLife(200);
+        setPtsAttack(200);
+        setPtsSpecialAttack(200);
+        setShield(200);
 
-        setCriticalHit(25.00);
-        setDodge(50.00);
-        setRegeneration(10);
+        setCriticalHit(200.00);
+        setDodge(200.00);
+        setRegeneration(200);
         setPicture("Images/Avatars/1_Heros.png");
 
         break;
     case VANDUUL:
-        setPtsLife(150);
-        setPtsAttack(10);
-        setPtsSpecialAttack(15);
-        setShield(10);
+        setPtsLife(300);
+        setPtsAttack(300);
+        setPtsSpecialAttack(300);
+        setShield(300);
 
-        setCriticalHit(25.00);
-        setDodge(50.00);
-        setRegeneration(10);
+        setCriticalHit(300.00);
+        setDodge(300.00);
+        setRegeneration(300);
         setPicture("Images/Avatars/2_Heros.png");
 
         break;
     case COVENANTE:
-        setPtsLife(150);
-        setPtsAttack(10);
-        setPtsSpecialAttack(15);
-        setShield(10);
+        setPtsLife(400);
+        setPtsAttack(400);
+        setPtsSpecialAttack(400);
+        setShield(400);
 
-        setCriticalHit(25.00);
-        setDodge(50.00);
-        setRegeneration(10);
+        setCriticalHit(400.00);
+        setDodge(400.00);
+        setRegeneration(400);
         setPicture("Images/Avatars/3_Heros.png");
 
         break;
 
     case AETWI:
-        setPtsLife(150);
-        setPtsAttack(10);
-        setPtsSpecialAttack(15);
-        setShield(10);
+        setPtsLife(500);
+        setPtsAttack(500);
+        setPtsSpecialAttack(500);
+        setShield(500);
 
-        setCriticalHit(25.00);
-        setDodge(50.00);
-        setRegeneration(10);
+        setCriticalHit(500.00);
+        setDodge(500.00);
+        setRegeneration(500);
         setPicture("Images/Avatars/4_Heros.png");
 
         break;
