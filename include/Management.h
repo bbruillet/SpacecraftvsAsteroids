@@ -17,6 +17,7 @@
 #include "Player.h"
 #include "Fight.h"
 #include <vector>
+#define MAX_NUMBER_OF_ITEMS 4
 
 using std::vector;
 
@@ -38,6 +39,8 @@ class Management : public sf::Event, public IConstante
         void screenResult(sf::RenderWindow & windowJeu);
         void mapSpace(sf::RenderWindow & windowJeu);
 
+
+        void creditGame(sf::RenderWindow &window);
         sf::Sprite versus_sprite;
         sf::Texture versus_texture;
 
@@ -54,6 +57,8 @@ class Management : public sf::Event, public IConstante
         BarView barBoss;
         Player player;
         Fight fight;
+        sf::Text credit[MAX_NUMBER_OF_ITEMS];
+        sf::Font font;
 //        vector <Planete*> planetes;
 //        vector <Planete*> planetesInacc;
 

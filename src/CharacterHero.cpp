@@ -57,7 +57,7 @@ void CharacterHero::categoryHero() {
         setShield(100);
 
         setCriticalHit(100.00);
-        setDodge(100.00);
+        setDodge(5.00);
         setRegeneration(100);
         setPicture("Images/Avatars/0_Heros.png");
 

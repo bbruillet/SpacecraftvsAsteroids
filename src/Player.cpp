@@ -38,16 +38,6 @@ Player::Player()
 	for (int i = 0; i < MAX_NUMBER_OF_RACES; i++)
 	{
 		races[i].setCharacterSize(150);
-//		if(i == 0)
-//            her.setRace(HUMAN);
-//        if(i == 1)
-//            her.setRace(VALDERA);
-//        if(i == 2)
-//            her.setRace(VANDUUL);
-//        if(i == 3)
-//            her.setRace(COVENANTE);
-//        if(i == 4)
-//            her.setRace(AETWI);
 	}
 
 	selectedItemIndex = 0;
@@ -62,13 +52,13 @@ Player::Player()
         player_sprite.scale(1.0f, 1.0f);
 
     //On charge l'image en fonction de l'élément sélectionné
-    if (!character_texture.loadFromFile("Images/Avatars/"+to_string(selectedItemIndex)+"_Heros.png"))
+    if (!character_texture.loadFromFile("Images/Avatars/"+to_string(selectedItemIndex)+"_Race.png"))
     {
         std::cout << "Problème d'avatar" << std::endl;
     }
 
     character_sprite.setTexture(character_texture);
-    character_sprite.setPosition(1125, 215);
+    character_sprite.setPosition(1000, 215);
 
 
     playerText.setFont(font);
@@ -248,7 +238,7 @@ void Player::moveUp()
             std::cout << "Problème d'arrière plan" << std::endl;
         }
 
-        if (!character_texture.loadFromFile("Images/Avatars/"+to_string(selectedItemIndex)+"_Heros.png"))
+        if (!character_texture.loadFromFile("Images/Avatars/"+to_string(selectedItemIndex)+"_Race.png"))
         {
             std::cout << "Problème d'avatar" << std::endl;
         }
@@ -260,7 +250,7 @@ void Player::moveUp()
         player_sprite.scale(1.0f, 1.0f);
 
         character_sprite.setTexture(character_texture);
-        character_sprite.setPosition(1125, 215);
+        character_sprite.setPosition(1000, 215);
 
 	}
 }
@@ -279,7 +269,7 @@ void Player::moveDown()
         }
 
 
-        if (!character_texture.loadFromFile("Images/Avatars/"+to_string(selectedItemIndex)+"_Heros.png"))
+        if (!character_texture.loadFromFile("Images/Avatars/"+to_string(selectedItemIndex)+"_Race.png"))
         {
             std::cout << "Problème d'avatar" << std::endl;
         }
@@ -288,7 +278,7 @@ void Player::moveDown()
         player_sprite.scale(1.0f, 1.0f);
 
         character_sprite.setTexture(character_texture);
-        character_sprite.setPosition(1125, 215);
+        character_sprite.setPosition(1000, 215);
 	}
 }
 
@@ -313,7 +303,7 @@ void Player::getStats(CharacterHero her)
 
 	stats[0].setString("Points d'attaque : "+to_string(her.getPtsAttack()));
 	stats[1].setString("Points de vie : "+to_string(her.getPtsLife()));
-	stats[2].setString("Points d'atatque speciale : "+to_string(her.getPtsSpecialAttack()));
+	stats[2].setString("Points d'attaque speciale : "+to_string(her.getPtsSpecialAttack()));
 	stats[3].setString("Points de bouclier : "+to_string(her.getShield()));
 	stats[4].setString("Chance de coups critique : "+to_string(her.getCriticalHit()));
 	stats[5].setString("Chance d'esquive : "+to_string(her.getDodge()));

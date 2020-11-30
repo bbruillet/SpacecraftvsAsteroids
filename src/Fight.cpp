@@ -31,21 +31,9 @@ Fight& Fight::operator=(const Fight& rhs)
 
 
 //Heros attaque Boss
-void Fight::attackBoss(Character &c1,Character &c2, sf::RenderWindow &windowJeu)
+void Fight::attackBoss(Character &c1,Character &c2)
 {
 
-
-    while(windowJeu.isOpen())
-    {
-        sf::Event event;
-        while (windowJeu.pollEvent(event))
-        {
-            switch (event.type)
-            {
-                case sf::Event::KeyReleased:
-                switch(event.key.code)
-                {
-                case sf::Keyboard::A:
                     int attack;
                     if(c1.getCounterSpe() == 3)
                     {
@@ -93,38 +81,27 @@ void Fight::attackBoss(Character &c1,Character &c2, sf::RenderWindow &windowJeu)
                     }
 
                     c1.setCounterSpe(c1.getCounterSpe() + 1);
-                    return;
-                    break;
-                case sf::Keyboard::R:
-                    if(nbRegen == 0)
-                    {
-                        cout << "VOUS DEVEZ ATTAQUER !" << endl;
-                    }
 
-//                    if(getHealth() <= c1.getPtsLife()+c1.getRegeneration())
-//                    {
-//                        cout << "VOUS DEVEZ ATTAQUER !" << endl;
-//                    }
-                    else
-                    {
-                        cout << "REGEN de "+c1.getName() << endl;
-                        c1.setPtsLife(c1.getPtsLife() + c1.getRegeneration());
-                        nbRegen--;
-                        return;
 
-                    }
 
-                    break;
-                default:
-                    break;
-                }
-                break;
-                default:
-                    break;
-            }
+
         }
-    }
 
+void Fight::regenHero(Character &c1)
+{
+    if(nbRegen == 0)
+                {
+                    cout << "VOUS DEVEZ ATTAQUER !" << endl;
+                }
+
+                else
+                {
+                    cout << "REGEN de "+c1.getName() << endl;
+                    c1.setPtsLife(c1.getPtsLife() + c1.getRegeneration());
+                    nbRegen--;
+                    return;
+
+                }
 }
 
 //Boss attaque Heros
@@ -184,45 +161,30 @@ void Fight::attackHero(Character &c1, Character &c2)
                             c2.setPtsLife(c2.getPtsLife()-attack);
                         }
     c1.setCounterSpe(c1.getCounterSpe() + 1);
-    cout << c1.str() << endl << endl;
-    cout << c2.str() << endl;
 }
 
-void Fight::fightBoss(Character &c1, Character &c2, sf::RenderWindow &windowJeu)
+void Fight::fightBoss(Character &c1, Character &c2)
 {
-    int round = 0;
-//    health = c1.getPtsLife();
-//    setHealth(health);
-//    int test = 0;
-        round ++;
-        cout << "Round numéro "+to_string(round) << endl;
-
-
-            nbFirst = (rand()% 2) +1;
-
-
-            if(nbFirst == 1){
-                attackBoss(c1,c2,windowJeu);
-                if(c2.getPtsLife() > 0)
-                {
-                    attackHero(c2,c1);
-                    if(c1.getPtsLife() == 0){
-                        cout << "mort de p1" << endl;
-                    }
-                }
+    attackBoss(c1,c2);
+        if(c2.getPtsLife() > 0)
+        {
+            attackHero(c2,c1);
+            if(c1.getPtsLife() == 0){
+                cout << "mort de p1" << endl;
             }
-            if (nbFirst ==2)
-            {
-                attackHero(c2,c1);
-                if(c1.getPtsLife() > 0)
-                {
-                    attackBoss(c1,c2,windowJeu);
+        }
 
-                    if(c2.getPtsLife() == 0){
-                        cout << "mort de p2";
-                    }
-                }
-            }
+}
+
+void Fight::regenFight(Character &c1, Character &c2)
+{
+    regenHero(c1);
+
+    attackHero(c2,c1);
+    if(c1.getPtsLife() == 0){
+        cout << "mort de p1" << endl;
+    }
+
 }
 
 void Fight::setHealth(const int &health)

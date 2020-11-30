@@ -61,8 +61,8 @@ void CharacterBoss::categoryBoss() {
         setCriticalHit(15.0);
         setPtsSpecialAttack(20);
         setShield(50);
-        setX(1545);
-        setY(525);
+        setX(1580);
+        setY(550);
         setPicture("Images/Avatars/Bleue_Boss.png");
         break;
 
@@ -72,30 +72,30 @@ void CharacterBoss::categoryBoss() {
         setCriticalHit(15.0);
         setPtsSpecialAttack(20);
         setShield(400);
-        setX(1550);
-        setY(520);
+        setX(1390);
+        setY(600);
         setPicture("Images/Avatars/Orange_Boss.png");
         break;
 
     case GREEN:
-        setPtsLife(400);
-        setPtsAttack(20);
+        setPtsLife(500);
+        setPtsAttack(10);
         setCriticalHit(15.0);
         setPtsSpecialAttack(30);
         setShield(50);
-        setX(1500);
-        setY(600);
+        setX(1370);
+        setY(610);
         setPicture("Images/Avatars/Verte_Boss.png");
         break;
 
     case RING_BLUE:
-        setPtsLife(250);
+        setPtsLife(1000);
         setPtsAttack(5);
         setCriticalHit(50.0);
         setPtsSpecialAttack(20);
         setShield(150);
-        setX(1110);
-        setY(575);
+        setX(1200);
+        setY(625);
         setPicture("Images/Avatars/Anneau_Bleu_Boss.png");
         break;
 
@@ -105,8 +105,8 @@ void CharacterBoss::categoryBoss() {
         setCriticalHit(15.0);
         setPtsSpecialAttack(20);
         setShield(100);
-        setX(1630);
-        setY(400);
+        setX(1590);
+        setY(595);
         setPicture("Images/Avatars/Anneau_Rouge_Boss.png");
         break;
 
@@ -117,7 +117,7 @@ void CharacterBoss::categoryBoss() {
         setPtsSpecialAttack(20);
         setShield(100);
         setX(1340);
-        setY(600);
+        setY(605);
         setPicture("Images/Avatars/Mauve_Detruite_Boss.png");
         break;
     default:

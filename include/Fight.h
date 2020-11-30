@@ -35,9 +35,11 @@ class Fight
         Fight& operator=(const Fight& other);
 
     //Méthode de combat
-        void attackBoss(Character& c1, Character& c2, sf::RenderWindow &window);
+        void attackBoss(Character& c1, Character& c2);
         void attackHero(Character& c1, Character& c2);
-        void fightBoss(Character& c1, Character& c2, sf::RenderWindow &window);
+        void fightBoss(Character& c1, Character& c2);
+        void regenHero(Character& c1);
+        void regenFight(Character& c1, Character& c2);
 
         int getHealth() const;
         void setHealth(const int &);

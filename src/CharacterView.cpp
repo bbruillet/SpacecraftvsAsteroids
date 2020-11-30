@@ -7,6 +7,7 @@ CharacterView::CharacterView(/*Personnage* personnage*/)//:personnage(personnage
     rectHero = rect;
     sf::IntRect rect2(0, 0, 500, 420);
     rectBoss = rect2;
+    rectAttackBoss = rect2;
 }
 
 CharacterView::~CharacterView()
@@ -51,8 +52,22 @@ void CharacterView::drawBoss(sf::RenderWindow &window)
     }
 
     character_boss_sprite.setTexture(character_boss_texture);
+    character_boss_sprite.setTextureRect(rectBoss);
     character_boss_sprite.setPosition(boss->getX(),boss->getY());
     window.draw(character_boss_sprite);
+}
+
+void CharacterView::drawBoss2(sf::RenderWindow &window)
+{
+    if (!attack_boss_texture.loadFromFile(boss->getPicture()))
+    {
+        std::cout << "Problème for loading Boss's texture" << std::endl;
+    }
+
+    attack_boss_sprite.setTexture(attack_boss_texture);
+    attack_boss_sprite.setTextureRect(rectAttackBoss);
+    //attack_boss_sprite.setPosition(boss->getX(),boss->getY());
+    window.draw(attack_boss_sprite);
 }
 
 void CharacterView::setCharacterHero(CharacterHero& carH)
@@ -138,43 +153,43 @@ void CharacterView::fightHero()
 
 
 //500/420
-void CharacterView::forwardBoss()
-{
-    if(rectBoss.left > 500 || rectBoss.left < 0)
-    {
-       rectBoss.left = 0;
-    }
-    else
-    {
-        if(rectBoss.left == 500)
-        {
-            rectBoss.left = 0;
-            cout<< "Animation" << endl;
-        }
-        else
-        {
-            rectBoss.left += 500;
-        }
-    }
-
-}
+//void CharacterView::forwardBoss()
+//{
+//    if(rectBoss.left > 500 || rectBoss.left < 0)
+//    {
+//       rectBoss.left = 0;
+//    }
+//    else
+//    {
+//        if(rectBoss.left == 500)
+//        {
+//            rectBoss.left = 0;
+//            cout<< "Animation" << endl;
+//        }
+//        else
+//        {
+//            rectBoss.left += 500;
+//        }
+//    }
+//
+//}
 
 void CharacterView::throwingBoss()
 {
-    if(rectBoss.left > 3500 || rectBoss.left < 2000)
+    if(rectAttackBoss.left > 3500 || rectAttackBoss.left < 2000)
     {
-       rectBoss.left = 2000;
+       rectAttackBoss.left = 2000;
 
     }
     else
     {
-        if(rectBoss.left == 3500){
-            rectBoss.left = 2000;
+        if(rectAttackBoss.left == 3500){
+            rectAttackBoss.left = 2000;
             cout<< "Animation" << endl;
         }
         else
         {
-            rectBoss.left += 500;
+            rectAttackBoss.left += 500;
         }
     }
 }

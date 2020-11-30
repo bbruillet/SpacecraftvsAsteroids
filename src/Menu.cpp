@@ -29,7 +29,7 @@ Menu::Menu()
 
 	menu[1].setFont(font);
 	menu[1].setFillColor(sf::Color::White);
-	menu[1].setString("> Voir la map");
+	menu[1].setString("> Credits");
 	menu[1].setPosition(sf::Vector2f(100,250));
 
 	menu[2].setFont(font);
@@ -83,3 +83,5 @@ void Menu::moveDown()
 		menu[selectedItemIndex].setFillColor(sf::Color(201, 135, 185));
 	}
 }
+
+
