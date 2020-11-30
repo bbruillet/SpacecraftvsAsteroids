@@ -88,27 +88,27 @@ void CharacterHero::categoryHero() {
 
         break;
     case COVENANTE:
-        setPtsLife(400);
-        setPtsAttack(400);
-        setPtsSpecialAttack(400);
-        setShield(400);
+        setPtsLife(300);
+        setPtsAttack(30);
+        setPtsSpecialAttack(50);
+        setShield(30);
 
-        setCriticalHit(400.00);
-        setDodge(400.00);
-        setRegeneration(400);
+        setCriticalHit(35.00);
+        setDodge(20.00);
+        setRegeneration(80);
         setPicture("Images/Avatars/3_Heros.png");
 
         break;
 
     case AETWI:
-        setPtsLife(500);
-        setPtsAttack(500);
-        setPtsSpecialAttack(500);
-        setShield(500);
+        setPtsLife(260);
+        setPtsAttack(42);
+        setPtsSpecialAttack(66);
+        setShield(15);
 
-        setCriticalHit(500.00);
-        setDodge(500.00);
-        setRegeneration(500);
+        setCriticalHit(23.00);
+        setDodge(35.00);
+        setRegeneration(50);
         setPicture("Images/Avatars/4_Heros.png");
 
         break;
