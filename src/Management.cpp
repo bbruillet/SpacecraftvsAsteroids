@@ -41,16 +41,12 @@ Management::Management()
     unreachPlanets[1] = new Planet("Plateforme", "Images/Planetes/Plateforme.png", 6900, 3300, 0, 0);
     unreachPlanets[2] = new Planet("Soleil", "Images/Planetes/Soleil.png", 12000, 0, 0, 0);
 
-    boss[0] = new CharacterBoss("BossBleu",BLUE);
-    boss[1] = new CharacterBoss("BossOrange",ORANGE);
+    boss[0] = new CharacterBoss("Oblumandias",BLUE);
+    boss[1] = new CharacterBoss("Moff Tarkin le grand",ORANGE);
     boss[2] = new CharacterBoss("BossMauve",PURPLE_DESTROYED);
     boss[3] = new CharacterBoss("BossRouge",RING_RED);
     boss[4] = new CharacterBoss("BossVert",GREEN);
-    boss[5] = new CharacterBoss("BossAnneauBleu",RING_BLUE);
-
-
-
-
+    boss[5] = new CharacterBoss("Zanentia",RING_BLUE);
 
 
     for ( size_t i = 0; i < planets.size(); i++ )
@@ -565,6 +561,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
     sf::View view(sf::FloatRect(2048, 1024, 2048, 1024));
     view.setCenter(1024, 512);
     int nb = 0;
+    int step;
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
     //sf::Font font;
@@ -623,7 +620,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
     barBoss.updateShield(pla.getBoss()->getShield());
 
     int statut = 0;
-
+    int nbRegen = 2;
 
 
 
@@ -633,7 +630,6 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
     int lifeHero = hero.getPtsLife();
     int shieldHero = hero.getShield();
-    cout << "LIFEEEE" + to_string(lifeHero) << endl;
 
     while (windowJeu.isOpen())
     {
@@ -653,7 +649,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                 switch(event.key.code)
                 {
                 case sf::Keyboard::A:
-                cout << "OUI" << endl;
+                //cout << "OUI" << endl;
                 fight.fightBoss(hero,*pla.getBoss());
                 while(dimension.x < pla.getBoss()->getX() -300)
                 {
@@ -678,7 +674,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
 
 
-                 for(size_t i(0);i<5;i++)
+                for(size_t i(0);i<5;i++)
                 {
                     windowJeu.clear();
                     cView.fightHero();
@@ -779,16 +775,46 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     barHero.updateLife(hero.getPtsLife());
                     barHero.updateShield(hero.getShield());
 
+                    step = nb;
                     nb = 0;
 
-
-
-
                 break;
-                case sf::Keyboard::R:
-                    fight.regenFight(hero,*pla.getBoss());
 
-                      if(pla.getBoss()->getPtsLife() > 0){
+                case sf::Keyboard::R:
+
+                    if(hero.getPtsLife()+hero.getRegeneration() <= lifeHero && nbRegen>0)
+                    {
+
+                        nbRegen--;
+                        fight.regenHero(hero, *pla.getBoss());
+
+                    barHero.updateLife(hero.getPtsLife());
+                    barHero.updateShield(hero.getShield());
+                    /*---
+                    Animation REGEN
+                    */
+                    for(size_t i(0);i<5;i++)
+                    {
+                        cView.regen_sprite.setPosition(pla.getXChar()-20, pla.getYChar()-30);
+                        windowJeu.clear();
+                        cView.regenCircles();
+                        pla.getBiome()->drawBiome(windowJeu);
+                        barHero.drawLife(windowJeu);
+                        barHero.drawShield(windowJeu);
+                        barBoss.drawLife(windowJeu);
+                        barBoss.drawShield(windowJeu);
+                        cView.drawHero(windowJeu);
+                        cView.drawBoss(windowJeu);
+                        cView.drawRegenCircles(windowJeu);
+
+                        windowJeu.draw(versus_sprite);
+                        windowJeu.draw(textHero);
+                        windowJeu.draw(textBoss);
+                        windowJeu.display();
+                        sf::sleep(sf::milliseconds(600));
+                    }
+
+                    if(pla.getBoss()->getPtsLife() > 0){
                     for(size_t i(0);i<5;i++)
                     {
                         windowJeu.clear();
@@ -806,11 +832,11 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                         windowJeu.display();
                         sf::sleep(sf::milliseconds(200));
                     }
-
+                    fight.attackHero(*pla.getBoss(),hero);
 
                     cView.rectBoss.left = 0;
 
-                    for(int i(0);i<nb;i++)
+                    for(int i(0);i<step;i++)
                     {
                         sf::sleep(sf::milliseconds(5));
                         windowJeu.clear();
@@ -840,6 +866,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
                     barHero.updateLife(hero.getPtsLife());
                     barHero.updateShield(hero.getShield());
+                }
 
                     break;
 
@@ -875,6 +902,8 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
         }
 
+
+
         windowJeu.clear();
 
         pla.getBiome()->drawBiome(windowJeu);
@@ -904,6 +933,15 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
     }
 
 
+}
+
+string Management::eventFight(Character c1, Character c2)
+{
+    string event;
+
+//    if(c1.getPtsLife())
+    cout << event << endl;
+    return "";
 }
 
 void Management::screenResult(sf::RenderWindow& windowJeu)
@@ -948,7 +986,12 @@ void Management::increaseStats(sf::RenderWindow & windowJeu)
                     switch(stats.getPressedItem())
                     {
                     case 0:
-                        hero.setPtsLife(hero.getPtsLife()+10);
+//                        hero.setPtsLife(hero.getPtsLife()*1.5);
+//                        hero.setPtsAttack(hero.getPtsAttack()*1.2);
+//                        hero.setPtsSpecialAttack(hero.getPtsSpecialAttack()*1.25);
+//                        hero.setShield(hero.getShield()*1.2);
+//                        hero.setRegeneration(hero.getRegeneration()*1.2);
+
                         launch(windowJeu);
                         break;
 

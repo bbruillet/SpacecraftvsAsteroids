@@ -38,11 +38,12 @@ class Fight
         void attackBoss(Character& c1, Character& c2);
         void attackHero(Character& c1, Character& c2);
         void fightBoss(Character& c1, Character& c2);
-        void regenHero(Character& c1);
-        void regenFight(Character& c1, Character& c2);
+        void regenHero(Character& c2, Character& c1);
 
         int getHealth() const;
         void setHealth(const int &);
+
+
 
 
 };

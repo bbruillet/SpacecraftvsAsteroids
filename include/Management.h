@@ -39,6 +39,8 @@ class Management : public sf::Event, public IConstante
         void screenResult(sf::RenderWindow & windowJeu);
         void mapSpace(sf::RenderWindow & windowJeu);
 
+        string eventFight(Character her, Character bos);
+
 
         void creditGame(sf::RenderWindow &window);
         sf::Sprite versus_sprite;

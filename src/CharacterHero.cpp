@@ -51,14 +51,14 @@ CharacterHero& CharacterHero::operator=(const CharacterHero& cH)
 void CharacterHero::categoryHero() {
     switch(race) {
     case HUMAN:
-        setPtsLife(100);
+        setPtsLife(1000);
         setPtsAttack(100);
         setPtsSpecialAttack(100);
         setShield(100);
 
         setCriticalHit(100.00);
         setDodge(5.00);
-        setRegeneration(100);
+        setRegeneration(15);
         setPicture("Images/Avatars/0_Heros.png");
 
         break;

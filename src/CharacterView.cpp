@@ -8,6 +8,8 @@ CharacterView::CharacterView(/*Personnage* personnage*/)//:personnage(personnage
     sf::IntRect rect2(0, 0, 500, 420);
     rectBoss = rect2;
     rectAttackBoss = rect2;
+    sf::IntRect rect3(0, 0, 400, 400);
+    rectRegen = rect3;
 }
 
 CharacterView::~CharacterView()
@@ -70,6 +72,18 @@ void CharacterView::drawBoss2(sf::RenderWindow &window)
     window.draw(attack_boss_sprite);
 }
 
+void CharacterView::drawRegenCircles(sf::RenderWindow &window)
+{
+    if (!regen_texture.loadFromFile("Images/Avatars/Regen.png"))
+    {
+        std::cout << "Problème for loading Boss's texture" << std::endl;
+    }
+
+    regen_sprite.setTexture(regen_texture);
+    regen_sprite.setTextureRect(rectRegen);
+    window.draw(regen_sprite);
+}
+
 void CharacterView::setCharacterHero(CharacterHero& carH)
 {
     this->hero = &carH;
@@ -102,7 +116,6 @@ void CharacterView::forwardHero()
         if(rectHero.left == 1050)
         {
             rectHero.left = 0;
-            cout<< "Animation" << endl;
         }
         else
         {
@@ -121,9 +134,9 @@ void CharacterView::backwardHero()
     }
     else
     {
-        if(rectHero.left == 2450){
+        if(rectHero.left == 2450)
+        {
             rectHero.left = 2100;
-            cout<< "Animation" << endl;
         }
         else
         {
@@ -140,9 +153,9 @@ void CharacterView::fightHero()
     }
     else
     {
-        if(rectHero.left == 1750){
+        if(rectHero.left == 1750)
+        {
             rectHero.left = 1400;
-            cout<< "Animation" << endl;
         }
         else
         {
@@ -151,28 +164,18 @@ void CharacterView::fightHero()
     }
 }
 
+void CharacterView::regenCircles()
+{
 
-//500/420
-//void CharacterView::forwardBoss()
-//{
-//    if(rectBoss.left > 500 || rectBoss.left < 0)
-//    {
-//       rectBoss.left = 0;
-//    }
-//    else
-//    {
-//        if(rectBoss.left == 500)
-//        {
-//            rectBoss.left = 0;
-//            cout<< "Animation" << endl;
-//        }
-//        else
-//        {
-//            rectBoss.left += 500;
-//        }
-//    }
-//
-//}
+    if(rectRegen.left == 2400)
+    {
+        rectRegen.left = 0;
+    }
+    else
+    {
+        rectRegen.left += 400;
+    }
+}
 
 void CharacterView::throwingBoss()
 {
@@ -183,9 +186,9 @@ void CharacterView::throwingBoss()
     }
     else
     {
-        if(rectAttackBoss.left == 3500){
+        if(rectAttackBoss.left == 3500)
+        {
             rectAttackBoss.left = 2000;
-            cout<< "Animation" << endl;
         }
         else
         {
@@ -202,9 +205,9 @@ void CharacterView::fightBoss()
     }
     else
     {
-        if(rectBoss.left == 1500){
+        if(rectBoss.left == 1500)
+        {
             rectBoss.left = 1000;
-            cout<< "Animation" << endl;
         }
         else
         {

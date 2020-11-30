@@ -26,6 +26,7 @@ class Character /*: public sf::Drawable, public sf::Event*/
         int x,y;
         string picture;
         int regeneration;
+        int maxlife;
 
 
 
