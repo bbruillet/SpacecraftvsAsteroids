@@ -79,7 +79,7 @@ void CharacterBoss::categoryBoss() {
 
     case GREEN:
         setPtsLife(500);
-        setPtsAttack(10);
+        setPtsAttack(15);
         setCriticalHit(15.0);
         setPtsSpecialAttack(30);
         setShield(50);
