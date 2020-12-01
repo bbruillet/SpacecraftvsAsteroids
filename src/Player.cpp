@@ -63,23 +63,23 @@ Player::Player()
 
     playerText.setFont(font);
     playerText.setCharacterSize(50);
-    playerText.setFillColor(sf::Color(96, 59, 99));
+    playerText.setFillColor(sf::Color(0, 0, 0));
     playerText.setPosition(sf::Vector2f(300,400));
 
     names[0].setFont(font);
-	names[0].setFillColor(sf::Color(96, 59, 99));
-	names[0].setString("> Veuillez entrer votre pseudo :");
-	names[0].setPosition(sf::Vector2f(100,250));
+	names[0].setFillColor(sf::Color(0, 0, 0));
+	names[0].setString("> Veuillez entrer votre pseudo <");
+	names[0].setPosition(sf::Vector2f(150,250));
     names[0].setCharacterSize(75);
 
 	names[1].setFont(font);
-	names[1].setFillColor(sf::Color(115,14,14));
+	names[1].setFillColor(sf::Color(204,145,0));
 	names[1].setString("> Attention le pseudo ne peut pas depasser 20 caracteres !");
 	names[1].setPosition(sf::Vector2f(100,50));
 
 	names[2].setFont(font);
-	names[2].setFillColor(sf::Color(115,14,14));
-	names[2].setString("> Attention le pseudo doit contenir au moins 3 caracteres!");
+	names[2].setFillColor(sf::Color(204,145,0));
+	names[2].setString("> Attention le pseudo doit contenir au moins 3 caracteres !");
 	names[2].setPosition(sf::Vector2f(100,0));
 
 	/*----------------------------------------------*/

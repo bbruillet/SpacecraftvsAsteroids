@@ -42,7 +42,7 @@ Management::Management()
     unreachPlanets[2] = new Planet("Soleil", "Images/Planetes/Soleil.png", 12000, 0, 0, 0);
 
     boss[0] = new CharacterBoss("Oblumandias",BLUE);
-    boss[1] = new CharacterBoss("Moff Tarkin le grand",ORANGE);
+    boss[1] = new CharacterBoss("Mof Tarkin the great",ORANGE);
     boss[2] = new CharacterBoss("BossMauve",PURPLE_DESTROYED);
     boss[3] = new CharacterBoss("BossRouge",RING_RED);
     boss[4] = new CharacterBoss("BossVert",GREEN);
@@ -572,6 +572,11 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
         cout << "Internal error" <<endl;
     }
 
+    if (!fontFight.loadFromFile("Polices/SpaceCapitain.otf"))
+    {
+        cout << "Internal error" <<endl;
+    }
+
     if (!versus_texture.loadFromFile("Images/Backgrounds/versus.png"))
     {
         std::cout << "Problème d'image du 'versus'" << std::endl;
@@ -589,11 +594,11 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
     sf::Text textHero;
     sf::Text textBoss;
 
-    textHero.setFont(font);
-    textBoss.setFont(font);
+    textHero.setFont(fontFight);
+    textBoss.setFont(fontFight);
 
-    textHero.setFillColor(sf::Color::Yellow);
-    textBoss.setFillColor(sf::Color::Yellow);
+    textHero.setFillColor(sf::Color(36, 154, 247));
+    textBoss.setFillColor(sf::Color(247, 154, 36));
 
     textHero.setCharacterSize(30);
     textBoss.setCharacterSize(30);
@@ -629,11 +634,29 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
     sf::Text textAttackEvent;
 
     textAttackEvent.setFont(font);
-    textAttackEvent.setFillColor(sf::Color::Green);
+    //
+    textAttackEvent.setFillColor(sf::Color::White);
     textAttackEvent.setCharacterSize(30);
 
     textAttackEvent.setPosition(500,500);
 
+    textLifeHero.setFont(font);
+    textLifeBoss.setFont(font);
+
+    textLifeHero.setFillColor(sf::Color(105, 0, 0));
+    textLifeBoss.setFillColor(sf::Color(105, 0, 0));
+
+    textLifeHero.setCharacterSize(30);
+    textLifeBoss.setCharacterSize(30);
+
+    textLifeHero.setPosition(837, 55);
+    textLifeBoss.setPosition(1153, 55);
+
+    textLifeHero.setStyle(sf::Text::Bold);
+    textLifeBoss.setStyle(sf::Text::Bold);
+
+    textLifeHero.setString(to_string(hero.getPtsLife()));
+    textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
@@ -660,7 +683,6 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                 switch(event.key.code)
                 {
                 case sf::Keyboard::A:
-                //cout << "OUI" << endl;
                 attackEvent = fight.attack(hero,*pla.getBoss());
 
                 textAttackEvent.setString("Attaque de " + hero.getName());
@@ -684,6 +706,10 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     windowJeu.draw(textHero);
                     windowJeu.draw(textBoss);
                     windowJeu.draw(textAttackEvent);
+
+
+                    windowJeu.draw(textLifeHero);
+                    windowJeu.draw(textLifeBoss);
                     windowJeu.display();
                     sf::sleep(sf::milliseconds(5));
                 }
@@ -712,12 +738,19 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     windowJeu.draw(textHero);
                     windowJeu.draw(textBoss);
                     windowJeu.draw(textAttackEvent);
+
+
+                    windowJeu.draw(textLifeHero);
+                    windowJeu.draw(textLifeBoss);
                     windowJeu.display();
                     sf::sleep(sf::milliseconds(600));
                 }
 
                 barBoss.updateLife(pla.getBoss()->getPtsLife());
                 barBoss.updateShield(pla.getBoss()->getShield());
+
+                textLifeHero.setString(to_string(hero.getPtsLife()));
+                textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
 
 
                 for(int i(0);i<nb;i++)
@@ -736,9 +769,16 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     windowJeu.draw(versus_sprite);
                     windowJeu.draw(textHero);
                     windowJeu.draw(textBoss);
+
+
+                    windowJeu.draw(textLifeHero);
+                    windowJeu.draw(textLifeBoss);
                     windowJeu.display();
                     sf::sleep(sf::milliseconds(5));
                 }
+
+
+
 
 
                 cView.rectHero.left = 0;
@@ -771,6 +811,10 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                         windowJeu.draw(textHero);
                         windowJeu.draw(textBoss);
                         windowJeu.draw(textAttackEvent);
+
+
+                        windowJeu.draw(textLifeHero);
+                        windowJeu.draw(textLifeBoss);
                         windowJeu.display();
                         sf::sleep(sf::milliseconds(200));
                     }
@@ -805,9 +849,16 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                         windowJeu.draw(textHero);
                         windowJeu.draw(textBoss);
                         windowJeu.draw(textAttackEvent);
+
+
+                        windowJeu.draw(textLifeHero);
+                        windowJeu.draw(textLifeBoss);
                         windowJeu.display();
                     }
                 }
+
+                textLifeHero.setString(to_string(hero.getPtsLife()));
+                textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
 
                 dimensionBoss.x = pla.getBoss()->getX()-250;
 
@@ -834,6 +885,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
                         barHero.updateLife(hero.getPtsLife());
                         barHero.updateShield(hero.getShield());
+                        textLifeHero.setString(to_string(hero.getPtsLife()));
 
 
                     /*---
@@ -856,9 +908,15 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                         windowJeu.draw(textHero);
                         windowJeu.draw(textBoss);
                         windowJeu.draw(textAttackEvent);
+
+
+                        windowJeu.draw(textLifeBoss);
                         windowJeu.display();
                         sf::sleep(sf::milliseconds(600));
                     }
+
+                    textLifeHero.setString(to_string(hero.getPtsLife()));
+                    textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
 
                     if(pla.getBoss()->getPtsLife() > 0)
                     {
@@ -878,6 +936,10 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                             windowJeu.draw(textHero);
                             windowJeu.draw(textBoss);
                             windowJeu.draw(textAttackEvent);
+
+
+                            windowJeu.draw(textLifeHero);
+                            windowJeu.draw(textLifeBoss);
                             windowJeu.display();
                             sf::sleep(sf::milliseconds(200));
                         }
@@ -915,9 +977,17 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                         windowJeu.draw(textHero);
                         windowJeu.draw(textBoss);
                         windowJeu.draw(textAttackEvent);
+
+                        textLifeHero.setString(to_string(hero.getPtsLife()));
+                        textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
+                        windowJeu.draw(textLifeHero);
+                        windowJeu.draw(textLifeBoss);
                         windowJeu.display();
 
                     }
+
+                    textLifeHero.setString(to_string(hero.getPtsLife()));
+                    textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
                 }
 
                 dimensionBoss.x = pla.getBoss()->getX()-250;
@@ -984,9 +1054,6 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
         textHero.setPosition(400, 20);
         textBoss.setPosition(1150, 20);
 
-
-
-
         textHero.setString(cView.getCharacterHero().getName());
         textBoss.setString(pla.getBoss()->getName());
         barHero.drawLife(windowJeu);
@@ -998,8 +1065,8 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
         windowJeu.draw(versus_sprite);
         windowJeu.draw(textHero);
         windowJeu.draw(textBoss);
-
-        //windowJeu.draw(pla.getBoss()->personnage_sprite);
+        windowJeu.draw(textLifeHero);
+        windowJeu.draw(textLifeBoss);
         windowJeu.display();
 
         statut = 0;
@@ -1172,7 +1239,7 @@ void Management::creditGame(sf::RenderWindow &window)
 	credit[3].setString("> Smet Antoine " );
 	credit[3].setPosition(sf::Vector2f(500,650));
 
-	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
+	for (int i = 0; i < MAX_NUMBER_OF_STUDENTS; i++)
 	{
 		credit[i].setCharacterSize(66);
 	}
@@ -1195,7 +1262,7 @@ void Management::creditGame(sf::RenderWindow &window)
 
 		window.clear();
 
-		 for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
+		 for (int i = 0; i < MAX_NUMBER_OF_STUDENTS; i++)
             {
                 window.draw(credit[i]);
 

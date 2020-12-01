@@ -55,6 +55,7 @@
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/Spacecraft.h" />
 		<Unit filename="include/SpacecraftView.h" />
+		<Unit filename="include/StatsPlayerView.h" />
 		<Unit filename="include/Universe.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/BarView.cpp" />
@@ -78,6 +79,7 @@
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/Spacecraft.cpp" />
 		<Unit filename="src/SpacecraftView.cpp" />
+		<Unit filename="src/StatsPlayerView.cpp" />
 		<Unit filename="src/Universe.cpp" />
 		<Extensions />
 	</Project>

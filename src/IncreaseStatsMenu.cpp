@@ -35,7 +35,7 @@ IncreaseStatsMenu::IncreaseStatsMenu()
 
 	for (int i = 0; i < MAX_NUMBER_OF_INCREASED_STATS; i++)
 	{
-		statsMenu[i].setCharacterSize(100);
+		statsMenu[i].setCharacterSize(50);
 		statsMenu[i].setFont(font);
 		statsMenu[i].setPosition(sf::Vector2f(100,i*100));
 	}

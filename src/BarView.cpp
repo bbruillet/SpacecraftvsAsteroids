@@ -59,7 +59,6 @@ void BarView::setRotation()
 
     barFrameShield.setRotation(180);
     frameShield.setRotation(180);
-
 }
 
 //envoie la nouvelle vie pour que la barrie de vie varie
@@ -96,6 +95,8 @@ void BarView::setBarLifePosition(int x,int y)
     this->yLife = y;
     frameLife.setPosition(xLife,yLife);
     barFrameLife.setPosition(xLife,yLife);
+
+
 
 }
 

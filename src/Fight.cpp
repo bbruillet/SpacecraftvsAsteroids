@@ -115,7 +115,7 @@ string Fight::eventAttack(int attackEvent)
 
     else if(attackEvent == 2)
     {
-        return " a esquivé ton coup";
+        return " a esquivé coup";
     }
 
     else if(attackEvent == 3)

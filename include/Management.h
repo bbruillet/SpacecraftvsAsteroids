@@ -17,7 +17,7 @@
 #include "Player.h"
 #include "Fight.h"
 #include <vector>
-#define MAX_NUMBER_OF_ITEMS 4
+#define MAX_NUMBER_OF_STUDENTS 4
 
 using std::vector;
 
@@ -60,8 +60,11 @@ class Management : public sf::Event, public IConstante
         BarView barBoss;
         Player player;
         Fight fight;
-        sf::Text credit[MAX_NUMBER_OF_ITEMS];
+        sf::Text credit[MAX_NUMBER_OF_STUDENTS];
         sf::Font font;
+        sf::Font fontFight;
+        sf::Text textLifeHero;
+        sf::Text textLifeBoss;
 //        vector <Planete*> planetes;
 //        vector <Planete*> planetesInacc;
 
