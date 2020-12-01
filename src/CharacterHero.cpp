@@ -6,23 +6,11 @@
 
 
 CharacterHero::CharacterHero(const string name, const int ptsAttack, const int ptsLife, const int ptsExperience, const int level,
-    const int ptsSpecialAttack, const int shield, const double criticalHit, const double dodge, const int x, const int y, const string picture, const int regeneration, const Race race)
-:Character(name,ptsAttack,ptsLife,ptsExperience,level,ptsSpecialAttack,shield,criticalHit,dodge, x, y, picture, regeneration),race(race)
+    const int ptsSpecialAttack, const int shield, const double criticalHit, const double dodge,
+    const int x, const int y, const string picture, const int regeneration, const Race race ,IStrategyIncrease* strat)
+:Character(name,ptsAttack,ptsLife,ptsExperience,level,ptsSpecialAttack,shield,criticalHit,dodge, x, y, picture, regeneration),race(race), strategy(strat)
 {
-    categoryHero();
-//    if (!persoHeros_texture.loadFromFile("Images/Avatars/Heros.png"))
-//    {
-//        std::cout << "Problème" << std::endl;
-//    }
-//
-//    persoHeros_sprite.setTexture(persoHeros_texture);
-//    persoHeros_sprite.setPosition(50, 50);
-//    persoHeros_sprite.setOrigin(1000, 1000);
-}
 
-CharacterHero::CharacterHero(const string name, const Race race)
-:Character(name),race(race)
-{
     categoryHero();
 }
 
@@ -51,13 +39,13 @@ CharacterHero& CharacterHero::operator=(const CharacterHero& cH)
 void CharacterHero::categoryHero() {
     switch(race) {
     case HUMAN:
-        setPtsLife(1000);
-        setPtsAttack(100);
-        setPtsSpecialAttack(100);
-        setShield(100);
+        setPtsLife(300);
+        setPtsAttack(500);
+        setPtsSpecialAttack(75);
+        setShield(10);
 
-        setCriticalHit(100.00);
-        setDodge(5.00);
+        setCriticalHit(35.00);
+        setDodge(30.00);
         setRegeneration(15);
         setPicture("Images/Avatars/0_Heros.png");
 
@@ -65,13 +53,13 @@ void CharacterHero::categoryHero() {
 
     case VALDERA:
         setPtsLife(200);
-        setPtsAttack(200);
+        setPtsAttack(40);
         setPtsSpecialAttack(200);
-        setShield(200);
+        setShield(50);
 
         setCriticalHit(200.00);
-        setDodge(200.00);
-        setRegeneration(200);
+        setDodge(10.00);
+        setRegeneration(20);
         setPicture("Images/Avatars/1_Heros.png");
 
         break;
@@ -83,7 +71,7 @@ void CharacterHero::categoryHero() {
 
         setCriticalHit(300.00);
         setDodge(300.00);
-        setRegeneration(300);
+        setRegeneration(10);
         setPicture("Images/Avatars/2_Heros.png");
 
         break;
@@ -102,7 +90,7 @@ void CharacterHero::categoryHero() {
 
     case AETWI:
         setPtsLife(260);
-        setPtsAttack(42);
+        setPtsAttack(700);
         setPtsSpecialAttack(66);
         setShield(15);
 
@@ -129,4 +117,14 @@ void CharacterHero::setRace(const Race& race)
 {
     this->race = race;
     categoryHero();
+}
+
+void CharacterHero::executeIncrease()
+{
+    strategy->increase(*this);
+}
+
+void CharacterHero::setIncrease(IStrategyIncrease* strategy)
+{
+    this->strategy = strategy;
 }

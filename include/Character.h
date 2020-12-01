@@ -16,7 +16,7 @@ using std::string;
 using std::to_string;
 using std::ostream;
 
-class Character /*: public sf::Drawable, public sf::Event*/
+class Character
 {
     private:
         string name;

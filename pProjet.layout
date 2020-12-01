@@ -2,59 +2,62 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="src/Universe.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="921" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="55" />
-			<Collapse line="60" />
-			<Collapse line="65" />
-			<Collapse line="70" />
-		</Folding>
-	</File>
-	<File name="src/SpacecraftView.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2401" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="133" />
-			<Collapse line="138" />
-		</Folding>
-	</File>
 	<File name="include/IConstante.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="129" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="include/CharacterView.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/IncreaseLife.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="971" topLine="21" />
+			<Cursor1 position="124" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/IncreaseStatsMenu.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/CharacterBoss.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1796" topLine="53" />
+			<Cursor1 position="1913" topLine="83" />
 		</Cursor>
-	</File>
-	<File name="include/Spacecraft.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="684" topLine="17" />
-		</Cursor>
+		<Folding>
+			<Collapse line="5" />
+			<Collapse line="8" />
+			<Collapse line="17" />
+			<Collapse line="23" />
+			<Collapse line="34" />
+			<Collapse line="44" />
+			<Collapse line="51" />
+		</Folding>
 	</File>
 	<File name="include/BiomePlanet.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="535" topLine="15" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/CharacterView.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="341" topLine="0" />
+			<Cursor1 position="1784" topLine="27" />
 		</Cursor>
 	</File>
-	<File name="src/Character.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/Management.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="623" topLine="10" />
+			<Cursor1 position="28637" topLine="528" />
+		</Cursor>
+		<Folding>
+			<Collapse line="72" />
+			<Collapse line="167" />
+			<Collapse line="231" />
+			<Collapse line="316" />
+			<Collapse line="325" />
+			<Collapse line="330" />
+			<Collapse line="489" />
+		</Folding>
+	</File>
+	<File name="include/Management.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1119" topLine="35" />
+		</Cursor>
+	</File>
+	<File name="src/Character.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1655" topLine="34" />
 		</Cursor>
 		<Folding>
 			<Collapse line="54" />
@@ -87,29 +90,14 @@
 			<Collapse line="212" />
 		</Folding>
 	</File>
-	<File name="src/CharacterView.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1784" topLine="27" />
+			<Cursor1 position="319" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/BiomePlanet.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/IncreaseAttack.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="744" topLine="25" />
-		</Cursor>
-	</File>
-	<File name="include/IncreaseStatsMenu.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="493" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="src/Spacecraft.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="572" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/PauseMenu.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1523" topLine="63" />
+			<Cursor1 position="608" topLine="4" />
 		</Cursor>
 	</File>
 	<File name="include/Planet.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -117,82 +105,92 @@
 			<Cursor1 position="1308" topLine="35" />
 		</Cursor>
 	</File>
+	<File name="include/IncreaseStatsMenu.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="125" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="src/PauseMenu.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1523" topLine="63" />
+		</Cursor>
+	</File>
+	<File name="include/IStrategyIncrease.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="317" topLine="0" />
+		</Cursor>
+	</File>
 	<File name="src/Player.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="7564" topLine="256" />
 		</Cursor>
 	</File>
-	<File name="include/Player.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/CharacterHero.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1122" topLine="35" />
+			<Cursor1 position="822" topLine="26" />
 		</Cursor>
 	</File>
-	<File name="include/Character.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/IncreaseStatsMenu.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2320" topLine="63" />
+			<Cursor1 position="893" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/Management.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/BiomePlanet.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="22329" topLine="373" />
+			<Cursor1 position="744" topLine="25" />
+		</Cursor>
+	</File>
+	<File name="src/Universe.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="921" topLine="0" />
 		</Cursor>
 		<Folding>
-			<Collapse line="72" />
-			<Collapse line="167" />
-			<Collapse line="231" />
-			<Collapse line="316" />
-			<Collapse line="325" />
-			<Collapse line="330" />
-			<Collapse line="489" />
+			<Collapse line="55" />
+			<Collapse line="60" />
+			<Collapse line="65" />
+			<Collapse line="70" />
 		</Folding>
 	</File>
-	<File name="include/CharacterHero.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/SpacecraftView.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1306" topLine="36" />
+			<Cursor1 position="2401" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="133" />
+			<Collapse line="138" />
+		</Folding>
+	</File>
+	<File name="include/IncreaseAttack.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="376" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="include/Management.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/Fight.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1618" topLine="38" />
+			<Cursor1 position="713" topLine="21" />
 		</Cursor>
 	</File>
-	<File name="include/BarView.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/Fight.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="312" topLine="6" />
+			<Cursor1 position="2081" topLine="93" />
 		</Cursor>
+		<Folding>
+			<Collapse line="9" />
+			<Collapse line="15" />
+			<Collapse line="20" />
+			<Collapse line="25" />
+			<Collapse line="191" />
+			<Collapse line="196" />
+		</Folding>
 	</File>
 	<File name="src/Menu.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="975" topLine="37" />
 		</Cursor>
 	</File>
-	<File name="src/CharacterHero.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/IStrategyIncrease.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1427" topLine="42" />
-		</Cursor>
-		<Folding>
-			<Collapse line="120" />
-			<Collapse line="128" />
-		</Folding>
-	</File>
-	<File name="include/Universe.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="848" topLine="26" />
-		</Cursor>
-	</File>
-	<File name="include/Menu.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="153" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="src/BarView.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2983" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include/Fight.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="768" topLine="21" />
+			<Cursor1 position="420" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="include/SpacecraftView.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -200,40 +198,54 @@
 			<Cursor1 position="686" topLine="6" />
 		</Cursor>
 	</File>
-	<File name="src/CharacterBoss.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/Universe.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1883" topLine="38" />
+			<Cursor1 position="848" topLine="26" />
 		</Cursor>
-		<Folding>
-			<Collapse line="5" />
-			<Collapse line="8" />
-			<Collapse line="17" />
-			<Collapse line="23" />
-			<Collapse line="34" />
-			<Collapse line="44" />
-			<Collapse line="51" />
-			<Collapse line="128" />
-		</Folding>
 	</File>
-	<File name="src/Fight.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/BarView.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4800" topLine="62" />
+			<Cursor1 position="2983" topLine="0" />
 		</Cursor>
-		<Folding>
-			<Collapse line="9" />
-			<Collapse line="15" />
-			<Collapse line="20" />
-			<Collapse line="25" />
-		</Folding>
+	</File>
+	<File name="include/PauseMenu.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="40" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="include/Spacecraft.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="684" topLine="17" />
+		</Cursor>
 	</File>
 	<File name="include/CharacterBoss.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="90" topLine="2" />
 		</Cursor>
 	</File>
-	<File name="include/PauseMenu.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/Menu.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="40" topLine="6" />
+			<Cursor1 position="153" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="include/Player.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="832" topLine="19" />
+		</Cursor>
+	</File>
+	<File name="include/Character.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="278" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="include/CharacterView.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="971" topLine="21" />
+		</Cursor>
+	</File>
+	<File name="include/BarView.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="242" topLine="6" />
 		</Cursor>
 	</File>
 	<File name="src/Planet.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -259,5 +271,20 @@
 			<Collapse line="133" />
 			<Collapse line="138" />
 		</Folding>
+	</File>
+	<File name="src/IncreaseLife.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="442" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="src/Spacecraft.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="572" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include/CharacterHero.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="302" topLine="37" />
+		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

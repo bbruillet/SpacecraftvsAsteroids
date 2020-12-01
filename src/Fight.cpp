@@ -31,25 +31,28 @@ Fight& Fight::operator=(const Fight& rhs)
 
 
 //Heros attaque Boss
-void Fight::attackBoss(Character &c1,Character &c2)
+int Fight::attack(Character &c1,Character &c2)
 {
-
+    int attackEvent(0);
     int attack;
     if(c1.getCounterSpe() == 3)
     {
         attack = c1.getPtsSpecialAttack();
         c1.setCounterSpe(-1);
+        attackEvent = 3;
     }
 
     else
     {
         attack = c1.getPtsAttack();
+        attackEvent = 1;
 
             nb = (rand()% 100) +1;
 
             if (nb <= c1.getCriticalHit())
             {
                 attack = attack + (c1.getPtsAttack()/2);
+                attackEvent = 4;
             }
     }
 
@@ -57,6 +60,7 @@ void Fight::attackBoss(Character &c1,Character &c2)
     if(nbDodge <= c2.getDodge())
     {
         attack = 0;
+        attackEvent = 2;
     }
 
     if(c2.getShield() > 0) {
@@ -80,15 +84,15 @@ void Fight::attackBoss(Character &c1,Character &c2)
     }
 
     c1.setCounterSpe(c1.getCounterSpe() + 1);
-
+    return attackEvent;
 }
 
 void Fight::regenHero(Character &c1, Character &c2)
 {
     if(nbRegen == 0)
     {
-        attackBoss(c1, c2);
-        cout << "Tu dois attaquer" << endl;
+//        attack(c1, c2);
+        cout << "Je passe ici(REGEN)" << endl;
     }
 
     else
@@ -98,75 +102,91 @@ void Fight::regenHero(Character &c1, Character &c2)
         return;
 
     }
+
+
 }
 
-//Boss attaque Heros
-void Fight::attackHero(Character &c1, Character &c2)
+string Fight::eventAttack(int attackEvent)
 {
-    int attack;
-    if(c1.getCounterSpe() == 3)
+    if(attackEvent == 1)
     {
-        attack = c1.getPtsSpecialAttack();
-        c1.setCounterSpe(-1);
+        return "Attaque de ";
+    }
+
+    else if(attackEvent == 2)
+    {
+        return " a esquivé ton coup";
+    }
+
+    else if(attackEvent == 3)
+    {
+        return "Attaque speciale de ";
     }
 
     else
     {
-        attack = c1.getPtsAttack();
-
-
-            nb = (rand()% 100) +1;
-
-
-            cout << "\n-------------\n" << to_string(nb) << "\n-------------\n" << endl;
-            if (nb <= c1.getCriticalHit())
-            {
-                attack = attack + (c1.getPtsAttack()/2);
-            }
+        return "Coup critique de ";
     }
-
-    nbDodge = (rand()%100) + 1;
-//    nbEsquive = (rand()%100) + 1;
-    if(nbDodge <= c2.getDodge())
-    {
-        attack = 0;
-    }
-
-                       if(c2.getShield() > 0) {
-                            if(c2.getShield() > attack){
-                                c2.setShield(c2.getShield() - attack);
-                            }
-                            else if(c2.getShield() == attack)
-                            {
-                                c2.setShield(0);
-                            }
-                            else
-                            {
-                                attack = attack - c2.getShield();
-                                c2.setShield(0);
-                                c2.setPtsLife(c2.getPtsLife()-attack);
-                            }
-                        }
-                        else
-                        {
-                            c2.setPtsLife(c2.getPtsLife()-attack);
-                        }
-    c1.setCounterSpe(c1.getCounterSpe() + 1);
-
 }
 
-void Fight::fightBoss(Character &c1, Character &c2)
-{
-    attackBoss(c1,c2);
-    if(c2.getPtsLife() > 0)
-    {
-        attackHero(c2,c1);
-        if(c1.getPtsLife() == 0){
-            cout << "mort de p1" << endl;
-        }
-    }
+////Boss attaque Heros
+//int Fight::attackHero(Character &c1, Character &c2)
+//{
+//    int attackEvent(0);
+//    int attack;
+//    if(c1.getCounterSpe() == 3)
+//    {
+//        attack = c1.getPtsSpecialAttack();
+//        c1.setCounterSpe(-1);
+//        attackEvent = 3;
+//    }
+//
+//    else
+//    {
+//        attack = c1.getPtsAttack();
+//        attackEvent = 1;
+//
+//            nb = (rand()% 100) +1;
+//
+//            if (nb <= c1.getCriticalHit())
+//            {
+//                attack = attack + (c1.getPtsAttack()/2);
+//                attackEvent = 4;
+//            }
+//    }
+//
+//    nbDodge = (rand()%100) + 1;
+////    nbEsquive = (rand()%100) + 1;
+//    if(nbDodge <= c2.getDodge())
+//    {
+//        attack = 0;
+//        attackEvent = 2;
+//    }
+//
+//                       if(c2.getShield() > 0) {
+//                            if(c2.getShield() > attack){
+//                                c2.setShield(c2.getShield() - attack);
+//                            }
+//                            else if(c2.getShield() == attack)
+//                            {
+//                                c2.setShield(0);
+//                            }
+//                            else
+//                            {
+//                                attack = attack - c2.getShield();
+//                                c2.setShield(0);
+//                                c2.setPtsLife(c2.getPtsLife()-attack);
+//                            }
+//                        }
+//                        else
+//                        {
+//                            c2.setPtsLife(c2.getPtsLife()-attack);
+//                        }
+//    c1.setCounterSpe(c1.getCounterSpe() + 1);
+//    return attackEvent;
+//}
 
-}
+
 
 void Fight::setHealth(const int &health)
 {

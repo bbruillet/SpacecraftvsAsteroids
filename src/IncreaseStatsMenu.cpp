@@ -28,19 +28,10 @@ IncreaseStatsMenu::IncreaseStatsMenu()
 	statsMenu[1].setString("> Augmenter points d'attaque");
 
 	statsMenu[2].setFillColor(sf::Color::White);
-	statsMenu[2].setString("> Augmenter l'attaque spéciale");
+	statsMenu[2].setString("> Augmenter le bouclier");
 
 	statsMenu[3].setFillColor(sf::Color::White);
-	statsMenu[3].setString("> Augmenter le bouclier");
-
-	statsMenu[4].setFillColor(sf::Color::White);
-	statsMenu[4].setString("> Augmenter pourcentage de coups critique");
-
-	statsMenu[5].setFillColor(sf::Color::White);
-	statsMenu[5].setString("> Augmenter pourcentage d'esquive");
-
-	statsMenu[6].setFillColor(sf::Color::White);
-	statsMenu[6].setString("> Augmenter les points de regeneration");
+	statsMenu[3].setString("> Augmenter les points de regeneration");
 
 	for (int i = 0; i < MAX_NUMBER_OF_INCREASED_STATS; i++)
 	{

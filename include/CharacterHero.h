@@ -8,6 +8,11 @@
 #include <string>
 
 #include "IConstante.h"
+#include "IStrategyIncrease.h"
+#include "IncreaseAttack.h"
+#include "IncreaseLife.h"
+#include "IncreaseShield.h"
+#include "IncreaseRegeneration.h"
 
 #include <cstdio>
 #include <SFML/Graphics.hpp>
@@ -35,15 +40,12 @@ class CharacterHero : public Character
         int regeneration;
         int counterRegen;
 
-//        virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
-
+        IStrategyIncrease* strategy;
 
     public:
         CharacterHero(const string name = "Player", const int ptsAttack = 0, const int ptsLife = 0, const int ptsExperience = 0, const int level = 0,
                    const int ptsSpecialAttack = 0, const int shield = 0 ,const double criticalHit = 0.0, const double dodge = 0.0, const int x = 0, const int y = 0,
-                   const string picture = "Directory", const int regeneration = 0, const Race=Race::HUMAN);
-
-        CharacterHero(const string name, const Race race);
+                   const string picture = "Directory", const int regeneration = 0, const Race=Race::HUMAN,IStrategyIncrease* strat = new IncreaseAttack);
 
         virtual ~CharacterHero();
         CharacterHero(const CharacterHero&);
@@ -53,10 +55,11 @@ class CharacterHero : public Character
         void setRace(const Race &);
 
         void categoryHero();
-        string str() const; //virtual -> héritage
+        string str() const;
 
-//        sf::Sprite persoHeros_sprite;
-//        sf::Texture persoHeros_texture;
+        void executeIncrease();
+
+        void setIncrease(IStrategyIncrease* strategy);
 
 };
 

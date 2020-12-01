@@ -35,10 +35,11 @@ class Fight
         Fight& operator=(const Fight& other);
 
     //Méthode de combat
-        void attackBoss(Character& c1, Character& c2);
-        void attackHero(Character& c1, Character& c2);
-        void fightBoss(Character& c1, Character& c2);
+        int attack(Character& c1, Character& c2);
+//        int attackHero(Character& c1, Character& c2);
         void regenHero(Character& c2, Character& c1);
+
+        string eventAttack(int attackEvent);
 
         int getHealth() const;
         void setHealth(const int &);

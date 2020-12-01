@@ -36,13 +36,14 @@ class Management : public sf::Event, public IConstante
         void playerPseudo(sf::RenderWindow & windowJeu);
         void launch(sf::RenderWindow & windowJeu);
         void fightPlanet(sf::RenderWindow & windowJeu,Planet&);
-        void screenResult(sf::RenderWindow & windowJeu);
+        void screenResult(int result, sf::RenderWindow & windowJeu);
         void mapSpace(sf::RenderWindow & windowJeu);
+        void creditGame(sf::RenderWindow &window);
 
         string eventFight(Character her, Character bos);
 
 
-        void creditGame(sf::RenderWindow &window);
+
         sf::Sprite versus_sprite;
         sf::Texture versus_texture;
 

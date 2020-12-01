@@ -56,8 +56,8 @@ CharacterBoss* CharacterBoss::clone()const
 void CharacterBoss::categoryBoss() {
     switch(origin) {
     case BLUE:
-        setPtsLife(550);
-        setPtsAttack(10);
+        setPtsLife(670);
+        setPtsAttack(5000);
         setCriticalHit(15.0);
         setPtsSpecialAttack(20);
         setShield(50);
@@ -78,14 +78,15 @@ void CharacterBoss::categoryBoss() {
         break;
 
     case GREEN:
-        setPtsLife(500);
-<<<<<<< HEAD
-        setPtsAttack(150);
-=======
+        setPtsLife(1000);
+
+        setPtsAttack(10);
+
         setPtsAttack(15);
->>>>>>> fc0a0f2a4a963281e79bba6327a70ea7be8d658a
+
         setCriticalHit(15.0);
         setPtsSpecialAttack(30);
+        setDodge(2.00);
         setShield(50);
         setX(1370);
         setY(610);
