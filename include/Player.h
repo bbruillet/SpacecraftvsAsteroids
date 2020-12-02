@@ -6,7 +6,8 @@
 #include <string>
 #include <cstdio>
 
-#include"CharacterHero.h"
+#include "CharacterHero.h"
+#include "Management.h"
 
 #define MAX_NUMBER_OF_RACES 5
 #define MAX_NUMBER_OF_NAMES 3
@@ -57,7 +58,8 @@ class Player
         void moveUp();
         void moveDown();
         int getPressedElement();
-        void getStats(CharacterHero her);
+        void getStats(CharacterHero& her);
+        void show(Management& man,sf::RenderWindow& window);
 };
 
 #endif // PLAYER_H

@@ -22,7 +22,6 @@ Planet::Planet(const Planet& plan)
     y = plan.y;
     xChar = plan.xChar;
     yChar = plan.yChar;
-    biome = plan.biome;
     bossPlan = plan.bossPlan;
    // cout <<"2 " +bossPlan->str()<< endl;
 
@@ -54,7 +53,6 @@ Planet& Planet::operator=(const Planet& plan)
         picture = plan.picture;
         x = plan.x;
         y = plan.y;
-        biome = plan.biome;
         bossPlan = plan.bossPlan;
         xChar = plan.xChar;
         yChar = plan.yChar;
@@ -93,16 +91,6 @@ string Planet::getName() const
     return name;
 }
 
-void Planet::giveBiome(BiomePlanet &biome)
-{
-
-    this->biome = &biome;
-}
-
-BiomePlanet* Planet::getBiome()const
-{
-    return biome;
-}
 
 CharacterBoss* Planet::getBoss()const
 {

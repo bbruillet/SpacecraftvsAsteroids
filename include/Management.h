@@ -14,7 +14,6 @@
 #include "CharacterView.h"
 #include "Character.h"
 #include "Planet.h"
-#include "Player.h"
 #include "Fight.h"
 #include "StatsPlayerView.h"
 #include <vector>
@@ -37,14 +36,14 @@ class Management : public sf::Event, public IConstante
         void playerPseudo(sf::RenderWindow & windowJeu);
         void launch(sf::RenderWindow & windowJeu);
         void fightPlanet(sf::RenderWindow & windowJeu,Planet&);
-        void screenResult(int result, sf::RenderWindow & windowJeu, BiomePlanet biom);
+        void screenResult(int result, sf::RenderWindow & windowJeu);
         void mapSpace(sf::RenderWindow & windowJeu);
         void creditGame(sf::RenderWindow &window);
 
         void showStats(sf::RenderWindow &window);
 
         string eventFight(Character her, Character bos);
-
+        CharacterHero& getCharHero();
 
 
         sf::Sprite versus_sprite;
@@ -57,11 +56,11 @@ class Management : public sf::Event, public IConstante
         Universe universe;
         Spacecraft spacecraft;
         SpacecraftView spacecraftView;
+        BiomePlanet biome;
         CharacterHero hero;
         CharacterView cView;
         BarView barHero;
         BarView barBoss;
-        Player player;
         Fight fight;
         sf::Text credit[MAX_NUMBER_OF_STUDENTS];
         sf::Font font;
@@ -71,8 +70,6 @@ class Management : public sf::Event, public IConstante
         sf::Text textShieldHero;
         sf::Text textShieldBoss;
         StatsPlayerView spv;
-//        vector <Planete*> planetes;
-//        vector <Planete*> planetesInacc;
 
 };
 

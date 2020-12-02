@@ -67,8 +67,17 @@ Management::Management()
         universe.addUnreachable(unreachPlanets[i]);
     }
 
+}
+
+Management::~Management()
+{
+    //dtor
+}
 
 
+CharacterHero& Management::getCharHero()
+{
+    return this->hero;
 }
 
 void Management::mainWindow()
@@ -95,7 +104,6 @@ void Management::mainWindow()
     }
 
     windowJeu.setIcon(250,250,icon.getPixelsPtr());
-    //menu(windowJeu);
     menu(windowJeu);
 }
 
@@ -103,268 +111,45 @@ void Management::mainWindow()
 void Management::menu(sf::RenderWindow & windowJeu)
 {
 	Menu menu;
-	//menu.show()
+	menu.show(*this,windowJeu);
 
-
-	while (windowJeu.isOpen())
-	{
-		sf::Event event;
-		while (windowJeu.pollEvent(event))
-		{
-			switch (event.type)
-			{
-            case sf::Event::KeyReleased:
-                switch(event.key.code)
-                {
-                case sf::Keyboard::Up:
-                    menu.moveUp();
-                    break;
-
-                case sf::Keyboard::Down:
-                    menu.moveDown();
-                    break;
-
-                case sf::Keyboard::Return:
-                    switch(menu.getPressedItem())
-                    {
-                    case 0:
-                        playerAccount(windowJeu);
-                        windowJeu.close();
-
-                        break;
-
-                    case 1:
-                        creditGame(windowJeu);
-
-                        break;
-
-                    case 2:
-                        windowJeu.close();
-;
-                        default:
-                        break;
-                    }
-                    windowJeu.clear();
-                    default:
-                    break;
-                }
-                break;
-                case sf::Event::Closed:
-                    windowJeu.close();
-
-                default:
-                break;
-
-			}
-
-		}
-
-		windowJeu.clear();
-
-		menu.draw(windowJeu);
-		windowJeu.display();
-	}
 }
 
 void Management::pauseMenu(sf::RenderWindow & windowJeu)
 {
-	PauseMenu menu;
+	PauseMenu pause;
+	pause.show(*this,windowJeu);
 
-	while (windowJeu.isOpen())
-	{
-		sf::Event event;
-		while (windowJeu.pollEvent(event))
-		{
-			switch (event.type)
-			{
-            case sf::Event::KeyReleased:
-                switch(event.key.code)
-                {
-                case sf::Keyboard::Up:
-                    menu.moveUp();
-                    break;
 
-                case sf::Keyboard::Down:
-                    menu.moveDown();
-                    break;
-
-                case sf::Keyboard::Return:
-                    switch(menu.getPressedItem())
-                    {
-                    case 0:
-                        launch(windowJeu);
-
-                        break;
-
-                    case 1:
-                        mapSpace(windowJeu);
-                        break;
-
-                    case 2:
-
-                        showStats(windowJeu);
-                       break;
-                    case 3:
-
-                        windowJeu.close();
-                        break;
-                        default:
-                        break;
-                    }
-                    windowJeu.clear();
-                    default:
-                    break;
-                }
-                break;
-                case sf::Event::Closed:
-                    windowJeu.close();
-
-                default:
-                break;
-
-			}
-
-		}
-
-		windowJeu.clear();
-
-		menu.draw(windowJeu);
-
-		windowJeu.display();
-	}
 }
 
 void Management::playerAccount(sf::RenderWindow & windowJeu)
 {
-	//PersonnageHeros p1("Joueur1", HUMAIN);
-    player.getStats(hero);
-	while (windowJeu.isOpen())
-	{
-		sf::Event event;
-		while (windowJeu.pollEvent(event))
-		{
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Backspace))
-            {
-                windowJeu.clear();
-                menu(windowJeu);
+    Player player;
+    player.show(*this,windowJeu);
 
-            }
-			switch (event.type)
-			{
-            case sf::Event::KeyReleased:
-                switch(event.key.code)
-                {
-                case sf::Keyboard::Up:
-                    player.moveUp();
-                    player.getStats(hero);
-                    break;
-
-                case sf::Keyboard::Down:
-                    player.moveDown();
-                    player.getStats(hero);
-                    break;
-
-                case sf::Keyboard::Return:
-                    switch(player.getPressedElement())
-                    {
-                    case 0:
-                        hero.setRace(HUMAN);
-
-
-                        break;
-
-                    case 1:
-                        hero.setRace(VALDERA);
-
-//
-
-                        break;
-
-                    case 2:
-                        hero.setRace(VANDUUL);
-
-//
-
-                       break;
-
-                    case 3:
-                        hero.setRace(COVENANTE);
-
-//
-
-                       break;
-
-                    case 4:
-                        hero.setRace(AETWI);
-
-                        break;
-                        default:
-                        break;
-
-
-                    }
-
-
-                    playerPseudo(windowJeu);
-
-                    break;
-
-                    windowJeu.clear();
-                    default:
-                    break;
-                }
-                break;
-                case sf::Event::Closed:
-
-                    windowJeu.close();
-
-
-                default:
-                break;
-
-			}
-
-		}
-
-		windowJeu.clear();
-
-		player.draw(windowJeu);
-
-		windowJeu.display();
-	}
 }
 
 void Management::playerPseudo(sf::RenderWindow & windowJeu)
 {
+    Player player;
     player.pseudoPlayer(windowJeu);
     hero.setName(player.getPseudo());
-
     spv.showStats(hero);
     launch(windowJeu);
-}
-
-Management::~Management()
-{
-    //dtor
 }
 
 void Management::launch(sf::RenderWindow & windowJeu)
 {
     sf::View view(sf::FloatRect(2000, 2000, 3450, 1800));
     view.setCenter(spacecraft.getX(), spacecraft.getY());
-    BiomePlanet biome;
-
 
     Planet planetInProgress;
 
-
-
     int display = 0;
-
 
     int x = spacecraft.getX();
     int y = spacecraft.getY();
-
 
     int a,b;
 
@@ -374,21 +159,21 @@ void Management::launch(sf::RenderWindow & windowJeu)
             while (windowJeu.pollEvent(event))
             {
                 if (event.type == sf::Event::Closed) {
-                   // pause(windowJeu);
                     windowJeu.close();
                 }
 
-                //Faire pause dans le jeu
                 switch (event.type)
                 {
                     case sf::Event::KeyReleased:
                     switch(event.key.code)
                     {
                     case sf::Keyboard::Escape:
+
                         windowJeu.clear();
                         view.reset(sf::FloatRect(2048, 1024, 1500, 900));
                         view.setCenter(750, 450);
                         windowJeu.setView(view);
+
                         pauseMenu(windowJeu);
                         break;
                         default:
@@ -412,8 +197,6 @@ void Management::launch(sf::RenderWindow & windowJeu)
                                     case sf::Keyboard::Return:
 
                                         biome.setBackground("Images/Backgrounds/"+planetInProgress.getName()+"_Background.png");
-
-                                        planetInProgress.giveBiome(biome);
                                         fightPlanet(windowJeu,planetInProgress);
 
 
@@ -511,8 +294,6 @@ void Management::mapSpace(sf::RenderWindow & windowJeu)
     sf::View view(sf::FloatRect(0, 0, 16000, 8642));
     //4000 2160.5
     view.setCenter(7130, 3150);
-
-
 
     windowJeu.setView(view);
 
@@ -731,7 +512,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     cView.forwardHero();
                     dimension.x += 22;
                     cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
-                    pla.getBiome()->drawBiome(windowJeu);
+                    biome.drawBiome(windowJeu);
                     barHero.drawLife(windowJeu);
                     barHero.drawShield(windowJeu);
                     barBoss.drawLife(windowJeu);
@@ -765,7 +546,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                 {
                     windowJeu.clear();
                     cView.fightHero();
-                    pla.getBiome()->drawBiome(windowJeu);
+                    biome.drawBiome(windowJeu);
                     barHero.drawLife(windowJeu);
                     barHero.drawShield(windowJeu);
                     barBoss.drawLife(windowJeu);
@@ -802,7 +583,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     cView.backwardHero();
                     dimension.x -= 22;
                     cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
-                    pla.getBiome()->drawBiome(windowJeu);
+                    biome.drawBiome(windowJeu);
                     barHero.drawLife(windowJeu);
                     barHero.drawShield(windowJeu);
                     barBoss.drawLife(windowJeu);
@@ -845,7 +626,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     {
                         windowJeu.clear();
                         cView.fightBoss();
-                        pla.getBiome()->drawBiome(windowJeu);
+                        biome.drawBiome(windowJeu);
                         barHero.drawLife(windowJeu);
                         barHero.drawShield(windowJeu);
                         barBoss.drawLife(windowJeu);
@@ -884,7 +665,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                         cView.throwingBoss();
                         dimensionBoss.x -= 22;
                         cView.attack_boss_sprite.setPosition(dimensionBoss.x, dimensionBoss.y);
-                        pla.getBiome()->drawBiome(windowJeu);
+                        biome.drawBiome(windowJeu);
                         barHero.drawLife(windowJeu);
                         barHero.drawShield(windowJeu);
                         barBoss.drawLife(windowJeu);
@@ -948,7 +729,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                         cView.regen_sprite.setPosition(pla.getXChar()-20, pla.getYChar()-30);
                         windowJeu.clear();
                         cView.regenCircles();
-                        pla.getBiome()->drawBiome(windowJeu);
+                        biome.drawBiome(windowJeu);
                         barHero.drawLife(windowJeu);
                         barHero.drawShield(windowJeu);
                         barBoss.drawLife(windowJeu);
@@ -987,7 +768,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     {
                         windowJeu.clear();
                         cView.fightBoss();
-                        pla.getBiome()->drawBiome(windowJeu);
+                        biome.drawBiome(windowJeu);
                         barHero.drawLife(windowJeu);
                         barHero.drawShield(windowJeu);
                         barBoss.drawLife(windowJeu);
@@ -1026,7 +807,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                         cView.throwingBoss();
                         dimensionBoss.x -= 22;
                         cView.attack_boss_sprite.setPosition(dimensionBoss.x, dimensionBoss.y);
-                        pla.getBiome()->drawBiome(windowJeu);
+                        biome.drawBiome(windowJeu);
                         barHero.drawLife(windowJeu);
                         barHero.drawShield(windowJeu);
                         barBoss.drawLife(windowJeu);
@@ -1090,7 +871,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     pla.getBoss()->setCounterSpe(0);
                     fight.setNbRegen(2);
                     hero.setCounterSpe(0);
-                    screenResult(result, windowJeu, *pla.getBiome());
+                    screenResult(result, windowJeu);
 
                 }
                 if(hero.getPtsLife() == 0)
@@ -1104,7 +885,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     pla.getBoss()->setCounterSpe(0);
                     hero.setCounterSpe(0);
                     fight.setNbRegen(2);
-                    screenResult(result, windowJeu, *pla.getBiome());
+                    screenResult(result, windowJeu);
                 }
 
 
@@ -1128,7 +909,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
         windowJeu.clear();
 
-        pla.getBiome()->drawBiome(windowJeu);
+        biome.drawBiome(windowJeu);
         textHero.setPosition(400, 20);
         textBoss.setPosition(1150, 20);
 
@@ -1154,7 +935,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
 }
 
-void Management::screenResult(int result, sf::RenderWindow& windowJeu, BiomePlanet biom)
+void Management::screenResult(int result, sf::RenderWindow& windowJeu)
 {
     if (!font.loadFromFile("Polices/SpaceFont.ttf"))
     {
@@ -1217,7 +998,7 @@ void Management::screenResult(int result, sf::RenderWindow& windowJeu, BiomePlan
         textEvent.setPosition(825, 450);
         textInstruction.setPosition(50, 150);
 
-        biom.drawBiome(windowJeu);
+        biome.drawBiome(windowJeu);
         windowJeu.draw(textEvent);
         windowJeu.draw(textInstruction);
 

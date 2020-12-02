@@ -1,6 +1,7 @@
 #ifndef PAUSEMENU_H
 #define PAUSEMENU_H
 #include "SFML/Graphics.hpp"
+#include "Management.h"
 
 #define MAX_NUMBER_OF_TEXTS 4
 
@@ -14,6 +15,7 @@ class PauseMenu
         void moveUp();
         void moveDown();
         int getPressedItem();
+        void show(Management& man,sf::RenderWindow &window);
 
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
         {

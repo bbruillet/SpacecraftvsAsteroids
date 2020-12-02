@@ -14,7 +14,6 @@ using std::string;
 using std::to_string;
 using std::ostream;
 
-class BiomePlanet;
 class CharacterBoss;
 
 class Planet : public sf::Drawable
@@ -25,7 +24,6 @@ class Planet : public sf::Drawable
         int x, y;
         int xChar, yChar;
         CharacterBoss* bossPlan;
-        BiomePlanet* biome;
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
         {
             target.draw(planet_sprite);
@@ -58,9 +56,6 @@ class Planet : public sf::Drawable
 
         string getName() const;
         void setName(const string &);
-
-        void giveBiome(BiomePlanet&);
-        BiomePlanet* getBiome()const;
 
         void giveBoss(CharacterBoss&);
         CharacterBoss* getBoss()const;

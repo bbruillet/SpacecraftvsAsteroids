@@ -2,35 +2,45 @@
 #include "Planet.h"
 #include "Character.h"
 
-
-CharacterBoss::CharacterBoss(const string name, const int ptsAttack, const int ptsLife, const int ptsExperience, const int level,
+/*
+    This is the constructor
+    As you can see, we call categoryBoss()', because a boss is initialized here with his own statistics
+*/
+CharacterBoss::CharacterBoss(const string name, const int ptsAttack, const int ptsLife, const int badge,
     const int ptsSpecialAttack, const int shield, const double criticalHit, const double dodge, const int x, const int y, const string picture, const int regeneration, const Origin origin)
-:Character(name,ptsAttack,ptsLife,ptsExperience,level,ptsSpecialAttack,shield,criticalHit,dodge, x, y, picture, regeneration), origin(origin)
+:Character(name,ptsAttack,ptsLife,badge,ptsSpecialAttack,shield,criticalHit,dodge, x, y, picture, regeneration), origin(origin)
 {
-   // Planete plan;
    categoryBoss();
-
-    //ctor
 }
 
+/*
+    This is the second constructor
+*/
 CharacterBoss::CharacterBoss(const string name, const Origin origin)
 :Character(name),origin(origin)
 {
     categoryBoss();
 }
 
-
+/*
+    This is the destructor
+*/
 CharacterBoss::~CharacterBoss()
 {
-    //dtor
 
 }
 
+/*
+    This is the copy constructor
+*/
 CharacterBoss::CharacterBoss(const CharacterBoss& cB):Character(cB), origin(cB.origin)
 {
     categoryBoss();
 }
 
+/*
+    This is operator='s function
+*/
 CharacterBoss& CharacterBoss::operator=(const CharacterBoss& cB)
 {
     if (this != &cB)
@@ -41,6 +51,9 @@ CharacterBoss& CharacterBoss::operator=(const CharacterBoss& cB)
     return *this;
 }
 
+/*
+    This is the str() of a boss
+*/
 string CharacterBoss::str() const
 {
     std::stringstream ss;
@@ -48,11 +61,19 @@ string CharacterBoss::str() const
         return ss.str();
 }
 
+/*
+    This the clone function of a boss
+*/
 CharacterBoss* CharacterBoss::clone()const
 {
     return new CharacterBoss(*this);
 }
 
+/*
+    This the most important function of a boss.
+    It's where all statistics of a boss are initialized.
+    e.g : the blue boss can have 100 life points ant the green one can have 250 life points. All bosses are unique
+*/
 void CharacterBoss::categoryBoss() {
     switch(origin) {
     case BLUE:
@@ -127,11 +148,18 @@ void CharacterBoss::categoryBoss() {
     }
 }
 
+/*
+    This is the getter of the origin
+*/
 Origin CharacterBoss::getOrigin()const
 {
     return origin;
 }
 
+/*
+    This is where a boss can resurrect from hell !
+    As you can see, some of their points are augmented.
+*/
 void CharacterBoss::resurrection()
 {
         setPtsLife(getPtsLife()+400);

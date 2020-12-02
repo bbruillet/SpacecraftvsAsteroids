@@ -1,41 +1,55 @@
 #include "BiomePlanet.h"
 
-//constructeur
+/*
+    This is the constructor
+*/
 BiomePlanet::BiomePlanet(const string background):background(background)
 {
-    //ctor
+
 }
 
+/*
+    This is the destructor
+*/
 BiomePlanet::~BiomePlanet()
 {
-    //dtor
+
 }
 
-//constructeur de copie
+/*
+    This is the copy constructor
+*/
 BiomePlanet::BiomePlanet(const BiomePlanet& b)
 {
-    //cpy
+
     background = b.background;
 }
 
-//operateur d'affectation
+/*
+    This is operator='s function
+*/
 BiomePlanet& BiomePlanet::operator=(const BiomePlanet& rhs)
 {
     if (this != &rhs) {
         background = rhs.background;
-    } // handle self assignment
-    //assignment operator
+    }
+
     return *this;
 }
 
-//Permet de changer la valeur du background et recharge la nouvelle image
+/*
+    This function allow you to change the value of a background
+*/
 void BiomePlanet::setBackground(const string& background)
 {
     this->background = background;
 
 }
 
-//dessine un sprite dans une window
+/*
+    This function will load a texture and put it in a sprite.
+    After that it'll draw this sprite in the window
+*/
 void BiomePlanet::drawBiome(sf::RenderWindow& window)
 {
      if (!biome_texture.loadFromFile(background))

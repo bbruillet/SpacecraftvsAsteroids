@@ -5,12 +5,11 @@
 #include <SFML/Graphics.hpp>
 
 
-CharacterHero::CharacterHero(const string name, const int ptsAttack, const int ptsLife, const int ptsExperience, const int level,
+CharacterHero::CharacterHero(const string name, const int ptsAttack, const int ptsLife, const int badge,
     const int ptsSpecialAttack, const int shield, const double criticalHit, const double dodge,
     const int x, const int y, const string picture, const int regeneration, const Race race ,IStrategyIncrease* strat)
-:Character(name,ptsAttack,ptsLife,ptsExperience,level,ptsSpecialAttack,shield,criticalHit,dodge, x, y, picture, regeneration),race(race), strategy(strat)
+:Character(name,ptsAttack,ptsLife,badge,ptsSpecialAttack,shield,criticalHit,dodge, x, y, picture, regeneration),race(race), strategy(strat)
 {
-
     categoryHero();
 }
 

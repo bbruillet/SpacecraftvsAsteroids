@@ -43,7 +43,7 @@ class CharacterHero : public Character
         IStrategyIncrease* strategy;
 
     public:
-        CharacterHero(const string name = "Player", const int ptsAttack = 0, const int ptsLife = 0, const int ptsExperience = 0, const int level = 0,
+        CharacterHero(const string name = "Player", const int ptsAttack = 0, const int ptsLife = 0, const int badge = 0,
                    const int ptsSpecialAttack = 0, const int shield = 0 ,const double criticalHit = 0.0, const double dodge = 0.0, const int x = 0, const int y = 0,
                    const string picture = "Directory", const int regeneration = 0, const Race=Race::HUMAN,IStrategyIncrease* strat = new IncreaseAttack);
 

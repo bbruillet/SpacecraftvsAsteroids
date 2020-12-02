@@ -3,10 +3,12 @@
 #include <cstdio>
 #include <iostream>
 
-
-Character::Character(const string name, const int ptsAttack, const int ptsLife, const int ptsExperience, const int level,
+/*
+    This is the constructor of a character
+*/
+Character::Character(const string name, const int ptsAttack, const int ptsLife, const int badge,
     const int ptsSpecialAttack, const int shield, const double criticalHit, const double dodge, const int x, const int y, const string picture, const int regeneration)
-:ptsAttack(ptsAttack), ptsExperience(ptsExperience), level(level), ptsSpecialAttack(ptsSpecialAttack), shield(shield),
+:ptsAttack(ptsAttack), badge(badge), ptsSpecialAttack(ptsSpecialAttack), shield(shield),
 criticalHit(criticalHit), dodge(dodge), x(x), y(y), picture(picture), regeneration(regeneration)
 {
     this->name = name;
@@ -16,12 +18,18 @@ criticalHit(criticalHit), dodge(dodge), x(x), y(y), picture(picture), regenerati
     counterSpe = 0;
 }
 
+/*
+    This is the destructor of a character
+*/
 Character::~Character()
 {
     //dtor
 }
 
-Character::Character(const Character& other):name(other.name), ptsAttack(other.ptsAttack), ptsLife(other.ptsLife), ptsExperience(other.ptsExperience), level(other.level),
+/*
+    This is the copy constructor of a character
+*/
+Character::Character(const Character& other):name(other.name), ptsAttack(other.ptsAttack), ptsLife(other.ptsLife), badge(other.badge),
 ptsSpecialAttack(other.ptsSpecialAttack), shield(other.shield), criticalHit(other.criticalHit), dodge(other.dodge), x(other.x), y(other.y),
 regeneration(other.regeneration)
 {
@@ -29,6 +37,9 @@ regeneration(other.regeneration)
     //copy ctor
 }
 
+/*
+    This is operator='s of a character
+*/
 Character& Character::operator=(const Character& c)
 {
     if (this != &c)
@@ -36,8 +47,7 @@ Character& Character::operator=(const Character& c)
         name = c.name;
         ptsAttack = c.ptsAttack;
         ptsLife = c.ptsLife;
-        ptsExperience = c.ptsExperience;
-        level = c.level;
+        badge = c.badge;
         ptsSpecialAttack = c.ptsSpecialAttack;
         shield = c.shield;
         criticalHit = c.criticalHit;
@@ -51,14 +61,16 @@ Character& Character::operator=(const Character& c)
     return *this;
 }
 
+/*
+    This is str()'s function of a character
+*/
 string Character::str() const
 {
     std::stringstream ss;
     ss << "Nom : " << getName() << "\n\t" <<
         "Points d'attaque : " << to_string(ptsAttack) << "\n\t" <<
         "Points de vie : " << to_string(ptsLife) << "\n\t" <<
-        "Points d'expérience : " << to_string(ptsExperience) << "\n\t" <<
-        "Niveau : " << to_string(level) << "\n\t" <<
+        "Nombre de badges : " << to_string(badge) << "\n\t" <<
         "Points d'attaque spéciale : " << to_string(ptsSpecialAttack) << "\n\t" <<
         "Bouclier : " << to_string(shield) << "\n\t" <<
         "Coups critique : " << to_string(criticalHit) << "\n\t"
@@ -69,6 +81,17 @@ string Character::str() const
         return ss.str();
 }
 
+/*
+    This is the clone's function
+*/
+Character* Character::clone()const
+{
+    return new Character(*this);
+}
+
+/*
+    Setters and getters of character are implemented here
+*/
 void Character::setName(const string &name)
 {
     this->name = name;
@@ -88,7 +111,9 @@ int Character::getPtsAttack() const
 {
     return ptsAttack;
 }
-
+/*
+    This setter need a ternary operator, that said that we cant set our life at 0 !!!
+*/
 void Character::setPtsLife(const int &ptsLife)
 {
     this->ptsLife = (ptsLife < 0) ? 0 : ptsLife;
@@ -99,24 +124,14 @@ int Character::getPtsLife() const
     return ptsLife;
 }
 
-void Character::setPtsExperience(const int &ptsExperience)
+void Character::setBadge(const int &badge)
 {
-    this->ptsExperience = ptsExperience;
+    this->badge = badge;
 }
 
-int Character::getPtsExperience() const
+int Character::getBadge() const
 {
-    return ptsExperience;
-}
-
-void Character::setLevel(const int &level)
-{
-    this->level = level;
-}
-
-int Character::getLevel() const
-{
-    return level;
+    return badge;
 }
 
 void Character::setPtsSpecialAttack(const int &ptsSpecialAttack)
@@ -207,9 +222,4 @@ void Character::setRegeneration(const int &regeneration)
 int Character::getRegeneration() const
 {
     return regeneration;
-}
-
-Character* Character::clone()const
-{
-    return new Character(*this);
 }

@@ -84,4 +84,65 @@ void Menu::moveDown()
 	}
 }
 
+void Menu::show(Management& man,sf::RenderWindow &window)
+{
+    while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			switch (event.type)
+			{
+            case sf::Event::KeyReleased:
+                switch(event.key.code)
+                {
+                case sf::Keyboard::Up:
+                    moveUp();
+                    break;
+
+                case sf::Keyboard::Down:
+                    moveDown();
+                    break;
+
+                case sf::Keyboard::Return:
+                    switch(getPressedItem())
+                    {
+                    case 0:
+                        man.playerAccount(window);
+                        window.close();
+
+                        break;
+
+                    case 1:
+                        man.creditGame(window);
+
+                        break;
+
+                    case 2:
+                        window.close();
+                        default:
+                        break;
+                    }
+                    window.clear();
+                    default:
+                    break;
+                }
+                break;
+                case sf::Event::Closed:
+                    window.close();
+
+                default:
+                break;
+
+			}
+
+		}
+
+		window.clear();
+
+		draw(window);
+		window.display();
+	}
+
+}
 

@@ -2,6 +2,7 @@
 #include "SFML/Graphics.hpp"
 
 #define MAX_NUMBER_OF_ITEMS 3
+#include "Management.h"
 
 class Menu
 {
@@ -14,6 +15,7 @@ public:
 	void moveUp();
 	void moveDown();
 	int getPressedItem();
+	void show(Management& man,sf::RenderWindow &window);
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
     {

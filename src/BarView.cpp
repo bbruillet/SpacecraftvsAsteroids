@@ -1,49 +1,57 @@
 #include "BarView.h"
 #include <iostream>
 
-//Constructeur
-BarView::BarView(sf::Vector2f dimensionFrameLife,int maxLife,sf::Vector2f dimensionFrameShield,int maxShield)
+/*
+    This is the constructor
+    remaininglife and remainingshield are setted at '0', because they'll be used for making operations
+*/
+BarView::BarView(sf::Vector2f dimensionFrameLife, int maxLife, sf::Vector2f dimensionFrameShield, int maxShield)
 :dimensionFrameLife(dimensionFrameLife),maxLife(maxLife),actualLife(maxLife),remainingLife(0),dimensionFrameShield(dimensionFrameShield),maxShield(maxShield),
 actualShield(maxShield),remainingShield(0)
 {
-    /*-----------VIE-----------------*/
-    //cadre de la vie
+    /*Here, we are making life's frame properties*/
     frameLife = sf::RectangleShape(dimensionFrameLife);
     frameLife.setOrigin(250, 12.5);
-    frameLife.setOutlineColor(sf::Color::Green);
+    frameLife.setOutlineColor(sf::Color::White);
     frameLife.setFillColor(sf::Color(255,141,141));
 
-    //barre qui change en fonction de la vie
+    /*Here, we are making remaining life's frame properties*/
     barFrameLife = sf::RectangleShape(dimensionFrameLife);
     barFrameLife.setOrigin(250, 12.5);
     barFrameLife.setFillColor(sf::Color(198,10,10));
 
-    /*-------------Bouclier-----------------------*/
-
-    //cadre du bouclier
+    /*Here, we are making shield's frame properties*/
     frameShield = sf::RectangleShape(dimensionFrameShield);
-    frameShield.setOutlineColor(sf::Color::Green);
+    frameShield.setOutlineColor(sf::Color::White);
     frameShield.setFillColor(sf::Color(121,127,199));
     frameShield.setOrigin(100, 6.25);
 
-    //Barre du bouclier qui varie en fonction des dégats
+    /*Here, we are making remaining shield's frame properties*/
     barFrameShield = sf::RectangleShape(dimensionFrameShield);
     barFrameShield.setOrigin(100, 6.25);
     barFrameShield.setFillColor(sf::Color::Blue);
-    //ctor
 
 }
 
+/*
+    This is the destructor
+*/
 BarView::~BarView()
 {
-    //dtor
+
 }
 
+/*
+    This is the copy constructor
+*/
 BarView::BarView(const BarView& other)
 {
-    //copy ctor
+
 }
 
+/*
+    This is operator='s function
+*/
 BarView& BarView::operator=(const BarView& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
@@ -51,7 +59,10 @@ BarView& BarView::operator=(const BarView& rhs)
     return *this;
 }
 
-//Permet de retourner la barre pour le heros pour que la vie découle à l'envers
+/*
+    Heroes frames are upsided down in this function.
+    We have defined an origin int the constructor
+*/
 void BarView::setRotation()
 {
     barFrameLife.setRotation(180);
@@ -61,25 +72,9 @@ void BarView::setRotation()
     frameShield.setRotation(180);
 }
 
-//envoie la nouvelle vie pour que la barrie de vie varie
-void BarView::updateLife(int newlife)
-{
-    actualLife = newlife / coefSizeLife;
-    remainingLife = maxLife / coefSizeLife - actualLife;
-
-    barFrameLife.setSize(sf::Vector2f(dimensionFrameLife.x - (remainingLife * dimensionFrameLife.x/100.0),dimensionFrameLife.y));
-}
-
-//dessine la barrie de vie
-void BarView::drawLife(sf::RenderWindow& window)
-{
-    window.draw(frameLife);
-    window.draw(barFrameLife);
-
-
-}
-
-//change la vie maximum
+/*
+    This function will set your maxLife and actualLife. It'll also set your coefficiant by diving your maxLife by 100 (.0 because it's a double type)
+*/
 void BarView::setMaxLife(int maxLife)
 {
     this->maxLife = maxLife;
@@ -88,7 +83,33 @@ void BarView::setMaxLife(int maxLife)
 
 }
 
-//change la position de la barre de vie
+/*
+    This function'll send an update of your life's frame for updating this frame.
+*/
+void BarView::updateLife(int newLife)
+{
+    /*This operation'll create an actualLife by dividing the newLife (placed in argument) by the coefficient of your life (see setMaxLife's function)*/
+    actualLife = newLife / coefSizeLife;
+
+    /*This one will set your remainingLife by dividing your maxLife by your coefficient and after that by subtracting this by your actualLife*/
+    remainingLife = maxLife / coefSizeLife - actualLife;
+
+    /*The frame of your remaining life will be resized here*/
+    barFrameLife.setSize(sf::Vector2f(dimensionFrameLife.x - (remainingLife * dimensionFrameLife.x/100.0),dimensionFrameLife.y));
+}
+
+/*
+    This function will draw the two frames of your life
+*/
+void BarView::drawLife(sf::RenderWindow& window)
+{
+    window.draw(frameLife);
+    window.draw(barFrameLife);
+}
+
+/*
+    This function'll put the 2 frames in the window
+*/
 void BarView::setBarLifePosition(int x,int y)
 {
     this->xLife = x;
@@ -100,23 +121,10 @@ void BarView::setBarLifePosition(int x,int y)
 
 }
 
-//fais changer la barre du bouclier avec la nouvelle valeur du bouclier
-void BarView::updateShield(int newShield)
-{
-    actualShield = newShield / coefSizeShield;
-    remainingShield = maxShield / coefSizeShield - actualShield;
 
-    barFrameShield.setSize(sf::Vector2f(dimensionFrameShield.x - (remainingShield * dimensionFrameShield.x/100.0),dimensionFrameShield.y));
-}
-
-//dessine le bouclier
-void BarView::drawShield(sf::RenderWindow& window)
-{
-    window.draw(frameShield);
-    window.draw(barFrameShield);
-}
-
-//donne un nouveau bouclier maximum pour paremetrer la barre du bouclier
+/*
+    This function will set your maxShield and actualShield. It'll also set your coefficiant by diving your maxShield by 100 (.0 because it's a double type)
+*/
 void BarView::setMaxShield(int maxShield)
 {
     this->maxShield = maxShield;
@@ -125,7 +133,33 @@ void BarView::setMaxShield(int maxShield)
 
 }
 
-//change la position de la barre du bouclier
+/*
+    This function'll send an update of your shield's frame for updating this frame.
+*/
+void BarView::updateShield(int newShield)
+{
+    /*This operation'll create an actualShield by dividing the newShield (placed in argument) by the coefficient of your shield (see setMaxShield's function)*/
+    actualShield = newShield / coefSizeShield;
+
+    /*This one will set your remainingShield by dividing your maxShield by your coefficient and after that by subtracting this by your actualShield*/
+    remainingShield = maxShield / coefSizeShield - actualShield;
+
+    /*The frame of your remaining shield will be resized here*/
+    barFrameShield.setSize(sf::Vector2f(dimensionFrameShield.x - (remainingShield * dimensionFrameShield.x/100.0),dimensionFrameShield.y));
+}
+
+/*
+    This function will draw the two frames of your shield
+*/
+void BarView::drawShield(sf::RenderWindow& window)
+{
+    window.draw(frameShield);
+    window.draw(barFrameShield);
+}
+
+/*
+    This function'll put the 2 frames in the window
+*/
 void BarView::setBarShieldPosition(int x,int y)
 {
     this->xShield = x;

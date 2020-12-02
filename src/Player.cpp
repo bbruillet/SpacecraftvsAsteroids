@@ -283,7 +283,7 @@ void Player::moveDown()
 	}
 }
 
-void Player::getStats(CharacterHero her)
+void Player::getStats(CharacterHero& her)
 {
     if(selectedItemIndex == 0)
         her.setRace(HUMAN);
@@ -341,4 +341,91 @@ string Player::getPseudo() const
 int Player::getSelectedItemIndex() const
 {
     return selectedItemIndex;
+}
+
+void Player::show(Management& man,sf::RenderWindow& window)
+{
+    getStats(man.getCharHero());
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Backspace))
+            {
+                window.clear();
+                man.menu(window);
+
+            }
+			switch (event.type)
+			{
+            case sf::Event::KeyReleased:
+                switch(event.key.code)
+                {
+                case sf::Keyboard::Up:
+                    moveUp();
+                    getStats(man.getCharHero());
+                    break;
+
+                case sf::Keyboard::Down:
+                    moveDown();
+                    getStats(man.getCharHero());
+                    break;
+
+                case sf::Keyboard::Return:
+                    switch(getPressedElement())
+                    {
+                    case 0:
+                        man.getCharHero().setRace(HUMAN);
+                        break;
+
+                    case 1:
+                        man.getCharHero().setRace(VALDERA);
+                        break;
+
+                    case 2:
+                        man.getCharHero().setRace(VANDUUL);
+                       break;
+
+                    case 3:
+                        man.getCharHero().setRace(COVENANTE);
+                       break;
+
+                    case 4:
+                        man.getCharHero().setRace(AETWI);
+                        break;
+                        default:
+                        break;
+
+
+                    }
+
+
+                    man.playerPseudo(window);
+
+                    break;
+
+                    window.clear();
+                    default:
+                    break;
+                }
+                break;
+                case sf::Event::Closed:
+
+                    window.close();
+
+
+                default:
+                break;
+
+			}
+
+		}
+
+		window.clear();
+
+		draw(window);
+
+		window.display();
+	}
 }
