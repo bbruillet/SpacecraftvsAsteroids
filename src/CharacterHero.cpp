@@ -40,12 +40,12 @@ void CharacterHero::categoryHero() {
     switch(race) {
     case HUMAN:
         setPtsLife(300);
-        setPtsAttack(500);
+        setPtsAttack(100);
         setPtsSpecialAttack(75);
         setShield(10);
 
         setCriticalHit(35.00);
-        setDodge(30.00);
+        setDodge(0.00);
         setRegeneration(15);
         setPicture("Images/Avatars/0_Heros.png");
 
@@ -53,7 +53,7 @@ void CharacterHero::categoryHero() {
 
     case VALDERA:
         setPtsLife(200);
-        setPtsAttack(40);
+        setPtsAttack(1000);
         setPtsSpecialAttack(200);
         setShield(50);
 

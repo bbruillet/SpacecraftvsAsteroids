@@ -24,7 +24,6 @@ class Fight
         int nbDodge;
         int nbFirst;
         int nbRegen;
-        int health;
 
 
     public:
@@ -36,13 +35,11 @@ class Fight
 
     //Méthode de combat
         int attack(Character& c1, Character& c2);
-//        int attackHero(Character& c1, Character& c2);
         void regenHero(Character& c2, Character& c1);
 
         string eventAttack(int attackEvent);
 
-        int getHealth() const;
-        void setHealth(const int &);
+        void setNbRegen(const int &);
 
 
 

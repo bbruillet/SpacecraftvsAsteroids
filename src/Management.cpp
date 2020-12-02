@@ -8,6 +8,7 @@
 #include <vector>
 #include <cmath>
 
+
 #include "Character.h"
 #include "Universe.h"
 #include "Planet.h"
@@ -24,6 +25,7 @@ using namespace std;
 
 Management::Management()
 {
+
 
     this->universe = universe;
     this->spacecraft = spacecraft;
@@ -101,6 +103,8 @@ void Management::mainWindow()
 void Management::menu(sf::RenderWindow & windowJeu)
 {
 	Menu menu;
+	//menu.show()
+
 
 	while (windowJeu.isOpen())
 	{
@@ -130,9 +134,7 @@ void Management::menu(sf::RenderWindow & windowJeu)
                         break;
 
                     case 1:
-                        //mapSpace(windowJeu);
                         creditGame(windowJeu);
-
 
                         break;
 
@@ -191,7 +193,6 @@ void Management::pauseMenu(sf::RenderWindow & windowJeu)
                     {
                     case 0:
                         launch(windowJeu);
-                        windowJeu.close();
 
                         break;
 
@@ -200,8 +201,13 @@ void Management::pauseMenu(sf::RenderWindow & windowJeu)
                         break;
 
                     case 2:
+
+                        showStats(windowJeu);
+                       break;
+                    case 3:
+
                         windowJeu.close();
-;
+                        break;
                         default:
                         break;
                     }
@@ -237,6 +243,12 @@ void Management::playerAccount(sf::RenderWindow & windowJeu)
 		sf::Event event;
 		while (windowJeu.pollEvent(event))
 		{
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Backspace))
+            {
+                windowJeu.clear();
+                menu(windowJeu);
+
+            }
 			switch (event.type)
 			{
             case sf::Event::KeyReleased:
@@ -257,46 +269,55 @@ void Management::playerAccount(sf::RenderWindow & windowJeu)
                     {
                     case 0:
                         hero.setRace(HUMAN);
-                        playerPseudo(windowJeu);
+
 
                         break;
 
                     case 1:
                         hero.setRace(VALDERA);
-                        playerPseudo(windowJeu);
+
 //
 
                         break;
 
                     case 2:
                         hero.setRace(VANDUUL);
-                        playerPseudo(windowJeu);
+
 //
 
                        break;
 
                     case 3:
                         hero.setRace(COVENANTE);
-                        playerPseudo(windowJeu);
+
 //
 
                        break;
 
                     case 4:
                         hero.setRace(AETWI);
-                        playerPseudo(windowJeu);
 
                         break;
                         default:
                         break;
+
+
                     }
+
+
+                    playerPseudo(windowJeu);
+
+                    break;
+
                     windowJeu.clear();
                     default:
                     break;
                 }
                 break;
                 case sf::Event::Closed:
+
                     windowJeu.close();
+
 
                 default:
                 break;
@@ -318,7 +339,7 @@ void Management::playerPseudo(sf::RenderWindow & windowJeu)
     player.pseudoPlayer(windowJeu);
     hero.setName(player.getPseudo());
 
-
+    spv.showStats(hero);
     launch(windowJeu);
 }
 
@@ -389,7 +410,6 @@ void Management::launch(sf::RenderWindow & windowJeu)
                                 switch(event.key.code)
                                 {
                                     case sf::Keyboard::Return:
-                                        cout << "Vous avez bien attéri" << endl;
 
                                         biome.setBackground("Images/Backgrounds/"+planetInProgress.getName()+"_Background.png");
 
@@ -597,8 +617,8 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
     textHero.setFont(fontFight);
     textBoss.setFont(fontFight);
 
-    textHero.setFillColor(sf::Color(36, 154, 247));
-    textBoss.setFillColor(sf::Color(247, 154, 36));
+    textHero.setFillColor(sf::Color::Green);
+    textBoss.setFillColor(sf::Color::Green);
 
     textHero.setCharacterSize(30);
     textBoss.setCharacterSize(30);
@@ -635,28 +655,41 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
     textAttackEvent.setFont(font);
     //
-    textAttackEvent.setFillColor(sf::Color::White);
-    textAttackEvent.setCharacterSize(30);
+    textAttackEvent.setFillColor(sf::Color::Black);
+    textAttackEvent.setCharacterSize(45);
 
-    textAttackEvent.setPosition(500,500);
+    textAttackEvent.setPosition(750,550);
 
     textLifeHero.setFont(font);
     textLifeBoss.setFont(font);
+    textShieldHero.setFont(font);
+    textShieldBoss.setFont(font);
 
     textLifeHero.setFillColor(sf::Color(105, 0, 0));
     textLifeBoss.setFillColor(sf::Color(105, 0, 0));
+    textShieldHero.setFillColor(sf::Color(0, 51, 102));
+    textShieldBoss.setFillColor(sf::Color(0, 51, 102));
 
     textLifeHero.setCharacterSize(30);
     textLifeBoss.setCharacterSize(30);
+    textShieldHero.setCharacterSize(17);
+    textShieldBoss.setCharacterSize(17);
+
 
     textLifeHero.setPosition(837, 55);
     textLifeBoss.setPosition(1153, 55);
+    textShieldHero.setPosition(870, 88);
+    textShieldBoss.setPosition(1153, 88);
 
     textLifeHero.setStyle(sf::Text::Bold);
     textLifeBoss.setStyle(sf::Text::Bold);
+    textShieldHero.setStyle(sf::Text::Bold);
+    textShieldBoss.setStyle(sf::Text::Bold);
 
     textLifeHero.setString(to_string(hero.getPtsLife()));
     textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
+    textShieldHero.setString(to_string(hero.getShield()));
+    textShieldBoss.setString(to_string(pla.getBoss()->getShield()));
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
@@ -664,6 +697,9 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
     int lifeHero = hero.getPtsLife();
     int shieldHero = hero.getShield();
+
+    int lifeBoss = pla.getBoss()->getPtsLife();
+    int shieldBoss = pla.getBoss()->getShield();
 
     while (windowJeu.isOpen())
     {
@@ -710,6 +746,8 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
                     windowJeu.draw(textLifeHero);
                     windowJeu.draw(textLifeBoss);
+                    windowJeu.draw(textShieldHero);
+                    windowJeu.draw(textShieldBoss);
                     windowJeu.display();
                     sf::sleep(sf::milliseconds(5));
                 }
@@ -742,6 +780,8 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
                     windowJeu.draw(textLifeHero);
                     windowJeu.draw(textLifeBoss);
+                    windowJeu.draw(textShieldHero);
+                    windowJeu.draw(textShieldBoss);
                     windowJeu.display();
                     sf::sleep(sf::milliseconds(600));
                 }
@@ -751,6 +791,9 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
                 textLifeHero.setString(to_string(hero.getPtsLife()));
                 textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
+
+                textShieldHero.setString(to_string(hero.getShield()));
+                textShieldBoss.setString(to_string(pla.getBoss()->getShield()));
 
 
                 for(int i(0);i<nb;i++)
@@ -773,6 +816,8 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
                     windowJeu.draw(textLifeHero);
                     windowJeu.draw(textLifeBoss);
+                        windowJeu.draw(textShieldHero);
+                        windowJeu.draw(textShieldBoss);
                     windowJeu.display();
                     sf::sleep(sf::milliseconds(5));
                 }
@@ -815,6 +860,8 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
                         windowJeu.draw(textLifeHero);
                         windowJeu.draw(textLifeBoss);
+                        windowJeu.draw(textShieldHero);
+                        windowJeu.draw(textShieldBoss);
                         windowJeu.display();
                         sf::sleep(sf::milliseconds(200));
                     }
@@ -853,12 +900,17 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
                         windowJeu.draw(textLifeHero);
                         windowJeu.draw(textLifeBoss);
+                        windowJeu.draw(textShieldHero);
+                        windowJeu.draw(textShieldBoss);
                         windowJeu.display();
                     }
                 }
 
                 textLifeHero.setString(to_string(hero.getPtsLife()));
                 textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
+
+                textShieldHero.setString(to_string(hero.getShield()));
+                textShieldBoss.setString(to_string(pla.getBoss()->getShield()));
 
                 dimensionBoss.x = pla.getBoss()->getX()-250;
 
@@ -876,7 +928,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
                 case sf::Keyboard::R:
 
-                    textAttackEvent.setString(hero.getName() + "regagne sa vie de "+ to_string(hero.getRegeneration()) + " points");
+                    textAttackEvent.setString(hero.getName() + " regagne sa vie de "+ to_string(hero.getRegeneration()) + " points");
                     if(hero.getPtsLife()+hero.getRegeneration() <= lifeHero && nbRegen>0)
                     {
 
@@ -909,7 +961,9 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                         windowJeu.draw(textBoss);
                         windowJeu.draw(textAttackEvent);
 
-
+                        windowJeu.draw(textLifeHero);
+                        windowJeu.draw(textShieldHero);
+                        windowJeu.draw(textShieldBoss);
                         windowJeu.draw(textLifeBoss);
                         windowJeu.display();
                         sf::sleep(sf::milliseconds(600));
@@ -918,33 +972,41 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     textLifeHero.setString(to_string(hero.getPtsLife()));
                     textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
 
+                    textShieldHero.setString(to_string(hero.getShield()));
+                    textShieldBoss.setString(to_string(pla.getBoss()->getShield()));
+
                     if(pla.getBoss()->getPtsLife() > 0)
                     {
-                        textAttackEvent.setString("Attaque de " + pla.getBoss()->getName());
-                        for(size_t i(0);i<5;i++)
-                        {
-                            windowJeu.clear();
-                            cView.fightBoss();
-                            pla.getBiome()->drawBiome(windowJeu);
-                            barHero.drawLife(windowJeu);
-                            barHero.drawShield(windowJeu);
-                            barBoss.drawLife(windowJeu);
-                            barBoss.drawShield(windowJeu);
-                            cView.drawHero(windowJeu);
-                            cView.drawBoss(windowJeu);
-                            windowJeu.draw(versus_sprite);
-                            windowJeu.draw(textHero);
-                            windowJeu.draw(textBoss);
-                            windowJeu.draw(textAttackEvent);
+                        attackEvent = fight.attack(*pla.getBoss(), hero);
 
 
-                            windowJeu.draw(textLifeHero);
-                            windowJeu.draw(textLifeBoss);
-                            windowJeu.display();
-                            sf::sleep(sf::milliseconds(200));
-                        }
+                textAttackEvent.setString("Attaque de " + pla.getBoss()->getName());
 
-                    attackEvent = fight.attack(*pla.getBoss(),hero);
+                if(pla.getBoss()->getPtsLife() > 0){
+                    for(size_t i(0);i<5;i++)
+                    {
+                        windowJeu.clear();
+                        cView.fightBoss();
+                        pla.getBiome()->drawBiome(windowJeu);
+                        barHero.drawLife(windowJeu);
+                        barHero.drawShield(windowJeu);
+                        barBoss.drawLife(windowJeu);
+                        barBoss.drawShield(windowJeu);
+                        cView.drawHero(windowJeu);
+                        cView.drawBoss(windowJeu);
+                        windowJeu.draw(versus_sprite);
+                        windowJeu.draw(textHero);
+                        windowJeu.draw(textBoss);
+                        windowJeu.draw(textAttackEvent);
+
+
+                        windowJeu.draw(textLifeHero);
+                        windowJeu.draw(textLifeBoss);
+                        windowJeu.draw(textShieldHero);
+                        windowJeu.draw(textShieldBoss);
+                        windowJeu.display();
+                        sf::sleep(sf::milliseconds(200));
+                    }
 
                     if(attackEvent == 2)
                     {
@@ -954,7 +1016,6 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     {
                         textAttackEvent.setString(fight.eventAttack(attackEvent)+pla.getBoss()->getName());
                     }
-
 
                     cView.rectBoss.left = 0;
 
@@ -978,16 +1039,22 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                         windowJeu.draw(textBoss);
                         windowJeu.draw(textAttackEvent);
 
-                        textLifeHero.setString(to_string(hero.getPtsLife()));
-                        textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
+
                         windowJeu.draw(textLifeHero);
                         windowJeu.draw(textLifeBoss);
+                        windowJeu.draw(textShieldHero);
+                        windowJeu.draw(textShieldBoss);
                         windowJeu.display();
-
                     }
+                }
 
-                    textLifeHero.setString(to_string(hero.getPtsLife()));
-                    textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
+                textLifeHero.setString(to_string(hero.getPtsLife()));
+                textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
+
+                textShieldHero.setString(to_string(hero.getShield()));
+                textShieldBoss.setString(to_string(pla.getBoss()->getShield()));
+
+                dimensionBoss.x = pla.getBoss()->getX()-250;
                 }
 
                 dimensionBoss.x = pla.getBoss()->getX()-250;
@@ -1017,7 +1084,13 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     result = 1;
                     hero.setPtsLife(lifeHero);
                     hero.setShield(shieldHero);
-                    screenResult(result, windowJeu);
+                    pla.getBoss()->setPtsLife(lifeBoss);
+                    pla.getBoss()->setShield(shieldBoss);
+                    pla.getBoss()->resurrection();
+                    pla.getBoss()->setCounterSpe(0);
+                    fight.setNbRegen(2);
+                    hero.setCounterSpe(0);
+                    screenResult(result, windowJeu, *pla.getBiome());
 
                 }
                 if(hero.getPtsLife() == 0)
@@ -1026,7 +1099,12 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
                     hero.setPtsLife(lifeHero);
                     hero.setShield(shieldHero);
-                    screenResult(result, windowJeu);
+                    pla.getBoss()->setPtsLife(lifeBoss);
+                    pla.getBoss()->setShield(shieldBoss);
+                    pla.getBoss()->setCounterSpe(0);
+                    hero.setCounterSpe(0);
+                    fight.setNbRegen(2);
+                    screenResult(result, windowJeu, *pla.getBiome());
                 }
 
 
@@ -1067,25 +1145,16 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
         windowJeu.draw(textBoss);
         windowJeu.draw(textLifeHero);
         windowJeu.draw(textLifeBoss);
+        windowJeu.draw(textShieldHero);
+        windowJeu.draw(textShieldBoss);
         windowJeu.display();
 
         statut = 0;
-
     }
 
-
 }
 
-string Management::eventFight(Character c1, Character c2)
-{
-    string event;
-
-//    if(c1.getPtsLife())
-    cout << event << endl;
-    return "";
-}
-
-void Management::screenResult(int result, sf::RenderWindow& windowJeu)
+void Management::screenResult(int result, sf::RenderWindow& windowJeu, BiomePlanet biom)
 {
     if (!font.loadFromFile("Polices/SpaceFont.ttf"))
     {
@@ -1093,8 +1162,14 @@ void Management::screenResult(int result, sf::RenderWindow& windowJeu)
     }
     windowJeu.clear();
     sf::Text textEvent;
+    sf::Text textInstruction;
     textEvent.setFont(font);
-    textEvent.setCharacterSize(50);
+    textInstruction.setFont(font);
+    textEvent.setCharacterSize(100);
+    textInstruction.setCharacterSize(80);
+    textEvent.setStyle(sf::Text::Bold);
+    textInstruction.setStyle(sf::Text::Bold);
+
 
 
 
@@ -1103,31 +1178,48 @@ void Management::screenResult(int result, sf::RenderWindow& windowJeu)
 		sf::Event event;
 		while (windowJeu.pollEvent(event))
 		{
-		    if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::TextEntered)
             {
                 if(result == 1)
+                {
+                    sf::View view(sf::FloatRect(2000, 2000, 3450, 1800));
+                    view.reset(sf::FloatRect(2048, 1024, 1500, 900));
+                    view.setCenter(750, 450);
+                    windowJeu.setView(view);
                     increaseStats(windowJeu);
+                }
                     else
-                        windowJeu.close();
+                        launch(windowJeu);
             }
         }
-        //afficher Victoire ou défaite condition
 
+        //afficher Victoire ou défaite condition
         windowJeu.clear();
         if(result == 1)
         {
             textEvent.setFillColor(sf::Color::Green);
-            textEvent.setString("Victoire");
+            textEvent.setString("Victory");
+
+            textInstruction.setFillColor(sf::Color(241, 159, 10));
+            textInstruction.setString("> Press any key to get back to stat's menu <");
+
         }
         if(result == 2)
         {
             textEvent.setFillColor(sf::Color::Red);
-            textEvent.setString("Defaite");
+            textEvent.setString("Wasted");
+
+            textInstruction.setFillColor(sf::Color(241, 159, 10));
+            textInstruction.setString("> Press any key to get back to the universe <");
         }
 
 
-        textEvent.setPosition(750,425);
+        textEvent.setPosition(825, 450);
+        textInstruction.setPosition(50, 150);
+
+        biom.drawBiome(windowJeu);
         windowJeu.draw(textEvent);
+        windowJeu.draw(textInstruction);
 
         windowJeu.display();
 	}
@@ -1180,7 +1272,9 @@ void Management::increaseStats(sf::RenderWindow & windowJeu)
                         break;
                     }
 
+
                     hero.executeIncrease();
+                    spv.showStats(hero);
 
                     cout << hero.str() << endl;
                     windowJeu.clear();
@@ -1251,23 +1345,37 @@ void Management::creditGame(sf::RenderWindow &window)
 		while (window.pollEvent(event))
 		{
 		    // case revenir menu
-		    if (event.type == sf::Event::Closed)
+		    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Backspace))
             {
                 window.clear();
                 menu(window);
             }
-
-
 		}
-
 		window.clear();
-
 		 for (int i = 0; i < MAX_NUMBER_OF_STUDENTS; i++)
             {
                 window.draw(credit[i]);
-
             }
-
 		window.display();
+	}
+}
+
+void Management::showStats(sf::RenderWindow &windowJeu)
+{
+
+    while (windowJeu.isOpen())
+	{
+		sf::Event event;
+		while (windowJeu.pollEvent(event))
+		{
+		    // case revenir menu
+		    if (event.type == sf::Event::Closed)
+            {
+                launch(windowJeu);
+            }
+		}
+        windowJeu.clear();
+        spv.draw(windowJeu);
+        windowJeu.display();
 	}
 }

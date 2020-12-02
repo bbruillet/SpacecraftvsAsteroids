@@ -16,6 +16,7 @@
 #include "Planet.h"
 #include "Player.h"
 #include "Fight.h"
+#include "StatsPlayerView.h"
 #include <vector>
 #define MAX_NUMBER_OF_STUDENTS 4
 
@@ -36,9 +37,11 @@ class Management : public sf::Event, public IConstante
         void playerPseudo(sf::RenderWindow & windowJeu);
         void launch(sf::RenderWindow & windowJeu);
         void fightPlanet(sf::RenderWindow & windowJeu,Planet&);
-        void screenResult(int result, sf::RenderWindow & windowJeu);
+        void screenResult(int result, sf::RenderWindow & windowJeu, BiomePlanet biom);
         void mapSpace(sf::RenderWindow & windowJeu);
         void creditGame(sf::RenderWindow &window);
+
+        void showStats(sf::RenderWindow &window);
 
         string eventFight(Character her, Character bos);
 
@@ -65,6 +68,9 @@ class Management : public sf::Event, public IConstante
         sf::Font fontFight;
         sf::Text textLifeHero;
         sf::Text textLifeBoss;
+        sf::Text textShieldHero;
+        sf::Text textShieldBoss;
+        StatsPlayerView spv;
 //        vector <Planete*> planetes;
 //        vector <Planete*> planetesInacc;
 

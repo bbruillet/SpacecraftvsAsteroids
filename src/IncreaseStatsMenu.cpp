@@ -12,10 +12,12 @@ IncreaseStatsMenu::IncreaseStatsMenu()
 		cout << "Internal error" <<endl;
 	}
 
-	if (!stats_menu_texture.loadFromFile("Images/Backgrounds/Menu_Background.jpg"))
+	if (!stats_menu_texture.loadFromFile("Images/Backgrounds/Laboratory.png"))
     {
         std::cout << "Problem for loading background" << std::endl;
     }
+
+
 
     stats_menu_sprite.setTexture(stats_menu_texture);
     stats_menu_sprite.setPosition(0, 0);

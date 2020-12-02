@@ -157,6 +157,7 @@ void Player::pseudoPlayer(sf::RenderWindow &window)
         sf::Event event;
         while (window.pollEvent(event))
         {
+
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
@@ -195,7 +196,7 @@ void Player::pseudoPlayer(sf::RenderWindow &window)
 
                 else if (counter <= 20)
                 {
-                    if( (event.text.unicode >= 48 && event.text.unicode <=57) ||
+                    if((event.text.unicode >= 48 && event.text.unicode <=57) ||
                        (event.text.unicode >= 65 && event.text.unicode <=90) ||
                        (event.text.unicode >= 97 && event.text.unicode <=122) )
                     {

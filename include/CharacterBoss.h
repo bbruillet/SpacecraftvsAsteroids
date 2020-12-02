@@ -43,6 +43,8 @@ class CharacterBoss : public Character
 
         void categoryBoss();
 
+        void resurrection();
+
 
 };
 

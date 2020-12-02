@@ -56,7 +56,7 @@ CharacterBoss* CharacterBoss::clone()const
 void CharacterBoss::categoryBoss() {
     switch(origin) {
     case BLUE:
-        setPtsLife(670);
+        setPtsLife(100);
         setPtsAttack(5000);
         setCriticalHit(15.0);
         setPtsSpecialAttack(20);
@@ -78,23 +78,20 @@ void CharacterBoss::categoryBoss() {
         break;
 
     case GREEN:
-        setPtsLife(1000);
-
+        setPtsLife(0);
         setPtsAttack(10);
-
         setPtsAttack(15);
-
         setCriticalHit(15.0);
         setPtsSpecialAttack(30);
         setDodge(2.00);
-        setShield(50);
+        setShield(0);
         setX(1370);
         setY(610);
         setPicture("Images/Avatars/Verte_Boss.png");
         break;
 
     case RING_BLUE:
-        setPtsLife(1000);
+        setPtsLife(400);
         setPtsAttack(5);
         setCriticalHit(50.0);
         setPtsSpecialAttack(20);
@@ -116,7 +113,7 @@ void CharacterBoss::categoryBoss() {
         break;
 
     case PURPLE_DESTROYED:
-        setPtsLife(500);
+        setPtsLife(600);
         setPtsAttack(5);
         setCriticalHit(15.0);
         setPtsSpecialAttack(20);
@@ -133,4 +130,12 @@ void CharacterBoss::categoryBoss() {
 Origin CharacterBoss::getOrigin()const
 {
     return origin;
+}
+
+void CharacterBoss::resurrection()
+{
+        setPtsLife(getPtsLife()+400);
+        setPtsAttack(getPtsAttack()+30);
+        setPtsSpecialAttack(getPtsSpecialAttack()+60);
+        setShield(getShield()+10);
 }

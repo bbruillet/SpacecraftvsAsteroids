@@ -7,7 +7,7 @@
 #include <cstdio>
 
 #include"CharacterHero.h"
-#define MAX_NUMBER_OF_STATS 7
+#define MAX_NUMBER_OF_SHOW_STATS 8
 
 using std::cout;
 using std::endl;
@@ -23,14 +23,14 @@ class StatsPlayerView
         StatsPlayerView& operator=(const StatsPlayerView& other);
 
         void draw(sf::RenderWindow &window);
-        void showStats(CharacterHero her);
+        void showStats(CharacterHero& her);
 
     protected:
 
     private:
         CharacterHero her;
         sf::Font font;
-        sf::Text stats[MAX_NUMBER_OF_STATS];
+        sf::Text stats[MAX_NUMBER_OF_SHOW_STATS];
 };
 
 #endif // STATSPLAYERVIEW_H
