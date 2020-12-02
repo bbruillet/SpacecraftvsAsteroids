@@ -42,6 +42,8 @@ class Management : public sf::Event, public IConstante
 
         void showStats(sf::RenderWindow &window);
 
+        void story(sf::RenderWindow & windowJeu);
+
         string eventFight(Character her, Character bos);
         CharacterHero& getCharHero();
 
@@ -63,6 +65,7 @@ class Management : public sf::Event, public IConstante
         BarView barBoss;
         Fight fight;
         sf::Text credit[MAX_NUMBER_OF_STUDENTS];
+        sf::Text tutorial;
         sf::Font font;
         sf::Font fontFight;
         sf::Text textLifeHero;
@@ -70,6 +73,7 @@ class Management : public sf::Event, public IConstante
         sf::Text textShieldHero;
         sf::Text textShieldBoss;
         StatsPlayerView spv;
+        int nbStory;
 
 };
 

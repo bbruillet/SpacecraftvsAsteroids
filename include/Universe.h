@@ -17,16 +17,16 @@ using std::ostream;
 using std::vector;
 
 
-class Universe : public sf::Drawable
+class Universe
 {
     private:
         int x, y;
 
 
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
-        {
-            target.draw(universe_sprite);
-        }
+//        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
+//        {
+//            target.draw(universe_sprite);
+//        }
 
     public:
         Universe();

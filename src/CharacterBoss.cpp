@@ -19,7 +19,9 @@ CharacterBoss::CharacterBoss(const string name, const int ptsAttack, const int p
 CharacterBoss::CharacterBoss(const string name, const Origin origin)
 :Character(name),origin(origin)
 {
+
     categoryBoss();
+    setBadge(2);
 }
 
 /*
@@ -77,7 +79,7 @@ CharacterBoss* CharacterBoss::clone()const
 void CharacterBoss::categoryBoss() {
     switch(origin) {
     case BLUE:
-        setPtsLife(100);
+        setPtsLife(0);
         setPtsAttack(5000);
         setCriticalHit(15.0);
         setPtsSpecialAttack(20);
@@ -88,7 +90,7 @@ void CharacterBoss::categoryBoss() {
         break;
 
     case ORANGE:
-        setPtsLife(200);
+        setPtsLife(0);
         setPtsAttack(10);
         setCriticalHit(15.0);
         setPtsSpecialAttack(20);
@@ -99,7 +101,7 @@ void CharacterBoss::categoryBoss() {
         break;
 
     case GREEN:
-        setPtsLife(0);
+        setPtsLife(4000);
         setPtsAttack(10);
         setPtsAttack(15);
         setCriticalHit(15.0);
@@ -112,7 +114,7 @@ void CharacterBoss::categoryBoss() {
         break;
 
     case RING_BLUE:
-        setPtsLife(400);
+        setPtsLife(0);
         setPtsAttack(5);
         setCriticalHit(50.0);
         setPtsSpecialAttack(20);
@@ -123,7 +125,7 @@ void CharacterBoss::categoryBoss() {
         break;
 
     case RING_RED:
-        setPtsLife(500);
+        setPtsLife(0);
         setPtsAttack(5);
         setCriticalHit(15.0);
         setPtsSpecialAttack(20);
@@ -134,7 +136,7 @@ void CharacterBoss::categoryBoss() {
         break;
 
     case PURPLE_DESTROYED:
-        setPtsLife(600);
+        setPtsLife(0);
         setPtsAttack(5);
         setCriticalHit(15.0);
         setPtsSpecialAttack(20);

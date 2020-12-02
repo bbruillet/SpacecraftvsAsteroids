@@ -10,6 +10,10 @@ CharacterView::CharacterView(/*Personnage* personnage*/)//:personnage(personnage
     rectAttackBoss = rect2;
     sf::IntRect rect3(0, 0, 400, 400);
     rectRegen = rect3;
+    sf::IntRect rect4(0, 0, 600, 600);
+    rectBadge = rect4;
+
+
 }
 
 CharacterView::~CharacterView()
@@ -214,4 +218,23 @@ void CharacterView::fightBoss()
             rectBoss.left += 500;
         }
     }
+}
+
+void CharacterView::drawBadges(sf::RenderWindow& window)
+{
+
+    rectBadge.left = hero->getBadge()*600;
+
+
+
+    if (!badge_texture.loadFromFile("Images/Avatars/badges.png"))
+    {
+        std::cout << "Problème for loading badge's texture" << std::endl;
+    }
+
+    badge_sprite.setTexture(badge_texture);
+    badge_sprite.setTextureRect(rectBadge);
+    badge_sprite.setPosition(1000,300);
+    window.draw(badge_sprite);
+
 }

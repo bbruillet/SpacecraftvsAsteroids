@@ -17,11 +17,6 @@ public:
 	int getPressedItem();
 	void show(Management& man,sf::RenderWindow &window);
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
-    {
-           target.draw(menu_sprite);
-    }
-
 
 
 private:

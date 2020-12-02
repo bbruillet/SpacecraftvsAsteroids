@@ -20,12 +20,12 @@
 #include "PauseMenu.h"
 #include "Player.h"
 #include "IncreaseStatsMenu.h"
+#include "StoryView.h"
 
 using namespace std;
 
 Management::Management()
 {
-
 
     this->universe = universe;
     this->spacecraft = spacecraft;
@@ -67,6 +67,8 @@ Management::Management()
         universe.addUnreachable(unreachPlanets[i]);
     }
 
+    nbStory = 1;
+
 }
 
 Management::~Management()
@@ -94,7 +96,7 @@ void Management::mainWindow()
     sound.setLoop(true);
     sound.play();
 
-    sf::RenderWindow windowJeu(sf::VideoMode(1600, 900), "Spacecraft vs Asteroids"/*, sf::Style::Fullscreen*/);
+    sf::RenderWindow windowJeu(sf::VideoMode(1600, 900), "Space Fighter : The battle of Aslorth"/*, sf::Style::Fullscreen*/);
 
     sf::Image icon;
 
@@ -136,13 +138,48 @@ void Management::playerPseudo(sf::RenderWindow & windowJeu)
     player.pseudoPlayer(windowJeu);
     hero.setName(player.getPseudo());
     spv.showStats(hero);
-    launch(windowJeu);
+    cView.setCharacterHero(hero);
+    story(windowJeu);
+}
+
+void Management::story(sf::RenderWindow & windowJeu)
+{
+    StoryView sView;
+    if(nbStory == 1)
+    {
+        sView.introduction(*this, windowJeu);
+    }
+    else
+    {
+
+        nbStory = 0;
+        hero.setBadge(0);
+        for ( size_t i = 0; i < universe.planets.size(); i++ )
+        {
+                universe.planets[i]->getBoss()->setBadge(2);
+        }
+        sView.conclusion(*this, windowJeu);
+    }
 }
 
 void Management::launch(sf::RenderWindow & windowJeu)
 {
+    sf::Font font;
+
+    if (!font.loadFromFile("Polices/SpaceFont.ttf"))
+    {
+        cout << "Internal error" <<endl;
+    }
+
     sf::View view(sf::FloatRect(2000, 2000, 3450, 1800));
     view.setCenter(spacecraft.getX(), spacecraft.getY());
+
+    tutorial.setFont(font);
+	tutorial.setFillColor(sf::Color::White);
+	tutorial.setString("> Press T key to enter tutorial <");
+	tutorial.setPosition(sf::Vector2f(spacecraft.getX()-875,spacecraft.getY()-800));
+	tutorial.setCharacterSize(100);
+	tutorial.setStyle(sf::Text::Bold);
 
     Planet planetInProgress;
 
@@ -248,19 +285,11 @@ void Management::launch(sf::RenderWindow & windowJeu)
                 }
             }
 
-
-            sf::Font font;
-
-            if (!font.loadFromFile("Polices/SpaceFont.ttf"))
-            {
-                cout << "Internal error" <<endl;
-            }
-
             sf::Text text;
             text.setFont(font);
-            text.setString("> Appuyez sur la touche enter pour atterir <");
+            text.setString("> Press enter key to land <");
             text.setCharacterSize(100);
-            text.setPosition(sf::Vector2f(planetInProgress.getX()-600, planetInProgress.getY()-100));
+            text.setPosition(sf::Vector2f(planetInProgress.getX()-200, planetInProgress.getY()-100));
 
 
             windowJeu.clear();
@@ -284,6 +313,16 @@ void Management::launch(sf::RenderWindow & windowJeu)
 
             spacecraftView.setSpacecraft(spacecraft);
             spacecraftView.drawSpacecraft(windowJeu);
+            windowJeu.draw(tutorial);
+
+//            sf::Clock clock;
+//            sf::Time time = sf::seconds(0.01f);
+//
+//            if(clock.getElapsedTime() == time)
+//            {
+//                tutorial.setString("");
+//                windowJeu.draw(tutorial);
+//            }
             windowJeu.display();
 
         }
@@ -871,6 +910,13 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     pla.getBoss()->setCounterSpe(0);
                     fight.setNbRegen(2);
                     hero.setCounterSpe(0);
+                    if(pla.getBoss()->getBadge()>0){
+                        pla.getBoss()->setBadge(pla.getBoss()->getBadge() -1);
+                        hero.setBadge(hero.getBadge() + 1);
+                        if(hero.getBadge() == 12){
+                           nbStory = 2;
+                        }
+                    }
                     screenResult(result, windowJeu);
 
                 }
@@ -967,7 +1013,10 @@ void Management::screenResult(int result, sf::RenderWindow& windowJeu)
                     view.reset(sf::FloatRect(2048, 1024, 1500, 900));
                     view.setCenter(750, 450);
                     windowJeu.setView(view);
-                    increaseStats(windowJeu);
+                    if(nbStory == 2)
+                        story(windowJeu);
+                    else
+                        increaseStats(windowJeu);
                 }
                     else
                         launch(windowJeu);
@@ -980,7 +1029,6 @@ void Management::screenResult(int result, sf::RenderWindow& windowJeu)
         {
             textEvent.setFillColor(sf::Color::Green);
             textEvent.setString("Victory");
-
             textInstruction.setFillColor(sf::Color(241, 159, 10));
             textInstruction.setString("> Press any key to get back to stat's menu <");
 
@@ -1001,6 +1049,8 @@ void Management::screenResult(int result, sf::RenderWindow& windowJeu)
         biome.drawBiome(windowJeu);
         windowJeu.draw(textEvent);
         windowJeu.draw(textInstruction);
+
+        cView.drawBadges(windowJeu);
 
         windowJeu.display();
 	}
@@ -1157,6 +1207,8 @@ void Management::showStats(sf::RenderWindow &windowJeu)
 		}
         windowJeu.clear();
         spv.draw(windowJeu);
+
+        cView.drawBadges(windowJeu);
         windowJeu.display();
 	}
 }

@@ -32,10 +32,15 @@ class CharacterView
         sf::Texture regen_texture;
         sf::IntRect rectRegen;
 
+        sf::Sprite badge_sprite;
+        sf::Texture badge_texture;
+        sf::IntRect rectBadge;
+
         void drawHero(sf::RenderWindow &window);
         void drawBoss(sf::RenderWindow &window);
         void drawBoss2(sf::RenderWindow &window);
         void drawRegenCircles(sf::RenderWindow &window);
+        void drawBadges(sf::RenderWindow& window);
 
         CharacterHero& getCharacterHero()const;
         void setCharacterHero(CharacterHero&);

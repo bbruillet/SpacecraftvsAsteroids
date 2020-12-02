@@ -63,8 +63,8 @@ void CharacterHero::categoryHero() {
 
         break;
     case VANDUUL:
-        setPtsLife(300);
-        setPtsAttack(300);
+        setPtsLife(1000);
+        setPtsAttack(10000);
         setPtsSpecialAttack(300);
         setShield(300);
 

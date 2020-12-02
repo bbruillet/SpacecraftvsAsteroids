@@ -126,6 +126,7 @@ int Character::getPtsLife() const
 
 void Character::setBadge(const int &badge)
 {
+    if(badge <= 12);
     this->badge = badge;
 }
 

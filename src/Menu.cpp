@@ -24,7 +24,7 @@ Menu::Menu()
 
 	menu[0].setFont(font);
 	menu[0].setFillColor(sf::Color(201, 135, 185));
-	menu[0].setString("> Jouer");
+	menu[0].setString("> Play");
 	menu[0].setPosition(sf::Vector2f(100,100));
 
 	menu[1].setFont(font);
@@ -34,7 +34,7 @@ Menu::Menu()
 
 	menu[2].setFont(font);
 	menu[2].setFillColor(sf::Color::White);
-	menu[2].setString("> Quitter");
+	menu[2].setString("> Quit game");
 	menu[2].setPosition(sf::Vector2f(100,400));
 
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)

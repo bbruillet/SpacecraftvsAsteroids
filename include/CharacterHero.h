@@ -57,6 +57,8 @@ class CharacterHero : public Character
         void categoryHero();
         string str() const;
 
+
+
         void executeIncrease();
 
         void setIncrease(IStrategyIncrease* strategy);
