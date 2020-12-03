@@ -24,14 +24,14 @@ class CharacterBoss : public Character
 {
 
     private:
-        /*THe enumeration is called here*/
+        /*The enumeration is called here*/
         Origin origin;
 
 
     public:
         /*
             The 5 next lines are :
-                - construcor
+                - constructor
                 - 2nd constructor
                 - destructor
                 - copy contructor

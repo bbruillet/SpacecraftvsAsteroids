@@ -1,10 +1,9 @@
 #include "CharacterHero.h"
 
-#include <cstdio>
-#include <iostream>
-#include <SFML/Graphics.hpp>
-
-
+/*
+    This is the constructor
+    As you can see, we call categoryBoss()', because a boss is initialized here with his own statistics
+*/
 CharacterHero::CharacterHero(const string name, const int ptsAttack, const int ptsLife, const int badge,
     const int ptsSpecialAttack, const int shield, const double criticalHit, const double dodge,
     const int x, const int y, const string picture, const int regeneration, const Race race ,IStrategyIncrease* strat)

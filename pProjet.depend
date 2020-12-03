@@ -579,23 +579,23 @@
 	<cstdio>
 	<SFML/Graphics.hpp>
 
-1606921545 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/CharacterBoss.h
+1607012123 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/CharacterBoss.h
 	"Character.h"
 	"Planet.h"
 
-1606923333 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/CharacterHero.h
-	"Character.h"
+1607012123 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/CharacterHero.h
+	<cstdio>
 	<iostream>
 	<ostream>
 	<string>
+	<SFML/Graphics.hpp>
 	"IConstante.h"
 	"IStrategyIncrease.h"
 	"IncreaseAttack.h"
 	"IncreaseLife.h"
 	"IncreaseShield.h"
 	"IncreaseRegeneration.h"
-	<cstdio>
-	<SFML/Graphics.hpp>
+	"Character.h"
 
 1606996876 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/CharacterView.h
 	"CharacterHero.h"
@@ -613,11 +613,8 @@
 	"Planet.h"
 	"Character.h"
 
-1606992119 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/CharacterHero.cpp
+1607011261 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/CharacterHero.cpp
 	"CharacterHero.h"
-	<cstdio>
-	<iostream>
-	<SFML/Graphics.hpp>
 
 1606996878 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/CharacterView.cpp
 	"CharacterView.h"
@@ -977,7 +974,7 @@
 	"Management.h"
 	"SFML/Graphics.hpp"
 
-1606993687 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/StoryView.cpp
+1607001917 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/StoryView.cpp
 	"StoryView.h"
 	<iostream>
 
