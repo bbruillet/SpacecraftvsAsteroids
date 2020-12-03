@@ -8,14 +8,7 @@
 #include <vector>
 #include <cmath>
 
-
-#include "Character.h"
-#include "Universe.h"
-#include "Planet.h"
-#include "Spacecraft.h"
-#include "BiomePlanet.h"
-#include "CharacterHero.h"
-#include "CharacterBoss.h"
+#include "StartScreenView.h"
 #include "Menu.h"
 #include "PauseMenu.h"
 #include "Player.h"
@@ -23,7 +16,6 @@
 #include "StoryView.h"
 #include "TutorialView.h"
 
-using namespace std;
 
 Management::Management()
 {
@@ -107,9 +99,14 @@ void Management::mainWindow()
     }
 
     windowJeu.setIcon(250,250,icon.getPixelsPtr());
-    menu(windowJeu);
+    startScreen(windowJeu);
 }
 
+void Management::startScreen(sf::RenderWindow& windowJeu)
+{
+    StartScreenView start;
+    start.show(*this,windowJeu);
+}
 
 void Management::menu(sf::RenderWindow & windowJeu)
 {
@@ -389,17 +386,31 @@ void Management::mapSpace(sf::RenderWindow & windowJeu)
     }
 }
 
-void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
+void Management::drawBattle(sf::RenderWindow& windowJeu)
 {
-    sf::View view(sf::FloatRect(2048, 1024, 2048, 1024));
-    view.setCenter(1024, 512);
-    int nb = 0;
-    int step;
-    cout << hero.str() << endl;
 
-    /*++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    //sf::Font font;
+        windowJeu.clear();
+        biome.drawBiome(windowJeu);
+        barHero.drawLife(windowJeu);
+        barHero.drawShield(windowJeu);
+        barBoss.drawLife(windowJeu);
+        barBoss.drawShield(windowJeu);
+        cView.drawHero(windowJeu);
+        cView.drawBoss(windowJeu);
+        windowJeu.draw(versus_sprite);
+        windowJeu.draw(textHero);
+        windowJeu.draw(textBoss);
+        windowJeu.draw(textAttackEvent);
+        windowJeu.draw(textLifeHero);
+        windowJeu.draw(textLifeBoss);
+        windowJeu.draw(textShieldHero);
+        windowJeu.draw(textShieldBoss);
+        windowJeu.display();
+}
 
+void Management::initCombat(Planet &pla)
+{
+    //fonts
     if (!font.loadFromFile("Polices/SpaceFont.ttf"))
     {
         cout << "Internal error" <<endl;
@@ -415,17 +426,11 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
         std::cout << "Problème d'image du 'versus'" << std::endl;
     }
 
-    sf::Vector2f dimension(pla.getXChar(),pla.getYChar());
-    sf::Vector2f dimensionBoss(pla.getBoss()->getX()-250,pla.getBoss()->getY());
-    cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
-    cView.attack_boss_sprite.setPosition(dimensionBoss.x,dimensionBoss.y);
-
-
+    //set sprite du versus
     versus_sprite.setTexture(versus_texture);
     versus_sprite.setPosition(775, -25);
 
-    sf::Text textHero;
-    sf::Text textBoss;
+    //Nom affiché pour
 
     textHero.setFont(fontFight);
     textBoss.setFont(fontFight);
@@ -436,10 +441,17 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
     textHero.setCharacterSize(30);
     textBoss.setCharacterSize(30);
 
+    textHero.setPosition(400, 20);
+    textBoss.setPosition(1150, 20);
+
+    textHero.setString(cView.getCharacterHero().getName());
+    textBoss.setString(pla.getBoss()->getName());
+    //----------------------------------------
+    //Attribue un personnageheros et boss pour les dessiner
     cView.setCharacterBoss(*pla.getBoss());
     cView.setCharacterHero(hero);
 
-
+    //Permet de dessiner les barres de vie et de shield
     barHero.setMaxLife(hero.getPtsLife());
     barHero.setBarLifePosition(650,75);
     barHero.setBarShieldPosition(800,100);
@@ -458,20 +470,15 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
     barBoss.updateLife(pla.getBoss()->getPtsLife());
     barBoss.updateShield(pla.getBoss()->getShield());
 
-    int statut = 0;
-    int nbRegen = 2;
-    int result = 0;
-    int attackEvent = 0;
-
-
-    sf::Text textAttackEvent;
+    //-------------------------
+    //ecriture du move réalisé
 
     textAttackEvent.setFont(font);
-    //
     textAttackEvent.setFillColor(sf::Color(201,67,11));
     textAttackEvent.setCharacterSize(75);
-
     textAttackEvent.setPosition(10,225);
+
+    // vie affichée sur les barres de vie et de shield
 
     textLifeHero.setFont(font);
     textLifeBoss.setFont(font);
@@ -487,7 +494,6 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
     textLifeBoss.setCharacterSize(30);
     textShieldHero.setCharacterSize(17);
     textShieldBoss.setCharacterSize(17);
-
 
     textLifeHero.setPosition(837, 55);
     textLifeBoss.setPosition(1153, 55);
@@ -505,472 +511,327 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
     textShieldBoss.setString(to_string(pla.getBoss()->getShield()));
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+    //stock la vie et le shield pour pouvoir les remettre après le combat
+    lifeHero = hero.getPtsLife();
+    shieldHero = hero.getShield();
 
+    //stock la vie et le shield d'un boss pour remettre après combat
+    lifeBoss = pla.getBoss()->getPtsLife();
+    shieldBoss = pla.getBoss()->getShield();
+
+}
+
+void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
+{
+    //VIEW fight
+    sf::View view(sf::FloatRect(2048, 1024, 2048, 1024));
+    view.setCenter(1024, 512);
     windowJeu.setView(view);
 
-    int lifeHero = hero.getPtsLife();
-    int shieldHero = hero.getShield();
 
-    int lifeBoss = pla.getBoss()->getPtsLife();
-    int shieldBoss = pla.getBoss()->getShield();
+    //var
+    //compteur pour step
+    int nb = 0;
+    //pas a faire pour arriver assez porche pour attaquer
+    int step;
+     //statut pour éviter de spam
+    int statut = 0;
+    //resutat du combat
+    int result = 0;
+    //type d'attaque
+    int attackEvent = 0;
 
+    //pour changer les positionnement d'un sprite à l'aide d'un vector2f
+    sf::Vector2f dimension(pla.getXChar(),pla.getYChar());
+    sf::Vector2f dimensionBoss(pla.getBoss()->getX()-250,pla.getBoss()->getY());
+    cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
+    cView.attack_boss_sprite.setPosition(dimensionBoss.x,dimensionBoss.y);
+
+    //initalise les barres de vie,de shield charge les images,..
+    initCombat(pla);
+
+    //Boucle du dessin
     while (windowJeu.isOpen())
     {
-
-
         sf::Event event;
         while (windowJeu.pollEvent(event))
         {
+            //statut allow to push on A or on R to make a move for the battle
             if(statut == 0)
-            {
+            {   //met le statut a 1 pour ne pas attaquer avant la fin du tour
                 statut = 1;
 
-            if(hero.getPtsLife() > 0 && pla.getBoss()->getPtsLife() > 0){
+                //si la vie des deux personnages est supérieure à 0 alors on peut jouer
+                if(hero.getPtsLife() > 0 && pla.getBoss()->getPtsLife() > 0){
 
-                switch (event.type){
-                case sf::Event::KeyReleased:
-                switch(event.key.code)
-                {
-                case sf::Keyboard::A:
-                attackEvent = fight.attack(hero,*pla.getBoss());
-
-                textAttackEvent.setString("Attack from " + hero.getName());
-
-
-                while(dimension.x < pla.getBoss()->getX() -300)
-                {
-                    nb++;
-                    windowJeu.clear();
-                    cView.forwardHero();
-                    dimension.x += 22;
-                    cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
-                    biome.drawBiome(windowJeu);
-                    barHero.drawLife(windowJeu);
-                    barHero.drawShield(windowJeu);
-                    barBoss.drawLife(windowJeu);
-                    barBoss.drawShield(windowJeu);
-                    cView.drawHero(windowJeu);
-                    cView.drawBoss(windowJeu);
-                    windowJeu.draw(versus_sprite);
-                    windowJeu.draw(textHero);
-                    windowJeu.draw(textBoss);
-                    windowJeu.draw(textAttackEvent);
-
-
-                    windowJeu.draw(textLifeHero);
-                    windowJeu.draw(textLifeBoss);
-                    windowJeu.draw(textShieldHero);
-                    windowJeu.draw(textShieldBoss);
-                    windowJeu.display();
-                    sf::sleep(sf::milliseconds(5));
-                }
-
-                if(attackEvent == 2)
-                {
-                    textAttackEvent.setString(pla.getBoss()->getName()+fight.eventAttack(attackEvent));
-                }
-                else
-                {
-                    textAttackEvent.setString(fight.eventAttack(attackEvent)+hero.getName());
-                }
-
-                for(size_t i(0);i<5;i++)
-                {
-                    windowJeu.clear();
-                    cView.fightHero();
-                    biome.drawBiome(windowJeu);
-                    barHero.drawLife(windowJeu);
-                    barHero.drawShield(windowJeu);
-                    barBoss.drawLife(windowJeu);
-                    barBoss.drawShield(windowJeu);
-                    cView.drawHero(windowJeu);
-                    cView.drawBoss(windowJeu);
-                    windowJeu.draw(versus_sprite);
-                    windowJeu.draw(textHero);
-                    windowJeu.draw(textBoss);
-                    windowJeu.draw(textAttackEvent);
-
-
-                    windowJeu.draw(textLifeHero);
-                    windowJeu.draw(textLifeBoss);
-                    windowJeu.draw(textShieldHero);
-                    windowJeu.draw(textShieldBoss);
-                    windowJeu.display();
-                    sf::sleep(sf::milliseconds(600));
-                }
-
-                barBoss.updateLife(pla.getBoss()->getPtsLife());
-                barBoss.updateShield(pla.getBoss()->getShield());
-
-                textLifeHero.setString(to_string(hero.getPtsLife()));
-                textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
-
-                textShieldHero.setString(to_string(hero.getShield()));
-                textShieldBoss.setString(to_string(pla.getBoss()->getShield()));
-
-
-                for(int i(0);i<nb;i++)
-                {
-                    windowJeu.clear();
-                    cView.backwardHero();
-                    dimension.x -= 22;
-                    cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
-                    biome.drawBiome(windowJeu);
-                    barHero.drawLife(windowJeu);
-                    barHero.drawShield(windowJeu);
-                    barBoss.drawLife(windowJeu);
-                    barBoss.drawShield(windowJeu);
-                    cView.drawHero(windowJeu);
-                    cView.drawBoss(windowJeu);
-                    windowJeu.draw(versus_sprite);
-                    windowJeu.draw(textHero);
-                    windowJeu.draw(textBoss);
-
-
-                    windowJeu.draw(textLifeHero);
-                    windowJeu.draw(textLifeBoss);
-                        windowJeu.draw(textShieldHero);
-                        windowJeu.draw(textShieldBoss);
-                    windowJeu.display();
-                    sf::sleep(sf::milliseconds(5));
-                }
-
-
-
-
-
-                cView.rectHero.left = 0;
-
-
-
-                /*-------------BOSSSSSS------------*/
-
-                if(pla.getBoss()->getPtsLife() != 0){
-
-
-                attackEvent = fight.attack(*pla.getBoss(), hero);
-
-
-                textAttackEvent.setString("Attack from " + pla.getBoss()->getName());
-
-                if(pla.getBoss()->getPtsLife() > 0){
-                    for(size_t i(0);i<5;i++)
+                    switch (event.type){
+                    case sf::Event::KeyReleased:
+                    switch(event.key.code)
                     {
-                        windowJeu.clear();
-                        cView.fightBoss();
-                        biome.drawBiome(windowJeu);
-                        barHero.drawLife(windowJeu);
-                        barHero.drawShield(windowJeu);
-                        barBoss.drawLife(windowJeu);
-                        barBoss.drawShield(windowJeu);
-                        cView.drawHero(windowJeu);
-                        cView.drawBoss(windowJeu);
-                        windowJeu.draw(versus_sprite);
-                        windowJeu.draw(textHero);
-                        windowJeu.draw(textBoss);
-                        windowJeu.draw(textAttackEvent);
+                        // A pour attaquer
+                    case sf::Keyboard::A:
 
+                        //-------------------------HEROS------------------------------//
+                        // attack event stack the type of the move and an hero attack a boss
+                        attackEvent = fight.attack(hero,*pla.getBoss());
+                        // to show who's attacking
+                        textAttackEvent.setString("Attack from " + hero.getName());
+                            // this while allows us to go near the boss for the animation
+                            while(dimension.x < pla.getBoss()->getX() -300)
+                            {
+                                //count how many time we need to go to be near the boss to fight
+                                nb++;
+                                // animation when hero need to walk until the boss
+                                cView.forwardHero();
+                                // change this var to go near the boss and set the position of the spite
+                                dimension.x += 22;
+                                cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
+                                //display the scene of the battle
+                                drawBattle(windowJeu);
+                                //sleep allow us to display our sprite every x seconds
+                                sf::sleep(sf::milliseconds(5));
+                            }
 
-                        windowJeu.draw(textLifeHero);
-                        windowJeu.draw(textLifeBoss);
-                        windowJeu.draw(textShieldHero);
-                        windowJeu.draw(textShieldBoss);
-                        windowJeu.display();
-                        sf::sleep(sf::milliseconds(200));
-                    }
+                            // We set the type of attack we use when whe fight the boss
+                            textAttackEvent.setString(fight.eventAttack(attackEvent)+hero.getName());
 
-                    if(attackEvent == 2)
-                    {
-                        textAttackEvent.setString(hero.getName()+fight.eventAttack(attackEvent));
-                    }
-                    else
-                    {
-                        textAttackEvent.setString(fight.eventAttack(attackEvent)+pla.getBoss()->getName());
-                    }
+                            for(size_t i(0);i<5;i++)
+                            {
+                                //animation when we fight the boss
+                                cView.fightHero();
+                                //display the scene of the battle
+                                drawBattle(windowJeu);
+                                //sleep allow us to display our sprite every x seconds
+                                sf::sleep(sf::milliseconds(600));
+                            }
 
-                    cView.rectBoss.left = 0;
+                            //update the life and the shield of the boss after hero's attack
+                            barBoss.updateLife(pla.getBoss()->getPtsLife());
+                            barBoss.updateShield(pla.getBoss()->getShield());
+                            textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
+                            textShieldBoss.setString(to_string(pla.getBoss()->getShield()));
 
-                    for(int i(0);i<nb;i++)
-                    {
-                        sf::sleep(sf::milliseconds(5));
-                        windowJeu.clear();
-                        cView.throwingBoss();
-                        dimensionBoss.x -= 22;
-                        cView.attack_boss_sprite.setPosition(dimensionBoss.x, dimensionBoss.y);
-                        biome.drawBiome(windowJeu);
-                        barHero.drawLife(windowJeu);
-                        barHero.drawShield(windowJeu);
-                        barBoss.drawLife(windowJeu);
-                        barBoss.drawShield(windowJeu);
-                        cView.drawHero(windowJeu);
-                        cView.drawBoss(windowJeu);
-                        cView.drawBoss2(windowJeu);
-                        windowJeu.draw(versus_sprite);
-                        windowJeu.draw(textHero);
-                        windowJeu.draw(textBoss);
-                        windowJeu.draw(textAttackEvent);
+                            for(int i(0);i<nb;i++)
+                            {   //animation the hero go back at his position
+                                cView.backwardHero();
+                                dimension.x -= 22;
+                                cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
+                                //display scene of the battle
+                                drawBattle(windowJeu);
+                                //sleep allow us to display our sprite every x seconds
+                                sf::sleep(sf::milliseconds(5));
+                            }
+                            //we set our image of hero to his first form
+                            cView.rectHero.left = 0;
 
+                            /*------------------------BOSSS-----------------------------*/
 
-                        windowJeu.draw(textLifeHero);
-                        windowJeu.draw(textLifeBoss);
-                        windowJeu.draw(textShieldHero);
-                        windowJeu.draw(textShieldBoss);
-                        windowJeu.display();
-                    }
-                }
+                            // if the boss survive after the hero's attack
+                            if(pla.getBoss()->getPtsLife() != 0)
+                            {
+                            //boss attacks hero and we stack the move in attackevent
+                            attackEvent = fight.attack(*pla.getBoss(), hero);
+                            //show boss attack
+                            textAttackEvent.setString("Attack from " + pla.getBoss()->getName());
 
-                textLifeHero.setString(to_string(hero.getPtsLife()));
-                textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
+                                for(size_t i(0);i<5;i++)
+                                {
+                                    //animation when boss prepare is power ball to attack
+                                    cView.fightBoss();
+                                    //draw battle scene
+                                    drawBattle(windowJeu);
+                                    //sleep allow us to display our sprite every x seconds
+                                    sf::sleep(sf::milliseconds(200));
+                                }
+                            // to display what type of attack boss do
+                            textAttackEvent.setString(fight.eventAttack(attackEvent)+pla.getBoss()->getName());
+                            // set the boss image to his inital position
+                            cView.rectBoss.left = 0;
 
-                textShieldHero.setString(to_string(hero.getShield()));
-                textShieldBoss.setString(to_string(pla.getBoss()->getShield()));
+                            for(int i(0);i<nb;i++)
+                            {
+                                //sleep allow us to display our sprite every x seconds
+                                sf::sleep(sf::milliseconds(5));
+                                //animation of throwing is power ball
+                                cView.throwingBoss();
+                                // move the sprite of the power ball
+                                dimensionBoss.x -= 22;
+                                cView.attack_boss_sprite.setPosition(dimensionBoss.x, dimensionBoss.y);
+                                //draw battle scene
+                                drawBattle(windowJeu);
+                                //draw power ball
+                                cView.drawBoss2(windowJeu);
+                                windowJeu.display();
 
-                dimensionBoss.x = pla.getBoss()->getX()-250;
+                            }
+                            //set the life and the shield of the hero after boss' attack
+                            textLifeHero.setString(to_string(hero.getPtsLife()));
+                            textShieldHero.setString(to_string(hero.getShield()));
+                            barHero.updateLife(hero.getPtsLife());
+                            barHero.updateShield(hero.getShield());
 
-                /*-----------------------------------*/
+                            //put the ball at the good position for the next attack
+                            dimensionBoss.x = pla.getBoss()->getX()-250;
 
+                            // to know how many times we need to move to the boss to attack
+                            step = nb;
 
-                    barHero.updateLife(hero.getPtsLife());
-                    barHero.updateShield(hero.getShield());
-
-                    step = nb;
-                    nb = 0;
-                }
-
+                            nb = 0;
+                            }
                 break;
 
+                //R to restaure LIFE
                 case sf::Keyboard::R:
-
+                    //to display that the hero regenerates his life
                     textAttackEvent.setString(hero.getName() + " regenerates his life by "+ to_string(hero.getRegeneration()) + " points");
-                    if(hero.getPtsLife()+hero.getRegeneration() <= lifeHero && nbRegen>0)
+                    // if the hero can regen
+                    if(hero.getPtsLife()+hero.getRegeneration() <= lifeHero)
                     {
-
-                        nbRegen--;
+                        //regen life
                         fight.regenHero(hero, *pla.getBoss());
-
+                        //update the life of the hero
                         barHero.updateLife(hero.getPtsLife());
-                        barHero.updateShield(hero.getShield());
                         textLifeHero.setString(to_string(hero.getPtsLife()));
 
+                        for(size_t i(0);i<5;i++)
+                        {
+                            //set position of the regen
+                            cView.regen_sprite.setPosition(pla.getXChar()-20, pla.getYChar()-30);
 
-                    /*---
-                    Animation REGEN
-                    */
-                    for(size_t i(0);i<5;i++)
-                    {
-                        cView.regen_sprite.setPosition(pla.getXChar()-20, pla.getYChar()-30);
-                        windowJeu.clear();
-                        cView.regenCircles();
-                        biome.drawBiome(windowJeu);
-                        barHero.drawLife(windowJeu);
-                        barHero.drawShield(windowJeu);
-                        barBoss.drawLife(windowJeu);
-                        barBoss.drawShield(windowJeu);
-                        cView.drawHero(windowJeu);
-                        cView.drawBoss(windowJeu);
-                        cView.drawRegenCircles(windowJeu);
-                        windowJeu.draw(versus_sprite);
-                        windowJeu.draw(textHero);
-                        windowJeu.draw(textBoss);
-                        windowJeu.draw(textAttackEvent);
-
-                        windowJeu.draw(textLifeHero);
-                        windowJeu.draw(textShieldHero);
-                        windowJeu.draw(textShieldBoss);
-                        windowJeu.draw(textLifeBoss);
-                        windowJeu.display();
-                        sf::sleep(sf::milliseconds(600));
-                    }
-
-                    textLifeHero.setString(to_string(hero.getPtsLife()));
-                    textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
-
-                    textShieldHero.setString(to_string(hero.getShield()));
-                    textShieldBoss.setString(to_string(pla.getBoss()->getShield()));
-
-                    if(pla.getBoss()->getPtsLife() > 0)
-                    {
+                            // to display the animation of regeneration
+                            cView.regenCircles();
+                            cView.drawRegenCircles(windowJeu);
+                            // draw fight scene
+                            drawBattle(windowJeu);
+                            sf::sleep(sf::milliseconds(600));
+                        }
+                        //boss attacks hero and we stack the move in attackevent
                         attackEvent = fight.attack(*pla.getBoss(), hero);
+                        //show boss attack
+                        textAttackEvent.setString("Attack from " + pla.getBoss()->getName());
 
+                        for(size_t i(0);i<5;i++)
+                        {
+                          //animation when boss prepare is power ball to attack
+                            cView.fightBoss();
+                            //draw battle scene
+                            drawBattle(windowJeu);
+                            //sleep allow us to display our sprite every x seconds
+                            sf::sleep(sf::milliseconds(200));
+                        }
 
-                textAttackEvent.setString("Attack from " + pla.getBoss()->getName());
-
-                if(pla.getBoss()->getPtsLife() > 0){
-                    for(size_t i(0);i<5;i++)
-                    {
-                        windowJeu.clear();
-                        cView.fightBoss();
-                        biome.drawBiome(windowJeu);
-                        barHero.drawLife(windowJeu);
-                        barHero.drawShield(windowJeu);
-                        barBoss.drawLife(windowJeu);
-                        barBoss.drawShield(windowJeu);
-                        cView.drawHero(windowJeu);
-                        cView.drawBoss(windowJeu);
-                        windowJeu.draw(versus_sprite);
-                        windowJeu.draw(textHero);
-                        windowJeu.draw(textBoss);
-                        windowJeu.draw(textAttackEvent);
-
-
-                        windowJeu.draw(textLifeHero);
-                        windowJeu.draw(textLifeBoss);
-                        windowJeu.draw(textShieldHero);
-                        windowJeu.draw(textShieldBoss);
-                        windowJeu.display();
-                        sf::sleep(sf::milliseconds(200));
-                    }
-
-                    if(attackEvent == 2)
-                    {
-                        textAttackEvent.setString(hero.getName()+fight.eventAttack(attackEvent));
-                    }
-                    else
-                    {
+                       // to display what type of attack boss do
                         textAttackEvent.setString(fight.eventAttack(attackEvent)+pla.getBoss()->getName());
-                    }
+                        // set the boss image to his inital position
+                        cView.rectBoss.left = 0;
 
-                    cView.rectBoss.left = 0;
+                        for(int i(0);i<step;i++)
+                        {
+                            sf::sleep(sf::milliseconds(5));
+                            //throw is power ball
+                            cView.throwingBoss();
+                            //power ball move
+                            dimensionBoss.x -= 22;
+                            //set position of power ball
+                            cView.attack_boss_sprite.setPosition(dimensionBoss.x, dimensionBoss.y);
+                            //draw window fight
+                            drawBattle(windowJeu);
+                            //draw the power ball of the boss
+                            cView.drawBoss2(windowJeu);
+                            windowJeu.display();
+                        }
 
-                    for(int i(0);i<step;i++)
-                    {
-                        sf::sleep(sf::milliseconds(5));
-                        windowJeu.clear();
-                        cView.throwingBoss();
-                        dimensionBoss.x -= 22;
-                        cView.attack_boss_sprite.setPosition(dimensionBoss.x, dimensionBoss.y);
-                        biome.drawBiome(windowJeu);
-                        barHero.drawLife(windowJeu);
-                        barHero.drawShield(windowJeu);
-                        barBoss.drawLife(windowJeu);
-                        barBoss.drawShield(windowJeu);
-                        cView.drawHero(windowJeu);
-                        cView.drawBoss(windowJeu);
-                        cView.drawBoss2(windowJeu);
-                        windowJeu.draw(versus_sprite);
-                        windowJeu.draw(textHero);
-                        windowJeu.draw(textBoss);
-                        windowJeu.draw(textAttackEvent);
-
-
-                        windowJeu.draw(textLifeHero);
-                        windowJeu.draw(textLifeBoss);
-                        windowJeu.draw(textShieldHero);
-                        windowJeu.draw(textShieldBoss);
-                        windowJeu.display();
-                    }
-                }
-
-                textLifeHero.setString(to_string(hero.getPtsLife()));
-                textLifeBoss.setString(to_string(pla.getBoss()->getPtsLife()));
-
-                textShieldHero.setString(to_string(hero.getShield()));
-                textShieldBoss.setString(to_string(pla.getBoss()->getShield()));
-
-                dimensionBoss.x = pla.getBoss()->getX()-250;
-                }
-
-                dimensionBoss.x = pla.getBoss()->getX()-250;
-
-                /*-----------------------------------*/
-
-
+                     //set the life and the shield of the hero after boss' attack
+                    textLifeHero.setString(to_string(hero.getPtsLife()));
+                    textShieldHero.setString(to_string(hero.getShield()));
                     barHero.updateLife(hero.getPtsLife());
                     barHero.updateShield(hero.getShield());
-                }
 
-                    break;
+                    //put the ball at the good position for the next attack
+                    dimensionBoss.x = pla.getBoss()->getX()-250;
+
+                    //to know how many times we need to move to the boss to attack
+                    }
+
+                break;
 
                 default:
-                break;
-                }
-                break;
-                default:
                     break;
+                }
+            break;
+            default:
+                break;
 
-            }
+                }
             }
         }
-            else
-            {       //
-                if(pla.getBoss()->getPtsLife() == 0){
-                    result = 1;
-                    hero.setPtsLife(lifeHero);
-                    hero.setShield(shieldHero);
-                    pla.getBoss()->setPtsLife(lifeBoss);
-                    pla.getBoss()->setShield(shieldBoss);
-                    pla.getBoss()->resurrection();
-                    pla.getBoss()->setCounterSpe(0);
-                    fight.setNbRegen(2);
-                    hero.setCounterSpe(0);
-                    if(pla.getBoss()->getBadge()>0){
-                        pla.getBoss()->setBadge(pla.getBoss()->getBadge() -1);
-                        hero.setBadge(hero.getBadge() + 1);
-                        if(hero.getBadge() == 12){
-                           nbStory = 2;
-                        }
+        else
+        {   //if boss is down
+            if(pla.getBoss()->getPtsLife() == 0){
+                // victory
+                result = 1;
+                // we set back life and shield for hero and the boss
+                hero.setPtsLife(lifeHero);
+                hero.setShield(shieldHero);
+                pla.getBoss()->setPtsLife(lifeBoss);
+                pla.getBoss()->setShield(shieldBoss);
+                //boss become stronger with resurrection
+                pla.getBoss()->resurrection();
+                //set counter of attck spe to 0 for next battle
+                pla.getBoss()->setCounterSpe(0);
+                //set number of regen to 2 after a battle
+                fight.setNbRegen(2);
+                // set counter of attck spe to 0 for next battle
+                hero.setCounterSpe(0);
+                //verify if boss has a badge to let
+                if(pla.getBoss()->getBadge()>0){
+                    // boss give his badge
+                    pla.getBoss()->setBadge(pla.getBoss()->getBadge() -1);
+                    //hero recover the badge
+                    hero.setBadge(hero.getBadge() + 1);
+
+                    if(hero.getBadge() == 12){
+                        // if we complete the game with 12 badges, it is use to display the end screen
+                        nbStory = 2;
                     }
-                    screenResult(result, windowJeu);
-
                 }
-                if(hero.getPtsLife() == 0)
-                {
-                    result = 2;
-
-                    hero.setPtsLife(lifeHero);
-                    hero.setShield(shieldHero);
-                    pla.getBoss()->setPtsLife(lifeBoss);
-                    pla.getBoss()->setShield(shieldBoss);
-                    pla.getBoss()->setCounterSpe(0);
-                    hero.setCounterSpe(0);
-                    fight.setNbRegen(2);
-                    screenResult(result, windowJeu);
-                }
-
-
+                // display screen result
+                screenResult(result, windowJeu);
             }
-            cout << to_string(result) << endl;
+            // if hero is down
+            if(hero.getPtsLife() == 0)
+            {
+                // Lose
+                result = 2;
+                // we set back life and shield for hero and the boss
+                hero.setPtsLife(lifeHero);
+                hero.setShield(shieldHero);
+                pla.getBoss()->setPtsLife(lifeBoss);
+                pla.getBoss()->setShield(shieldBoss);
 
+                //set counter of attck spe to 0 for next battle
+                pla.getBoss()->setCounterSpe(0);
+                //set number of regen to 2 after a battle
+                fight.setNbRegen(2);
+                // set counter of attck spe to 0 for next battle
+                hero.setCounterSpe(0);
 
-
+                //display result screen
+                screenResult(result, windowJeu);
+            }
+        }
 
             if (event.type == sf::Event::Closed)
             {
-                windowJeu.clear();
-                launch(windowJeu);
+            // if we close the game we get back to the space map
+            launch(windowJeu);
             }
-
-
-
         }
-
-
-        windowJeu.clear();
-
-        biome.drawBiome(windowJeu);
-        textHero.setPosition(400, 20);
-        textBoss.setPosition(1150, 20);
-
-        textHero.setString(cView.getCharacterHero().getName());
-        textBoss.setString(pla.getBoss()->getName());
-        barHero.drawLife(windowJeu);
-        barHero.drawShield(windowJeu);
-        barBoss.drawLife(windowJeu);
-        barBoss.drawShield(windowJeu);
-        cView.drawHero(windowJeu);
-        cView.drawBoss(windowJeu);
-        windowJeu.draw(versus_sprite);
-        windowJeu.draw(textHero);
-        windowJeu.draw(textBoss);
-        windowJeu.draw(textLifeHero);
-        windowJeu.draw(textLifeBoss);
-        windowJeu.draw(textShieldHero);
-        windowJeu.draw(textShieldBoss);
-        windowJeu.display();
-
+        // draw fight scene
+        drawBattle(windowJeu);
+        //ready to use a move again (Attack or regen)
         statut = 0;
     }
-
 }
 
 void Management::screenResult(int result, sf::RenderWindow& windowJeu)

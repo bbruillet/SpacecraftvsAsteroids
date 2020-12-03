@@ -2,7 +2,7 @@
 
 /*
     This is the constructor
-    As you can see, we call categoryBoss()', because a boss is initialized here with his own statistics
+    As you can see, we call categoryHero()', because a hero is initialized here with his own statistics
 */
 CharacterHero::CharacterHero(const string name, const int ptsAttack, const int ptsLife, const int badge,
     const int ptsSpecialAttack, const int shield, const double criticalHit, const double dodge,
@@ -12,16 +12,25 @@ CharacterHero::CharacterHero(const string name, const int ptsAttack, const int p
     categoryHero();
 }
 
+/*
+    This is the destructor
+*/
 CharacterHero::~CharacterHero()
 {
-    //dtor
+
 }
 
+/*
+    This is the copy constructor
+*/
 CharacterHero::CharacterHero(const CharacterHero& cH):Character(cH),race(cH.race)
 {
 
 }
 
+/*
+    This is operator='s function
+*/
 CharacterHero& CharacterHero::operator=(const CharacterHero& cH)
 {
     if (this != &cH)
@@ -34,10 +43,15 @@ CharacterHero& CharacterHero::operator=(const CharacterHero& cH)
     return *this;
 }
 
+/*
+    This the most important function of a hero (with a dp).
+    It's where all statistics of a hero are initialized.
+    A race has his own statitics.
+*/
 void CharacterHero::categoryHero() {
     switch(race) {
     case HUMAN:
-        setPtsLife(300);
+        setPtsLife(30000);
         setPtsAttack(100);
         setPtsSpecialAttack(75);
         setShield(10);
@@ -103,6 +117,9 @@ void CharacterHero::categoryHero() {
     }
 }
 
+/*
+    This is the str() of a boss
+*/
 string CharacterHero::str() const
 {
     std::stringstream ss;
@@ -111,21 +128,34 @@ string CharacterHero::str() const
         return ss.str();
 }
 
+/*
+    This is the setter of the race
+*/
 void CharacterHero::setRace(const Race& race)
 {
     this->race = race;
     categoryHero();
 }
 
+/*
+    This is the getter of the race
+*/
 Race CharacterHero::getRace()const
 {
     return race;
 }
+
+/*
+    This is the method used to execute dp's functions
+*/
 void CharacterHero::executeIncrease()
 {
     strategy->increase(*this);
 }
 
+/*
+    This is where we're setting increase function from dp
+*/
 void CharacterHero::setIncrease(IStrategyIncrease* strategy)
 {
     this->strategy = strategy;

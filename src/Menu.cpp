@@ -5,56 +5,61 @@
 using std::cout;
 using std::endl;
 
-
+/*
+    This is the constructor
+*/
 Menu::Menu()
 {
+    /*The font will be loaded here*/
 	if (!font.loadFromFile("Polices/SpaceFont.ttf"))
 	{
 		cout << "Internal error" <<endl;
 	}
 
+	/*This is where the background will be loaded*/
 	if (!menu_texture.loadFromFile("Images/Backgrounds/Menu_Background.jpg"))
     {
-        std::cout << "Problem for loading background" << std::endl;
+        std::cout << "Problem while loading background" << std::endl;
     }
 
     menu_sprite.setTexture(menu_texture);
     menu_sprite.setPosition(0, 0);
     menu_sprite.scale(1.0f, 1.0f);
 
-	menu[0].setFont(font);
+    /*
+        These lines are used to store a color and some string in some text.
+        It will be displayed in the window with 'draw()' function
+    */
 	menu[0].setFillColor(sf::Color(201, 135, 185));
 	menu[0].setString("> Play");
-	menu[0].setPosition(sf::Vector2f(100,100));
-
-	menu[1].setFont(font);
 	menu[1].setFillColor(sf::Color::White);
 	menu[1].setString("> Credits");
-	menu[1].setPosition(sf::Vector2f(100,250));
-
-	menu[2].setFont(font);
 	menu[2].setFillColor(sf::Color::White);
 	menu[2].setString("> Quit game");
-	menu[2].setPosition(sf::Vector2f(100,400));
 
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
 	{
 		menu[i].setCharacterSize(150);
+		menu[i].setPosition(sf::Vector2f(100,(i+1)*175));
+		menu[i].setFont(font);
 	}
 
 	selectedItemIndex = 0;
 }
 
+/*This is the destructor*/
 Menu::~Menu()
 {
 
 }
 
+/*This is where the pressed element will be recovered*/
 int Menu::getPressedItem()
 {
     return selectedItemIndex;
 }
 
+/*This is where the sprite and text will be drawed*/
 void Menu::draw(sf::RenderWindow &window)
 {
     window.draw(menu_sprite);
@@ -64,6 +69,10 @@ void Menu::draw(sf::RenderWindow &window)
 	}
 }
 
+/*
+    This is where the user will be allowed to move up in the menu
+    The color of the text will be changed according to the choice
+*/
 void Menu::moveUp()
 {
 	if (selectedItemIndex - 1 >= 0)
@@ -74,6 +83,10 @@ void Menu::moveUp()
 	}
 }
 
+/*
+    This is where the user will be allowed to move down in the menu
+    The color of the text will be changed according to the choice
+*/
 void Menu::moveDown()
 {
 	if (selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS)
@@ -84,6 +97,9 @@ void Menu::moveDown()
 	}
 }
 
+/*
+    This function is used to navigate in the menu with (key up and key down). Management class is used in !
+*/
 void Menu::show(Management& man,sf::RenderWindow &window)
 {
     while (window.isOpen())
@@ -96,29 +112,33 @@ void Menu::show(Management& man,sf::RenderWindow &window)
             case sf::Event::KeyReleased:
                 switch(event.key.code)
                 {
+                /*If up is pressed*/
                 case sf::Keyboard::Up:
                     moveUp();
                     break;
-
+                /*id down is pressed*/
                 case sf::Keyboard::Down:
                     moveDown();
                     break;
-
+                /*If return is pressed*/
                 case sf::Keyboard::Return:
                     switch(getPressedItem())
                     {
+                    /*First text*/
                     case 0:
+                        /*The function playerAccount will be showed by pressinf the text*/
                         man.playerAccount(window);
-                        window.close();
-
                         break;
 
+                    /*Second text*/
                     case 1:
+                        /*The function creditGame will be showed by pressinf the text*/
                         man.creditGame(window);
-
                         break;
 
+                    /*Third text*/
                     case 2:
+                        /*The window will be closed*/
                         window.close();
                         default:
                         break;
@@ -130,16 +150,13 @@ void Menu::show(Management& man,sf::RenderWindow &window)
                 break;
                 case sf::Event::Closed:
                     window.close();
-
-                default:
+                    break;
+                    default:
                 break;
-
 			}
-
 		}
 
 		window.clear();
-
 		draw(window);
 		window.display();
 	}

@@ -6,20 +6,29 @@ using std::endl;
 
 StoryView::StoryView()
 {
+    /*
+        it is a function to load the font
+    */
     if (!font.loadFromFile("Polices/SpaceFont.ttf"))
 	{
 		cout << "Internal error" <<endl;
 	}
-
+    /*
+        it is a function to load the background
+    */
 	if (!story_texture.loadFromFile("Images/Backgrounds/Story.png"))
     {
-        std::cout << "Problem for loading background" << std::endl;
+        std::cout << "Problem while loading background" << std::endl;
     }
-
+    /*
+  	  Allows to give a texture and position
+    */
     story_sprite.setTexture(story_texture);
     story_sprite.setPosition(0, 0);
     story_sprite.scale(1.0f, 1.0f);
-
+    /*
+		Allows to give the font and write the story of the game
+    */
 	intro.setFont(font);
 	intro.setFillColor(sf::Color::White);
 	intro.setString("Hello brave warrior !\n\nI hope you're ready to fight to save Aslorth.\nOur troops have been under enemy rule for many years.\n"
@@ -46,24 +55,32 @@ StoryView::StoryView()
 	conclu.setCharacterSize(45);
     //ctor
 }
-
+/*
+    This is the destructor
+*/
 StoryView::~StoryView()
 {
     //dtor
 }
-
+/*
+    This is the copy constructor
+*/
 StoryView::StoryView(const StoryView& other)
 {
     //copy ctor
 }
-
+/*
+    This is operator='s function
+*/
 StoryView& StoryView::operator=(const StoryView& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
     //assignment operator
     return *this;
 }
-
+/*
+    This is a function that write the introduction
+*/
 void StoryView::introduction(Management& man,sf::RenderWindow &window)
 {
     while (window.isOpen())
@@ -105,7 +122,9 @@ void StoryView::introduction(Management& man,sf::RenderWindow &window)
 		window.display();
 	}
 }
-
+/*
+    This is a function that write the conclusion
+*/
 void StoryView::conclusion(Management& man,sf::RenderWindow &window)
 {
     while (window.isOpen())

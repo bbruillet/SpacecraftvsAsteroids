@@ -1,9 +1,13 @@
 #ifndef MANAGEMENT_H
 #define MANAGEMENT_H
 
-#include "IConstante.h"
-
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+#include "IConstante.h"
 #include "BiomePlanet.h"
 #include "Universe.h"
 #include "Spacecraft.h"
@@ -16,7 +20,6 @@
 #include "Planet.h"
 #include "Fight.h"
 #include "StatsPlayerView.h"
-#include <vector>
 #define MAX_NUMBER_OF_STUDENTS 4
 
 using std::vector;
@@ -28,7 +31,8 @@ class Management : public sf::Event, public IConstante
         Management();
         virtual ~Management();
 
-        void mainWindow(); //Window windowjeu
+        void mainWindow();
+        void startScreen(sf::RenderWindow& windowJeu);
         void menu(sf::RenderWindow & windowJeu);
         void increaseStats(sf::RenderWindow & windowJeu);
         void pauseMenu(sf::RenderWindow & windowJeu);
@@ -39,18 +43,16 @@ class Management : public sf::Event, public IConstante
         void screenResult(int result, sf::RenderWindow & windowJeu);
         void mapSpace(sf::RenderWindow & windowJeu);
         void creditGame(sf::RenderWindow &window);
+        void initCombat(Planet& pla);
 
         void showStats(sf::RenderWindow &window);
 
         void story(sf::RenderWindow & windowJeu);
         void tuto(sf::RenderWindow & windowJeu);
-
+        void drawBattle(sf::RenderWindow& windowJeu);
         string eventFight(Character her, Character bos);
         CharacterHero& getCharHero();
 
-
-        sf::Sprite versus_sprite;
-        sf::Texture versus_texture;
 
 
     protected:
@@ -75,8 +77,18 @@ class Management : public sf::Event, public IConstante
         sf::Text textShieldBoss;
         sf::Sprite victory_sprite;
         sf::Texture victory_texture;
+        sf::Sprite versus_sprite;
+        sf::Texture versus_texture;
+        sf::Text textHero;
+        sf::Text textBoss;
+        sf::Text textAttackEvent;
+
         StatsPlayerView spv;
         int nbStory;
+        int lifeHero;
+        int shieldHero;
+        int lifeBoss;
+        int shieldBoss;
 
 };
 

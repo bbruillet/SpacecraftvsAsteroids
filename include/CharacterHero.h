@@ -58,7 +58,7 @@ class CharacterHero : public Character
                 - copy contructor
                 - operator=
 
-            The constructor is defined by default and Origin is added in.
+            The constructor is defined by default. Race and strategy are added in.
         */
         CharacterHero(const string name = "Player", const int ptsAttack = 0, const int ptsLife = 0, const int badge = 0,
                    const int ptsSpecialAttack = 0, const int shield = 0 ,const double criticalHit = 0.0, const double dodge = 0.0, const int x = 0, const int y = 0,
