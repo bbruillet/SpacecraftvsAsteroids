@@ -220,7 +220,7 @@ void CharacterView::fightBoss()
     }
 }
 
-void CharacterView::drawBadges(sf::RenderWindow& window)
+void CharacterView::drawBadges(sf::RenderWindow& window, int x, int y)
 {
 
     rectBadge.left = hero->getBadge()*600;
@@ -234,7 +234,7 @@ void CharacterView::drawBadges(sf::RenderWindow& window)
 
     badge_sprite.setTexture(badge_texture);
     badge_sprite.setTextureRect(rectBadge);
-    badge_sprite.setPosition(1000,300);
+    badge_sprite.setPosition(x,y);
     window.draw(badge_sprite);
 
 }

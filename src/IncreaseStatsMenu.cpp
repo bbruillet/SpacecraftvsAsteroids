@@ -23,24 +23,32 @@ IncreaseStatsMenu::IncreaseStatsMenu()
     stats_menu_sprite.setPosition(0, 0);
     stats_menu_sprite.scale(1.0f, 1.0f);
 
-	statsMenu[0].setFillColor(sf::Color(201, 135, 185));
-	statsMenu[0].setString("> Augmenter Points de vie");
+	statsMenu[0].setFillColor(sf::Color::Yellow);
+	statsMenu[0].setString("> Increase life (+10)");
 
 	statsMenu[1].setFillColor(sf::Color::White);
-	statsMenu[1].setString("> Augmenter points d'attaque");
+	statsMenu[1].setString("> Increase attack (Attack +5 | Special attack +5)");
 
 	statsMenu[2].setFillColor(sf::Color::White);
-	statsMenu[2].setString("> Augmenter le bouclier");
+	statsMenu[2].setString("> Increase shield (+10)");
 
 	statsMenu[3].setFillColor(sf::Color::White);
-	statsMenu[3].setString("> Augmenter les points de regeneration");
+	statsMenu[3].setString("> Increase regeneration capacity (+10)");
 
-	for (int i = 0; i < MAX_NUMBER_OF_INCREASED_STATS; i++)
+	for (int i = 0; i < MAX_NUMBER_OF_INCREASED_STATS-1; i++)
 	{
-		statsMenu[i].setCharacterSize(50);
+		statsMenu[i].setCharacterSize(55);
 		statsMenu[i].setFont(font);
-		statsMenu[i].setPosition(sf::Vector2f(100,i*100));
+		statsMenu[i].setPosition(sf::Vector2f(50,(i+1)*200));
+		statsMenu[i].setStyle(sf::Text::Bold);
 	}
+
+	statsMenu[4].setFillColor(sf::Color(243,76,7));
+	statsMenu[4].setString("! Increase your stats !");
+	statsMenu[4].setCharacterSize(75);
+    statsMenu[4].setFont(font);
+    statsMenu[4].setStyle(sf::Text::Bold);
+	statsMenu[4].setPosition(sf::Vector2f(400,40));
 
 	selectedItemIndex = 0;
 }
@@ -70,16 +78,16 @@ void IncreaseStatsMenu::moveUp()
 	{
 		statsMenu[selectedItemIndex].setFillColor(sf::Color::White);
 		selectedItemIndex--;
-		statsMenu[selectedItemIndex].setFillColor(sf::Color(201, 135, 185));
+		statsMenu[selectedItemIndex].setFillColor(sf::Color::Yellow);
 	}
 }
 
 void IncreaseStatsMenu::moveDown()
 {
-	if (selectedItemIndex + 1 < MAX_NUMBER_OF_INCREASED_STATS)
+	if (selectedItemIndex + 1 < MAX_NUMBER_OF_INCREASED_STATS-1)
 	{
 		statsMenu[selectedItemIndex].setFillColor(sf::Color::White);
 		selectedItemIndex++;
-		statsMenu[selectedItemIndex].setFillColor(sf::Color(201, 135, 185));
+		statsMenu[selectedItemIndex].setFillColor(sf::Color::Yellow);
 	}
 }

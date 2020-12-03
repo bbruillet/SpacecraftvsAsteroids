@@ -31,6 +31,11 @@ class StatsPlayerView
         CharacterHero her;
         sf::Font font;
         sf::Text stats[MAX_NUMBER_OF_SHOW_STATS];
+        sf::Text title;
+        sf::Sprite player_sprite;
+        sf::Texture player_texture;
+        sf::Sprite character_sprite;
+        sf::Texture character_texture;
 };
 
 #endif // STATSPLAYERVIEW_H

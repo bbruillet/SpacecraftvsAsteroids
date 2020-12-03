@@ -2,7 +2,7 @@
 #define INCREASESTATSMENU_H
 #include "SFML/Graphics.hpp"
 
-#define MAX_NUMBER_OF_INCREASED_STATS 4
+#define MAX_NUMBER_OF_INCREASED_STATS 5
 
 class IncreaseStatsMenu
 {

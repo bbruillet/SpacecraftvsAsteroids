@@ -31,14 +31,17 @@ StoryView::StoryView()
 
 	continueKey.setFont(font);
 	continueKey.setFillColor(sf::Color::White);
-	continueKey.setString("> Press space key to continue <");
-	continueKey.setPosition(sf::Vector2f(1215,870));
+	continueKey.setString("> Press space key to continue or press T key to enter tutorial <");
+	continueKey.setPosition(sf::Vector2f(820,870));
 	continueKey.setCharacterSize(20);
 	continueKey.setStyle(sf::Text::Bold);
 
 	conclu.setFont(font);
 	conclu.setFillColor(sf::Color::White);
-	conclu.setString("By");
+	conclu.setString("Hello, again my friend !\n\nThank you for your help !\nYou've done an unbelievable work to save the universe.\n"
+                  "You are the most powerful fighter that Aslorth've ever seen.\nIf you want to take the badges with you,\nyou will have to start fighting again.\n"
+                  "But be careful, the ennemy is getting stronger and stronger !\n\nGood luck.\n\n\n"
+                  "Squadron 4's captains");
 	conclu.setPosition(sf::Vector2f(20,15));
 	conclu.setCharacterSize(45);
     //ctor
@@ -76,6 +79,11 @@ void StoryView::introduction(Management& man,sf::RenderWindow &window)
                 case sf::Keyboard::Space:
                     window.clear();
                     man.launch(window);
+                    break;
+
+                case sf::Keyboard::T:
+                    window.clear();
+                    man.tuto(window);
                     break;
 
                 default:
@@ -129,7 +137,7 @@ void StoryView::conclusion(Management& man,sf::RenderWindow &window)
 		window.clear();
 
         window.draw(story_sprite);
-		window.draw(intro);
+		window.draw(conclu);
 		window.draw(continueKey);
 		window.display();
 	}

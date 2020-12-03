@@ -40,7 +40,7 @@ class CharacterView
         void drawBoss(sf::RenderWindow &window);
         void drawBoss2(sf::RenderWindow &window);
         void drawRegenCircles(sf::RenderWindow &window);
-        void drawBadges(sf::RenderWindow& window);
+        void drawBadges(sf::RenderWindow& window, int x, int y);
 
         CharacterHero& getCharacterHero()const;
         void setCharacterHero(CharacterHero&);

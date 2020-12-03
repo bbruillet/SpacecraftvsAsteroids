@@ -21,6 +21,7 @@
 #include "Player.h"
 #include "IncreaseStatsMenu.h"
 #include "StoryView.h"
+#include "TutorialView.h"
 
 using namespace std;
 
@@ -162,6 +163,13 @@ void Management::story(sf::RenderWindow & windowJeu)
     }
 }
 
+void Management::tuto(sf::RenderWindow & windowJeu)
+{
+    TutorialView tv;
+
+    tv.draw(*this, windowJeu);
+}
+
 void Management::launch(sf::RenderWindow & windowJeu)
 {
     sf::Font font;
@@ -173,13 +181,6 @@ void Management::launch(sf::RenderWindow & windowJeu)
 
     sf::View view(sf::FloatRect(2000, 2000, 3450, 1800));
     view.setCenter(spacecraft.getX(), spacecraft.getY());
-
-    tutorial.setFont(font);
-	tutorial.setFillColor(sf::Color::White);
-	tutorial.setString("> Press T key to enter tutorial <");
-	tutorial.setPosition(sf::Vector2f(spacecraft.getX()-875,spacecraft.getY()-800));
-	tutorial.setCharacterSize(100);
-	tutorial.setStyle(sf::Text::Bold);
 
     Planet planetInProgress;
 
@@ -313,17 +314,9 @@ void Management::launch(sf::RenderWindow & windowJeu)
 
             spacecraftView.setSpacecraft(spacecraft);
             spacecraftView.drawSpacecraft(windowJeu);
-            windowJeu.draw(tutorial);
-
-//            sf::Clock clock;
-//            sf::Time time = sf::seconds(0.01f);
-//
-//            if(clock.getElapsedTime() == time)
-//            {
-//                tutorial.setString("");
-//                windowJeu.draw(tutorial);
-//            }
             windowJeu.display();
+
+
 
         }
 }
@@ -437,8 +430,8 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
     textHero.setFont(fontFight);
     textBoss.setFont(fontFight);
 
-    textHero.setFillColor(sf::Color::Green);
-    textBoss.setFillColor(sf::Color::Green);
+    textHero.setFillColor(sf::Color::Yellow);
+    textBoss.setFillColor(sf::Color::Yellow);
 
     textHero.setCharacterSize(30);
     textBoss.setCharacterSize(30);
@@ -475,10 +468,10 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
     textAttackEvent.setFont(font);
     //
-    textAttackEvent.setFillColor(sf::Color::Black);
-    textAttackEvent.setCharacterSize(45);
+    textAttackEvent.setFillColor(sf::Color(201,67,11));
+    textAttackEvent.setCharacterSize(75);
 
-    textAttackEvent.setPosition(750,550);
+    textAttackEvent.setPosition(10,225);
 
     textLifeHero.setFont(font);
     textLifeBoss.setFont(font);
@@ -498,7 +491,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
     textLifeHero.setPosition(837, 55);
     textLifeBoss.setPosition(1153, 55);
-    textShieldHero.setPosition(870, 88);
+    textShieldHero.setPosition(860, 88);
     textShieldBoss.setPosition(1153, 88);
 
     textLifeHero.setStyle(sf::Text::Bold);
@@ -541,7 +534,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                 case sf::Keyboard::A:
                 attackEvent = fight.attack(hero,*pla.getBoss());
 
-                textAttackEvent.setString("Attaque de " + hero.getName());
+                textAttackEvent.setString("Attack from " + hero.getName());
 
 
                 while(dimension.x < pla.getBoss()->getX() -300)
@@ -658,7 +651,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                 attackEvent = fight.attack(*pla.getBoss(), hero);
 
 
-                textAttackEvent.setString("Attaque de " + pla.getBoss()->getName());
+                textAttackEvent.setString("Attack from " + pla.getBoss()->getName());
 
                 if(pla.getBoss()->getPtsLife() > 0){
                     for(size_t i(0);i<5;i++)
@@ -748,7 +741,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
                 case sf::Keyboard::R:
 
-                    textAttackEvent.setString(hero.getName() + " regagne sa vie de "+ to_string(hero.getRegeneration()) + " points");
+                    textAttackEvent.setString(hero.getName() + " regenerates his life by "+ to_string(hero.getRegeneration()) + " points");
                     if(hero.getPtsLife()+hero.getRegeneration() <= lifeHero && nbRegen>0)
                     {
 
@@ -800,7 +793,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                         attackEvent = fight.attack(*pla.getBoss(), hero);
 
 
-                textAttackEvent.setString("Attaque de " + pla.getBoss()->getName());
+                textAttackEvent.setString("Attack from " + pla.getBoss()->getName());
 
                 if(pla.getBoss()->getPtsLife() > 0){
                     for(size_t i(0);i<5;i++)
@@ -952,7 +945,6 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
         }
 
 
-
         windowJeu.clear();
 
         biome.drawBiome(windowJeu);
@@ -983,6 +975,12 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
 void Management::screenResult(int result, sf::RenderWindow& windowJeu)
 {
+    sf::View view;
+    view.setSize(1600,900);
+    view.setCenter(800,450);
+    windowJeu.setView(view);
+
+
     if (!font.loadFromFile("Polices/SpaceFont.ttf"))
     {
         cout << "Internal error" <<endl;
@@ -993,7 +991,7 @@ void Management::screenResult(int result, sf::RenderWindow& windowJeu)
     textEvent.setFont(font);
     textInstruction.setFont(font);
     textEvent.setCharacterSize(100);
-    textInstruction.setCharacterSize(80);
+    textInstruction.setCharacterSize(50);
     textEvent.setStyle(sf::Text::Bold);
     textInstruction.setStyle(sf::Text::Bold);
 
@@ -1005,52 +1003,77 @@ void Management::screenResult(int result, sf::RenderWindow& windowJeu)
 		sf::Event event;
 		while (windowJeu.pollEvent(event))
 		{
-            if (event.type == sf::Event::TextEntered)
-            {
-                if(result == 1)
+            switch (event.type)
+			{
+            case sf::Event::KeyReleased:
+                switch(event.key.code)
                 {
-                    sf::View view(sf::FloatRect(2000, 2000, 3450, 1800));
-                    view.reset(sf::FloatRect(2048, 1024, 1500, 900));
-                    view.setCenter(750, 450);
-                    windowJeu.setView(view);
-                    if(nbStory == 2)
-                        story(windowJeu);
+                case sf::Keyboard::Space:
+                    if(result == 1)
+                    {
+                        if(nbStory == 2)
+                            story(windowJeu);
+                        else
+                            increaseStats(windowJeu);
+                    }
                     else
-                        increaseStats(windowJeu);
-                }
-                    else
+                    {
                         launch(windowJeu);
+                    }
+
+                    break;
+                default:
+                    break;
+                }
+                break;
+                default:
+                    break;
             }
-        }
+		}
 
         //afficher Victoire ou défaite condition
         windowJeu.clear();
         if(result == 1)
         {
-            textEvent.setFillColor(sf::Color::Green);
+            if (!victory_texture.loadFromFile("Images/Backgrounds/Victory.png"))
+            {
+                std::cout << "Problem for loading background" << std::endl;
+            }
+
+
+            textEvent.setFillColor(sf::Color(244,130,83));
             textEvent.setString("Victory");
             textInstruction.setFillColor(sf::Color(241, 159, 10));
-            textInstruction.setString("> Press any key to get back to stat's menu <");
+            textInstruction.setString("> Press space key for entering laboratory <");
 
         }
         if(result == 2)
         {
+            if (!victory_texture.loadFromFile("Images/Backgrounds/Loss.png"))
+            {
+                std::cout << "Problem while loading background" << std::endl;
+            }
+
             textEvent.setFillColor(sf::Color::Red);
             textEvent.setString("Wasted");
 
             textInstruction.setFillColor(sf::Color(241, 159, 10));
-            textInstruction.setString("> Press any key to get back to the universe <");
+            textInstruction.setString("> Press space key for entering laboratory <");
         }
 
+        victory_sprite.setTexture(victory_texture);
+        victory_sprite.setPosition(0, 0);
+        victory_sprite.scale(1.0f, 1.0f);
 
-        textEvent.setPosition(825, 450);
-        textInstruction.setPosition(50, 150);
+        windowJeu.draw(victory_sprite);
+        textEvent.setPosition(575, 150);
+        textInstruction.setPosition(150, 25);
 
-        biome.drawBiome(windowJeu);
+
         windowJeu.draw(textEvent);
         windowJeu.draw(textInstruction);
 
-        cView.drawBadges(windowJeu);
+        cView.drawBadges(windowJeu, 10, 425);
 
         windowJeu.display();
 	}
@@ -1208,7 +1231,7 @@ void Management::showStats(sf::RenderWindow &windowJeu)
         windowJeu.clear();
         spv.draw(windowJeu);
 
-        cView.drawBadges(windowJeu);
+        cView.drawBadges(windowJeu, 850, 400);
         windowJeu.display();
 	}
 }

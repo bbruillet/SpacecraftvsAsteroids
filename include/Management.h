@@ -43,6 +43,7 @@ class Management : public sf::Event, public IConstante
         void showStats(sf::RenderWindow &window);
 
         void story(sf::RenderWindow & windowJeu);
+        void tuto(sf::RenderWindow & windowJeu);
 
         string eventFight(Character her, Character bos);
         CharacterHero& getCharHero();
@@ -72,6 +73,8 @@ class Management : public sf::Event, public IConstante
         sf::Text textLifeBoss;
         sf::Text textShieldHero;
         sf::Text textShieldBoss;
+        sf::Sprite victory_sprite;
+        sf::Texture victory_texture;
         StatsPlayerView spv;
         int nbStory;
 

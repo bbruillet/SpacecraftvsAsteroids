@@ -118,6 +118,10 @@ void CharacterHero::setRace(const Race& race)
     categoryHero();
 }
 
+Race CharacterHero::getRace()const
+{
+    return race;
+}
 void CharacterHero::executeIncrease()
 {
     strategy->increase(*this);

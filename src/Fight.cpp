@@ -108,22 +108,22 @@ string Fight::eventAttack(int attackEvent)
 {
     if(attackEvent == 1)
     {
-        return "Attaque de ";
+        return "Attack from ";
     }
 
     else if(attackEvent == 2)
     {
-        return " a esquivé coup";
+        return " dodged a hit";
     }
 
     else if(attackEvent == 3)
     {
-        return "Attaque speciale de ";
+        return "Special attack from ";
     }
 
     else
     {
-        return "Coup critique de ";
+        return "Critical hit from ";
     }
 }
 
