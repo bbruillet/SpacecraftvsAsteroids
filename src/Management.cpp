@@ -68,6 +68,16 @@ Management::~Management()
     //dtor
 }
 
+sf::Texture Management::getVictory_texture() const
+{
+    return victory_texture;
+}
+
+sf::Sprite Management::getVictory_sprite() const
+{
+    return victory_sprite;
+}
+
 CharacterHero& Management::getCharHero()
 {
     return this->hero;
@@ -161,7 +171,7 @@ void Management::playerPseudo(sf::RenderWindow & windowJeu,int select)
 {
     Player player;
     player.setPressedElement(select);
-    player.pseudoPlayer(windowJeu);
+    player.pseudoPlayer(*this,windowJeu);
     hero.setName(player.getPseudo());
     spv.showStats(hero);
     cView.setCharacterHero(hero);
@@ -359,9 +369,8 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
     //pour changer les positionnement d'un sprite à l'aide d'un vector2f
     sf::Vector2f dimension(pla.getXChar(),pla.getYChar());
     sf::Vector2f dimensionBoss(pla.getBoss()->getX()-250,pla.getBoss()->getY());
-    cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
-    cView.attack_boss_sprite.setPosition(dimensionBoss.x,dimensionBoss.y);
-
+    cView.positionCharacterHero(dimension.x, dimension.y);
+    cView.positionAttackCharacterBoss(dimensionBoss.x, dimensionBoss.y);
     //initalise les barres de vie,de shield charge les images,..
     initCombat(pla);
 
@@ -400,7 +409,8 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                                 cView.forwardHero();
                                 // change this var to go near the boss and set the position of the spite
                                 dimension.x += 22;
-                                cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
+                                cView.positionCharacterHero(dimension.x, dimension.y);
+
                                 //display the scene of the battle
                                 drawBattle(windowJeu);
                                 windowJeu.draw(textAttackEvent);
@@ -439,7 +449,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                             {   //animation the hero go back at his position
                                 cView.backwardHero();
                                 dimension.x -= 22;
-                                cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
+                                cView.positionCharacterHero(dimension.x, dimension.y);
                                 //display scene of the battle
                                 windowJeu.clear();
                                 drawBattle(windowJeu);
@@ -448,7 +458,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                                 sf::sleep(sf::milliseconds(5));
                             }
                             //we set our image of hero to his first form
-                            cView.rectHero.left = 0;
+                            cView.setRectHero(0);
 
                             /*------------------------BOSSS-----------------------------*/
 
@@ -479,7 +489,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                             else
                                 textAttackEvent.setString(fight.eventAttack(attackEvent)+pla.getBoss()->getName());
                             // set the boss image to his inital position
-                            cView.rectBoss.left = 0;
+                            cView.setRectBoss(0);
 
                             for(int i(0);i<nb;i++)
                             {
@@ -489,7 +499,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                                 cView.throwingBoss();
                                 // move the sprite of the power ball
                                 dimensionBoss.x -= 22;
-                                cView.attack_boss_sprite.setPosition(dimensionBoss.x, dimensionBoss.y);
+                                cView.positionAttackCharacterBoss(dimensionBoss.x, dimensionBoss.y);
                                 //draw battle scene
                                 windowJeu.clear();
                                 drawBattle(windowJeu);
@@ -532,7 +542,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                         for(size_t i(0);i<5;i++)
                         {
                             //set position of the regen
-                            cView.regen_sprite.setPosition(pla.getXChar()-20, pla.getYChar()-30);
+                            cView.positionRegen(pla.getXChar()-20, pla.getYChar()-30);
 
                             // to display the animation of regeneration
                             cView.regenCircles();
@@ -570,7 +580,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                         else
                             textAttackEvent.setString(fight.eventAttack(attackEvent)+pla.getBoss()->getName());
                         // set the boss image to his inital position
-                        cView.rectBoss.left = 0;
+                        cView.setRectBoss(0);
 
                         for(int i(0);i<step;i++)
                         {
@@ -580,7 +590,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                             //power ball move
                             dimensionBoss.x -= 22;
                             //set position of power ball
-                            cView.attack_boss_sprite.setPosition(dimensionBoss.x, dimensionBoss.y);
+                            cView.positionAttackCharacterBoss(dimensionBoss.x, dimensionBoss.y);
                             //draw window fight
                             windowJeu.clear();
                             drawBattle(windowJeu);

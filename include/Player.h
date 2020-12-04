@@ -87,7 +87,7 @@ class Player
         /*
             This is the function used to enter the pseudo of a user
         */
-        void pseudoPlayer(sf::RenderWindow &window);
+        void pseudoPlayer(Management& man ,sf::RenderWindow &window);
 
         /*
             These functions are used to move up and down between choices

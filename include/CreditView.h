@@ -14,6 +14,9 @@ class CreditView
     private:
          sf::Font font;
          sf::Text credit[MAX_NUMBER_OF_STUDENTS];
+
+         sf::Texture credit_texture;
+         sf::Sprite credit_sprite;
 };
 
 #endif // CREDITVIEW_H

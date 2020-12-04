@@ -52,6 +52,42 @@ CharacterView& CharacterView::operator=(const CharacterView& rhs)
     return *this;
 }
 
+/*Getter sprite hero*/
+sf::Sprite CharacterView::getCharacter_hero_sprite() const
+{
+    return character_hero_sprite;
+}
+
+/*Setter rectHero*/
+void CharacterView::setRectHero(const int &valeur)
+{
+    rectHero.left = valeur;
+}
+
+/* This is the position of the CharacterHero */
+void CharacterView::positionCharacterHero(int x, int y)
+{
+    character_hero_sprite.setPosition(x, y);
+}
+
+/*Setter sprite boss*/
+void CharacterView::setRectBoss(const int &valeur)
+{
+    rectBoss.left = valeur;
+}
+
+/*This is the position of the power ball*/
+void CharacterView::positionAttackCharacterBoss(int x, int y)
+{
+    attack_boss_sprite.setPosition(x, y);
+}
+
+/* - */
+void CharacterView::positionRegen(int x, int y)
+{
+    regen_sprite.setPosition(x, y);
+}
+
 /*
     This is where we load a texture (of the hero).
     The texture is added to a sprite and the rect too.

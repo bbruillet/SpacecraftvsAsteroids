@@ -134,7 +134,6 @@ void Player::draw(sf::RenderWindow &window)
 {
     window.draw(player_sprite);
     window.draw(character_sprite);
-    cout << getPressedElement() << endl;
 	for (int i = 0; i < MAX_NUMBER_OF_RACES; i++)
 	{
 		window.draw(races[i]);
@@ -147,15 +146,16 @@ void Player::draw(sf::RenderWindow &window)
 }
 
 //Méthode permettant de choisir son pseudo
-void Player::pseudoPlayer(sf::RenderWindow &window)
+void Player::pseudoPlayer(Management& man,sf::RenderWindow &window)
 {
     if (!player_texture.loadFromFile("Images/Backgrounds/"+to_string(selectedItemIndex)+"_Race.png"))
         {
             std::cout << "Problem while loading background" << std::endl;
         }
-    player_sprite.setTexture(player_texture);
+        player_sprite.setTexture(player_texture);
         player_sprite.setPosition(0, 0);
         player_sprite.scale(1.0f, 1.0f);
+
 
     int counter = -1;
     while (window.isOpen())
@@ -169,9 +169,14 @@ void Player::pseudoPlayer(sf::RenderWindow &window)
             }
             switch (event.type)
 			{
-                case sf::Event::KeyReleased:
+            case sf::Event::KeyReleased:
+
                 switch(event.key.code)
                 {
+                case sf::Keyboard::Escape:
+                    window.clear();
+                    man.playerAccount(window);
+                    break;
                 case sf::Keyboard::Return:
                     setPseudo(playerInput);
                     if(counter+1 < 3){

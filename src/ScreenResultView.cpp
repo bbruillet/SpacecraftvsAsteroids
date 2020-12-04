@@ -70,7 +70,7 @@ void ScreenResultView::showResult(Management& man,sf::RenderWindow& window,int r
         window.clear();
         if(result == 1)
         {
-            if (!man.victory_texture.loadFromFile("Images/Backgrounds/Victory.png"))
+            if (!man.getVictory_texture().loadFromFile("Images/Backgrounds/Victory.png"))
             {
                 std::cout << "Problem for loading background" << std::endl;
             }
@@ -84,7 +84,7 @@ void ScreenResultView::showResult(Management& man,sf::RenderWindow& window,int r
         }
         if(result == 2)
         {
-            if (!man.victory_texture.loadFromFile("Images/Backgrounds/Loss.png"))
+            if (!man.getVictory_texture().loadFromFile("Images/Backgrounds/Loss.png"))
             {
                 std::cout << "Problem while loading background" << std::endl;
             }
@@ -96,16 +96,16 @@ void ScreenResultView::showResult(Management& man,sf::RenderWindow& window,int r
             textInstruction.setString("> Press space key to go back to your spaceship <");
         }
 
-        man.victory_sprite.setTexture(man.victory_texture);
-        man.victory_sprite.setPosition(0, 0);
-        man.victory_sprite.scale(1.0f, 1.0f);
+        man.getVictory_sprite().setTexture(man.getVictory_texture());
+        man.getVictory_sprite().setPosition(0, 0);
+        man.getVictory_sprite().scale(1.0f, 1.0f);
 
 
         textEvent.setPosition(575, 150);
         textInstruction.setPosition(150, 25);
 
         window.clear();
-        window.draw(man.victory_sprite);
+        window.draw(man.getVictory_sprite());
         window.draw(textEvent);
         window.draw(textInstruction);
 

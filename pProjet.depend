@@ -365,7 +365,7 @@
 	"Planete.h"
 	"Personnage.h"
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/main.cpp
+1606915323 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/main.cpp
 	<iostream>
 	<list>
 	"Management.h"
@@ -377,6 +377,7 @@
 	"Planet.h"
 	<SFML/Audio.hpp>
 	"BarView.h"
+	"IStrategyIncrease.h"
 
 1606150213 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Gestion.h
 	"IConstante.h"
@@ -478,13 +479,14 @@
 	"PersonnageBoss.h"
 	"Menu.h"
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Menu.h
+1607099122 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Menu.h
 	"SFML/Graphics.hpp"
+	"Management.h"
 
 1605984875 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/IConstante.cpp
 	"IConstante.h"
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Menu.cpp
+1607027412 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Menu.cpp
 	"Menu.h"
 	<iostream>
 
@@ -745,9 +747,13 @@
 1607019032 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/IncreaseStatsMenu.h
 	"SFML/Graphics.hpp"
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Management.h
-	"IConstante.h"
+1607121999 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Management.h
 	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<iostream>
+	<vector>
+	<cmath>
+	"IConstante.h"
 	"BiomePlanet.h"
 	"Universe.h"
 	"Spacecraft.h"
@@ -758,15 +764,14 @@
 	"CharacterView.h"
 	"Character.h"
 	"Planet.h"
-	"Player.h"
 	"Fight.h"
-	<vector>
+	"StatsPlayerView.h"
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/BiomePlanet.h
+1607009735 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/BiomePlanet.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Universe.h
+1607118683 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Universe.h
 	<iostream>
 	<ostream>
 	<string>
@@ -775,7 +780,7 @@
 	<SFML/Graphics.hpp>
 	"Planet.h"
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Planet.h
+1607099122 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Planet.h
 	<iostream>
 	<ostream>
 	<string>
@@ -783,25 +788,25 @@
 	<cstdio>
 	<SFML/Graphics.hpp>
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Spacecraft.h
+1607099122 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Spacecraft.h
 	<iostream>
 	<ostream>
 	<string>
 	"IConstante.h"
 	<cstdio>
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/SpacecraftView.h
+1607099122 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/SpacecraftView.h
 	<SFML/Graphics.hpp>
 	"Spacecraft.h"
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/BarView.h
+1607099122 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/BarView.h
 	<SFML/Graphics.hpp>
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/CharacterBoss.h
+1607027412 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/CharacterBoss.h
 	"Character.h"
 	"Planet.h"
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Character.h
+1607009735 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Character.h
 	<iostream>
 	<ostream>
 	<string>
@@ -809,99 +814,102 @@
 	<cstdio>
 	<SFML/Graphics.hpp>
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/CharacterHero.h
-	"Character.h"
+1607027412 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/CharacterHero.h
+	<cstdio>
 	<iostream>
 	<ostream>
 	<string>
-	"IConstante.h"
-	<cstdio>
 	<SFML/Graphics.hpp>
+	"IConstante.h"
+	"IStrategyIncrease.h"
+	"IncreaseAttack.h"
+	"IncreaseLife.h"
+	"IncreaseShield.h"
+	"IncreaseRegeneration.h"
+	"Character.h"
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/CharacterView.h
+1607121592 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/CharacterView.h
 	"CharacterHero.h"
 	"CharacterBoss.h"
 	<SFML/Graphics.hpp>
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Player.h
+1607120989 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Player.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<string>
 	<cstdio>
 	"CharacterHero.h"
+	"Management.h"
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Fight.h
+1607099122 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Fight.h
 	<iostream>
 	<string>
+	<stdlib.h>
+	<time.h>
+	"Character.h"
 	<cstdio>
 	<SFML/Graphics.hpp>
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/BarView.cpp
+1607099122 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/BarView.cpp
 	"BarView.h"
 	<iostream>
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/BiomePlanet.cpp
+1607099122 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/BiomePlanet.cpp
 	"BiomePlanet.h"
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Character.cpp
+1607009735 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Character.cpp
 	"Character.h"
 	<cstdio>
 	<iostream>
 
-1606747651 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/CharacterBoss.cpp
+1607099122 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/CharacterBoss.cpp
 	"CharacterBoss.h"
 	"Planet.h"
 	"Character.h"
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/CharacterHero.cpp
+1607099122 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/CharacterHero.cpp
 	"CharacterHero.h"
-	<cstdio>
-	<iostream>
-	<SFML/Graphics.hpp>
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/CharacterView.cpp
+1607121594 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/CharacterView.cpp
 	"CharacterView.h"
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Fight.cpp
+1607099122 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Fight.cpp
 	"Fight.h"
-	<stdlib.h>
-	<time.h>
-	"Character.h"
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/IncreaseStatsMenu.cpp
+1607027412 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/IncreaseStatsMenu.cpp
 	"IncreaseStatsMenu.h"
 	<iostream>
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/IncreaseStatsMenu.h
+1607027412 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/IncreaseStatsMenu.h
 	"SFML/Graphics.hpp"
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Management.cpp
+1607122042 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Management.cpp
 	"Management.h"
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	<iostream>
 	<vector>
 	<cmath>
-	"Character.h"
-	"Universe.h"
-	"Planet.h"
-	"Spacecraft.h"
-	"BiomePlanet.h"
-	"CharacterHero.h"
-	"CharacterBoss.h"
+	"StartScreenView.h"
 	"Menu.h"
 	"PauseMenu.h"
 	"Player.h"
 	"IncreaseStatsMenu.h"
+	"StoryView.h"
+	"TutorialView.h"
+	"MapSpaceView.h"
+	"CreditView.h"
+	"ScreenResultView.h"
 
-1606747158 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/PauseMenu.h
+1607120586 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/PauseMenu.h
 	"SFML/Graphics.hpp"
+	"Management.h"
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/PauseMenu.cpp
+1607120773 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/PauseMenu.cpp
 	"PauseMenu.h"
 	<iostream>
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Planet.cpp
+1607118683 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Planet.cpp
 	"Planet.h"
 	"BiomePlanet.h"
 	"CharacterBoss.h"
@@ -909,19 +917,19 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Player.cpp
+1607121902 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Player.cpp
 	"Player.h"
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Spacecraft.cpp
+1607099122 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Spacecraft.cpp
 	"Spacecraft.h"
 	"IConstante.h"
 	<cstdio>
 	<iostream>
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/SpacecraftView.cpp
+1607118683 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/SpacecraftView.cpp
 	"SpacecraftView.h"
 
-1606747158 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Universe.cpp
+1607118683 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Universe.cpp
 	"Universe.h"
 
 1607017738 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/IStrategyIncrease.cpp
@@ -1011,4 +1019,92 @@
 
 1607093580 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/CreditView.h
 	"Management.h"
+
+1607027412 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/IStrategyIncrease.h
+	"Character.h"
+
+1607027412 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/IncreaseAttack.h
+	"IStrategyIncrease.h"
+	"Character.h"
+
+1607027412 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/IncreaseLife.h
+	"IStrategyIncrease.h"
+	"Character.h"
+
+1607027412 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/IncreaseShield.h
+	"IStrategyIncrease.h"
+	"Character.h"
+
+1607027412 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/IncreaseRegeneration.h
+	"IStrategyIncrease.h"
+	"Character.h"
+
+1607099122 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/StatsPlayerView.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<string>
+	<cstdio>
+	"CharacterHero.h"
+
+1607120321 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/CreditView.cpp
+	"CreditView.h"
+
+1607119920 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/CreditView.h
+	"Management.h"
+
+1607027412 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/IncreaseAttack.cpp
+	"IncreaseAttack.h"
+	<iostream>
+
+1607027412 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/IncreaseLife.cpp
+	"IncreaseLife.h"
+	<iostream>
+
+1607027412 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/IncreaseRegeneration.cpp
+	"IncreaseRegeneration.h"
+
+1607027412 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/IncreaseShield.cpp
+	"IncreaseShield.h"
+
+1607027412 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/IStrategyIncrease.cpp
+	"IStrategyIncrease.h"
+
+1607099122 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/StartScreenView.h
+	"SFML/Graphics.hpp"
+	"Management.h"
+	<iostream>
+
+1607027412 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/StoryView.h
+	"Management.h"
+	"SFML/Graphics.hpp"
+	<iostream>
+
+1607027412 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/TutorialView.h
+	"Management.h"
+	"SFML/Graphics.hpp"
+
+1607099122 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/MapSpaceView.h
+	"Management.h"
+
+1607099122 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/ScreenResultView.h
+	"Management.h"
+
+1607118683 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/MapSpaceView.cpp
+	"MapSpaceView.h"
+
+1607122110 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/ScreenResultView.cpp
+	"ScreenResultView.h"
+
+1607120360 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/StartScreenView.cpp
+	"StartScreenView.h"
+
+1607099122 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/StatsPlayerView.cpp
+	"StatsPlayerView.h"
+
+1607120554 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/StoryView.cpp
+	"StoryView.h"
+	<iostream>
+
+1607120521 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/TutorialView.cpp
+	"TutorialView.h"
 

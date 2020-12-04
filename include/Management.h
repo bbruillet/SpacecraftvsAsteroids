@@ -59,8 +59,8 @@ class Management : public sf::Event, public IConstante
         int getNbStory()const;
         void setNbStory(const int nbStory);
 
-        sf::Sprite victory_sprite;
-        sf::Texture victory_texture;
+        sf::Texture getVictory_texture() const;
+        sf::Sprite getVictory_sprite() const;
 
     protected:
 
@@ -94,6 +94,9 @@ class Management : public sf::Event, public IConstante
         int shieldHero;
         int lifeBoss;
         int shieldBoss;
+
+        sf::Sprite victory_sprite;
+        sf::Texture victory_texture;
 
 };
 

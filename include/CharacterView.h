@@ -16,19 +16,6 @@ class CharacterView
         CharacterHero* hero;
         CharacterBoss* boss;
 
-    public:
-        /*
-            The 4 next lines are :
-                - constructor
-                - destructor
-                - copy contructor
-                - operator=
-        */
-        CharacterView();
-        virtual ~CharacterView();
-        CharacterView(const CharacterView& other);
-        CharacterView& operator=(const CharacterView& other);
-
         /*
             This is the sprite & the texture of a hero.
             IntRect is used for using a sprite sheet
@@ -68,6 +55,37 @@ class CharacterView
         sf::Sprite badge_sprite;
         sf::Texture badge_texture;
         sf::IntRect rectBadge;
+
+
+    public:
+        /*
+            The 4 next lines are :
+                - constructor
+                - destructor
+                - copy contructor
+                - operator=
+        */
+        CharacterView();
+        virtual ~CharacterView();
+        CharacterView(const CharacterView& other);
+        CharacterView& operator=(const CharacterView& other);
+
+        /*Getter and setter hero*/
+        sf::Sprite getCharacter_hero_sprite() const;
+        void setRectHero(const int &);
+
+        /*This is the position of the CharacterHero*/
+        void positionCharacterHero(int x, int y);
+
+        /*Setter boss*/
+        void setRectBoss(const int &);
+
+        /*This is the position of the power ball*/
+        void positionAttackCharacterBoss(int x, int y);
+
+        /**/
+        void positionRegen(int x, int y);
+
 
         /*This function is used to draw a sprite of a hero*/
         void drawHero(sf::RenderWindow &window);

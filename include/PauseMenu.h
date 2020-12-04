@@ -6,7 +6,7 @@
 /*
     A static members data is defined here
 */
-#define MAX_NUMBER_OF_TEXTS 4
+#define MAX_NUMBER_OF_TEXTS 5
 
 /*
     This class is used to show the pause menu (by pressing escape in the universe)

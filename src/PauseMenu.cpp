@@ -45,6 +45,10 @@ PauseMenu::PauseMenu()
 	pauseMenu[3].setString("> Show tutorial");
 	pauseMenu[3].setPosition(sf::Vector2f(100,550));
 
+	pauseMenu[4].setFillColor(sf::Color(201, 135, 185));
+	pauseMenu[4].setString("> Quit");
+	pauseMenu[4].setPosition(sf::Vector2f(100,700));
+
 	for (int i = 0; i < MAX_NUMBER_OF_TEXTS; i++)
 	{
 		pauseMenu[i].setCharacterSize(100);
@@ -154,6 +158,9 @@ void PauseMenu::show(Management& man,sf::RenderWindow& window)
                     /*Fourth text*/
                     case 3:
                         man.tuto(window);
+                        break;
+                    case 4:
+                        window.close();
                         break;
                         default:
                         break;
