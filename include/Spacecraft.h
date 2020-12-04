@@ -15,29 +15,37 @@ using std::string;
 using std::to_string;
 using std::ostream;
 
+/*
+    It is the class of a spacecraft
+*/
 class Spacecraft
 {
     private:
+        /*
+            A spaceship has x and y coordinates
+        */
         int x, y;
-
-        //Méthode pour les sprites du vaisseau
-        //virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
 
 
     public:
+        /*
+            The 3 next lines are :
+                - constructor
+                - destructor
+                - operator=
+        */
         Spacecraft(const int x = 7150, const int y = 3500);
         virtual ~Spacecraft();
+        Spacecraft& operator=(const Spacecraft&);
 
-
-
+        /*
+            These lines are getters and setters of coordinates
+        */
         int getX() const;
         void setX(const int &);
-
         int getY() const;
         void setY(const int &);
 
-        Spacecraft& operator=(const Spacecraft&);
-
 };
 
-#endif // VAISSEAU_H
+#endif // VSPACECRAFT_H

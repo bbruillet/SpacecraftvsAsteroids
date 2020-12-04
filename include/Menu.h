@@ -38,7 +38,7 @@ class Menu
         void draw(sf::RenderWindow &window);
 
         /*
-            This function is used to draw in the window
+            These functions are used to move up and down between choices
         */
         void moveUp();
         void moveDown();

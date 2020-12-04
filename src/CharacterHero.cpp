@@ -51,10 +51,10 @@ CharacterHero& CharacterHero::operator=(const CharacterHero& cH)
 void CharacterHero::categoryHero() {
     switch(race) {
     case HUMAN:
-        setPtsLife(30000);
+        setPtsLife(3000);
         setPtsAttack(100);
         setPtsSpecialAttack(75);
-        setShield(10);
+        setShield(3000);
 
         setCriticalHit(35.00);
         setDodge(0.00);

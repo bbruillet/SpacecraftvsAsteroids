@@ -1,57 +1,56 @@
 #include "Player.h"
 
-//Constructeur
+/*
+    This is the constructor
+*/
 Player::Player()
 {
-    //On charge la police
+    /*
+        The font is loaded here
+    */
     if (!font.loadFromFile("Polices/SpaceFont.ttf"))
 	{
 		cout << "Internal error" <<endl;
 	}
 
-	races[0].setFont(font);
+	/*
+        These lines are used to store a color and some string in some text.
+        It will be displayed in the window with 'draw()' function
+    */
 	races[0].setFillColor(sf::Color(96, 59, 99));
 	races[0].setString("> Humain");
 	races[0].setPosition(sf::Vector2f(100,100));
-
-	races[1].setFont(font);
 	races[1].setFillColor(sf::Color::White);
 	races[1].setString("> Valdera");
 	races[1].setPosition(sf::Vector2f(100,250));
-
-	races[2].setFont(font);
 	races[2].setFillColor(sf::Color::White);
 	races[2].setString("> Vanduul");
 	races[2].setPosition(sf::Vector2f(100,400));
-
-	races[3].setFont(font);
 	races[3].setFillColor(sf::Color::White);
 	races[3].setString("> Covenante");
 	races[3].setPosition(sf::Vector2f(100,550));
-
-	races[4].setFont(font);
 	races[4].setFillColor(sf::Color::White);
 	races[4].setString("> Aetwi");
 	races[4].setPosition(sf::Vector2f(100,700));
 
-    //boucle permettant de définir une taille de caractères pour les éléments
 	for (int i = 0; i < MAX_NUMBER_OF_RACES; i++)
 	{
 		races[i].setCharacterSize(150);
+		races[i].setFont(font);
 	}
 
 	selectedItemIndex = 0;
 
-	//On charge l'image
+	/*This is where background pictures of heroes are loaded*/
 	if (!player_texture.loadFromFile("Images/Backgrounds/0_Race.png"))
     {
             std::cout << "Problem while loading race's picture" << std::endl;
     }
-        player_sprite.setTexture(player_texture);
-        player_sprite.setPosition(0, 0);
-        player_sprite.scale(1.0f, 1.0f);
+    player_sprite.setTexture(player_texture);
+    player_sprite.setPosition(0, 0);
+    player_sprite.scale(1.0f, 1.0f);
 
-    //On charge l'image en fonction de l'élément sélectionné
+    /*This is where pictures of heroes (avatars) are loaded*/
     if (!character_texture.loadFromFile("Images/Avatars/"+to_string(selectedItemIndex)+"_Race.png"))
     {
         std::cout << "Problème d'avatar" << std::endl;
@@ -60,12 +59,15 @@ Player::Player()
     character_sprite.setTexture(character_texture);
     character_sprite.setPosition(1000, 215);
 
-
     playerText.setFont(font);
     playerText.setCharacterSize(50);
     playerText.setFillColor(sf::Color(0, 0, 0));
     playerText.setPosition(sf::Vector2f(300,400));
 
+    /*
+        These lines are used to store a color and some string in some text.
+        It will be displayed in the window with 'draw()' function
+    */
     names[0].setFont(font);
 	names[0].setFillColor(sf::Color(0, 0, 0));
 	names[0].setString("> Veuillez entrer votre pseudo <");
@@ -83,25 +85,16 @@ Player::Player()
 	names[2].setPosition(sf::Vector2f(100,0));
 
 	/*----------------------------------------------*/
-	stats[0].setFont(font);
+	/*
+        These lines are used to store a color and some string in some text.
+        It will be displayed in the window with 'draw()' function
+    */
 	stats[0].setString("Points d'attaque : ");
-
-	stats[1].setFont(font);
 	stats[1].setString("Points de vie : ");
-
-	stats[2].setFont(font);
 	stats[2].setString("Points d'attaque speciale : ");
-
-	stats[3].setFont(font);
 	stats[3].setString("Points de bouclier : ");
-
-	stats[4].setFont(font);
 	stats[4].setString("Chance de coups critique : ");
-
-	stats[5].setFont(font);
 	stats[5].setString("Chance d'esquive : ");
-
-	stats[6].setFont(font);
 	stats[6].setString("Points de regeneration : ");
 
 
@@ -111,28 +104,27 @@ Player::Player()
 		stats[i].setCharacterSize(25);
 		stats[i].setStyle(sf::Text::Bold);
 		stats[i].setPosition(sf::Vector2f(500,i*25));
+		stats[i].setFont(font);
 		if(i>3)
         {
             stats[i].setPosition(sf::Vector2f(1000,(i%3)*25));
 		}
-
-		//0 25 50 75        --
 	}
-
 }
 
+/*This is the destructor*/
 Player::~Player()
 {
     //dtor
 }
 
-//Recuperer l'élément sélectionné
+/*This is where the pressed element will be recovered*/
 int Player::getPressedElement()
 {
     return selectedItemIndex;
 }
 
-//Dessiner les avatars des races
+/*This is where the sprite and text will be drawed*/
 void Player::draw(sf::RenderWindow &window)
 {
     window.draw(player_sprite);
@@ -226,7 +218,10 @@ void Player::pseudoPlayer(sf::RenderWindow &window)
 
 }
 
-//Naviguer au dessus
+/*
+    This is where the user will be allowed to move up in the menu
+    The color of the text will be changed according to the choice
+*/
 void Player::moveUp()
 {
 	if (selectedItemIndex - 1 >= 0)
@@ -256,7 +251,10 @@ void Player::moveUp()
 	}
 }
 
-//Naviguer en dessous
+/*
+    This is where the user will be allowed to move down in the menu
+    The color of the text will be changed according to the choice
+*/
 void Player::moveDown()
 {
 	if (selectedItemIndex + 1 < MAX_NUMBER_OF_RACES)
@@ -283,6 +281,7 @@ void Player::moveDown()
 	}
 }
 
+/*This is where a hero is associated to a user*/
 void Player::getStats(CharacterHero& her)
 {
     if(selectedItemIndex == 0)
@@ -302,6 +301,7 @@ void Player::getStats(CharacterHero& her)
         her.setRace(AETWI);
     }
 
+    /*You can see your stats when you choose your hero*/
 	stats[0].setString("Points d'attaque : "+to_string(her.getPtsAttack()));
 	stats[1].setString("Points de vie : "+to_string(her.getPtsLife()));
 	stats[2].setString("Points d'attaque speciale : "+to_string(her.getPtsSpecialAttack()));
@@ -312,13 +312,13 @@ void Player::getStats(CharacterHero& her)
 }
 
 
-//Constructeur de copie
+/*This is the copy constructor*/
 Player::Player(const Player& other)
 {
     //copy ctor
 }
 
-//Opérateur =
+/*This is operator='s function*/
 Player& Player::operator=(const Player& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
@@ -326,23 +326,27 @@ Player& Player::operator=(const Player& rhs)
     return *this;
 }
 
-//Setter de pseudo
+/*This is the setter of the pseudo*/
 void Player::setPseudo(const string &pseudo)
 {
     this->pseudo = pseudo;
 }
 
-//Getter de pseudo
+/*This is the getter of the pseudo*/
 string Player::getPseudo() const
 {
     return pseudo;
 }
 
+/*It's the getter of the selected item*/
 int Player::getSelectedItemIndex() const
 {
     return selectedItemIndex;
 }
 
+/*
+    This function is used to navigate in the menu with (key up and key down). Management class is used in !
+*/
 void Player::show(Management& man,sf::RenderWindow& window)
 {
     getStats(man.getCharHero());

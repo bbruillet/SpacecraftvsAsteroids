@@ -89,7 +89,7 @@ void Management::mainWindow()
     sound.setLoop(true);
     sound.play();
 
-    sf::RenderWindow windowJeu(sf::VideoMode(1600, 900), "Space Fighter : The battle of Aslorth"/*, sf::Style::Fullscreen*/);
+    sf::RenderWindow windowJeu(sf::VideoMode(1600, 900), "Space Fighter : The battle of Aslorth");
 
     sf::Image icon;
 
@@ -495,9 +495,9 @@ void Management::initCombat(Planet &pla)
     textShieldHero.setCharacterSize(17);
     textShieldBoss.setCharacterSize(17);
 
-    textLifeHero.setPosition(837, 55);
+    textLifeHero.setPosition(815, 55);
     textLifeBoss.setPosition(1153, 55);
-    textShieldHero.setPosition(860, 88);
+    textShieldHero.setPosition(845, 88);
     textShieldBoss.setPosition(1153, 88);
 
     textLifeHero.setStyle(sf::Text::Bold);
@@ -700,9 +700,11 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
                             // to display the animation of regeneration
                             cView.regenCircles();
-                            cView.drawRegenCircles(windowJeu);
+
                             // draw fight scene
                             drawBattle(windowJeu);
+                            cView.drawRegenCircles(windowJeu);
+                            windowJeu.display();
                             sf::sleep(sf::milliseconds(600));
                         }
                         //boss attacks hero and we stack the move in attackevent
@@ -901,7 +903,6 @@ void Management::screenResult(int result, sf::RenderWindow& windowJeu)
                 std::cout << "Problem for loading background" << std::endl;
             }
 
-
             textEvent.setFillColor(sf::Color(244,130,83));
             textEvent.setString("Victory");
             textInstruction.setFillColor(sf::Color(241, 159, 10));
@@ -919,7 +920,7 @@ void Management::screenResult(int result, sf::RenderWindow& windowJeu)
             textEvent.setString("Wasted");
 
             textInstruction.setFillColor(sf::Color(241, 159, 10));
-            textInstruction.setString("> Press space key for entering laboratory <");
+            textInstruction.setString("> Press space key for getting back to universe <");
         }
 
         victory_sprite.setTexture(victory_texture);

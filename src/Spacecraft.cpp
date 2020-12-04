@@ -4,7 +4,9 @@
 #include <cstdio>
 #include <iostream>
 
-
+/*
+    This is the constructor
+*/
 Spacecraft::Spacecraft(const int x, const int y)
 :x(x), y(y)
 {
@@ -12,11 +14,17 @@ Spacecraft::Spacecraft(const int x, const int y)
 
 }
 
+/*
+    This is the destructor
+*/
 Spacecraft::~Spacecraft()
 {
     //dtor
 }
 
+/*
+    This is operator='s function
+*/
 Spacecraft& Spacecraft::operator=(const Spacecraft& sc)
 {
     if (this != &sc) {
@@ -27,7 +35,7 @@ Spacecraft& Spacecraft::operator=(const Spacecraft& sc)
     return *this;
 }
 
-
+/*These are getters and setters of coordinates*/
 int Spacecraft::getX() const
 {
     return x;
