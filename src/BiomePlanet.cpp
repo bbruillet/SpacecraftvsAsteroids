@@ -52,9 +52,9 @@ void BiomePlanet::setBackground(const string& background)
 */
 void BiomePlanet::drawBiome(sf::RenderWindow& window)
 {
-     if (!biome_texture.loadFromFile(background))
+    if (!biome_texture.loadFromFile(background))
     {
-        std::cout << "Problem for loading the biome" << std::endl;
+        std::cout << "Problem while loading the biome" << std::endl;
     }
     biome_sprite.setTexture(biome_texture);
     biome_sprite.setPosition(0, 0);

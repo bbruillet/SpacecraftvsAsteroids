@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 /*
-    This clas sis used to draw all characters sprite and preparing animation for the fight
+    This class is used to draw all characters sprite and preparing animation for the fight
 */
 class CharacterView
 {
@@ -69,7 +69,7 @@ class CharacterView
         sf::Texture badge_texture;
         sf::IntRect rectBadge;
 
-                /*This function is used to draw a sprite of a hero*/
+        /*This function is used to draw a sprite of a hero*/
         void drawHero(sf::RenderWindow &window);
 
         /*This function is used to draw a sprite of a boss*/

@@ -40,6 +40,7 @@
 		<Unit filename="include/CharacterBoss.h" />
 		<Unit filename="include/CharacterHero.h" />
 		<Unit filename="include/CharacterView.h" />
+		<Unit filename="include/CreditView.h" />
 		<Unit filename="include/Fight.h" />
 		<Unit filename="include/IConstante.h" />
 		<Unit filename="include/IStrategyIncrease.h" />
@@ -49,10 +50,12 @@
 		<Unit filename="include/IncreaseShield.h" />
 		<Unit filename="include/IncreaseStatsMenu.h" />
 		<Unit filename="include/Management.h" />
+		<Unit filename="include/MapSpaceView.h" />
 		<Unit filename="include/Menu.h" />
 		<Unit filename="include/PauseMenu.h" />
 		<Unit filename="include/Planet.h" />
 		<Unit filename="include/Player.h" />
+		<Unit filename="include/ScreenResultView.h" />
 		<Unit filename="include/Spacecraft.h" />
 		<Unit filename="include/SpacecraftView.h" />
 		<Unit filename="include/StartScreenView.h" />
@@ -67,6 +70,7 @@
 		<Unit filename="src/CharacterBoss.cpp" />
 		<Unit filename="src/CharacterHero.cpp" />
 		<Unit filename="src/CharacterView.cpp" />
+		<Unit filename="src/CreditView.cpp" />
 		<Unit filename="src/Fight.cpp" />
 		<Unit filename="src/IConstante.cpp" />
 		<Unit filename="src/IStrategyIncrease.cpp" />
@@ -76,10 +80,12 @@
 		<Unit filename="src/IncreaseShield.cpp" />
 		<Unit filename="src/IncreaseStatsMenu.cpp" />
 		<Unit filename="src/Management.cpp" />
+		<Unit filename="src/MapSpaceView.cpp" />
 		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/PauseMenu.cpp" />
 		<Unit filename="src/Planet.cpp" />
 		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/ScreenResultView.cpp" />
 		<Unit filename="src/Spacecraft.cpp" />
 		<Unit filename="src/SpacecraftView.cpp" />
 		<Unit filename="src/StartScreenView.cpp" />

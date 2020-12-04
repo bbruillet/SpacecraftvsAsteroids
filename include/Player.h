@@ -97,6 +97,7 @@ class Player
 
         /*This function is used to know the pressed item*/
         int getPressedElement();
+        void setPressedElement(int selectedItemIndex);
 
         /*This function is used to know the stats of a hero*/
         void getStats(CharacterHero& her);

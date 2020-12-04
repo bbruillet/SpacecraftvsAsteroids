@@ -24,6 +24,7 @@ class BarView
                 - knwow the amount of life you have at the moment
                 - know the amount of life you remain
                 - It's a coefficient of life used for calculate you life bar decreased
+                - The two coordinares are simply where our frame is placed
         */
         int maxLife;
         int actualLife;
@@ -84,6 +85,12 @@ class BarView
         void setMaxLife(int maxLife);
         void setBarLifePosition(int xLife,int ylife);
 
+         /*
+            This function is used to set a roation for lifes's frame.
+            In fact, as you can see, this frame is upsided down.
+        */
+        void setRotation();
+
         /*
             These functions are used for life.
             updateShield is used to update the frame of your shield points
@@ -96,11 +103,7 @@ class BarView
         void setMaxShield(int maxShield);
         void setBarShieldPosition(int xShield,int yShield);
 
-        /*
-            This function is used to set a roation for lifes's frame.
-            In fact, as you can see, this frame is upsided down.
-        */
-        void setRotation();
+
 };
 
 #endif // BARVIEW_H

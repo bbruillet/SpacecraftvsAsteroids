@@ -108,7 +108,7 @@ void Fight::regenHero(Character &c1, Character &c2)
 /*
     This methos is important, because it's where the user will be advertised.
     Advertised by what ?? By all evenements during the fight
-    */
+*/
 string Fight::eventAttack(int attackEvent)
 {
     if(attackEvent == 1)

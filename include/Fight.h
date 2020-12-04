@@ -58,7 +58,7 @@ class Fight
             This function is mainly used by the hero.
             This where he can regen his life ! After regeneration, the boss will fight against him
         */
-        void regenHero(Character& c2, Character& c1);
+        void regenHero(Character& c1, Character& c2);
 
         /*
             This is a function used to prevent the user that what is happening during the fight

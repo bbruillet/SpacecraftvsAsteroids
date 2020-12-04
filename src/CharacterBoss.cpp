@@ -11,6 +11,7 @@ CharacterBoss::CharacterBoss(const string name, const int ptsAttack, const int p
 :Character(name,ptsAttack,ptsLife,badge,ptsSpecialAttack,shield,criticalHit,dodge, x, y, picture, regeneration), origin(origin)
 {
    categoryBoss();
+   setBadge(2);
 }
 
 /*
@@ -79,10 +80,10 @@ CharacterBoss* CharacterBoss::clone()const
 void CharacterBoss::categoryBoss() {
     switch(origin) {
     case BLUE:
-        setPtsLife(50000);
-        setPtsAttack(5000);
-        setCriticalHit(15.0);
-        setPtsSpecialAttack(20);
+        setPtsLife(450);
+        setPtsAttack(5);
+        setCriticalHit(35.0);
+        setPtsSpecialAttack(15);
         setShield(50);
         setX(1580);
         setY(550);
@@ -90,45 +91,47 @@ void CharacterBoss::categoryBoss() {
         break;
 
     case ORANGE:
-        setPtsLife(100);
-        setPtsAttack(10);
-        setCriticalHit(15.0);
-        setPtsSpecialAttack(20);
-        setShield(400);
+        setPtsLife(150);
+        setPtsAttack(15);
+        setCriticalHit(20.0);
+        setPtsSpecialAttack(25);
+        setDodge(20.0);
+        setShield(250);
         setX(1390);
         setY(600);
         setPicture("Images/Avatars/Orange_Boss.png");
         break;
 
     case GREEN:
-        setPtsLife(0);
-        setPtsAttack(10);
+        setPtsLife(200);
         setPtsAttack(15);
-        setCriticalHit(15.0);
-        setPtsSpecialAttack(30);
-        setDodge(2.00);
-        setShield(0);
+        setCriticalHit(25.0);
+        setPtsSpecialAttack(25);
+        setDodge(10.0);
+        setShield(50);
         setX(1370);
         setY(610);
         setPicture("Images/Avatars/Verte_Boss.png");
         break;
 
     case RING_BLUE:
-        setPtsLife(0);
-        setPtsAttack(5);
-        setCriticalHit(50.0);
-        setPtsSpecialAttack(20);
-        setShield(150);
+        setPtsLife(100);
+        setPtsAttack(15);
+        setCriticalHit(33.0);
+        setPtsSpecialAttack(75);
+        setDodge(40.0);
+        setShield(25);
         setX(1200);
         setY(625);
         setPicture("Images/Avatars/Anneau_Bleu_Boss.png");
         break;
 
     case RING_RED:
-        setPtsLife(10);
-        setPtsAttack(5);
-        setCriticalHit(15.0);
-        setPtsSpecialAttack(20);
+        setPtsLife(300);
+        setPtsAttack(20);
+        setCriticalHit(35.0);
+        setPtsSpecialAttack(35);
+        setDodge(20.0);
         setShield(100);
         setX(1590);
         setY(595);
@@ -136,11 +139,12 @@ void CharacterBoss::categoryBoss() {
         break;
 
     case PURPLE_DESTROYED:
-        setPtsLife(0);
-        setPtsAttack(5);
-        setCriticalHit(15.0);
-        setPtsSpecialAttack(20);
-        setShield(100);
+        setPtsLife(50);
+        setPtsAttack(15);
+        setCriticalHit(20.0);
+        setPtsSpecialAttack(30);
+        setDodge(15.0);
+        setShield(200);
         setX(1340);
         setY(605);
         setPicture("Images/Avatars/Mauve_Detruite_Boss.png");
@@ -164,8 +168,8 @@ Origin CharacterBoss::getOrigin()const
 */
 void CharacterBoss::resurrection()
 {
-        setPtsLife(getPtsLife()+400);
-        setPtsAttack(getPtsAttack()+30);
-        setPtsSpecialAttack(getPtsSpecialAttack()+60);
+        setPtsLife(getPtsLife()+50);
+        setPtsAttack(getPtsAttack()+10);
+        setPtsSpecialAttack(getPtsSpecialAttack()+10);
         setShield(getShield()+10);
 }

@@ -51,14 +51,14 @@ CharacterHero& CharacterHero::operator=(const CharacterHero& cH)
 void CharacterHero::categoryHero() {
     switch(race) {
     case HUMAN:
-        setPtsLife(3000);
-        setPtsAttack(100);
-        setPtsSpecialAttack(75);
-        setShield(3000);
+        setPtsLife(175);
+        setPtsAttack(20);
+        setPtsSpecialAttack(35);
+        setShield(25);
 
-        setCriticalHit(35.00);
-        setDodge(0.00);
-        setRegeneration(15);
+        setCriticalHit(50.00);
+        setDodge(30.00);
+        setRegeneration(20);
         setPicture("Images/Avatars/0_Heros.png");
 
         break;
@@ -101,14 +101,14 @@ void CharacterHero::categoryHero() {
         break;
 
     case AETWI:
-        setPtsLife(260);
-        setPtsAttack(700);
-        setPtsSpecialAttack(66);
-        setShield(15);
+        setPtsLife(150);
+        setPtsAttack(400);
+        setPtsSpecialAttack(500);
+        setShield(10);
 
-        setCriticalHit(23.00);
-        setDodge(35.00);
-        setRegeneration(50);
+        setCriticalHit(20.00);
+        setDodge(10.00);
+        setRegeneration(10);
         setPicture("Images/Avatars/4_Heros.png");
 
         break;

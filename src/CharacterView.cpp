@@ -54,7 +54,7 @@ CharacterView& CharacterView::operator=(const CharacterView& rhs)
 
 /*
     This is where we load a texture (of the hero).
-    The texture is added to a sprite and the rect to.
+    The texture is added to a sprite and the rect too.
     After that, the sprite is draw in the window
 */
 void CharacterView::drawHero(sf::RenderWindow &window)
@@ -71,7 +71,7 @@ void CharacterView::drawHero(sf::RenderWindow &window)
 
 /*
     This is where we load a texture (of the boss).
-    The texture is added to a sprite and the rect to.
+    The texture is added to a sprite and the rect too.
     The sprite is placed in the window
     After that, the sprite is draw in the window
 */
@@ -90,7 +90,7 @@ void CharacterView::drawBoss(sf::RenderWindow &window)
 
 /*
     This is where we load a texture (of the attacking boss).
-    The texture is added to a sprite and the rect to.
+    The texture is added to a sprite and the rect too.
     After that, the sprite is draw in the window
 */
 void CharacterView::drawBoss2(sf::RenderWindow &window)
@@ -107,7 +107,7 @@ void CharacterView::drawBoss2(sf::RenderWindow &window)
 
 /*
     This is where we load a texture (of regen circles).
-    The texture is added to a sprite and the rect to.
+    The texture is added to a sprite and the rect too.
     After that, the sprite is draw in the window
 */
 void CharacterView::drawRegenCircles(sf::RenderWindow &window)
@@ -124,7 +124,7 @@ void CharacterView::drawRegenCircles(sf::RenderWindow &window)
 
 /*
     This is where we load a texture (of badges box).
-    The texture is added to a sprite and the rect to.
+    The texture is added to a sprite and the rect too.
     The sprite is placed in the window
     After that, the sprite is draw in the window
     the first instruction says that there is a new simple every 600 puxels on the left

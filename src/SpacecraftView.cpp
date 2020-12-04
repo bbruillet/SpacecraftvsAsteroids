@@ -1,5 +1,13 @@
 #include "SpacecraftView.h"
 
+/*
+    This is the constructor.
+    InRect's member is initialized here.
+    How does it work ? --> rect(where you want to start -> x,
+                                where you want to start -> y,
+                                width of a sample,
+                                height of a sample)
+*/
 SpacecraftView::SpacecraftView()
 {
     //ctor
@@ -7,16 +15,25 @@ SpacecraftView::SpacecraftView()
     rectSourceSprite = rect;
 }
 
+/*
+    This is the destructor
+*/
 SpacecraftView::~SpacecraftView()
 {
-    //dtor
+    delete(spacecraft);
 }
 
+/*
+    This is the copy constructor
+*/
 SpacecraftView::SpacecraftView(const SpacecraftView& other)
 {
     //copy ctor
 }
 
+/*
+    This operato='s function
+*/
 SpacecraftView& SpacecraftView::operator=(const SpacecraftView& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
@@ -24,6 +41,11 @@ SpacecraftView& SpacecraftView::operator=(const SpacecraftView& rhs)
     return *this;
 }
 
+/*
+    This is where we load a texture (of the spacecraft).
+    The texture is added to a sprite and the rect too.
+    After that, the sprite is draw in the window
+*/
 void SpacecraftView::drawSpacecraft(sf::RenderWindow &window)
 {
 
@@ -39,6 +61,10 @@ void SpacecraftView::drawSpacecraft(sf::RenderWindow &window)
     window.draw(spacecraft_sprite);
 }
 
+/*
+    This function is used to use a sprite sheet for the spacecraft.
+    THis function, particularly is used to move your spacecraft on x axis !
+*/
 int SpacecraftView::moveOnX(Event event, int x)
 {
 
@@ -91,6 +117,10 @@ int SpacecraftView::moveOnX(Event event, int x)
     return x;
 }
 
+/*
+    This function is used to use a sprite sheet for the spacecraft.
+    THis function, particularly is used to move your spacecraft on y axis !
+*/
 int SpacecraftView::moveOnY(Event event, int y)
 {
     switch (event.key.code)
@@ -130,11 +160,13 @@ int SpacecraftView::moveOnY(Event event, int y)
     return y;
 }
 
+/*This is the setter of a spacecraft*/
 void SpacecraftView::setSpacecraft(Spacecraft& spacecraft)
 {
     this->spacecraft = &spacecraft;
 }
 
+/*This is the getter of a spacecraft*/
 Spacecraft& SpacecraftView::getSpacecraft()const
 {
     return *spacecraft;

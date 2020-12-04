@@ -18,7 +18,7 @@ Player::Player()
         It will be displayed in the window with 'draw()' function
     */
 	races[0].setFillColor(sf::Color(96, 59, 99));
-	races[0].setString("> Humain");
+	races[0].setString("> Human");
 	races[0].setPosition(sf::Vector2f(100,100));
 	races[1].setFillColor(sf::Color::White);
 	races[1].setString("> Valdera");
@@ -53,7 +53,7 @@ Player::Player()
     /*This is where pictures of heroes (avatars) are loaded*/
     if (!character_texture.loadFromFile("Images/Avatars/"+to_string(selectedItemIndex)+"_Race.png"))
     {
-        std::cout << "Problème d'avatar" << std::endl;
+        std::cout << "Problem while loading character" << std::endl;
     }
 
     character_sprite.setTexture(character_texture);
@@ -124,11 +124,17 @@ int Player::getPressedElement()
     return selectedItemIndex;
 }
 
+void Player::setPressedElement(int selectedItemIndex)
+{
+    this->selectedItemIndex = selectedItemIndex;
+}
+
 /*This is where the sprite and text will be drawed*/
 void Player::draw(sf::RenderWindow &window)
 {
     window.draw(player_sprite);
     window.draw(character_sprite);
+    cout << getPressedElement() << endl;
 	for (int i = 0; i < MAX_NUMBER_OF_RACES; i++)
 	{
 		window.draw(races[i]);
@@ -143,6 +149,14 @@ void Player::draw(sf::RenderWindow &window)
 //Méthode permettant de choisir son pseudo
 void Player::pseudoPlayer(sf::RenderWindow &window)
 {
+    if (!player_texture.loadFromFile("Images/Backgrounds/"+to_string(selectedItemIndex)+"_Race.png"))
+        {
+            std::cout << "Problem while loading background" << std::endl;
+        }
+    player_sprite.setTexture(player_texture);
+        player_sprite.setPosition(0, 0);
+        player_sprite.scale(1.0f, 1.0f);
+
     int counter = -1;
     while (window.isOpen())
     {
@@ -231,12 +245,12 @@ void Player::moveUp()
 		races[selectedItemIndex].setFillColor(sf::Color(96, 59, 99));
 		if (!player_texture.loadFromFile("Images/Backgrounds/"+to_string(selectedItemIndex)+"_Race.png"))
         {
-            std::cout << "Problème d'arrière plan" << std::endl;
+            std::cout << "Problem while loading background" << std::endl;
         }
 
         if (!character_texture.loadFromFile("Images/Avatars/"+to_string(selectedItemIndex)+"_Race.png"))
         {
-            std::cout << "Problème d'avatar" << std::endl;
+            std::cout << "Problem while loading character" << std::endl;
         }
 
 
@@ -338,12 +352,6 @@ string Player::getPseudo() const
     return pseudo;
 }
 
-/*It's the getter of the selected item*/
-int Player::getSelectedItemIndex() const
-{
-    return selectedItemIndex;
-}
-
 /*
     This function is used to navigate in the menu with (key up and key down). Management class is used in !
 */
@@ -381,6 +389,7 @@ void Player::show(Management& man,sf::RenderWindow& window)
                     {
                     case 0:
                         man.getCharHero().setRace(HUMAN);
+
                         break;
 
                     case 1:
@@ -400,12 +409,10 @@ void Player::show(Management& man,sf::RenderWindow& window)
                         break;
                         default:
                         break;
-
-
                     }
 
 
-                    man.playerPseudo(window);
+                    man.playerPseudo(window,getPressedElement());
 
                     break;
 

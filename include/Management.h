@@ -20,7 +20,6 @@
 #include "Planet.h"
 #include "Fight.h"
 #include "StatsPlayerView.h"
-#define MAX_NUMBER_OF_STUDENTS 4
 
 using std::vector;
 
@@ -37,7 +36,7 @@ class Management : public sf::Event, public IConstante
         void increaseStats(sf::RenderWindow & windowJeu);
         void pauseMenu(sf::RenderWindow & windowJeu);
         void playerAccount(sf::RenderWindow & windowJeu);
-        void playerPseudo(sf::RenderWindow & windowJeu);
+        void playerPseudo(sf::RenderWindow & windowJeu,int select);
         void launch(sf::RenderWindow & windowJeu);
         void fightPlanet(sf::RenderWindow & windowJeu,Planet&);
         void screenResult(int result, sf::RenderWindow & windowJeu);
@@ -52,8 +51,16 @@ class Management : public sf::Event, public IConstante
         void drawBattle(sf::RenderWindow& windowJeu);
         string eventFight(Character her, Character bos);
         CharacterHero& getCharHero();
+        Universe& getUniverse();
+        Spacecraft& getSpaceCraft();
+        BiomePlanet& getBiome();
+        SpacecraftView& getSpaceCraftView();
+        CharacterView& getCharacterView();
+        int getNbStory()const;
+        void setNbStory(const int nbStory);
 
-
+        sf::Sprite victory_sprite;
+        sf::Texture victory_texture;
 
     protected:
 
@@ -67,7 +74,6 @@ class Management : public sf::Event, public IConstante
         BarView barHero;
         BarView barBoss;
         Fight fight;
-        sf::Text credit[MAX_NUMBER_OF_STUDENTS];
         sf::Text tutorial;
         sf::Font font;
         sf::Font fontFight;
@@ -75,8 +81,7 @@ class Management : public sf::Event, public IConstante
         sf::Text textLifeBoss;
         sf::Text textShieldHero;
         sf::Text textShieldBoss;
-        sf::Sprite victory_sprite;
-        sf::Texture victory_texture;
+
         sf::Sprite versus_sprite;
         sf::Texture versus_texture;
         sf::Text textHero;

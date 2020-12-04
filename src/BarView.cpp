@@ -80,7 +80,6 @@ void BarView::setMaxLife(int maxLife)
     this->maxLife = maxLife;
     this->actualLife = maxLife;
     coefSizeLife = maxLife/100.0;
-
 }
 
 /*
@@ -116,9 +115,6 @@ void BarView::setBarLifePosition(int x,int y)
     this->yLife = y;
     frameLife.setPosition(xLife,yLife);
     barFrameLife.setPosition(xLife,yLife);
-
-
-
 }
 
 

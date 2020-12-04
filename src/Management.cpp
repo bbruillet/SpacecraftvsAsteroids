@@ -15,7 +15,9 @@
 #include "IncreaseStatsMenu.h"
 #include "StoryView.h"
 #include "TutorialView.h"
-
+#include "MapSpaceView.h"
+#include "CreditView.h"
+#include "ScreenResultView.h"
 
 Management::Management()
 {
@@ -38,11 +40,10 @@ Management::Management()
 
     boss[0] = new CharacterBoss("Oblumandias",BLUE);
     boss[1] = new CharacterBoss("Mof Tarkin the great",ORANGE);
-    boss[2] = new CharacterBoss("BossMauve",PURPLE_DESTROYED);
-    boss[3] = new CharacterBoss("BossRouge",RING_RED);
-    boss[4] = new CharacterBoss("BossVert",GREEN);
+    boss[2] = new CharacterBoss("Denimos",PURPLE_DESTROYED);
+    boss[3] = new CharacterBoss("Sanjitanas",RING_RED);
+    boss[4] = new CharacterBoss("Grodzilla",GREEN);
     boss[5] = new CharacterBoss("Zanentia",RING_BLUE);
-
 
     for ( size_t i = 0; i < planets.size(); i++ )
     {
@@ -59,9 +60,7 @@ Management::Management()
     {
         universe.addUnreachable(unreachPlanets[i]);
     }
-
     nbStory = 1;
-
 }
 
 Management::~Management()
@@ -69,10 +68,44 @@ Management::~Management()
     //dtor
 }
 
-
 CharacterHero& Management::getCharHero()
 {
     return this->hero;
+}
+
+Universe& Management::getUniverse()
+{
+    return this->universe;
+}
+
+Spacecraft& Management::getSpaceCraft()
+{
+    return this->spacecraft;
+}
+
+SpacecraftView& Management::getSpaceCraftView()
+{
+    return this->spacecraftView;
+}
+
+BiomePlanet& Management::getBiome()
+{
+    return this->biome;
+}
+
+CharacterView& Management::getCharacterView()
+{
+    return this->cView;
+}
+
+int Management::getNbStory()const
+{
+    return this->nbStory;
+}
+
+void Management::setNbStory(const int nbStory)
+{
+    this->nbStory = nbStory;
 }
 
 void Management::mainWindow()
@@ -85,17 +118,15 @@ void Management::mainWindow()
     }
     sf::Sound sound;
     sound.setBuffer(Buffer);
-
     sound.setLoop(true);
     sound.play();
 
     sf::RenderWindow windowJeu(sf::VideoMode(1600, 900), "Space Fighter : The battle of Aslorth");
 
     sf::Image icon;
-
     if(!icon.loadFromFile("Images/Backgrounds/Icon.png"))
     {
-
+        cout << "Failed to load icon" << endl;
     }
 
     windowJeu.setIcon(250,250,icon.getPixelsPtr());
@@ -112,27 +143,24 @@ void Management::menu(sf::RenderWindow & windowJeu)
 {
 	Menu menu;
 	menu.show(*this,windowJeu);
-
 }
 
 void Management::pauseMenu(sf::RenderWindow & windowJeu)
 {
 	PauseMenu pause;
 	pause.show(*this,windowJeu);
-
-
 }
 
 void Management::playerAccount(sf::RenderWindow & windowJeu)
 {
     Player player;
     player.show(*this,windowJeu);
-
 }
 
-void Management::playerPseudo(sf::RenderWindow & windowJeu)
+void Management::playerPseudo(sf::RenderWindow & windowJeu,int select)
 {
     Player player;
+    player.setPressedElement(select);
     player.pseudoPlayer(windowJeu);
     hero.setName(player.getPseudo());
     spv.showStats(hero);
@@ -149,8 +177,7 @@ void Management::story(sf::RenderWindow & windowJeu)
     }
     else
     {
-
-        nbStory = 0;
+        setNbStory(0);
         hero.setBadge(0);
         for ( size_t i = 0; i < universe.planets.size(); i++ )
         {
@@ -163,233 +190,24 @@ void Management::story(sf::RenderWindow & windowJeu)
 void Management::tuto(sf::RenderWindow & windowJeu)
 {
     TutorialView tv;
-
     tv.draw(*this, windowJeu);
 }
 
 void Management::launch(sf::RenderWindow & windowJeu)
 {
-    sf::Font font;
-
-    if (!font.loadFromFile("Polices/SpaceFont.ttf"))
-    {
-        cout << "Internal error" <<endl;
-    }
-
-    sf::View view(sf::FloatRect(2000, 2000, 3450, 1800));
-    view.setCenter(spacecraft.getX(), spacecraft.getY());
-
-    Planet planetInProgress;
-
-    int display = 0;
-
-    int x = spacecraft.getX();
-    int y = spacecraft.getY();
-
-    int a,b;
-
-    while (windowJeu.isOpen())
-        {
-            sf::Event event;
-            while (windowJeu.pollEvent(event))
-            {
-                if (event.type == sf::Event::Closed) {
-                    windowJeu.close();
-                }
-
-                switch (event.type)
-                {
-                    case sf::Event::KeyReleased:
-                    switch(event.key.code)
-                    {
-                    case sf::Keyboard::Escape:
-
-                        windowJeu.clear();
-                        view.reset(sf::FloatRect(2048, 1024, 1500, 900));
-                        view.setCenter(750, 450);
-                        windowJeu.setView(view);
-
-                        pauseMenu(windowJeu);
-                        break;
-                        default:
-                        break;
-                    }
-                    default:
-                        break;
-                }
-                for (size_t i (0); i< universe.planets.size();i++){
-                    if((spacecraft.getX() >= universe.planets[i]->getX()+200 && spacecraft.getX() <= universe.planets[i]->getX()+800)
-                       && (spacecraft.getY() >= universe.planets[i]->getY()+200 && spacecraft.getY() <= universe.planets[i]->getY() + 800))
-                    {
-                        display = 1;
-                        planetInProgress = *universe.planets[i];
-
-                            switch (event.type)
-                            {
-                                case sf::Event::KeyReleased:
-                                switch(event.key.code)
-                                {
-                                    case sf::Keyboard::Return:
-
-                                        biome.setBackground("Images/Backgrounds/"+planetInProgress.getName()+"_Background.png");
-                                        fightPlanet(windowJeu,planetInProgress);
-
-
-                                    break;
-                                    default:
-                                        break;
-                                }
-                                default:
-                                    break;
-                            }
-
-
-                    }
-                    else
-                    {
-                        if(*universe.planets[i] == planetInProgress){
-                            display = 0;
-                        }
-                    }
-
-            }
-
-                if (event.type == sf::Event::KeyReleased)
-            {
-                if (event.key.code == sf::Keyboard::M)
-                {
-                    windowJeu.clear();
-                    mapSpace(windowJeu);
-                }
-            }
-
-
-                if(event.type == sf::Event::EventType::KeyPressed)
-                {
-                    a = x;
-                    b = y;
-
-
-                    x = spacecraftView.moveOnX(event, x);
-                    y = spacecraftView.moveOnY(event, y);
-
-                    a = x-a;
-                    b = y-b;
-                    view.move(a,b);
-
-                    spacecraft.setX(x);
-                    spacecraft.setY(y);
-                    spacecraftView.spacecraft_sprite.setPosition(x,y);
-                }
-            }
-
-            sf::Text text;
-            text.setFont(font);
-            text.setString("> Press enter key to land <");
-            text.setCharacterSize(100);
-            text.setPosition(sf::Vector2f(planetInProgress.getX()-200, planetInProgress.getY()-100));
-
-
-            windowJeu.clear();
-            windowJeu.setView(view);
-            windowJeu.draw(universe.universe_sprite);
-
-            for(size_t i(0);i<universe.planets.size();i++)
-            {
-                windowJeu.draw(*universe.planets[i]);
-            }
-
-            for(size_t i(0); i < universe.unreachablePlanets.size(); i++)
-            {
-                windowJeu.draw(*universe.unreachablePlanets[i]);
-            }
-
-            if(display == 1)
-            {
-                windowJeu.draw(text);
-            }
-
-            spacecraftView.setSpacecraft(spacecraft);
-            spacecraftView.drawSpacecraft(windowJeu);
-            windowJeu.display();
-
-
-
-        }
+    MapSpaceView mapPlay;
+    mapPlay.playMap(*this,windowJeu);
 }
 
 void Management::mapSpace(sf::RenderWindow & windowJeu)
 {
-    sf::View view(sf::FloatRect(0, 0, 16000, 8642));
-    //4000 2160.5
-    view.setCenter(7130, 3150);
-
-    windowJeu.setView(view);
-
-    while (windowJeu.isOpen())
-    {
-
-        sf::Event event;
-
-        while (windowJeu.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-            {
-                view.reset(sf::FloatRect(2048, 1024, 1500, 900));
-                view.setCenter(750, 450);
-                windowJeu.setView(view);
-                menu(windowJeu);
-            }
-
-            if (event.type == sf::Event::KeyReleased)
-            {
-                if (event.key.code == sf::Keyboard::M)
-                {
-                    windowJeu.clear();
-
-                    launch(windowJeu);
-                }
-            }
-        }
-
-        sf::Font font;
-
-        if (!font.loadFromFile("Polices/SpaceFont.ttf"))
-        {
-            cout << "Internal error" <<endl;
-        }
-
-        sf::Text text;
-        text.setFont(font);
-        text.setString("> Appuyez sur la touche 'm' pour revenir sur le jeu <");
-        text.setCharacterSize(500);
-        text.setPosition(200, -600);
-
-        windowJeu.clear();
-
-        windowJeu.setView(view);
-        windowJeu.draw(universe.universe_sprite);
-
-        for(size_t i(0);i<universe.planets.size();i++)
-        {
-            windowJeu.draw(*universe.planets[i]);
-        }
-
-        for(size_t i(0); i < universe.unreachablePlanets.size(); i++)
-        {
-            windowJeu.draw(*universe.unreachablePlanets[i]);
-        }
-
-        windowJeu.draw(text);
-        windowJeu.display();
-
-    }
+    MapSpaceView mapView;
+    mapView.showMap(*this,windowJeu);
 }
 
 void Management::drawBattle(sf::RenderWindow& windowJeu)
 {
 
-        windowJeu.clear();
         biome.drawBiome(windowJeu);
         barHero.drawLife(windowJeu);
         barHero.drawShield(windowJeu);
@@ -400,12 +218,11 @@ void Management::drawBattle(sf::RenderWindow& windowJeu)
         windowJeu.draw(versus_sprite);
         windowJeu.draw(textHero);
         windowJeu.draw(textBoss);
-        windowJeu.draw(textAttackEvent);
         windowJeu.draw(textLifeHero);
         windowJeu.draw(textLifeBoss);
         windowJeu.draw(textShieldHero);
         windowJeu.draw(textShieldBoss);
-        windowJeu.display();
+
 }
 
 void Management::initCombat(Planet &pla)
@@ -425,13 +242,11 @@ void Management::initCombat(Planet &pla)
     {
         std::cout << "Problème d'image du 'versus'" << std::endl;
     }
-
     //set sprite du versus
     versus_sprite.setTexture(versus_texture);
     versus_sprite.setPosition(775, -25);
 
     //Nom affiché pour
-
     textHero.setFont(fontFight);
     textBoss.setFont(fontFight);
 
@@ -495,9 +310,9 @@ void Management::initCombat(Planet &pla)
     textShieldHero.setCharacterSize(17);
     textShieldBoss.setCharacterSize(17);
 
-    textLifeHero.setPosition(815, 55);
+    textLifeHero.setPosition(837, 55);
     textLifeBoss.setPosition(1153, 55);
-    textShieldHero.setPosition(845, 88);
+    textShieldHero.setPosition(860, 88);
     textShieldBoss.setPosition(1153, 88);
 
     textLifeHero.setStyle(sf::Text::Bold);
@@ -528,7 +343,6 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
     view.setCenter(1024, 512);
     windowJeu.setView(view);
 
-
     //var
     //compteur pour step
     int nb = 0;
@@ -540,7 +354,8 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
     int result = 0;
     //type d'attaque
     int attackEvent = 0;
-
+    //regen
+    int nbRegen = 2;
     //pour changer les positionnement d'un sprite à l'aide d'un vector2f
     sf::Vector2f dimension(pla.getXChar(),pla.getYChar());
     sf::Vector2f dimensionBoss(pla.getBoss()->getX()-250,pla.getBoss()->getY());
@@ -588,19 +403,28 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                                 cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
                                 //display the scene of the battle
                                 drawBattle(windowJeu);
+                                windowJeu.draw(textAttackEvent);
+                                windowJeu.display();
                                 //sleep allow us to display our sprite every x seconds
                                 sf::sleep(sf::milliseconds(5));
                             }
 
                             // We set the type of attack we use when whe fight the boss
-                            textAttackEvent.setString(fight.eventAttack(attackEvent)+hero.getName());
+                            if(attackEvent == 2)
+                                textAttackEvent.setString(fight.eventAttack(attackEvent)+pla.getBoss()->getName());
+
+                            else
+                                textAttackEvent.setString(fight.eventAttack(attackEvent)+hero.getName());
 
                             for(size_t i(0);i<5;i++)
                             {
                                 //animation when we fight the boss
                                 cView.fightHero();
                                 //display the scene of the battle
+                                windowJeu.clear();
                                 drawBattle(windowJeu);
+                                windowJeu.draw(textAttackEvent);
+                                windowJeu.display();
                                 //sleep allow us to display our sprite every x seconds
                                 sf::sleep(sf::milliseconds(600));
                             }
@@ -617,7 +441,9 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                                 dimension.x -= 22;
                                 cView.character_hero_sprite.setPosition(dimension.x, dimension.y);
                                 //display scene of the battle
+                                windowJeu.clear();
                                 drawBattle(windowJeu);
+                                windowJeu.display();
                                 //sleep allow us to display our sprite every x seconds
                                 sf::sleep(sf::milliseconds(5));
                             }
@@ -639,12 +465,19 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                                     //animation when boss prepare is power ball to attack
                                     cView.fightBoss();
                                     //draw battle scene
+                                    windowJeu.clear();
                                     drawBattle(windowJeu);
+                                    windowJeu.draw(textAttackEvent);
+                                    windowJeu.display();
                                     //sleep allow us to display our sprite every x seconds
                                     sf::sleep(sf::milliseconds(200));
                                 }
                             // to display what type of attack boss do
-                            textAttackEvent.setString(fight.eventAttack(attackEvent)+pla.getBoss()->getName());
+                            if(attackEvent == 2)
+                                textAttackEvent.setString(fight.eventAttack(attackEvent)+hero.getName());
+
+                            else
+                                textAttackEvent.setString(fight.eventAttack(attackEvent)+pla.getBoss()->getName());
                             // set the boss image to his inital position
                             cView.rectBoss.left = 0;
 
@@ -658,7 +491,9 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                                 dimensionBoss.x -= 22;
                                 cView.attack_boss_sprite.setPosition(dimensionBoss.x, dimensionBoss.y);
                                 //draw battle scene
+                                windowJeu.clear();
                                 drawBattle(windowJeu);
+                                windowJeu.draw(textAttackEvent);
                                 //draw power ball
                                 cView.drawBoss2(windowJeu);
                                 windowJeu.display();
@@ -685,8 +520,9 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                     //to display that the hero regenerates his life
                     textAttackEvent.setString(hero.getName() + " regenerates his life by "+ to_string(hero.getRegeneration()) + " points");
                     // if the hero can regen
-                    if(hero.getPtsLife()+hero.getRegeneration() <= lifeHero)
+                    if(hero.getPtsLife()+hero.getRegeneration() <= lifeHero && nbRegen >0)
                     {
+                        nbRegen--;
                         //regen life
                         fight.regenHero(hero, *pla.getBoss());
                         //update the life of the hero
@@ -702,7 +538,9 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                             cView.regenCircles();
 
                             // draw fight scene
+                            windowJeu.clear();
                             drawBattle(windowJeu);
+                            windowJeu.draw(textAttackEvent);
                             cView.drawRegenCircles(windowJeu);
                             windowJeu.display();
                             sf::sleep(sf::milliseconds(600));
@@ -717,13 +555,20 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                           //animation when boss prepare is power ball to attack
                             cView.fightBoss();
                             //draw battle scene
+                            windowJeu.clear();
                             drawBattle(windowJeu);
+                            windowJeu.draw(textAttackEvent);
+                            windowJeu.display();
                             //sleep allow us to display our sprite every x seconds
                             sf::sleep(sf::milliseconds(200));
                         }
 
                        // to display what type of attack boss do
-                        textAttackEvent.setString(fight.eventAttack(attackEvent)+pla.getBoss()->getName());
+                        if(attackEvent == 2)
+                            textAttackEvent.setString(fight.eventAttack(attackEvent)+hero.getName());
+
+                        else
+                            textAttackEvent.setString(fight.eventAttack(attackEvent)+pla.getBoss()->getName());
                         // set the boss image to his inital position
                         cView.rectBoss.left = 0;
 
@@ -737,7 +582,9 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                             //set position of power ball
                             cView.attack_boss_sprite.setPosition(dimensionBoss.x, dimensionBoss.y);
                             //draw window fight
+                            windowJeu.clear();
                             drawBattle(windowJeu);
+                            windowJeu.draw(textAttackEvent);
                             //draw the power ball of the boss
                             cView.drawBoss2(windowJeu);
                             windowJeu.display();
@@ -830,7 +677,9 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
             }
         }
         // draw fight scene
+        windowJeu.clear();
         drawBattle(windowJeu);
+        windowJeu.display();
         //ready to use a move again (Attack or regen)
         statut = 0;
     }
@@ -838,108 +687,8 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
 
 void Management::screenResult(int result, sf::RenderWindow& windowJeu)
 {
-    sf::View view;
-    view.setSize(1600,900);
-    view.setCenter(800,450);
-    windowJeu.setView(view);
-
-
-    if (!font.loadFromFile("Polices/SpaceFont.ttf"))
-    {
-        cout << "Internal error" <<endl;
-    }
-    windowJeu.clear();
-    sf::Text textEvent;
-    sf::Text textInstruction;
-    textEvent.setFont(font);
-    textInstruction.setFont(font);
-    textEvent.setCharacterSize(100);
-    textInstruction.setCharacterSize(50);
-    textEvent.setStyle(sf::Text::Bold);
-    textInstruction.setStyle(sf::Text::Bold);
-
-
-
-
-    while (windowJeu.isOpen())
-	{
-		sf::Event event;
-		while (windowJeu.pollEvent(event))
-		{
-            switch (event.type)
-			{
-            case sf::Event::KeyReleased:
-                switch(event.key.code)
-                {
-                case sf::Keyboard::Space:
-                    if(result == 1)
-                    {
-                        if(nbStory == 2)
-                            story(windowJeu);
-                        else
-                            increaseStats(windowJeu);
-                    }
-                    else
-                    {
-                        launch(windowJeu);
-                    }
-
-                    break;
-                default:
-                    break;
-                }
-                break;
-                default:
-                    break;
-            }
-		}
-
-        //afficher Victoire ou défaite condition
-        windowJeu.clear();
-        if(result == 1)
-        {
-            if (!victory_texture.loadFromFile("Images/Backgrounds/Victory.png"))
-            {
-                std::cout << "Problem for loading background" << std::endl;
-            }
-
-            textEvent.setFillColor(sf::Color(244,130,83));
-            textEvent.setString("Victory");
-            textInstruction.setFillColor(sf::Color(241, 159, 10));
-            textInstruction.setString("> Press space key for entering laboratory <");
-
-        }
-        if(result == 2)
-        {
-            if (!victory_texture.loadFromFile("Images/Backgrounds/Loss.png"))
-            {
-                std::cout << "Problem while loading background" << std::endl;
-            }
-
-            textEvent.setFillColor(sf::Color::Red);
-            textEvent.setString("Wasted");
-
-            textInstruction.setFillColor(sf::Color(241, 159, 10));
-            textInstruction.setString("> Press space key for getting back to universe <");
-        }
-
-        victory_sprite.setTexture(victory_texture);
-        victory_sprite.setPosition(0, 0);
-        victory_sprite.scale(1.0f, 1.0f);
-
-        windowJeu.draw(victory_sprite);
-        textEvent.setPosition(575, 150);
-        textInstruction.setPosition(150, 25);
-
-
-        windowJeu.draw(textEvent);
-        windowJeu.draw(textInstruction);
-
-        cView.drawBadges(windowJeu, 10, 425);
-
-        windowJeu.display();
-	}
-
+    ScreenResultView resultV;
+    resultV.showResult(*this,windowJeu,result);
 }
 
 void Management::increaseStats(sf::RenderWindow & windowJeu)
@@ -1022,58 +771,8 @@ void Management::increaseStats(sf::RenderWindow & windowJeu)
 
 void Management::creditGame(sf::RenderWindow &window)
 {
-
-    if (!font.loadFromFile("Polices/SpaceFont.ttf"))
-    {
-        cout << "Internal error" <<endl;
-    }
-
-
-	credit[0].setFont(font);
-	credit[0].setFillColor(sf::Color::White);
-	credit[0].setString("> Bruillet Baptiste ");
-	credit[0].setPosition(sf::Vector2f(500,200));
-
-	credit[1].setFont(font);
-	credit[1].setFillColor(sf::Color::White);
-	credit[1].setString("> Cornut Sylvain ");
-	credit[1].setPosition(sf::Vector2f(500,350));
-
-	credit[2].setFont(font);
-	credit[2].setFillColor(sf::Color::White);
-	credit[2].setString("> Danese Loris " );
-	credit[2].setPosition(sf::Vector2f(500,500));
-
-	credit[3].setFont(font);
-	credit[3].setFillColor(sf::Color::White);
-	credit[3].setString("> Smet Antoine " );
-	credit[3].setPosition(sf::Vector2f(500,650));
-
-	for (int i = 0; i < MAX_NUMBER_OF_STUDENTS; i++)
-	{
-		credit[i].setCharacterSize(66);
-	}
-
-
-   while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-		    // case revenir menu
-		    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Backspace))
-            {
-                window.clear();
-                menu(window);
-            }
-		}
-		window.clear();
-		 for (int i = 0; i < MAX_NUMBER_OF_STUDENTS; i++)
-            {
-                window.draw(credit[i]);
-            }
-		window.display();
-	}
+    CreditView credit;
+    credit.showCredit(*this,window);
 }
 
 void Management::showStats(sf::RenderWindow &windowJeu)
@@ -1084,11 +783,21 @@ void Management::showStats(sf::RenderWindow &windowJeu)
 		sf::Event event;
 		while (windowJeu.pollEvent(event))
 		{
-		    // case revenir menu
-		    if (event.type == sf::Event::Closed)
-            {
-                launch(windowJeu);
-            }
+		    switch (event.type)
+			{
+            case sf::Event::KeyReleased:
+                switch(event.key.code)
+                {
+                case sf::Keyboard::Backspace:
+                    pauseMenu(windowJeu);
+                    break;
+                    default:
+                        break;
+                }
+                break;
+                default:
+                    break;
+			}
 		}
         windowJeu.clear();
         spv.draw(windowJeu);
