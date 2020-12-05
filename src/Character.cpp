@@ -1,7 +1,6 @@
 #include "Character.h"
 
 #include <cstdio>
-#include <iostream>
 
 /*
     This is the constructor of a character

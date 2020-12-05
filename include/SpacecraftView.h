@@ -6,7 +6,7 @@
 /*
     This class is used to draw the spacecraft ine the universe
 */
-class SpacecraftView : public sf::Event, public IConstante
+class SpacecraftView : public sf::Event
 {
     private:
         /*
@@ -53,6 +53,9 @@ class SpacecraftView : public sf::Event, public IConstante
         Spacecraft& getSpacecraft()const;
         void setSpacecraft(Spacecraft&);
 
+        /*
+            This is the getter od the sprite of a spacecraft
+        */
         sf::Sprite getSpacecraft_sprite() const;
 };
 

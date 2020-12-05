@@ -94,7 +94,7 @@ Player::Player()
 	stats[2].setString("Special attack : ");
 	stats[3].setString("Shield : ");
 	stats[4].setString("Probabilities to make a critical hit : ");
-	stats[5].setString("Probabilities to didge : ");
+	stats[5].setString("Probabilities to dodge : ");
 	stats[6].setString("Regeneration : ");
 
 
@@ -107,7 +107,7 @@ Player::Player()
 		stats[i].setFont(font);
 		if(i>3)
         {
-            stats[i].setPosition(sf::Vector2f(1000,(i%3)*25));
+            stats[i].setPosition(sf::Vector2f(850,(i%3)*30));
 		}
 	}
 }
@@ -145,7 +145,7 @@ void Player::draw(sf::RenderWindow &window)
 	}
 }
 
-//Méthode permettant de choisir son pseudo
+/*This a method that allows you to choose your nickname*/
 void Player::pseudoPlayer(Management& man,sf::RenderWindow &window)
 {
     if (!player_texture.loadFromFile("Images/Backgrounds/"+to_string(selectedItemIndex)+"_Race.png"))
@@ -175,10 +175,11 @@ void Player::pseudoPlayer(Management& man,sf::RenderWindow &window)
                 {
                 case sf::Keyboard::Escape:
                     window.clear();
-                    man.playerAccount(window);
+                    man.playerAccount();
                     break;
                 case sf::Keyboard::Return:
                     setPseudo(playerInput);
+                    /*You should enter at least 3 characters*/
                     if(counter+1 < 3){
                         window.draw(names[2]);
 
@@ -196,8 +197,10 @@ void Player::pseudoPlayer(Management& man,sf::RenderWindow &window)
                     break;
 			}
 
+            /*It allows you to enter text with your keyboard*/
             if (event.type == sf::Event::TextEntered)
             {
+                /*With this conditionb, you can erase some letters with backspace key*/
                 if(event.text.unicode == '\b'){
                     if(counter >= 0){
                     playerInput.erase(counter,1);
@@ -205,8 +208,10 @@ void Player::pseudoPlayer(Management& man,sf::RenderWindow &window)
                     }
                 }
 
+                /*Your nickname shoud be lower than 21 characters*/
                 else if (counter <= 20)
                 {
+                    /*You can only enter letters and numbers*/
                     if((event.text.unicode >= 48 && event.text.unicode <=57) ||
                        (event.text.unicode >= 65 && event.text.unicode <=90) ||
                        (event.text.unicode >= 97 && event.text.unicode <=122) )
@@ -321,13 +326,13 @@ void Player::getStats(CharacterHero& her)
     }
 
     /*You can see your stats when you choose your hero*/
-	stats[0].setString("Points d'attaque : "+to_string(her.getPtsAttack()));
-	stats[1].setString("Points de vie : "+to_string(her.getPtsLife()));
-	stats[2].setString("Points d'attaque speciale : "+to_string(her.getPtsSpecialAttack()));
-	stats[3].setString("Points de bouclier : "+to_string(her.getShield()));
-	stats[4].setString("Chance de coups critique : "+to_string(her.getCriticalHit()));
-	stats[5].setString("Chance d'esquive : "+to_string(her.getDodge()));
-	stats[6].setString("Points de regen : "+to_string(her.getRegeneration()));
+	stats[0].setString("Attack : "+to_string(her.getPtsAttack()));
+	stats[1].setString("Life : "+to_string(her.getPtsLife()));
+	stats[2].setString("Special attack : "+to_string(her.getPtsSpecialAttack()));
+	stats[3].setString("Shield : "+to_string(her.getShield()));
+	stats[4].setString("Probabilities to make a critical hit : "+to_string((int)her.getCriticalHit())+"%");
+	stats[5].setString("Probabilities to dodge : "+to_string((int)her.getDodge()) + "%");
+	stats[6].setString("Regeneration : "+to_string(her.getRegeneration()));
 }
 
 
@@ -368,10 +373,11 @@ void Player::show(Management& man,sf::RenderWindow& window)
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
+		    /*If backspace is pressed you'll get back to the menu*/
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Backspace))
             {
                 window.clear();
-                man.menu(window);
+                man.menu();
 
             }
 			switch (event.type)
@@ -379,19 +385,23 @@ void Player::show(Management& man,sf::RenderWindow& window)
             case sf::Event::KeyReleased:
                 switch(event.key.code)
                 {
+                /*If you press up, you'll get up in the menu*/
                 case sf::Keyboard::Up:
                     moveUp();
                     getStats(man.getCharHero());
                     break;
 
+                /*If you press down, you'll get down in the menu*/
                 case sf::Keyboard::Down:
                     moveDown();
                     getStats(man.getCharHero());
                     break;
 
+                /*If you press "return" you will chose an item in the menu*/
                 case sf::Keyboard::Return:
                     switch(getPressedElement())
                     {
+                    /*A race will be selected according to the chosen event*/
                     case 0:
                         man.getCharHero().setRace(HUMAN);
 
@@ -417,7 +427,7 @@ void Player::show(Management& man,sf::RenderWindow& window)
                     }
 
 
-                    man.playerPseudo(window,getPressedElement());
+                    man.playerPseudo(getPressedElement());
 
                     break;
 

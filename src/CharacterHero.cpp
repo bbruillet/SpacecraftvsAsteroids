@@ -17,7 +17,7 @@ CharacterHero::CharacterHero(const string name, const int ptsAttack, const int p
 */
 CharacterHero::~CharacterHero()
 {
-
+    delete strategy;
 }
 
 /*
@@ -28,6 +28,7 @@ CharacterHero::CharacterHero(const CharacterHero& cH):Character(cH),race(cH.race
 
 }
 
+
 /*
     This is operator='s function
 */
@@ -37,7 +38,6 @@ CharacterHero& CharacterHero::operator=(const CharacterHero& cH)
         {
             Character::operator=(cH);
             race = cH.race;
-            categoryHero();
         } // handle self assignment
     //assignment operator
     return *this;

@@ -5,7 +5,7 @@
 #include "Planet.h"
 
 /*
-    In this enumeration(?), you can se that there is all planet's name. We'll associate a boss to a planet !
+    In this enum, you can se that there is all planet's name. We'll associate a boss to a planet !
 */
 enum Origin {
     BLUE,

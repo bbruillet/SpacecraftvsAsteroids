@@ -1,13 +1,12 @@
 #include "BarView.h"
-#include <iostream>
 
 /*
     This is the constructor
     remaininglife and remainingshield are setted at '0', because they'll be used for making operations
 */
 BarView::BarView(sf::Vector2f dimensionFrameLife, int maxLife, sf::Vector2f dimensionFrameShield, int maxShield)
-:dimensionFrameLife(dimensionFrameLife),maxLife(maxLife),actualLife(maxLife),remainingLife(0),dimensionFrameShield(dimensionFrameShield),maxShield(maxShield),
-actualShield(maxShield),remainingShield(0)
+:dimensionFrameLife(dimensionFrameLife),maxLife(maxLife),actualLife(maxLife),missingLife(0),dimensionFrameShield(dimensionFrameShield),maxShield(maxShield),
+actualShield(maxShield),missingShield(0)
 {
     /*Here, we are making life's frame properties*/
     frameLife = sf::RectangleShape(dimensionFrameLife);
@@ -90,11 +89,11 @@ void BarView::updateLife(int newLife)
     /*This operation'll create an actualLife by dividing the newLife (placed in argument) by the coefficient of your life (see setMaxLife's function)*/
     actualLife = newLife / coefSizeLife;
 
-    /*This one will set your remainingLife by dividing your maxLife by your coefficient and after that by subtracting this by your actualLife*/
-    remainingLife = maxLife / coefSizeLife - actualLife;
+    /*This one will set your missingLife by dividing your maxLife by your coefficient and after that by subtracting this by your actualLife*/
+    missingLife = maxLife / coefSizeLife - actualLife;
 
     /*The frame of your remaining life will be resized here*/
-    barFrameLife.setSize(sf::Vector2f(dimensionFrameLife.x - (remainingLife * dimensionFrameLife.x/100.0),dimensionFrameLife.y));
+    barFrameLife.setSize(sf::Vector2f(dimensionFrameLife.x - (missingLife * dimensionFrameLife.x/100.0),dimensionFrameLife.y));
 }
 
 /*
@@ -137,11 +136,11 @@ void BarView::updateShield(int newShield)
     /*This operation'll create an actualShield by dividing the newShield (placed in argument) by the coefficient of your shield (see setMaxShield's function)*/
     actualShield = newShield / coefSizeShield;
 
-    /*This one will set your remainingShield by dividing your maxShield by your coefficient and after that by subtracting this by your actualShield*/
-    remainingShield = maxShield / coefSizeShield - actualShield;
+    /*This one will set your missingShield by dividing your maxShield by your coefficient and after that by subtracting this by your actualShield*/
+    missingShield = maxShield / coefSizeShield - actualShield;
 
     /*The frame of your remaining shield will be resized here*/
-    barFrameShield.setSize(sf::Vector2f(dimensionFrameShield.x - (remainingShield * dimensionFrameShield.x/100.0),dimensionFrameShield.y));
+    barFrameShield.setSize(sf::Vector2f(dimensionFrameShield.x - (missingShield * dimensionFrameShield.x/100.0),dimensionFrameShield.y));
 }
 
 /*
@@ -154,7 +153,7 @@ void BarView::drawShield(sf::RenderWindow& window)
 }
 
 /*
-    This function'll put the 2 frames in the window
+    This function'll set the position of the 2 frames in the window
 */
 void BarView::setBarShieldPosition(int x,int y)
 {

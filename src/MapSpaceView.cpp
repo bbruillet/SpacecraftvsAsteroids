@@ -1,9 +1,17 @@
 #include "MapSpaceView.h"
 
+/*
+Constructor
+*/
+
 MapSpaceView::MapSpaceView()
 {
     //ctor
 }
+
+/*
+Destructor
+*/
 
 MapSpaceView::~MapSpaceView()
 {
@@ -15,6 +23,9 @@ MapSpaceView::MapSpaceView(const MapSpaceView& other)
     //copy ctor
 }
 
+/*
+operator =
+*/
 MapSpaceView& MapSpaceView::operator=(const MapSpaceView& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
@@ -22,6 +33,9 @@ MapSpaceView& MapSpaceView::operator=(const MapSpaceView& rhs)
     return *this;
 }
 
+/*
+Display the map in large, display the universe with planets
+*/
 void MapSpaceView::showMap(Management& man,sf::RenderWindow& window)
 {
     sf::View view(sf::FloatRect(0, 0, 16000, 8642));
@@ -40,7 +54,7 @@ void MapSpaceView::showMap(Management& man,sf::RenderWindow& window)
                 view.reset(sf::FloatRect(2048, 1024, 1500, 900));
                 view.setCenter(750, 450);
                 window.setView(view);
-                man.menu(window);
+                man.menu();
             }
 
             if (event.type == sf::Event::KeyReleased)
@@ -49,7 +63,7 @@ void MapSpaceView::showMap(Management& man,sf::RenderWindow& window)
                 {
                     window.clear();
 
-                    man.launch(window);
+                    man.launch();
                 }
             }
         }
@@ -88,6 +102,11 @@ void MapSpaceView::showMap(Management& man,sf::RenderWindow& window)
     }
 }
 
+/*
+Display the map concentrate on spaceship, display the universe with planets
+In this function, we compare the position of the spaceship with planets,
+if this last is on the planet we can enter on it
+*/
 
 void MapSpaceView::playMap(Management& man,sf::RenderWindow& window)
 {
@@ -132,7 +151,7 @@ void MapSpaceView::playMap(Management& man,sf::RenderWindow& window)
                         view.setCenter(750, 450);
                         window.setView(view);
 
-                        man.pauseMenu(window);
+                        man.pauseMenu();
                         break;
                         default:
                         break;
@@ -153,9 +172,12 @@ void MapSpaceView::playMap(Management& man,sf::RenderWindow& window)
                                 switch(event.key.code)
                                 {
                                     case sf::Keyboard::Return:
-
+                                        /*
+                                        we set the background of the planet
+                                        and we launch the function of fight
+                                        */
                                         man.getBiome().setBackground("Images/Backgrounds/"+planetInProgress.getName()+"_Background.png");
-                                        man.fightPlanet(window,planetInProgress);
+                                        man.fightPlanet(planetInProgress);
 
 
                                     break;
@@ -182,11 +204,13 @@ void MapSpaceView::playMap(Management& man,sf::RenderWindow& window)
                 if (event.key.code == sf::Keyboard::M)
                 {
                     window.clear();
-                    man.mapSpace(window);
+                    man.mapSpace();
                 }
             }
 
-
+                /*
+                We move on the space map, and the view is moving at the same time we move
+                */
                 if(event.type == sf::Event::EventType::KeyPressed)
                 {
                     a = x;

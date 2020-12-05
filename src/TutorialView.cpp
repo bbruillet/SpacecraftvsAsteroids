@@ -1,7 +1,7 @@
 #include "TutorialView.h"
 
 /*
-    This is the copy constructor
+    This is the constructor
 */
 TutorialView::TutorialView()
 {
@@ -12,6 +12,7 @@ TutorialView::TutorialView()
 	{
 		cout << "Internal error" <<endl;
 	}
+
 	/*
         it is a function to load the background
     */
@@ -26,8 +27,9 @@ TutorialView::TutorialView()
     tuto_sprite.setTexture(tuto_texture);
     tuto_sprite.setPosition(0, 0);
     tuto_sprite.scale(1.0f, 1.0f);
+
     /*
-        Tis is used to write text in the tutorial
+        This is used to write texts for the story
     */
 	tuto[0].setString("You're now in the universe.\n"
                    "It's where you can land on a planet and explore the world.\n\n"
@@ -47,6 +49,7 @@ TutorialView::TutorialView()
                         "scattered throughout the universe and save Aslorth\n\n\n"
                         "Ready?");
 	tuto[1].setPosition(sf::Vector2f(20,470));
+
 	/*
         Allows to give a texture and position
     */
@@ -56,6 +59,7 @@ TutorialView::TutorialView()
 	continueKey.setPosition(sf::Vector2f(500,870));
 	continueKey.setCharacterSize(20);
 	continueKey.setStyle(sf::Text::Bold);
+
 	/*
         This is used to define the font of the tutorial
 	*/
@@ -65,8 +69,8 @@ TutorialView::TutorialView()
         tuto[i].setCharacterSize(25);
         tuto[i].setFillColor(sf::Color::White);
     }
-    //ctor
 }
+
 /*
     This is the destructor
 */
@@ -75,7 +79,7 @@ TutorialView::~TutorialView()
     //dtor
 }
 /*
-    This is a function that draw the window
+    This is a function used to draw some stuff in the window
 */
 void TutorialView::draw(Management& man,sf::RenderWindow &window)
 {
@@ -94,7 +98,7 @@ void TutorialView::draw(Management& man,sf::RenderWindow &window)
                 {
                 case sf::Keyboard::Space:
                     window.clear();
-                    man.launch(window);
+                    man.launch();
                     break;
 
                 default:

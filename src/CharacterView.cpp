@@ -35,7 +35,8 @@ CharacterView::~CharacterView()
 */
 CharacterView::CharacterView(const CharacterView& other)
 {
-
+    hero = new CharacterHero(*other.hero);
+    boss = new CharacterBoss(*other.boss);
 }
 
 /*
@@ -44,8 +45,8 @@ CharacterView::CharacterView(const CharacterView& other)
 CharacterView& CharacterView::operator=(const CharacterView& rhs)
 {
     if (this != &rhs){
-        hero = rhs.hero;
-        boss = rhs.boss;
+        hero = new CharacterHero(*rhs.hero);
+        boss = new CharacterBoss(*rhs.boss);
 
     }; // handle self assignment
     //assignment operator

@@ -98,12 +98,12 @@ void StoryView::introduction(Management& man,sf::RenderWindow &window)
                 {
                 case sf::Keyboard::Space:
                     window.clear();
-                    man.launch(window);
+                    man.launch();
                     break;
 
                 case sf::Keyboard::T:
                     window.clear();
-                    man.tuto(window);
+                    man.tuto();
                     break;
 
                 default:
@@ -142,7 +142,7 @@ void StoryView::conclusion(Management& man,sf::RenderWindow &window)
                 {
                 case sf::Keyboard::Space:
                     window.clear();
-                    man.increaseStats(window);
+                    man.increaseStats();
                     break;
 
                 default:

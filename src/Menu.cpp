@@ -127,13 +127,13 @@ void Menu::show(Management& man,sf::RenderWindow &window)
                     /*First text*/
                     case 0:
                         /*The function playerAccount will be showed by pressinf the text*/
-                        man.playerAccount(window);
+                        man.playerAccount();
                         break;
 
                     /*Second text*/
                     case 1:
                         /*The function creditGame will be showed by pressinf the text*/
-                        man.creditGame(window);
+                        man.creditGame();
                         break;
 
                     /*Third text*/

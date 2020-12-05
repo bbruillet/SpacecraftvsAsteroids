@@ -57,7 +57,7 @@ void SpacecraftView::drawSpacecraft(sf::RenderWindow &window)
     spacecraft_sprite.setTexture(spacecraft_texture);
     spacecraft_sprite.setTextureRect(rectSourceSprite);
     spacecraft_sprite.setPosition(spacecraft->getX(), spacecraft->getY());
-    spacecraft_sprite.setOrigin(VAISSEAU_COORDONNEE_ORIGINE, VAISSEAU_COORDONNEE_ORIGINE);
+    spacecraft_sprite.setOrigin(62.5, 62.5);
     window.draw(spacecraft_sprite);
 }
 
@@ -172,6 +172,7 @@ Spacecraft& SpacecraftView::getSpacecraft()const
     return *spacecraft;
 }
 
+/*This is the getter of spacecraft's sprite*/
 sf::Sprite SpacecraftView::getSpacecraft_sprite() const
 {
     return spacecraft_sprite;

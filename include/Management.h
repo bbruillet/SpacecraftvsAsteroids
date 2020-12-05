@@ -6,8 +6,6 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-
-#include "IConstante.h"
 #include "BiomePlanet.h"
 #include "Universe.h"
 #include "Spacecraft.h"
@@ -22,34 +20,89 @@
 #include "StatsPlayerView.h"
 
 using std::vector;
-
-class Management : public sf::Event, public IConstante
+/*
+    This is the most important class !
+    It's our "main" class.
+*/
+class Management : public sf::Event
 {
+    private:
+        sf::RenderWindow* windowGame;
+        /*
+            These are pointers from our classes
+            AIP -- > Agrégation interne par pointeur
+        */
+        Universe* universe;
+        Spacecraft* spacecraft;
+        SpacecraftView* spacecraftView;
+        BiomePlanet* biome;
+        CharacterHero* hero;
+        CharacterView* cView;
+        BarView* barHero;
+        BarView* barBoss;
+        Fight* fight;
+        StatsPlayerView* spv;
+
+        /*
+            These are fonts, texts, sprites and textures
+        */
+        sf::Text tutorial;
+        sf::Font font;
+        sf::Font fontFight;
+        sf::Text textLifeHero;
+        sf::Text textLifeBoss;
+        sf::Text textShieldHero;
+        sf::Text textShieldBoss;
+        sf::Sprite versus_sprite;
+        sf::Texture versus_texture;
+        sf::Text textHero;
+        sf::Text textBoss;
+        sf::Text textAttackEvent;
+        sf::Sprite victory_sprite;
+        sf::Texture victory_texture;
+
+        /*
+            These are members data
+        */
+        /*This memebr data is used to know if there is a victory or a loss*/
+        int nbStory;
+        int lifeHero;
+        int shieldHero;
+        int lifeBoss;
+        int shieldBoss;
+
+
     public:
-        int choiceMenu = INITIALISED_VALUE;
+        /*
+            These 2 lines are de constructor and the destructor
+        */
         Management();
         virtual ~Management();
 
+        /*
+            These functions are used to display every windows from classes (or gameplay)
+        */
         void mainWindow();
-        void startScreen(sf::RenderWindow& windowJeu);
-        void menu(sf::RenderWindow & windowJeu);
-        void increaseStats(sf::RenderWindow & windowJeu);
-        void pauseMenu(sf::RenderWindow & windowJeu);
-        void playerAccount(sf::RenderWindow & windowJeu);
-        void playerPseudo(sf::RenderWindow & windowJeu,int select);
-        void launch(sf::RenderWindow & windowJeu);
-        void fightPlanet(sf::RenderWindow & windowJeu,Planet&);
-        void screenResult(int result, sf::RenderWindow & windowJeu);
-        void mapSpace(sf::RenderWindow & windowJeu);
-        void creditGame(sf::RenderWindow &window);
+        void startScreen();
+        void menu();
+        void increaseStats();
+        void pauseMenu();
+        void playerAccount();
+        void playerPseudo(int select);
+        void launch();
+        void fightPlanet(Planet&);
+        void screenResult(int result);
+        void mapSpace();
+        void creditGame();
         void initCombat(Planet& pla);
+        void showStats();
+        void story();
+        void tuto();
+        void drawBattle();
 
-        void showStats(sf::RenderWindow &window);
-
-        void story(sf::RenderWindow & windowJeu);
-        void tuto(sf::RenderWindow & windowJeu);
-        void drawBattle(sf::RenderWindow& windowJeu);
-        string eventFight(Character her, Character bos);
+        /*
+            Getters and setters
+        */
         CharacterHero& getCharHero();
         Universe& getUniverse();
         Spacecraft& getSpaceCraft();
@@ -58,48 +111,11 @@ class Management : public sf::Event, public IConstante
         CharacterView& getCharacterView();
         int getNbStory()const;
         void setNbStory(const int nbStory);
-
         sf::Texture getVictory_texture() const;
         sf::Sprite getVictory_sprite() const;
         void setSpriteVictory();
         void setVictoryTexture();
         void setLoseTexture();
-    protected:
-
-    private:
-        Universe universe;
-        Spacecraft spacecraft;
-        SpacecraftView spacecraftView;
-        BiomePlanet biome;
-        CharacterHero hero;
-        CharacterView cView;
-        BarView barHero;
-        BarView barBoss;
-        Fight fight;
-        sf::Text tutorial;
-        sf::Font font;
-        sf::Font fontFight;
-        sf::Text textLifeHero;
-        sf::Text textLifeBoss;
-        sf::Text textShieldHero;
-        sf::Text textShieldBoss;
-
-        sf::Sprite versus_sprite;
-        sf::Texture versus_texture;
-        sf::Text textHero;
-        sf::Text textBoss;
-        sf::Text textAttackEvent;
-
-        StatsPlayerView spv;
-        int nbStory;
-        int lifeHero;
-        int shieldHero;
-        int lifeBoss;
-        int shieldBoss;
-
-        sf::Sprite victory_sprite;
-        sf::Texture victory_texture;
-
 };
 
 #endif // GESTION_H

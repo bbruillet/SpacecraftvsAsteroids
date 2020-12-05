@@ -7,7 +7,6 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-#include "IConstante.h"
 #include "IStrategyIncrease.h"
 #include "IncreaseAttack.h"
 #include "IncreaseLife.h"
@@ -15,8 +14,6 @@
 #include "IncreaseRegeneration.h"
 #include "Character.h"
 
-using std::cout;
-using std::endl;
 using std::string;
 using std::to_string;
 using std::ostream;

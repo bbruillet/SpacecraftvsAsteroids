@@ -1,15 +1,23 @@
 #include "ScreenResultView.h"
 
+/*
+    This is the copy constructor
+*/
 ScreenResultView::ScreenResultView()
 {
     //ctor
 }
 
+/*This is the destructor*/
 ScreenResultView::~ScreenResultView()
 {
     //dtor
 }
 
+/*
+    This function is used to write something in Management. Instead of coding in management,
+    we used to code here to have classes with the same amount of lines
+*/
 void ScreenResultView::showResult(Management& man,sf::RenderWindow& window,int result)
 {
 
@@ -24,8 +32,6 @@ void ScreenResultView::showResult(Management& man,sf::RenderWindow& window,int r
         cout << "Internal error" <<endl;
     }
 
-    sf::Text textEvent;
-    sf::Text textInstruction;
     textEvent.setFont(font);
     textInstruction.setFont(font);
     textEvent.setCharacterSize(100);
@@ -47,13 +53,13 @@ void ScreenResultView::showResult(Management& man,sf::RenderWindow& window,int r
                     if(result == 1)
                     {
                         if(man.getNbStory() == 2)
-                            man.story(window);
+                            man.story();
                         else
-                            man.increaseStats(window);
+                            man.increaseStats();
                     }
                     else
                     {
-                        man.launch(window);
+                        man.launch();
                     }
 
                     break;
@@ -66,8 +72,9 @@ void ScreenResultView::showResult(Management& man,sf::RenderWindow& window,int r
             }
 		}
 
-        //afficher Victoire ou défaite condition
         window.clear();
+
+        /*These 2 conditions are used to show to the user if he won or he loss the game !*/
         if(result == 1)
         {
             man.setVictoryTexture();
@@ -77,17 +84,17 @@ void ScreenResultView::showResult(Management& man,sf::RenderWindow& window,int r
             textInstruction.setString("> Press space key for entering laboratory <");
 
         }
+
         if(result == 2)
         {
             man.setLoseTexture();
             textEvent.setFillColor(sf::Color::Red);
             textEvent.setString("Wasted");
             textInstruction.setFillColor(sf::Color(241, 159, 10));
-            textInstruction.setString("> Press space key to go back to your spaceship <");
+            textInstruction.setString("> Press space key to get back to your spaceship <");
         }
 
         man.setSpriteVictory();
-
 
         textEvent.setPosition(575, 150);
         textInstruction.setPosition(150, 25);

@@ -17,7 +17,7 @@ using std::ostream;
 using std::vector;
 
 /*
-    This class is the universe
+    This class is the universe (where you can move from planets to planets)
 */
 class Universe
 {
@@ -28,7 +28,7 @@ class Universe
         int x, y;
 
         /*
-            Here we find the list of planets as well as the list of unreachable planets
+            Here we find the list of planets as well as the list of unreachablePlanets
         */
         vector<Planet*> planets;
         vector<Planet*> unreachablePlanets;
@@ -66,12 +66,29 @@ class Universe
         int getY() const;
         void setY(int y);
 
+        /*
+            It's where you can recover a planet(with the index)
+        */
         Planet* getPlanet(int index);
+
+        /*
+            This function is used to know the size of planets' list
+        */
         int getSizePlanets()const;
 
+        /*
+            It's where you can recover a unreachable planet(with the index)
+        */
         Planet* getPlanetUnreach(int index);
+
+        /*
+            This function is used to know the size of unreachablePlanets' list
+        */
         int getSizePlanetsUnreach()const;
 
+        /*
+            This is the getter of universe's sprite
+        */
         sf::Sprite getUniverse_sprite() const;
 };
 

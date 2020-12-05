@@ -18,7 +18,7 @@ using std::string;
 using std::to_string;
 
 /*
-    It is where you can see your stats
+    It is where you can see your own stats during game
 */
 class StatsPlayerView
 {
@@ -31,13 +31,13 @@ class StatsPlayerView
         sf::Text title;
         sf::Text backKey;
 
-        /*These are sprites and textures used to draw our character's informations*/
+        /*These are sprites and textures used to draw our character's informations and backgrounds*/
         sf::Sprite player_sprite;
         sf::Texture player_texture;
         sf::Sprite character_sprite;
         sf::Texture character_texture;
 
-        /*This one is a hero*/
+        /*This member data is the hero*/
         CharacterHero her;
 
     public:

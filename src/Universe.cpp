@@ -1,22 +1,16 @@
 #include "Universe.h"
 
-using std::cout;
-using std::endl;
-using std::string;
-using std::to_string;
-using std::ostream;
-
 Universe::Universe()
 {
     /*
-        it is a function to load the background
+        it is a function used to load the background
     */
     if (!universe_texture.loadFromFile("Images/Backgrounds/Universe.png"))
     {
         std::cout << "Problem while loading universe's background" << std::endl;
     }
     /*
-    Allows to give a texture and position
+        Allows to give a texture and position
     */
     int x = 0;
     int y = 0;
@@ -41,6 +35,7 @@ Universe::Universe(const Universe& univ)
     }
     //copy ctor
 }
+
 /*
     This is the destructor
 */
@@ -49,12 +44,12 @@ Universe::~Universe()
     //dtor
      for(size_t i(0);i<planets.size();i++)
     {
-        delete planets[i]; //AIP
+        delete planets[i];
     }
     planets.clear();
     for(size_t i(0);i<unreachablePlanets.size();i++)
     {
-        delete unreachablePlanets[i]; //AIP
+        delete unreachablePlanets[i];
     }
     unreachablePlanets.clear();
 }
@@ -66,7 +61,7 @@ int Universe::getX() const
     return x;
 }
 /*
-    It's a  setter of x
+    It's a setter of x
 */
 void Universe::setX(int x)
 {
@@ -100,26 +95,42 @@ void Universe::addUnreachable(const Planet* pla)
 {
     unreachablePlanets.push_back(pla->clone());
 }
+
+/*
+    It's a function used to find a planet by it's index
+*/
 Planet* Universe::getPlanet(int index)
 {
     return planets[index];
 }
 
+/*
+    This is the function used to know size of planets' list
+*/
 int Universe::getSizePlanets()const
 {
     return planets.size();
 }
 
+/*
+    It's a function used to find a unreachablePlanets by it's index
+*/
 Planet* Universe::getPlanetUnreach(int index)
 {
     return unreachablePlanets[index];
 }
 
+/*
+    This function is used to know the size of the list : unreachablePlanets
+*/
 int Universe::getSizePlanetsUnreach()const
 {
     return unreachablePlanets.size();
 }
 
+/*
+    This is the getter to recover the prite of the universe
+*/
 sf::Sprite Universe::getUniverse_sprite() const
 {
     return universe_sprite;

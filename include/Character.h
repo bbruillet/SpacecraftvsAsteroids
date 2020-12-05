@@ -9,8 +9,6 @@
 #include <cstdio>
 #include <SFML/Graphics.hpp>
 
-using std::cout;
-using std::endl;
 using std::string;
 using std::to_string;
 using std::ostream;

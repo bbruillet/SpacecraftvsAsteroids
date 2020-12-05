@@ -98,7 +98,7 @@ int Fight::attack(Character &c1,Character &c2)
 }
 
 /*This function is used by the hero. It's where the hero will regen his life !*/
-void Fight::regenHero(Character &c1, Character &c2)
+void Fight::regenHero(Character &c1)
 {
     c1.setPtsLife(c1.getPtsLife() + c1.getRegeneration());
     nbRegen--;
@@ -127,10 +127,4 @@ string Fight::eventAttack(int attackEvent)
     {
         return "Critical hit from ";
     }
-}
-
-/*This is the setter of the regeneration's counter*/
-void Fight::setNbRegen(const int &nbRegen)
-{
-    this->nbRegen = nbRegen;
 }

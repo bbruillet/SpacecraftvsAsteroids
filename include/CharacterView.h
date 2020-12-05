@@ -1,5 +1,6 @@
 #ifndef CHARACTERVIEW_H
 #define CHARACTERVIEW_H
+
 #include "CharacterHero.h"
 #include "CharacterBoss.h"
 #include <SFML/Graphics.hpp>

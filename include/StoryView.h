@@ -8,12 +8,15 @@
 using std::cout;
 using std::endl;
 
-
+/*
+    This is a clas used to prevent the user that there's a story behind the game !
+*/
 class StoryView
 {
     private:
         /*
-            Allows to give a texture and position
+            There is a sprite (it's the background of the window) and it allows you to give a texture and position
+            There is font and texts to write something in the window
         */
         sf::Sprite story_sprite;
         sf::Texture story_texture;
@@ -37,13 +40,15 @@ class StoryView
         virtual ~StoryView();
         StoryView(const StoryView& other);
         StoryView& operator=(const StoryView& other);
-/*
-    This is a function that write the introduction
-*/
+
+        /*
+            This is a function that write the introduction
+        */
         void introduction(Management& man,sf::RenderWindow &window);
-/*
-    This is a function that write the conclusion
-*/
+
+        /*
+            This is a function that write the conclusion
+        */
         void conclusion(Management& man,sf::RenderWindow &window);
 };
 

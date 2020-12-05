@@ -140,24 +140,24 @@ void PauseMenu::show(Management& man,sf::RenderWindow& window)
                     /*First text*/
                     case 0:
                         /*The function playerAccount will be showed by pressing the text*/
-                        man.launch(window);
+                        man.launch();
                         break;
 
                     /*Second text*/
                     case 1:
                         /*The function creditGame will be showed by pressing the text*/
-                        man.mapSpace(window);
+                        man.mapSpace();
                         break;
 
                     /*Third text*/
                     case 2:
                         /*The function showStats will be showed by pressing the text*/
-                        man.showStats(window);
+                        man.showStats();
                        break;
 
                     /*Fourth text*/
                     case 3:
-                        man.tuto(window);
+                        man.tuto();
                         break;
                     case 4:
                         window.close();

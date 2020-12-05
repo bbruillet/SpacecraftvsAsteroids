@@ -1,9 +1,4 @@
 #include "Spacecraft.h"
-#include "IConstante.h"
-
-#include <cstdio>
-#include <iostream>
-
 /*
     This is the constructor
 */
@@ -35,22 +30,25 @@ Spacecraft& Spacecraft::operator=(const Spacecraft& sc)
     return *this;
 }
 
-/*These are getters and setters of coordinates*/
+/*This is the getter of x coordinate*/
 int Spacecraft::getX() const
 {
     return x;
 }
 
+/*This is the setter of x coordinate*/
 void Spacecraft::setX(const int &x)
 {
     this->x = x;
 }
 
+/*This is the getter of y coordinate*/
 int Spacecraft::getY() const
 {
     return y;
 }
 
+/*This is the setter of y coordinate*/
 void Spacecraft::setY(const int &y)
 {
     this->y = y;

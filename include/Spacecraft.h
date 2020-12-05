@@ -4,10 +4,10 @@
 #include <iostream>
 #include <ostream>
 #include <string>
+#include <cstdio>
 
 #include "IConstante.h"
 
-#include <cstdio>
 
 using std::cout;
 using std::endl;

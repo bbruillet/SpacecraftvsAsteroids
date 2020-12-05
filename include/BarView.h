@@ -28,7 +28,7 @@ class BarView
         */
         int maxLife;
         int actualLife;
-        int remainingLife;
+        int missingLife;
         float coefSizeLife;
         int xLife,yLife;
 
@@ -52,7 +52,7 @@ class BarView
         */
         int maxShield;
         int actualShield;
-        int remainingShield;
+        int missingShield;
         float coefSizeShield;
         int xShield,yShield;
 

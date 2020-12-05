@@ -27,7 +27,9 @@ StatsPlayerView::StatsPlayerView()
     backKey.setStyle(sf::Text::Bold);
     backKey.setPosition(sf::Vector2f(500,870));
 
-
+    /*
+        It's used to give some properties to the same "kind" of text
+    */
 	for (int i = 0; i < MAX_NUMBER_OF_SHOW_STATS; i++)
 	{
 	    stats[i].setFont(font);
@@ -84,7 +86,7 @@ void StatsPlayerView::showStats(CharacterHero& ch)
 {
     if (!player_texture.loadFromFile("Images/Backgrounds/"+to_string(ch.getRace())+"_Race.png"))
     {
-            std::cout << "Problème" << std::endl;
+            std::cout << "Problem while loading background" << std::endl;
     }
 
     player_sprite.setTexture(player_texture);
@@ -93,7 +95,7 @@ void StatsPlayerView::showStats(CharacterHero& ch)
 
     if (!character_texture.loadFromFile("Images/Avatars/"+to_string(ch.getRace())+"_Race.png"))
     {
-            std::cout << "Problème d'avatar" << std::endl;
+            std::cout << "Problem while loading character's picture" << std::endl;
     }
 
     character_sprite.setTexture(character_texture);

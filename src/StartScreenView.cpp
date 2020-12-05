@@ -1,5 +1,8 @@
 #include "StartScreenView.h"
 
+/*
+    This is the constructor
+*/
 StartScreenView::StartScreenView()
 {
     //ctor
@@ -31,16 +34,19 @@ StartScreenView::StartScreenView()
 	continueKey.setStyle(sf::Text::Bold);
 }
 
+/*This is the destructor*/
 StartScreenView::~StartScreenView()
 {
     //dtor
 }
 
+/*This is the copy constructor*/
 StartScreenView::StartScreenView(const StartScreenView& other)
 {
     //copy ctor
 }
 
+/*This is operator='s function*/
 StartScreenView& StartScreenView::operator=(const StartScreenView& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
@@ -48,6 +54,10 @@ StartScreenView& StartScreenView::operator=(const StartScreenView& rhs)
     return *this;
 }
 
+/*
+    This function is used to use something in Management.h
+    Here, some event with a keyReleased will be mainly done
+*/
 void StartScreenView::show(Management& man,sf::RenderWindow& window)
 {
 while (window.isOpen())
@@ -65,7 +75,7 @@ while (window.isOpen())
                 {
                 case sf::Keyboard::Space:
                     window.clear();
-                    man.menu(window);
+                    man.menu();
                     break;
 
                 default:
