@@ -40,7 +40,7 @@ StoryView::StoryView()
 
 	continueKey.setFont(font);
 	continueKey.setFillColor(sf::Color::White);
-	continueKey.setString("> Press space key to continue or press T key to enter tutorial <");
+
 	continueKey.setPosition(sf::Vector2f(820,870));
 	continueKey.setCharacterSize(20);
 	continueKey.setStyle(sf::Text::Bold);
@@ -117,7 +117,8 @@ void StoryView::introduction(Management& man,sf::RenderWindow &window)
 
 		}
 
-		window.clear();
+        continueKey.setString("> Press space key to continue or press T key to enter tutorial <");
+        window.clear();
 
 		window.draw(story_sprite);
 		window.draw(continueKey);
@@ -155,6 +156,8 @@ void StoryView::conclusion(Management& man,sf::RenderWindow &window)
 			}
 
 		}
+
+        continueKey.setString("> Press space key to continue <");
 
 		window.clear();
 

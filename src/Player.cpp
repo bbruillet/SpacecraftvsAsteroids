@@ -20,16 +20,16 @@ Player::Player()
 	races[0].setFillColor(sf::Color::White);
 	races[0].setString("> Human");
 	races[0].setPosition(sf::Vector2f(100,100));
-	races[1].setFillColor(sf::Color::Black);
+	races[1].setFillColor(sf::Color(204,145,0));
 	races[1].setString("> Valdera");
 	races[1].setPosition(sf::Vector2f(100,250));
-	races[2].setFillColor(sf::Color::Black);
+	races[2].setFillColor(sf::Color(204,145,0));
 	races[2].setString("> Vanduul");
 	races[2].setPosition(sf::Vector2f(100,400));
-	races[3].setFillColor(sf::Color::Black);
+	races[3].setFillColor(sf::Color(204,145,0));
 	races[3].setString("> Covenante");
 	races[3].setPosition(sf::Vector2f(100,550));
-	races[4].setFillColor(sf::Color::Black);
+	races[4].setFillColor(sf::Color(204,145,0));
 	races[4].setString("> Aetwi");
 	races[4].setPosition(sf::Vector2f(100,700));
 
@@ -250,7 +250,7 @@ void Player::moveUp()
 {
 	if (selectedItemIndex - 1 >= 0)
 	{
-		races[selectedItemIndex].setFillColor(sf::Color::Black);
+		races[selectedItemIndex].setFillColor(sf::Color(204,145,0));
 		selectedItemIndex--;
 		races[selectedItemIndex].setFillColor(sf::Color::White);
 		if (!player_texture.loadFromFile("Images/Backgrounds/"+to_string(selectedItemIndex)+"_Race.png"))
@@ -283,7 +283,7 @@ void Player::moveDown()
 {
 	if (selectedItemIndex + 1 < MAX_NUMBER_OF_RACES)
 	{
-		races[selectedItemIndex].setFillColor(sf::Color::Black);
+		races[selectedItemIndex].setFillColor(sf::Color(204,145,0));
 		selectedItemIndex++;
 		races[selectedItemIndex].setFillColor(sf::Color::White);
 		if (!player_texture.loadFromFile("Images/Backgrounds/"+to_string(selectedItemIndex)+"_Race.png"))

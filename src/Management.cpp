@@ -808,22 +808,24 @@ void Management::increaseStats()
                     stats.moveDown();
                     break;
 
+                //Choice of increase
                 case sf::Keyboard::Return:
                     switch(stats.getPressedItem())
                     {
+                    // set Life strategy
                     case 0:
                         hero->setIncrease(new IncreaseLife);
                         break;
-
+                    //set Attack Strategy
                     case 1:
                         hero->setIncrease(new IncreaseAttack);
                         break;
-
+                    //set Shield Strategy
                     case 2:
                         hero->setIncrease(new IncreaseShield);
 
                         break;
-
+                    // set regeneration strategy
                     case 3:
                         hero->setIncrease(new IncreaseRegeneration);
 
@@ -832,8 +834,14 @@ void Management::increaseStats()
                         break;
                     }
 
-
+                    // increase statistic which has been choosen
                     hero->executeIncrease();
+
+
+
+
+
+
                     spv->showStats(*hero);
 
                     windowGame->clear();

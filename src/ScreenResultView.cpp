@@ -82,7 +82,7 @@ void ScreenResultView::showResult(Management& man,sf::RenderWindow& window,int r
             textEvent.setString("Victory");
             textInstruction.setFillColor(sf::Color(241, 159, 10));
             textInstruction.setString("> Press space key for entering laboratory <");
-
+            textInstruction.setPosition(150, 25);
         }
 
         if(result == 2)
@@ -92,12 +92,13 @@ void ScreenResultView::showResult(Management& man,sf::RenderWindow& window,int r
             textEvent.setString("Wasted");
             textInstruction.setFillColor(sf::Color(241, 159, 10));
             textInstruction.setString("> Press space key to get back to your spaceship <");
+            textInstruction.setPosition(120, 25);
         }
 
         man.setSpriteVictory();
 
         textEvent.setPosition(575, 150);
-        textInstruction.setPosition(150, 25);
+
 
         window.clear();
         window.draw(man.getVictory_sprite());
