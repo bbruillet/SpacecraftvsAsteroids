@@ -100,3 +100,27 @@ void Universe::addUnreachable(const Planet* pla)
 {
     unreachablePlanets.push_back(pla->clone());
 }
+Planet* Universe::getPlanet(int index)
+{
+    return planets[index];
+}
+
+int Universe::getSizePlanets()const
+{
+    return planets.size();
+}
+
+Planet* Universe::getPlanetUnreach(int index)
+{
+    return unreachablePlanets[index];
+}
+
+int Universe::getSizePlanetsUnreach()const
+{
+    return unreachablePlanets.size();
+}
+
+sf::Sprite Universe::getUniverse_sprite() const
+{
+    return universe_sprite;
+}

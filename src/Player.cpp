@@ -17,19 +17,19 @@ Player::Player()
         These lines are used to store a color and some string in some text.
         It will be displayed in the window with 'draw()' function
     */
-	races[0].setFillColor(sf::Color(96, 59, 99));
+	races[0].setFillColor(sf::Color::White);
 	races[0].setString("> Human");
 	races[0].setPosition(sf::Vector2f(100,100));
-	races[1].setFillColor(sf::Color::White);
+	races[1].setFillColor(sf::Color::Black);
 	races[1].setString("> Valdera");
 	races[1].setPosition(sf::Vector2f(100,250));
-	races[2].setFillColor(sf::Color::White);
+	races[2].setFillColor(sf::Color::Black);
 	races[2].setString("> Vanduul");
 	races[2].setPosition(sf::Vector2f(100,400));
-	races[3].setFillColor(sf::Color::White);
+	races[3].setFillColor(sf::Color::Black);
 	races[3].setString("> Covenante");
 	races[3].setPosition(sf::Vector2f(100,550));
-	races[4].setFillColor(sf::Color::White);
+	races[4].setFillColor(sf::Color::Black);
 	races[4].setString("> Aetwi");
 	races[4].setPosition(sf::Vector2f(100,700));
 
@@ -61,7 +61,7 @@ Player::Player()
 
     playerText.setFont(font);
     playerText.setCharacterSize(50);
-    playerText.setFillColor(sf::Color(0, 0, 0));
+    playerText.setFillColor(sf::Color(204,145,0));
     playerText.setPosition(sf::Vector2f(300,400));
 
     /*
@@ -69,19 +69,19 @@ Player::Player()
         It will be displayed in the window with 'draw()' function
     */
     names[0].setFont(font);
-	names[0].setFillColor(sf::Color(0, 0, 0));
-	names[0].setString("> Veuillez entrer votre pseudo <");
+	names[0].setFillColor(sf::Color::White);
+	names[0].setString("> Enter your pseudo <");
 	names[0].setPosition(sf::Vector2f(150,250));
     names[0].setCharacterSize(75);
 
 	names[1].setFont(font);
 	names[1].setFillColor(sf::Color(204,145,0));
-	names[1].setString("> Attention le pseudo ne peut pas depasser 20 caracteres !");
+	names[1].setString("> Warning ! It cannot exceed 20 characters !");
 	names[1].setPosition(sf::Vector2f(100,50));
 
 	names[2].setFont(font);
 	names[2].setFillColor(sf::Color(204,145,0));
-	names[2].setString("> Attention le pseudo doit contenir au moins 3 caracteres !");
+	names[2].setString("> Warning ! It must contain at least 3 characters !");
 	names[2].setPosition(sf::Vector2f(100,0));
 
 	/*----------------------------------------------*/
@@ -89,13 +89,13 @@ Player::Player()
         These lines are used to store a color and some string in some text.
         It will be displayed in the window with 'draw()' function
     */
-	stats[0].setString("Points d'attaque : ");
-	stats[1].setString("Points de vie : ");
-	stats[2].setString("Points d'attaque speciale : ");
-	stats[3].setString("Points de bouclier : ");
-	stats[4].setString("Chance de coups critique : ");
-	stats[5].setString("Chance d'esquive : ");
-	stats[6].setString("Points de regeneration : ");
+	stats[0].setString("Attack : ");
+	stats[1].setString("Life : ");
+	stats[2].setString("Special attack : ");
+	stats[3].setString("Shield : ");
+	stats[4].setString("Probabilities to make a critical hit : ");
+	stats[5].setString("Probabilities to didge : ");
+	stats[6].setString("Regeneration : ");
 
 
 	for (int i = 0; i < MAX_NUMBER_OF_STATS; i++)
@@ -245,9 +245,9 @@ void Player::moveUp()
 {
 	if (selectedItemIndex - 1 >= 0)
 	{
-		races[selectedItemIndex].setFillColor(sf::Color::White);
+		races[selectedItemIndex].setFillColor(sf::Color::Black);
 		selectedItemIndex--;
-		races[selectedItemIndex].setFillColor(sf::Color(96, 59, 99));
+		races[selectedItemIndex].setFillColor(sf::Color::White);
 		if (!player_texture.loadFromFile("Images/Backgrounds/"+to_string(selectedItemIndex)+"_Race.png"))
         {
             std::cout << "Problem while loading background" << std::endl;
@@ -278,9 +278,9 @@ void Player::moveDown()
 {
 	if (selectedItemIndex + 1 < MAX_NUMBER_OF_RACES)
 	{
-		races[selectedItemIndex].setFillColor(sf::Color::White);
+		races[selectedItemIndex].setFillColor(sf::Color::Black);
 		selectedItemIndex++;
-		races[selectedItemIndex].setFillColor(sf::Color(96, 59, 99));
+		races[selectedItemIndex].setFillColor(sf::Color::White);
 		if (!player_texture.loadFromFile("Images/Backgrounds/"+to_string(selectedItemIndex)+"_Race.png"))
         {
             std::cout << "Problème" << std::endl;

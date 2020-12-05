@@ -61,7 +61,9 @@ class Management : public sf::Event, public IConstante
 
         sf::Texture getVictory_texture() const;
         sf::Sprite getVictory_sprite() const;
-
+        void setSpriteVictory();
+        void setVictoryTexture();
+        void setLoseTexture();
     protected:
 
     private:

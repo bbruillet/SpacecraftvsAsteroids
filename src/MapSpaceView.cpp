@@ -63,23 +63,23 @@ void MapSpaceView::showMap(Management& man,sf::RenderWindow& window)
 
         sf::Text text;
         text.setFont(font);
-        text.setString("> Appuyez sur la touche 'm' pour revenir sur le jeu <");
+        text.setString("> Press M to get back in the universe <");
         text.setCharacterSize(500);
         text.setPosition(200, -600);
 
         window.clear();
 
         window.setView(view);
-        window.draw(man.getUniverse().universe_sprite);
+        window.draw(man.getUniverse().getUniverse_sprite());
 
-        for(size_t i(0);i<man.getUniverse().planets.size();i++)
+        for(int i(0);i<man.getUniverse().getSizePlanets();i++)
         {
-            window.draw(*man.getUniverse().planets[i]);
+            window.draw(*man.getUniverse().getPlanet(i));
         }
 
-        for(size_t i(0); i < man.getUniverse().unreachablePlanets.size(); i++)
+        for(int i(0); i < man.getUniverse().getSizePlanetsUnreach(); i++)
         {
-            window.draw(*man.getUniverse().unreachablePlanets[i]);
+            window.draw(*man.getUniverse().getPlanetUnreach(i));
         }
 
         window.draw(text);
@@ -140,12 +140,12 @@ void MapSpaceView::playMap(Management& man,sf::RenderWindow& window)
                     default:
                         break;
                 }
-                for (size_t i (0); i< man.getUniverse().planets.size();i++){
-                    if((man.getSpaceCraft().getX() >= man.getUniverse().planets[i]->getX()+200 && man.getSpaceCraft().getX() <= man.getUniverse().planets[i]->getX()+800)
-                       && (man.getSpaceCraft().getY() >= man.getUniverse().planets[i]->getY()+200 && man.getSpaceCraft().getY() <= man.getUniverse().planets[i]->getY() + 800))
+                for (int i (0); i< man.getUniverse().getSizePlanets();i++){
+                    if((man.getSpaceCraft().getX() >= man.getUniverse().getPlanet(i)->getX()+200 && man.getSpaceCraft().getX() <= man.getUniverse().getPlanet(i)->getX()+800)
+                       && (man.getSpaceCraft().getY() >= man.getUniverse().getPlanet(i)->getY()+200 && man.getSpaceCraft().getY() <= man.getUniverse().getPlanet(i)->getY() + 800))
                     {
                         display = 1;
-                        planetInProgress = *man.getUniverse().planets[i];
+                        planetInProgress = *man.getUniverse().getPlanet(i);
 
                             switch (event.type)
                             {
@@ -170,7 +170,7 @@ void MapSpaceView::playMap(Management& man,sf::RenderWindow& window)
                     }
                     else
                     {
-                        if(*man.getUniverse().planets[i] == planetInProgress){
+                        if(*man.getUniverse().getPlanet(i) == planetInProgress){
                             display = 0;
                         }
                     }
@@ -202,7 +202,7 @@ void MapSpaceView::playMap(Management& man,sf::RenderWindow& window)
 
                     man.getSpaceCraft().setX(x);
                     man.getSpaceCraft().setY(y);
-                    man.getSpaceCraftView().spacecraft_sprite.setPosition(x,y);
+                    man.getSpaceCraftView().getSpacecraft_sprite().setPosition(x,y);
                 }
             }
 
@@ -215,16 +215,16 @@ void MapSpaceView::playMap(Management& man,sf::RenderWindow& window)
 
             window.clear();
             window.setView(view);
-            window.draw(man.getUniverse().universe_sprite);
+            window.draw(man.getUniverse().getUniverse_sprite());
 
-            for(size_t i(0);i<man.getUniverse().planets.size();i++)
+            for(int i(0);i<man.getUniverse().getSizePlanets();i++)
             {
-                window.draw(*man.getUniverse().planets[i]);
+                window.draw(*man.getUniverse().getPlanet(i));
             }
 
-            for(size_t i(0); i < man.getUniverse().unreachablePlanets.size(); i++)
+            for(int i(0); i < man.getUniverse().getSizePlanetsUnreach(); i++)
             {
-                window.draw(*man.getUniverse().unreachablePlanets[i]);
+                window.draw(*man.getUniverse().getPlanetUnreach(i));
             }
 
             if(display == 1)

@@ -27,6 +27,18 @@ class Universe
         */
         int x, y;
 
+        /*
+            Here we find the list of planets as well as the list of unreachable planets
+        */
+        vector<Planet*> planets;
+        vector<Planet*> unreachablePlanets;
+
+
+        /*
+            It’s the texture and the sprite of the universe
+        */
+        sf::Sprite universe_sprite;
+        sf::Texture universe_texture;
     public:
          /*
             The 3 next lines are :
@@ -41,18 +53,6 @@ class Universe
         Universe(const Universe& univ);
 
         /*
-            Here we find the list of planets as well as the list of unreachable planets
-        */
-        vector<Planet*> planets;
-        vector<Planet*> unreachablePlanets;
-
-        /*
-            It’s the texture and the sprite of the universe
-        */
-        sf::Sprite universe_sprite;
-        sf::Texture universe_texture;
-
-        /*
             These functions are used for add planets and unreachable planets to the list of planets and unreachable planets
         */
         void add(const Planet*);
@@ -65,6 +65,14 @@ class Universe
         void setX(int x);
         int getY() const;
         void setY(int y);
+
+        Planet* getPlanet(int index);
+        int getSizePlanets()const;
+
+        Planet* getPlanetUnreach(int index);
+        int getSizePlanetsUnreach()const;
+
+        sf::Sprite getUniverse_sprite() const;
 };
 
 #endif // UNIVERS_H

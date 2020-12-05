@@ -45,8 +45,8 @@ PauseMenu::PauseMenu()
 	pauseMenu[3].setString("> Show tutorial");
 	pauseMenu[3].setPosition(sf::Vector2f(100,550));
 
-	pauseMenu[4].setFillColor(sf::Color(201, 135, 185));
-	pauseMenu[4].setString("> Quit");
+	pauseMenu[4].setFillColor(sf::Color::White);
+	pauseMenu[4].setString("> Quit game");
 	pauseMenu[4].setPosition(sf::Vector2f(100,700));
 
 	for (int i = 0; i < MAX_NUMBER_OF_TEXTS; i++)
@@ -173,6 +173,7 @@ void PauseMenu::show(Management& man,sf::RenderWindow& window)
                 case sf::Event::Closed:
                     window.close();
 
+                    break;
                 default:
                 break;
 

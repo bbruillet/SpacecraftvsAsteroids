@@ -171,3 +171,8 @@ Spacecraft& SpacecraftView::getSpacecraft()const
 {
     return *spacecraft;
 }
+
+sf::Sprite SpacecraftView::getSpacecraft_sprite() const
+{
+    return spacecraft_sprite;
+}

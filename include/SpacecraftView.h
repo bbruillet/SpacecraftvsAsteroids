@@ -14,6 +14,15 @@ class SpacecraftView : public sf::Event, public IConstante
         */
         Spacecraft* spacecraft;
 
+         /*
+            This is the sprite & the texture of a spacecraft.
+            IntRect is used for using a sprite sheet
+        */
+        sf::Sprite spacecraft_sprite;
+        sf::Texture spacecraft_texture;
+        sf::IntRect rectSourceSprite;
+
+
     public:
         /*
             The 4 next lines are :
@@ -30,14 +39,6 @@ class SpacecraftView : public sf::Event, public IConstante
         /*This function is used to draw a sprite of a spacecraft*/
         void drawSpacecraft(sf::RenderWindow &window);
 
-        /*
-            This is the sprite & the texture of a spacecraft.
-            IntRect is used for using a sprite sheet
-        */
-        sf::Sprite spacecraft_sprite;
-        sf::Texture spacecraft_texture;
-        sf::IntRect rectSourceSprite;
-
 
         /*
             These 2 functions are used by a spacecraft to move in the universe
@@ -51,6 +52,8 @@ class SpacecraftView : public sf::Event, public IConstante
         */
         Spacecraft& getSpacecraft()const;
         void setSpacecraft(Spacecraft&);
+
+        sf::Sprite getSpacecraft_sprite() const;
 };
 
 #endif // VAISSEAUVIEW_H

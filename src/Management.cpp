@@ -77,7 +77,27 @@ sf::Sprite Management::getVictory_sprite() const
 {
     return victory_sprite;
 }
+void Management::setSpriteVictory()
+{
+        victory_sprite.setTexture(victory_texture);
+        victory_sprite.setPosition(0, 0);
+        victory_sprite.scale(1.0f, 1.0f);
+}
 
+void Management::setLoseTexture()
+{
+    if (!victory_texture.loadFromFile("Images/Backgrounds/Loss.png"))
+    {
+        std::cout << "Problem for loading background" << std::endl;
+    }
+}
+void Management::setVictoryTexture()
+{
+    if (!victory_texture.loadFromFile("Images/Backgrounds/Victory.png"))
+    {
+        std::cout << "Problem for loading background" << std::endl;
+    }
+}
 CharacterHero& Management::getCharHero()
 {
     return this->hero;
@@ -189,9 +209,9 @@ void Management::story(sf::RenderWindow & windowJeu)
     {
         setNbStory(0);
         hero.setBadge(0);
-        for ( size_t i = 0; i < universe.planets.size(); i++ )
+        for ( int i = 0; i < universe.getSizePlanets(); i++ )
         {
-                universe.planets[i]->getBoss()->setBadge(2);
+                universe.getPlanet(i)->getBoss()->setBadge(2);
         }
         sView.conclusion(*this, windowJeu);
     }
@@ -408,7 +428,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                                 // animation when hero need to walk until the boss
                                 cView.forwardHero();
                                 // change this var to go near the boss and set the position of the spite
-                                dimension.x += 22;
+                                dimension.x += 35;
                                 cView.positionCharacterHero(dimension.x, dimension.y);
 
                                 //display the scene of the battle
@@ -448,7 +468,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                             for(int i(0);i<nb;i++)
                             {   //animation the hero go back at his position
                                 cView.backwardHero();
-                                dimension.x -= 22;
+                                dimension.x -= 35;
                                 cView.positionCharacterHero(dimension.x, dimension.y);
                                 //display scene of the battle
                                 windowJeu.clear();
@@ -498,7 +518,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                                 //animation of throwing is power ball
                                 cView.throwingBoss();
                                 // move the sprite of the power ball
-                                dimensionBoss.x -= 22;
+                                dimensionBoss.x -= 35;
                                 cView.positionAttackCharacterBoss(dimensionBoss.x, dimensionBoss.y);
                                 //draw battle scene
                                 windowJeu.clear();
@@ -588,7 +608,7 @@ void Management::fightPlanet(sf::RenderWindow & windowJeu,Planet& pla)
                             //throw is power ball
                             cView.throwingBoss();
                             //power ball move
-                            dimensionBoss.x -= 22;
+                            dimensionBoss.x -= 35;
                             //set position of power ball
                             cView.positionAttackCharacterBoss(dimensionBoss.x, dimensionBoss.y);
                             //draw window fight

@@ -747,7 +747,7 @@
 1607019032 /home/bruillet/Documents/Projet/SpacecraftvsAsteroids/include/IncreaseStatsMenu.h
 	"SFML/Graphics.hpp"
 
-1607121999 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Management.h
+1607124686 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Management.h
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	<iostream>
@@ -771,7 +771,7 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1607118683 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Universe.h
+1607125491 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/Universe.h
 	<iostream>
 	<ostream>
 	<string>
@@ -795,7 +795,7 @@
 	"IConstante.h"
 	<cstdio>
 
-1607099122 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/SpacecraftView.h
+1607125228 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/SpacecraftView.h
 	<SFML/Graphics.hpp>
 	"Spacecraft.h"
 
@@ -883,7 +883,7 @@
 1607027412 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/IncreaseStatsMenu.h
 	"SFML/Graphics.hpp"
 
-1607122042 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Management.cpp
+1607124805 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Management.cpp
 	"Management.h"
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -905,7 +905,7 @@
 	"SFML/Graphics.hpp"
 	"Management.h"
 
-1607120773 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/PauseMenu.cpp
+1607124578 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/PauseMenu.cpp
 	"PauseMenu.h"
 	<iostream>
 
@@ -917,7 +917,7 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1607121902 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Player.cpp
+1607126594 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Player.cpp
 	"Player.h"
 
 1607099122 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Spacecraft.cpp
@@ -926,10 +926,10 @@
 	<cstdio>
 	<iostream>
 
-1607118683 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/SpacecraftView.cpp
+1607125247 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/SpacecraftView.cpp
 	"SpacecraftView.h"
 
-1607118683 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Universe.cpp
+1607125491 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/Universe.cpp
 	"Universe.h"
 
 1607017738 source:/home/bruillet/Documents/Projet/SpacecraftvsAsteroids/src/IStrategyIncrease.cpp
@@ -1089,10 +1089,10 @@
 1607099122 /home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/include/ScreenResultView.h
 	"Management.h"
 
-1607118683 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/MapSpaceView.cpp
+1607125967 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/MapSpaceView.cpp
 	"MapSpaceView.h"
 
-1607122110 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/ScreenResultView.cpp
+1607124786 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/ScreenResultView.cpp
 	"ScreenResultView.h"
 
 1607120360 source:/home/lorisd/Bureau/JVD/Projet++/SpacecraftvsAsteroids/src/StartScreenView.cpp

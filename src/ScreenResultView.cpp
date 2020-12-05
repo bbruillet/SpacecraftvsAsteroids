@@ -70,12 +70,7 @@ void ScreenResultView::showResult(Management& man,sf::RenderWindow& window,int r
         window.clear();
         if(result == 1)
         {
-            if (!man.getVictory_texture().loadFromFile("Images/Backgrounds/Victory.png"))
-            {
-                std::cout << "Problem for loading background" << std::endl;
-            }
-
-
+            man.setVictoryTexture();
             textEvent.setFillColor(sf::Color(244,130,83));
             textEvent.setString("Victory");
             textInstruction.setFillColor(sf::Color(241, 159, 10));
@@ -84,21 +79,14 @@ void ScreenResultView::showResult(Management& man,sf::RenderWindow& window,int r
         }
         if(result == 2)
         {
-            if (!man.getVictory_texture().loadFromFile("Images/Backgrounds/Loss.png"))
-            {
-                std::cout << "Problem while loading background" << std::endl;
-            }
-
+            man.setLoseTexture();
             textEvent.setFillColor(sf::Color::Red);
             textEvent.setString("Wasted");
-
             textInstruction.setFillColor(sf::Color(241, 159, 10));
             textInstruction.setString("> Press space key to go back to your spaceship <");
         }
 
-        man.getVictory_sprite().setTexture(man.getVictory_texture());
-        man.getVictory_sprite().setPosition(0, 0);
-        man.getVictory_sprite().scale(1.0f, 1.0f);
+        man.setSpriteVictory();
 
 
         textEvent.setPosition(575, 150);
