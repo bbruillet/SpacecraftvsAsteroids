@@ -88,12 +88,8 @@ Management::Management()
 Management::~Management()
 {
     //dtor
-    delete universe;
     delete spacecraft;
-    delete spacecraftView;
     delete hero;
-    delete biome;
-    delete cView;
     delete barHero;
     delete barBoss;
     delete fight;
@@ -439,7 +435,7 @@ void Management::fightPlanet(Planet& pla)
     //counter for step
     int nb = 0;
     //step to do to be near to the boss
-    int step;
+    int step = 0;
     //it's to avoid spam of A and R
     int statut = 0;
     //Result of the fight
@@ -886,6 +882,10 @@ void Management::showStats()
 		sf::Event event;
 		while (windowGame->pollEvent(event))
 		{
+            if (event.type == sf::Event::Closed) {
+            windowGame->close();
+            }
+
 		    switch (event.type)
 			{
             case sf::Event::KeyReleased:

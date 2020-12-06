@@ -56,7 +56,7 @@ void CharacterHero::categoryHero() {
         setPtsSpecialAttack(35);
         setShield(25);
 
-        setCriticalHit(50.00);
+        setCriticalHit(35.00);
         setDodge(30.00);
         setRegeneration(20);
         setPicture("Images/Avatars/0_Heros.png");
@@ -64,38 +64,38 @@ void CharacterHero::categoryHero() {
         break;
 
     case VALDERA:
-        setPtsLife(200);
-        setPtsAttack(1000);
-        setPtsSpecialAttack(200);
-        setShield(50);
+        setPtsLife(25);
+        setPtsAttack(25);
+        setPtsSpecialAttack(40);
+        setShield(125);
 
-        setCriticalHit(200.00);
-        setDodge(10.00);
-        setRegeneration(20);
+        setCriticalHit(30.00);
+        setDodge(25.00);
+        setRegeneration(35);
         setPicture("Images/Avatars/1_Heros.png");
 
         break;
     case VANDUUL:
-        setPtsLife(1000);
-        setPtsAttack(10000);
-        setPtsSpecialAttack(300);
-        setShield(300);
+        setPtsLife(70);
+        setPtsAttack(50);
+        setPtsSpecialAttack(90);
+        setShield(30);
 
-        setCriticalHit(300.00);
-        setDodge(300.00);
-        setRegeneration(10);
+        setCriticalHit(20.00);
+        setDodge(30.00);
+        setRegeneration(15);
         setPicture("Images/Avatars/2_Heros.png");
 
         break;
     case COVENANTE:
         setPtsLife(300);
-        setPtsAttack(30);
+        setPtsAttack(7);
         setPtsSpecialAttack(50);
-        setShield(30);
+        setShield(50);
 
-        setCriticalHit(35.00);
-        setDodge(20.00);
-        setRegeneration(80);
+        setCriticalHit(40.00);
+        setDodge(15.00);
+        setRegeneration(30);
         setPicture("Images/Avatars/3_Heros.png");
 
         break;

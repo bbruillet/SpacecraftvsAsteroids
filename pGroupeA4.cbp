@@ -12,12 +12,25 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++17" />
 					<Add option="-g" />
 					<Add directory="include" />
+					<Add directory="Images" />
+					<Add directory="Musiques" />
+					<Add directory="Polices" />
+					<Add directory="SFML_LIBS/include" />
 				</Compiler>
+				<Linker>
+					<Add library="SFML_LIBS/lib/libsfml-audio.so" />
+					<Add library="SFML_LIBS/lib/libsfml-graphics.so" />
+					<Add library="SFML_LIBS/lib/libsfml-network.so" />
+					<Add library="SFML_LIBS/lib/libsfml-system.so" />
+					<Add library="SFML_LIBS/lib/libsfml-window.so" />
+					<Add directory="SFML_LIBS/lib" />
+				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/pTestSFML" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/pGroupeA4" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -32,8 +45,22 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c++17" />
 			<Add option="-fexceptions" />
+			<Add directory="include" />
+			<Add directory="SFML_LIBS/include" />
+			<Add directory="Images" />
+			<Add directory="Musiques" />
+			<Add directory="Polices" />
 		</Compiler>
+		<Linker>
+			<Add library="SFML_LIBS/lib/libsfml-audio.so" />
+			<Add library="SFML_LIBS/lib/libsfml-graphics.so" />
+			<Add library="SFML_LIBS/lib/libsfml-network.so" />
+			<Add library="SFML_LIBS/lib/libsfml-system.so" />
+			<Add library="SFML_LIBS/lib/libsfml-window.so" />
+			<Add directory="SFML_LIBS/lib" />
+		</Linker>
 		<Unit filename="include/BarView.h" />
 		<Unit filename="include/BiomePlanet.h" />
 		<Unit filename="include/Character.h" />

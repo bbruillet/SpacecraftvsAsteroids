@@ -26,8 +26,8 @@ CharacterView::CharacterView()
 */
 CharacterView::~CharacterView()
 {
-    delete(hero);
-    delete(boss);
+    delete hero;
+    delete boss;
 }
 
 /*

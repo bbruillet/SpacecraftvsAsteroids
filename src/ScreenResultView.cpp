@@ -44,6 +44,12 @@ void ScreenResultView::showResult(Management& man,sf::RenderWindow& window,int r
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
+
+            if (event.type == sf::Event::Closed) {
+            window.close();
+            }
+
+
             switch (event.type)
 			{
             case sf::Event::KeyReleased:

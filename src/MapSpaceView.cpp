@@ -51,10 +51,7 @@ void MapSpaceView::showMap(Management& man,sf::RenderWindow& window)
         {
             if (event.type == sf::Event::Closed)
             {
-                view.reset(sf::FloatRect(2048, 1024, 1500, 900));
-                view.setCenter(750, 450);
-                window.setView(view);
-                man.menu();
+                    window.close();
             }
 
             if (event.type == sf::Event::KeyReleased)
